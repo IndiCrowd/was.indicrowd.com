@@ -1,0 +1,31 @@
+/*
+YUI 3.5.0 (build 5089)
+Copyright 2012 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+/**
+ * Percents could work for IE, but for backCompat purposes, we are using keywords.
+ * x-small is for IE6/7 quirks mode.
+ */
+ body, input, textarea, button, select, table {
+    font-family: 나눔고딕, NanumGothic, Tahoma, Sans-serif;
+    font-size: 12px
+}
+/* 태블릿 PC와 데스크톱용 글꼴 - 시스템 글꼴 다음으로 웹 폰트를 참조하도록 선언 */
+@media all and (min-width: 768px) {
+    @font-face{font-family:ng; src:url(NanumGothic.eot); src:local('※'), url(NanumGothic.woff) format('woff');}
+    body,input,textarea,button,select,table{font-family:나눔고딕,NanumGothic,ng,Tahoma,Sans-serif}
+}
+
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family:monospace;
+	*font-size:108%;
+	line-height:100%;
+}
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssfonts { display: none; }

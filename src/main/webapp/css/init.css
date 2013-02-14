@@ -1,0 +1,34 @@
+@import url(init/base.css);
+@import url(init/reset.css);
+@import url(init/fonts.css);
+
+/* init */
+
+
+
+/* All - 모든 해상도 공용 스타일 */
+th, td {
+	border: none;
+}
+
+textarea {
+	width: 15em;
+	height: 5em;
+}
+  
+/* Mobile - 모바일 해상도 전용 스타일 */
+  
+/* Tablet & Desktop #1 - 태블릿 PC와 데스크톱 공용 스타일 #1 */
+@media all and (min-width:481px) {
+	
+}
+  
+/* Tablet & Desktop #2 - 태블릿 PC와 데스크톱 공용 스타일 #2 */
+@media all and (min-width:768px) {
+
+}
+  
+/* Desktop - 데스크톱 전용 스타일 */
+@media all and (min-width:990px) {
+
+}
