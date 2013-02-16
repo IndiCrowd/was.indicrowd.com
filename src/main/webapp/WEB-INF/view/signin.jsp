@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>로그인</title>
-	</head>
-	
-	<body>
-		
 		
 		<form action="${pageContext.request.contextPath}/signin/authenticate" method="POST">
 			<c:if test="${not empty param.error}">
@@ -38,6 +30,3 @@
 			<a href="javascript:$('#facebook-login-form').submit();"><img src="${pageContext.request.contextPath}/img/facebook/f_logo.jpg"></a>
 			
 		</div>
-
-	</body>
-</html>

@@ -36,10 +36,10 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href="#">IndiCrowd</a>
+					<a class="brand" href="${pageContext.request.contextPath}">IndiCrowd</a>
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
-							<li class="active"><a href="index.html">Home</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
 	              			<li ><a href="about.html">About</a></li>
 							<li class="dropdown">
 	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
