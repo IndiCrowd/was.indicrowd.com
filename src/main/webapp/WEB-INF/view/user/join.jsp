@@ -4,9 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!-- start: Page Title -->
 
-		<!-- end: Page Title -->
 		
 		<!--start: Wrapper-->
 		<div class="row-fluid">
@@ -65,8 +63,8 @@
 									<spring:bind path="nickname"><span class="error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
-							<h5>이용약관 동의</h5>
-							<form:checkbox id="termsAgree" path="termsAgree" />
+							<h5>이용약관 동의<form:checkbox id="termsAgree" path="termsAgree" /></h5>
+							
 							<spring:bind path="termsAgree"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>
 							</div>

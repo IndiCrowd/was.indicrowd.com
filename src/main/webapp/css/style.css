@@ -2027,6 +2027,12 @@ ol li ol.childlist .comment-des {
 	height: 40px;
 }
 
+#login-form input[type="password"] {
+	margin-bottom: 8px;
+	font-size: 16px;
+	height: 40px;
+}
+
 #login-form input[type="checkbox"] {
 	margin-top: -4px;
 }
