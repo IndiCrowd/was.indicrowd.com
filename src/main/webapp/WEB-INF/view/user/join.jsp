@@ -3,14 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-
-	<head>
-		<title>Sign UP</title>
-	</head>
-
-	<body>
 	
 		<div id="content">
 	
@@ -79,6 +71,3 @@
 			</form:form>
 		
 		</div>
-
-	</body>
-</html>

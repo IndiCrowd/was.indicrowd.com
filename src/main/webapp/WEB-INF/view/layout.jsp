@@ -61,10 +61,10 @@
 	              			<li ><a href="contact.html">Contact</a></li>
 							<li >
 								<sec:authorize access="isAnonymous()">
-									<a href="${pageContext.request.contextPath}/signin">로그인</a>
+									<a href="${pageContext.request.contextPath}/signin">Sign in</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
+									<a href="${pageContext.request.contextPath}/signout">Sign out</a>
 								</sec:authorize></li>
 							<li ><a href="${pageContext.request.contextPath}/user/join">Register</a></li>
 	            		</ul>

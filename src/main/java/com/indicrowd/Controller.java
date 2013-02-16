@@ -11,7 +11,6 @@ public class Controller extends AbstractController {
 	
 	@RequestMapping("/")
 	public String main() {
-		System.out.println("main2!");
 		return "main";
 	}
 	
