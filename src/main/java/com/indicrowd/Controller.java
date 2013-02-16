@@ -19,9 +19,10 @@ public class Controller extends AbstractController {
 		
 	}
 	
-	@RequestMapping("/rtc")
-	public String rtc(){
-		return "rtc";
+	
+	@RequestMapping("/band/home")
+	public String bandHome(){
+		return "band/home";
 	}
 	
 	@RequestMapping("/jwp")

@@ -44,28 +44,28 @@
 								
 								<label>
 									<form:input path="email" placeholder="이메일 주소" class="span12"/>
-									<spring:bind path="email"><span class="error">${status.errorMessage}</span></spring:bind>
+									<spring:bind path="email"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
 									<form:input path="username" placeholder="ID" class="span12"/>
-									<spring:bind path="username"><span class="error">${status.errorMessage}</span></spring:bind>
+									<spring:bind path="username"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
 									<form:input path="password" placeholder="비밀번호" class="span12"/>
-									<spring:bind path="password"><span class="error">${status.errorMessage}</span></spring:bind>
+									<spring:bind path="password"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
 									<form:input path="passwordConfirm" placeholder="비밀번호 확인" class="span12"/>
-									<spring:bind path="passwordConfirm"><span class="error">${status.errorMessage}</span></spring:bind>
+									<spring:bind path="passwordConfirm"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
 									<form:input path="nickname" placeholder="닉네임" class="span12"/>
-									<spring:bind path="nickname"><span class="error">${status.errorMessage}</span></spring:bind>
+									<spring:bind path="nickname"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
 							<h5>이용약관 동의<form:checkbox id="termsAgree" path="termsAgree" /></h5>
 							
-							<spring:bind path="termsAgree"><span class="error">${status.errorMessage}</span></spring:bind>
+							<spring:bind path="termsAgree"><span class="text-error">${status.errorMessage}</span></spring:bind>
 						</label>
 							</div>
 							<div class="actions">
