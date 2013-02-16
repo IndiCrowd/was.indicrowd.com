@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<style>
-	@import url(<c:url value="/css/init.css" />);
-</style>
+
 <!-- start: CSS -->
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
@@ -28,7 +26,10 @@
  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
  <!--[if lt IE 9]>
    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
- <![endif]-->		
+ <![endif]-->
+ <style>
+	@import url(<c:url value="/css/init.css" />);
+</style>		
 <script>
 var contextPath = '${pageContext.request.contextPath}';
 </script>

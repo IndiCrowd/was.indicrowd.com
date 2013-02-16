@@ -36,7 +36,7 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href="index.html">tabula</a>
+					<a class="brand" href="#">IndiCrowd</a>
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
 							<li class="active"><a href="index.html">Home</a></li>
@@ -59,8 +59,14 @@
 							<li ><a href="pricing.html">Pricing</a></li>
 							<li ><a href="blog.html">Blog</a></li>
 	              			<li ><a href="contact.html">Contact</a></li>
-							<li ><a href="login.html">Login</a></li>
-							<li ><a href="register.html">Register</a></li>
+							<li >
+								<sec:authorize access="isAnonymous()">
+									<a href="${pageContext.request.contextPath}/signin">로그인</a>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
+								</sec:authorize></li>
+							<li ><a href="${pageContext.request.contextPath}/user/join">Register</a></li>
 	            		</ul>
 	          		</div>
 	        	</div>
@@ -138,16 +144,7 @@
 				</div>
 				<!-- end: Latest Tweets -->
 
-				<!-- start: Photo Stream -->
-				<div class="span3">
-					
-					<h3>Flickr Photo Stream</h3>
-					<div class="flickr-widget">
-						<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=12&display=latest&size=s&layout=x&source=user&user=29609591@N08"></script>
-						<div class="clear"></div>
-					</div>
-					
-				</div>
+				
 				<!-- end: Photo Stream -->
 				
 				<!-- start: Follow Us -->
@@ -201,7 +198,7 @@
 				<!-- start: Under Footer Logo -->
 				<div class="span2">
 					<div id="under-footer-logo">
-						<a class="brand" href="#">tabula</a>
+						<a class="brand" href="#">IndiCrowd</a>
 					</div>
 				</div>
 				<!-- end: Under Footer Logo -->
@@ -210,7 +207,7 @@
 				<div class="span9">
 					
 					<div id="under-footer-copyright">
-						&copy; 2012, <a href="http://clabs.co">creativeLabs</a>. Designed by <a href="http://clabs.co">creativeLabs</a> in Poland <img src="img/poland.png" alt="Poland" style="margin-top:-4px">
+						&copy; 2013, <a href="#">IndiCrowd</a>. all right reserved.
 					</div>
 					
 				</div>

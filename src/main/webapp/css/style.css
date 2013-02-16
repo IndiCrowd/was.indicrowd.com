@@ -1,5 +1,5 @@
 /*
-* Author: Łukasz Holeczek
+* Author: �ukasz Holeczek
 * Template: Tabula Bootstrap Theme
 * Version: 1.0.0
 * Bootstrap version: 2.2.2
@@ -22,7 +22,7 @@
 html { -webkit-font-smoothing: antialiased; }
 
 body {
-	font-family: 'Droid Sans', sans-serif;
+	
 	font-weight: 400;
 	background: #ccc;
 	color: #000;
@@ -42,7 +42,6 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Droid Sans" !important;
 	font-weight: normal !important;
 	color: #414141;
 	margin: 0;
