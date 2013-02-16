@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-		
+	
+		<div id="content">
 		<form action="${pageContext.request.contextPath}/signin/authenticate" method="POST">
 			<c:if test="${not empty param.error}">
 			<p>
@@ -30,3 +33,4 @@
 			<a href="javascript:$('#facebook-login-form').submit();"><img src="${pageContext.request.contextPath}/img/facebook/f_logo.jpg"></a>
 			
 		</div>
+	</div>

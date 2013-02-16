@@ -4,16 +4,6 @@
 
 <sec:authentication property="principal" var="principal" />
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>TEST</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	
-	<body>
-
 			
 			<!-- start: Flexslider -->
 			<div class="slider">
@@ -43,6 +33,3 @@
 			</div>
 			<!-- end: Flexslider -->
 		
-		
-	</body>
-</html>
