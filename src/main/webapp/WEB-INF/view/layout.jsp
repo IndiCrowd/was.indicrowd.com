@@ -41,15 +41,15 @@
 	            		<ul class="nav">
 							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>
 	              			
-							<li ><a href="blog.html">블로그</a></li>
-							<li >
+							<li class="active"><a href="blog.html">블로그</a></li>
+							<li class="active">
 								<sec:authorize access="isAnonymous()">
 									<a href="${pageContext.request.contextPath}/signin">로그인</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
 									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
 								</sec:authorize></li>
-							<li ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
+							<li class="active" ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 	            		</ul>
 	          		</div>
 	        	</div>

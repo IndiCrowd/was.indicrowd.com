@@ -21,7 +21,7 @@
 
 			<li><img src="img/slider/slider2.jpg" alt="" />
 				<div class="slide-caption">
-					<h3>This is a caption</h3>
+					<h3>This is a caption </h3>
 				</div></li>
 
 			<li><img src="img/slider/slider3.jpg" alt="" /></li>
@@ -45,13 +45,13 @@
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
-							<iframe src="http://player.vimeo.com/video/47995280?portrait=0&color=ffffff" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
+							<iframe src="http://www.youtube.com/embed/n7Q4_IWGlOs" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
 						</div>
 					</div>
 					<div class="team-name">
-						Lucas Luck <span> / Co-Founder, CEO</span>
+						밴딩머신 <span> / Rock</span>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,</p>
+					<p class="text-info"><a href="#">벤딩머신(Vending Machine) - SPR(Live)</a></p>
 				</div>
 				<!-- end: About Member -->
 
@@ -61,13 +61,30 @@
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
-							<iframe src="http://player.vimeo.com/video/47995280?portrait=0&color=ffffff" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
+							<iframe src="http://www.youtube.com/embed/FgAaUI6n44I" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
 						</div>
 					</div>
 					<div class="team-name">
-						Lucas Luck <span> / Co-Founder</span>
+						딕펑스 <span> / Rock</span>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+					<p class="text-info"><a href="#">슈퍼스타K 4 - PSY_Gangnam Style with [Superstark4 10회] 딕펑스_"고추잠자리" @생방송 무대</a></p>
+					
+				</div>
+				<!-- end: About Member -->
+
+				<hr class="clean visible-phone">
+
+				<!-- start: About Member -->
+				<div class="span3">
+					<div class="widget">
+						<div class="flex-video widescreen">
+							<iframe src="http://www.youtube.com/embed/x6VHNkwL-qw" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
+						</div>
+					</div>
+					<div class="team-name">
+						10cm <span> / Rock Folk</span>
+					</div>
+					<p class="text-info"><a href="#">10cm - Fine Thank You And You</a>
 						</p>
 					
 				</div>
@@ -79,31 +96,13 @@
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
-							<iframe src="http://player.vimeo.com/video/47995280?portrait=0&color=ffffff" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
+							<iframe src="http://www.youtube.com/embed/xrrpiApmMTQ" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
 						</div>
 					</div>
 					<div class="team-name">
-						Lucas Luck <span> / Co-Founder</span>
+						브로콜리 너마저 <span> / Rock Folk</span>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						</p>
-					
-				</div>
-				<!-- end: About Member -->
-
-				<hr class="clean visible-phone">
-
-				<!-- start: About Member -->
-				<div class="span3">
-					<div class="widget">
-						<div class="flex-video widescreen">
-							<iframe src="http://player.vimeo.com/video/47995280?portrait=0&color=ffffff" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
-						</div>
-					</div>
-					<div class="team-name">
-						Lucas Luck <span> / Co-Founder</span>
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+					<p class="text-info"><a href="#">문화콘서트 난장 브로콜리 너마저 - 앵콜요청금지</a>
 						</p>
 					
 				</div>
