@@ -39,34 +39,17 @@
 					<a class="brand" href="${pageContext.request.contextPath}">IndiCrowd</a>
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
-							<li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
-	              			<li ><a href="about.html">About</a></li>
-							<li class="dropdown">
-	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
-	                			<ul class="dropdown-menu">
-	                  				<li><a href="social-icons.html">Social Icons</a></li>
-									<li><a href="icons.html">Glyphicons Halflings</a></li>
-									<li><a href="icons-pro.html">Glyphicons PRO</a></li>
-									<li><a href="icons_set2.html">Font Awesome Icons</a></li>
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="shortcodes.html">Shortcodes</a></li>
-									<li><a href="list-styles.html">List Styles</a></li>
-									<li><a href="charts.html">Charts</a></li>
-									<li><a href="sliders.html">Sliders</a></li>
-	                			</ul>
-	              			</li>
-							<li ><a href="portfolio.html">Portfolio</a></li>									
-							<li ><a href="pricing.html">Pricing</a></li>
-							<li ><a href="blog.html">Blog</a></li>
-	              			<li ><a href="contact.html">Contact</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>
+	              			
+							<li ><a href="blog.html">블로그</a></li>
 							<li >
 								<sec:authorize access="isAnonymous()">
-									<a href="${pageContext.request.contextPath}/signin">Sign in</a>
+									<a href="${pageContext.request.contextPath}/signin">로그인</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="${pageContext.request.contextPath}/signout">Sign out</a>
+									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
 								</sec:authorize></li>
-							<li ><a href="${pageContext.request.contextPath}/user/join">Register</a></li>
+							<li ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 	            		</ul>
 	          		</div>
 	        	</div>
@@ -80,110 +63,23 @@
 	<!--end: Header-->
 	<!--start: Container -->
 	<div class="container">
-				
-		<!--start: Wrapper-->
-		<div id="wrapper">
-		
-			<div id="content-wrapper">
-				<decorator:body />
-			</div>
-		</div>
-		<!--end: Container-->
+		<decorator:body />
 	
 	</div>
 	<!-- end: Wrapper  -->			
 
 	<!-- start: Footer -->
+	<!-- 
 	<div id="footer">
 		
-		<!-- start: Container -->
 		<div class="container">
 	
-			<!-- start: Row -->
-			<div class="row-fluid">
-
-				<!-- start: About -->
-				<div class="span3">
-					
-					<h3>creativeLabs</h3>
-
-					<p>
-						<i class="fa-icon-map-marker"></i> 30 South Park Avenue
-					</p>
-					<p>	
-						<i class="fa-icon-map-marker"></i> San Francisco, CA 94108, USA
-					</p>	
-					<p>	
-						<i class="fa-icon-phone"></i> Phone: (123) 456-7890
-					</p>
-					<p>	
-						<i class="fa-icon-print"></i> Fax: +08 (123) 456-7890
-					</p>
-					<p>
-						<i class="fa-icon-envelope"></i> Email: contact@companyname.com
-					</p>
-					<p>
-						<i class="fa-icon-globe"></i> Web: companyname.com
-					</p>
-						
-				</div>
-				<!-- end: About -->
-
-				<!-- start: Latest Tweets -->
-				<div class="span3">
-					
-					<h3>Latest Tweets</h3>
-					
-					<ul id="twitter">
-						
-					</ul>
-
-					<div class="clear"></div>
-					
-					
-				</div>
-				<!-- end: Latest Tweets -->
-
-				
-				<!-- end: Photo Stream -->
-				
-				<!-- start: Follow Us -->
-				<div class="span3">
-					
-					<h3>Follow Us</h3>
-					
-					<a href="#" class="social-dribbble"></a>
-					<a href="#" class="social-twitter"></a>
-					<a href="#" class="social-flickr"></a>
-					<a href="#" class="social-facebook"></a>
-					<a href="#" class="social-linkedin"></a>
-					<a href="#" class="social-vimeo"></a>
-					<a href="#" class="social-youtube"></a>
-					<a href="#" class="social-delicious"></a>
-					<a href="#" class="social-rss"></a>
-					<a href="#" class="social-picassa"></a>
-					<a href="#" class="social-deviantart"></a>
-					<a href="#" class="social-technorati"></a>
-					<a href="#" class="social-stumbleupon"></a>
-					<a href="#" class="social-appstore"></a>
-					<a href="#" class="social-paypal"></a>
-					<a href="#" class="social-myspace"></a>
-					<a href="#" class="social-pinterest"></a>
-					<a href="#" class="social-soundcloud"></a>
-					<a href="#" class="social-behance"></a>
-					<a href="#" class="social-instagram"></a>
-					<a href="#" class="social-googleplus"></a>
-	
-				</div>
-				<!-- end: Follow Us -->
-				
-			</div>
-			<!-- end: Row -->
+			
 		
 		</div>
-		<!-- end: Container  -->	
 
 	</div>
+	 -->
 	<!-- end: Footer -->
 	
 	<!-- start: Under Footer -->
