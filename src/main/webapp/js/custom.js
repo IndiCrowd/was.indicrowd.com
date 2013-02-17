@@ -62,11 +62,11 @@ jQuery(document).ready(function($){
 				   grid: { hoverable: true, 
 						   clickable: true, 
 						   tickColor: "#eee",
-						   borderWidth: 0,
+						   borderWidth: 0
 						 },
 				   colors: ["#414141"],
 					xaxis: {ticks:11, tickDecimals: 0},
-					yaxis: {tickFormatter: function (v) { return v + "USD"; }},
+					yaxis: {tickFormatter: function (v) { return v + "USD"; }}
 				 });
 
 		function showTooltip(x, y, contents) {
@@ -136,7 +136,7 @@ jQuery(document).ready(function($){
 						 },
 				   colors: ["#3B5998"],
 					xaxis: {ticks:6, tickDecimals: 0},
-					yaxis: {ticks:3, tickDecimals: 0},
+					yaxis: {ticks:3, tickDecimals: 0}
 				 });
 
 		function showTooltip(x, y, contents) {
@@ -205,7 +205,7 @@ jQuery(document).ready(function($){
 						 },
 				   colors: ["#1BB2E9"],
 					xaxis: {ticks:6, tickDecimals: 0},
-					yaxis: {ticks:3, tickDecimals: 0},
+					yaxis: {ticks:3, tickDecimals: 0}
 				 });
 
 		function showTooltip(x, y, contents) {
@@ -444,7 +444,7 @@ jQuery(document).ready(function($){
 	$('#layerslider').layerSlider({
 		skinsPath : 'css/skins/',
 		skin : 'tabula',
-		thumbnailNavigation : 'always',				
+		thumbnailNavigation : 'always'	
 	});
 	
 });		
