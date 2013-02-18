@@ -2,6 +2,7 @@ RealtimeWebClient = {};
 
 RealtimeWebClient.sock = undefined;
 RealtimeWebClient.connected = false;
+RealtimeWebClient.connectId = undefined;
 RealtimeWebClient.readyJoins = [];
 RealtimeWebClient.handlers = {};
 
@@ -25,7 +26,7 @@ RealtimeWebClient.init = function(sock) {
 		var data = JSON.parse(e.data);
 
 		if (data.isMe === true) {
-			console.log(data.connectId);
+			RealtimeWebClient.connectId = data.connectId;
 		} else {
 
 			var namespace = data.namespace;
@@ -36,7 +37,8 @@ RealtimeWebClient.init = function(sock) {
 			if (RealtimeWebClient.handlers[namespace] != undefined) {
 				if (RealtimeWebClient.handlers[namespace][id] != undefined) {
 					if (RealtimeWebClient.handlers[namespace][id][handlerName] != undefined) {
-						RealtimeWebClient.handlers[namespace][id][handlerName](object);
+						RealtimeWebClient.handlers[namespace][id][handlerName]
+								(object);
 					}
 				}
 			}
@@ -50,10 +52,12 @@ RealtimeWebClient.send = function(data) {
 	}
 };
 
-RealtimeWebClient.join = function(namespace, id, connectHandler, disconnectHandler) {
+RealtimeWebClient.join = function(namespace, id, connectHandler,
+		disconnectHandler) {
 	var d = {
 		namespace : namespace,
-		id : id
+		id : id,
+		userId : USER_ID
 	};
 
 	if (RealtimeWebClient.connected) {

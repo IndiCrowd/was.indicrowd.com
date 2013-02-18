@@ -16,6 +16,14 @@ privileged aspect Disconnect_Roo_JavaBean {
         this.id = id;
     }
     
+    public Long Disconnect.getUserId() {
+        return this.userId;
+    }
+    
+    public void Disconnect.setUserId(Long userId) {
+        this.userId = userId;
+    }
+    
     public int Disconnect.getCount() {
         return this.count;
     }

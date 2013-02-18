@@ -16,6 +16,14 @@ privileged aspect Connect_Roo_JavaBean {
         this.id = id;
     }
     
+    public Long Connect.getUserId() {
+        return this.userId;
+    }
+    
+    public void Connect.setUserId(Long userId) {
+        this.userId = userId;
+    }
+    
     public int Connect.getCount() {
         return this.count;
     }

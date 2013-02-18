@@ -11,6 +11,8 @@ public class Disconnect {
 
 	private String id;
 	
+	private Long userId;
+	
 	private int count;
 
 	private Date disconnectDate;

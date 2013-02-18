@@ -18,6 +18,8 @@ import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.sockjs.SockJSServer;
 import org.vertx.java.core.sockjs.SockJSSocket;
 
+import com.indicrowd.Controller;
+
 /**
  * @author 심영재
  */
@@ -98,6 +100,8 @@ public class RealtimeWebServer {
 												disconnect.setDisconnectDate(new Date());
 
 												send(namespace, id, "disconnect", disconnect);
+
+												Controller.getConnectedUserIds().remove(connectId);
 
 												System.out.println("=== RealtimeWeb Server Disconnected(" + namespace + "." + id + ":" + sock + ") ===");
 

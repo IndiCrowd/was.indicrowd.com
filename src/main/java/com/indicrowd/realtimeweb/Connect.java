@@ -10,7 +10,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Connect {
 
 	private String id;
-	
+
+	private Long userId;
+
 	private int count;
 
 	private Date connectDate;
