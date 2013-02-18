@@ -33,3 +33,18 @@
 <script>
 var contextPath = '${pageContext.request.contextPath}';
 </script>
+
+<script src="<c:url value="/js/jquery-1.8.2.min.js"/>"></script>
+<script src="<c:url value="/js/sockjs-0.2.1.min.js"/>"></script>
+<script src="<c:url value="/js/json2.js"/>"></script>
+<script src="<c:url value="/js/RealtimeWebClient.js"/>"></script>
+<script>
+$(function() {
+	RealtimeWebClient.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
+	RealtimeWebClient.join('IndiCrowd', 'init', function(id, count) {
+		console.log('connect, id:' + id + ', count:' + count);
+	}, function(id, count) {
+		console.log('disconnect, id:' + id + ', count:' + count);
+	});
+});
+</script>

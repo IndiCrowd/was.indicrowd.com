@@ -36,8 +36,7 @@ RealtimeWebClient.init = function(sock) {
 			if (RealtimeWebClient.handlers[namespace] != undefined) {
 				if (RealtimeWebClient.handlers[namespace][id] != undefined) {
 					if (RealtimeWebClient.handlers[namespace][id][handlerName] != undefined) {
-						RealtimeWebClient.handlers[namespace][id][handlerName]
-								(object);
+						RealtimeWebClient.handlers[namespace][id][handlerName](object);
 					}
 				}
 			}
@@ -51,7 +50,7 @@ RealtimeWebClient.send = function(data) {
 	}
 };
 
-RealtimeWebClient.join = function(namespace, id) {
+RealtimeWebClient.join = function(namespace, id, connectHandler, disconnectHandler) {
 	var d = {
 		namespace : namespace,
 		id : id
@@ -63,18 +62,16 @@ RealtimeWebClient.join = function(namespace, id) {
 		RealtimeWebClient.readyJoins.push(d);
 	}
 
-	/*
-	 * $.post(contextPath + '/__/realtimeweb/connect', { concertId:
-	 * '${command.id}' , content: $('#message').val() }, function(data) {
-	 * console.log(data); }, 'json');
-	 */
-
 	RealtimeWebClient.setHandler(namespace, id, 'connect', function(data) {
-		console.log('conncet:' + data.id + ', count:' + data.count);
+		if (connectHandler !== undefined) {
+			connectHandler(data.id, data.count);
+		}
 	});
 
 	RealtimeWebClient.setHandler(namespace, id, 'disconnect', function(data) {
-		console.log('disconncet:' + data.id + ', count:' + data.count);
+		if (disconnectHandler !== undefined) {
+			disconnectHandler(data.id, data.count);
+		}
 	});
 };
 
