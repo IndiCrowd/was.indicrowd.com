@@ -50,10 +50,10 @@ var USER_ID = '${principal.id}';
 <script>
 $(function() {
 	RealtimeWebClient.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
-	RealtimeWebClient.join('IndiCrowd', 'init', function(id, count) {
-		console.log('connect, id:' + id + ', count:' + count);
-	}, function(id, count) {
-		console.log('disconnect, id:' + id + ', count:' + count);
+	RealtimeWebClient.join('IndiCrowd', 'init', function(data) {
+		console.log('connect:', data);
+	}, function(data) {
+		console.log('disconnect:', data);
 	});
 });
 </script>

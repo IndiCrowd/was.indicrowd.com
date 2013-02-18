@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -18,8 +19,6 @@ import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.sockjs.SockJSServer;
 import org.vertx.java.core.sockjs.SockJSSocket;
 
-import com.indicrowd.Controller;
-
 /**
  * @author 심영재
  */
@@ -28,6 +27,8 @@ public class RealtimeWebServer {
 
 	private static final HashMap<String, HashMap<String, List<SockJSSocket>>> SOCKET_MAP = new HashMap<String, HashMap<String, List<SockJSSocket>>>();
 	private static final int PORT = 9090;
+
+	private static Map<String, Long> connectedUserIds = new HashMap<String, Long>();
 
 	static {
 
@@ -49,9 +50,17 @@ public class RealtimeWebServer {
 				sock.dataHandler(new Handler<Buffer>() {
 					public void handle(Buffer buffer) {
 
+						connectId = sock.writeHandlerID;
+
 						JsonObject json = new JsonObject(buffer.toString());
 						String namespace = json.getString("namespace");
 						String id = json.getString("id");
+						Long userId = null;
+
+						if (json.getString("userId") != null) {
+							userId = Long.parseLong(json.getString("userId"));
+							connectedUserIds.put(connectId, userId);
+						}
 
 						HashMap<String, List<SockJSSocket>> map = SOCKET_MAP.get(namespace);
 						if (map == null) {
@@ -65,10 +74,9 @@ public class RealtimeWebServer {
 						}
 						sockets.add(sock);
 
-						connectId = sock.writeHandlerID;
-
 						Connect connect = new Connect();
 						connect.setId(connectId);
+						connect.setUserId(userId);
 						connect.setCount(sockets.size());
 						connect.setConnectDate(new Date());
 
@@ -96,12 +104,13 @@ public class RealtimeWebServer {
 
 												Disconnect disconnect = new Disconnect();
 												disconnect.setId(connectId);
+												disconnect.setUserId(connectedUserIds.get(connectId));
 												disconnect.setCount(sockets.size());
 												disconnect.setDisconnectDate(new Date());
 
 												send(namespace, id, "disconnect", disconnect);
 
-												Controller.getConnectedUserIds().remove(connectId);
+												connectedUserIds.remove(connectId);
 
 												System.out.println("=== RealtimeWeb Server Disconnected(" + namespace + "." + id + ":" + sock + ") ===");
 

@@ -1,3 +1,7 @@
+/**
+ * @author 심영재
+ */
+
 RealtimeWebClient = {};
 
 RealtimeWebClient.sock = undefined;
@@ -68,13 +72,13 @@ RealtimeWebClient.join = function(namespace, id, connectHandler,
 
 	RealtimeWebClient.setHandler(namespace, id, 'connect', function(data) {
 		if (connectHandler !== undefined) {
-			connectHandler(data.id, data.count);
+			connectHandler(data);
 		}
 	});
 
 	RealtimeWebClient.setHandler(namespace, id, 'disconnect', function(data) {
 		if (disconnectHandler !== undefined) {
-			disconnectHandler(data.id, data.count);
+			disconnectHandler(data);
 		}
 	});
 };
