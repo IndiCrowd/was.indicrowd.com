@@ -8,8 +8,6 @@
 		<title>TEST</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<jsp:include page="../base-import.jsp" />
-		
 		<style>
 			#video-wrapper {
 				float: left;

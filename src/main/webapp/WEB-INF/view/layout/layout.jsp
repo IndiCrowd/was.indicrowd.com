@@ -19,7 +19,7 @@
 		<![endif]-->
 		<title>IndiCrowd :: <decorator:title /></title>
 		
-		<jsp:include page="base-import.jsp" />
+		<jsp:include page="../base-import.jsp" />
 		
 		<decorator:head />
 		
@@ -136,7 +136,7 @@
 		
 		
 		<!-- load script after page rendered for performance -->
-		<jsp:include page="script-import.jsp" />
+		<jsp:include page="../script-import.jsp" />
 	</body>
 	
 </html>
