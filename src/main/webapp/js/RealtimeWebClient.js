@@ -16,7 +16,7 @@ RealtimeWebClient.init = function(sock) {
 		RealtimeWebClient.sock = sock;
 		RealtimeWebClient.connected = true;
 
-		if (console !== undefined && console.log !== undefined) {
+		if (global.console !== undefined && console.log !== undefined) {
 			console.log('=== RealtimeWeb Server에 접속되었습니다. ===');
 		}
 
