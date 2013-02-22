@@ -12,6 +12,7 @@
 	<decorator name="layout" page="layout.jsp">
 		<pattern>/*</pattern>
 		<pattern>/concert/create</pattern>
+		<pattern>/concert/</pattern>
 	</decorator>
 	
 	<decorator name="concert" page="concert.jsp">

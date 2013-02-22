@@ -19,15 +19,17 @@
 		<![endif]-->
 		<title>IndiCrowd :: <decorator:title /></title>
 		
-		<jsp:include page="../base-import.jsp" />
+		<style>
+			@import url(<c:url value="/css/init.css" />);
+		</style>
 		
+		<jsp:include page="../script-import.jsp" />
 		<decorator:head />
 		
 	</head>
 	
 	<body>
 		<decorator:body />
-		<jsp:include page="../script-import.jsp" />
 	</body>
 	
 </html>

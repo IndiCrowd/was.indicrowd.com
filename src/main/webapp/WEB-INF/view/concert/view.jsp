@@ -7,30 +7,93 @@
 		<meta charset="utf-8">
 		<title>TEST</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet'>
 		
 		<style>
-			#video-wrapper {
-				float: left;
-				width: 70%;
+			html, body {
+				background: #000;
 			}
-			#chat-wrapper {
-				float: left;
-				width: 30%;
+			#concert-wrapper {
+				height: 700px;
 			}
-			#stage-wrapper {
+			
+			h1 { 
+				font-size: 32px;
+			  text-align: center;
+			  text-transform: uppercase;
+			  padding: 1px;
+			  font-family: 'Raleway';
+			  position: relative;
+			  background: rgba(0, 0, 0, .5);
+			}
+			h1:before {
+			  content: "";
+			  position: absolute;
+			  left: 50%;
+			  top: -50px;
+			  width: 600px;
+			  margin-left: -300px;
+			  margin-top: -220px;
+			  height: 600px;
+			  z-index: -1;
+			}
+			h1 a {
+			  display: block;
+			  padding: 20px;
+			  text-decoration: none;
+			  letter-spacing: 30px;
+			  -webkit-animation: comein 1.5s 1 ease-in-out forwards;
+			  -moz-animation: comein 1.5s 1 ease-in-out forwards;
+			}
+			@-webkit-keyframes comein {
+			   0% { letter-spacing: 50px; color: rgba(255,255,255,0); }
+			   70% { letter-spacing: 15px; }
+			   100% { letter-spacing: 20px; color: rgba(255,255,255,1) }
+			}
+			@-moz-keyframes comein {
+			   0% { letter-spacing: 50px; color: rgba(255,255,255,0); }
+			   70% { letter-spacing: 15px; }
+			   100% { letter-spacing: 20px; color: rgba(255,255,255,1) }
+			}
+			
+			#concert {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				padding: 20px;
+				left: 60px;
+				top: 110px;
+				width: 400px;
+				z-index: 1000;
+			}
+			#chat {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				padding: 20px;
+				width: 340px;
+				left: 560px;
+				top: 110px;
+			}
+			#stage {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				padding: 16px;
+				width: 408px;
+				left: 60px;
+				top: 480px;
+			}
+			#stage img {
+				background: rgba(255, 255, 255, .5);
+				padding: 5px;
+				margin: 4px;
 				float: left;
-				width: 30%;
 			}
 		</style>
 		
-		<script type="text/javascript" src="<c:url value="/js/jwplayer.js" />"></script>
 		<script>
 		$(function() {
-			
-			jwplayer("jwpalyer").setup({
-		        file: "<c:url value="/img/test.mp4" />",
-		        image: "<c:url value="/img/test.jpg" />"
-		    });
 			
 			RealtimeWebClient.join('Concert', '${command.id}');
 			RealtimeWebClient.setHandler('Concert', '${command.id}', 'newMessage', function(message) {
@@ -38,7 +101,7 @@
 				$('#messages').append($LI(message.sender.nickname + ': ' + message.content));
 			});
 			
-			$('#chat').submit(function() {
+			$('#chat form').submit(function() {
 				$.post('${pageContext.request.contextPath}/concert/chat', {
 					concertId: '${command.id}'
 					, content: $('#message').val()
@@ -49,29 +112,54 @@
 				return false;
 			});
 			
+			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
+			
+			$('#concert-wrapper').css({
+				background: 'url(' + bg + ')',
+				backgroundSize: 'auto 700px'
+			});
+			
 		});
+		
+		function toogle(el, img1, img2) {
+			if (el.src.indexOf(img1) === -1) {
+				el.src = img1;
+			} else {
+				el.src = img2;
+			}
+		}
 		</script>
 		
 	</head>
 	
 	<body>
 		
-		<div>
-			<div id="video-wrapper">
-				<div id="jwpalyer">Loading the player...</div>
+		<div id="concert-wrapper">
+		
+			<h1><a href="#">${command.title}</a></h1>
+		
+			<div id="concert">
+				<img src="<c:url value="/img/concert/swf1.jpg" />" onclick="toogle(this, '<c:url value="/img/concert/swf1.jpg" />', '<c:url value="/img/concert/swf2.jpg" />');">
 			</div>
 			
-			<div id="chat-wrapper">
+			<div id="chat">
 				<ul id="messages">
 				</ul>
-				<form id="chat">
+				<form>
 					<input id="message">
 					<input type="submit">
 				</form>
 			</div>
 			
-			<div id="stage-wrapper">
-				stage
+			<div id="stage">
+				<img src="<c:url value="/img/concert/profile1.jpg" />">
+				<img src="<c:url value="/img/concert/profile2.jpg" />">
+				<img src="<c:url value="/img/concert/profile3.jpg" />">
+				<img src="<c:url value="/img/concert/profile4.jpg" />">
+				<img src="<c:url value="/img/concert/profile5.jpg" />">
+				<img src="<c:url value="/img/concert/profile6.jpg" />">
+				<img src="<c:url value="/img/concert/profile7.jpg" />">
+				<img src="<c:url value="/img/concert/profile8.jpg" />">
 			</div>
 		</div>
 		
