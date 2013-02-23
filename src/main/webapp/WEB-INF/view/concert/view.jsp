@@ -13,12 +13,12 @@
 			html, body {
 				background: #000;
 			}
-			#concert-wrapper {
+			#wrapper {
 				height: 700px;
 			}
 			
 			h1 { 
-				font-size: 32px;
+				font-size: 22px;
 			  text-align: center;
 			  text-transform: uppercase;
 			  padding: 1px;
@@ -56,33 +56,59 @@
 			   100% { letter-spacing: 20px; color: rgba(255,255,255,1) }
 			}
 			
-			#concert {
+			#concert-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
-				padding: 20px;
 				left: 60px;
-				top: 110px;
-				width: 400px;
+				top: 90px;
+				width: 520px;
+				height: 400px;
 				z-index: 1000;
 			}
-			#chat {
+			#concert {
+				padding: 20px;
+				line-height: 0;
+			}
+			
+			#info-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
+				width: 320px;
+				height: 150px;
+				left: 620px;
+				top: 90px;
+			}
+			#info {
 				padding: 20px;
-				width: 340px;
-				left: 560px;
-				top: 110px;
+				color: #fff;
+			}
+			
+			#chat-wrapper {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				width: 320px;
+				height: 418px;
+				left: 620px;
+				top: 260px;
+			}
+			#chat {
+				padding: 20px;
+			}
+			
+			#stage-wrapper {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				width: 520px;
+				left: 60px;
+				top: 510px;
 			}
 			#stage {
-				background: rgba(0, 0, 0, .5);
-				border-radius: 5px;
-				position: absolute;
 				padding: 16px;
-				width: 408px;
-				left: 60px;
-				top: 480px;
+				overflow: auto;
 			}
 			#stage img {
 				background: rgba(255, 255, 255, .5);
@@ -90,10 +116,25 @@
 				margin: 4px;
 				float: left;
 			}
+			
+			#footer-wrapper {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+			#footer {
+				color: #fff;
+			}
 		</style>
 		
 		<script>
 		$(function() {
+			
+			RealtimeWebClient.join('Concert', 'hall', function(data) {
+				console.log('connect:', data);
+			}, function(data) {
+				console.log('disconnect:', data);
+			});
 			
 			RealtimeWebClient.join('Concert', '${command.id}');
 			RealtimeWebClient.setHandler('Concert', '${command.id}', 'newMessage', function(message) {
@@ -114,9 +155,25 @@
 			
 			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
 			
-			$('#concert-wrapper').css({
+			$('#wrapper').css({
 				background: 'url(' + bg + ')',
 				backgroundSize: 'auto 700px'
+			});
+			
+			var isOn = false;
+			$('#concert').click(function() {
+				if (isOn === false) {
+					$IMG({
+						src: '<c:url value="/img/concert/cats.jpg" />',
+						style : {
+							borderRadius : '0 0 5px 5px'
+						}
+					}).appendTo('#concert');
+					isOn = true;
+				} else {
+					$('#concert img').remove();
+					isOn = false;
+				}
 			});
 			
 		});
@@ -134,32 +191,50 @@
 	
 	<body>
 		
-		<div id="concert-wrapper">
+		<div id="wrapper">
 		
 			<h1><a href="#">${command.title}</a></h1>
 		
-			<div id="concert">
-				<img src="<c:url value="/img/concert/swf1.jpg" />" onclick="toogle(this, '<c:url value="/img/concert/swf1.jpg" />', '<c:url value="/img/concert/swf2.jpg" />');">
+			<div id="concert-wrapper">
+				<div id="concert">
+					<!-- ?autoplay=1 -->
+					<iframe width="480" height="360" src="http://www.youtube.com/embed/JFPcMlNml0s" frameborder="0" allowfullscreen></iframe>
+				</div>
 			</div>
 			
-			<div id="chat">
-				<ul id="messages">
-				</ul>
-				<form>
-					<input id="message">
-					<input type="submit">
-				</form>
+			<div id="info-wrapper">
+				<div id="info">
+					${command.title}
+				</div>
 			</div>
 			
-			<div id="stage">
-				<img src="<c:url value="/img/concert/profile1.jpg" />">
-				<img src="<c:url value="/img/concert/profile2.jpg" />">
-				<img src="<c:url value="/img/concert/profile3.jpg" />">
-				<img src="<c:url value="/img/concert/profile4.jpg" />">
-				<img src="<c:url value="/img/concert/profile5.jpg" />">
-				<img src="<c:url value="/img/concert/profile6.jpg" />">
-				<img src="<c:url value="/img/concert/profile7.jpg" />">
-				<img src="<c:url value="/img/concert/profile8.jpg" />">
+			<div id="chat-wrapper">
+				<div id="chat">
+					<ul id="messages">
+					</ul>
+					<form>
+						<input id="message">
+						<input type="submit">
+					</form>
+				</div>
+			</div>
+			
+			<div id="stage-wrapper">
+				<div id="stage">
+					<img src="<c:url value="/img/concert/profile1.jpg" />">
+					<img src="<c:url value="/img/concert/profile2.jpg" />">
+					<img src="<c:url value="/img/concert/profile3.jpg" />">
+					<img src="<c:url value="/img/concert/profile4.jpg" />">
+					<img src="<c:url value="/img/concert/profile5.jpg" />">
+					<img src="<c:url value="/img/concert/profile6.jpg" />">
+					<img src="<c:url value="/img/concert/profile7.jpg" />">
+					<img src="<c:url value="/img/concert/profile8.jpg" />">
+				</div>
+			</div>
+		</div>
+		<div id="footer-wrapper">
+			<div id="footer">
+				&copy; IndiCrowd
 			</div>
 		</div>
 		

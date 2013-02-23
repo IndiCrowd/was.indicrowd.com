@@ -4,9 +4,26 @@
 package com.indicrowd.realtimeweb;
 
 import com.indicrowd.realtimeweb.Connect;
+import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
 
 privileged aspect Connect_Roo_JavaBean {
+    
+    public String Connect.getConnectId() {
+        return this.connectId;
+    }
+    
+    public void Connect.setConnectId(String connectId) {
+        this.connectId = connectId;
+    }
+    
+    public String Connect.getNamespace() {
+        return this.namespace;
+    }
+    
+    public void Connect.setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
     
     public String Connect.getId() {
         return this.id;
@@ -16,12 +33,12 @@ privileged aspect Connect_Roo_JavaBean {
         this.id = id;
     }
     
-    public Long Connect.getUserId() {
-        return this.userId;
+    public UserInfo Connect.getUserInfo() {
+        return this.userInfo;
     }
     
-    public void Connect.setUserId(Long userId) {
-        this.userId = userId;
+    public void Connect.setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
     
     public int Connect.getCount() {

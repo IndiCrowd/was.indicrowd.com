@@ -7,6 +7,7 @@ RealtimeWebClient = {};
 RealtimeWebClient.sock = undefined;
 RealtimeWebClient.connected = false;
 RealtimeWebClient.connectId = undefined;
+RealtimeWebClient.connectedUserIds = undefined;
 RealtimeWebClient.readyJoins = [];
 RealtimeWebClient.handlers = {};
 
@@ -31,6 +32,7 @@ RealtimeWebClient.init = function(sock) {
 
 		if (data.isMe === true) {
 			RealtimeWebClient.connectId = data.connectId;
+			RealtimeWebClient.connectedUserIds = data.connectedUserIds;
 		} else {
 
 			var namespace = data.namespace;
