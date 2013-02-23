@@ -63,7 +63,7 @@ public class RealtimeWebServer {
 						if (json.getString("userId") != null) {
 							userId = Long.parseLong(json.getString("userId"));
 							userInfo = UserInfo.findUserInfo(userId);
-							
+
 							if (connectedUserInfos.get(namespace) == null) {
 								connectedUserInfos.put(namespace, new HashMap<String, Map<String, UserInfo>>());
 							}
@@ -96,7 +96,7 @@ public class RealtimeWebServer {
 
 						send(namespace, id, "connect", connect);
 
-						System.out.println("=== RealtimeWeb Server Connected(" + namespace + "." + id + ":" + sock + ") ===");
+						System.out.println("=== RealtimeWeb Server Connected(" + connect + ") ===");
 
 					}
 				});
@@ -120,7 +120,7 @@ public class RealtimeWebServer {
 												disconnect.setConnectId(connectId);
 												disconnect.setNamespace(namespace);
 												disconnect.setId(id);
-												disconnect.setUserInfo(connectedUserInfos.get("namespace").get("id").get(connectId));
+												disconnect.setUserInfo(connectedUserInfos.get(namespace).get(id).get(connectId));
 												disconnect.setCount(sockets.size());
 												disconnect.setDisconnectDate(new Date());
 
@@ -128,7 +128,7 @@ public class RealtimeWebServer {
 
 												connectedUserInfos.get(namespace).get(id).remove(connectId);
 
-												System.out.println("=== RealtimeWeb Server Disconnected(" + namespace + "." + id + ":" + sock + ") ===");
+												System.out.println("=== RealtimeWeb Server Disconnected(" + disconnect + ") ===");
 
 												if (sockets.size() == 0) {
 													map.remove(sockets);

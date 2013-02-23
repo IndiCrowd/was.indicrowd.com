@@ -33,7 +33,7 @@
 		    });
 			
 			RealtimeWebClient.join('Concert', '${command.id}');
-			RealtimeWebClient.setHandler('Concert', '${command.id}', 'newMessage', function(message) {
+			RealtimeWebClient.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				console.log(message);
 				$('#messages').append($LI(message.sender.nickname + ': ' + message.content));
 			});

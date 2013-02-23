@@ -56,6 +56,103 @@
 			   100% { letter-spacing: 20px; color: rgba(255,255,255,1) }
 			}
 			
+			/*
+			 *  François 'cahnory' Germain
+			 */
+			.ui-tooltip, .ui-tooltip-top, .ui-tooltip-right, .ui-tooltip-bottom, .ui-tooltip-left {
+			  color:#ffffff;
+			  cursor:normal;
+			  display:-moz-inline-stack;
+			  display:inline-block;
+			  font-size:12px;
+			  font-family:arial;
+			  padding:.5em 1em;
+			  position:relative;
+			  text-align:center;
+			  text-shadow:0 -1px 1px #111111;
+			  -webkit-border-top-left-radius:4px ;
+			  -webkit-border-top-right-radius:4px ;
+			  -webkit-border-bottom-right-radius:4px ;
+			  -webkit-border-bottom-left-radius:4px ;
+			  -khtml-border-top-left-radius:4px ;
+			  -khtml-border-top-right-radius:4px ;
+			  -khtml-border-bottom-right-radius:4px ;
+			  -khtml-border-bottom-left-radius:4px ;
+			  -moz-border-radius-topleft:4px ;
+			  -moz-border-radius-topright:4px ;
+			  -moz-border-radius-bottomright:4px ;
+			  -moz-border-radius-bottomleft:4px ;
+			  border-top-left-radius:4px ;
+			  border-top-right-radius:4px ;
+			  border-bottom-right-radius:4px ;
+			  border-bottom-left-radius:4px ;
+			  -o-box-shadow:0 1px 2px #000000, inset 0 0 0 1px #222222, inset 0 2px #666666, inset 0 -2px 2px #444444;
+			  -moz-box-shadow:0 1px 2px #000000, inset 0 0 0 1px #222222, inset 0 2px #666666, inset 0 -2px 2px #444444;
+			  -khtml-box-shadow:0 1px 2px #000000, inset 0 0 0 1px #222222, inset 0 2px #666666, inset 0 -2px 2px #444444;
+			  -webkit-box-shadow:0 1px 2px #000000, inset 0 0 0 1px #222222, inset 0 2px #666666, inset 0 -2px 2px #444444;
+			  box-shadow:0 1px 2px #000000, inset 0 0 0 1px #222222, inset 0 2px #666666, inset 0 -2px 2px #444444;
+			  background-color:#3b3b3b;
+			  background-image:-moz-linear-gradient(top,#555555,#222222);
+			  background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#555555),color-stop(1,#222222));
+			  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#555555,EndColorStr=#222222);
+			  -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#555555,EndColorStr=#222222);
+			}
+			.ui-tooltip:after, .ui-tooltip-top:after, .ui-tooltip-right:after, .ui-tooltip-bottom:after, .ui-tooltip-left:after {
+			  content:"\25B8";
+			  display:block;
+			  font-size:2em;
+			  height:0;
+			  line-height:0;
+			  position:absolute;
+			}
+			.ui-tooltip:after, .ui-tooltip-bottom:after {
+			  color:#2a2a2a;
+			  bottom:0;
+			  left:1px;
+			  text-align:center;
+			  text-shadow:1px 0 2px #000000;
+			  -o-transform:rotate(90deg);
+			  -moz-transform:rotate(90deg);
+			  -khtml-transform:rotate(90deg);
+			  -webkit-transform:rotate(90deg);
+			  width:100%;
+			}
+			.ui-tooltip-top:after {
+			  bottom:auto;
+			  color:#4f4f4f;
+			  left:-2px;
+			  top:0;
+			  text-align:center;
+			  text-shadow:none;
+			  -o-transform:rotate(-90deg);
+			  -moz-transform:rotate(-90deg);
+			  -khtml-transform:rotate(-90deg);
+			  -webkit-transform:rotate(-90deg);
+			  width:100%;
+			}
+			.ui-tooltip-right:after {
+			  color:#222222;
+			  right:-0.375em;
+			  top:50%;
+			  margin-top:-.05em;
+			  text-shadow:0 1px 2px #000000;
+			  -o-transform:rotate(0);
+			  -moz-transform:rotate(0);
+			  -khtml-transform:rotate(0);
+			  -webkit-transform:rotate(0);
+			}
+			.ui-tooltip-left:after {
+			  color:#222222;
+			  left:-0.375em;
+			  top:50%;
+			  margin-top:.1em;
+			  text-shadow:0 -1px 2px #000000;
+			  -o-transform:rotate(180deg);
+			  -moz-transform:rotate(180deg);
+			  -khtml-transform:rotate(180deg);
+			  -webkit-transform:rotate(180deg);
+			}
+			
 			#concert-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
@@ -83,6 +180,12 @@
 			#info {
 				padding: 20px;
 				color: #fff;
+			}
+			#info p {
+				padding: 3px;
+			}
+			#info label {
+				padding-right: 10px;
 			}
 			
 			#chat-wrapper {
@@ -130,18 +233,6 @@
 		<script>
 		$(function() {
 			
-			RealtimeWebClient.join('Concert', 'hall', function(data) {
-				console.log('connect:', data);
-			}, function(data) {
-				console.log('disconnect:', data);
-			});
-			
-			RealtimeWebClient.join('Concert', '${command.id}');
-			RealtimeWebClient.setHandler('Concert', '${command.id}', 'newMessage', function(message) {
-				console.log(message);
-				$('#messages').append($LI(message.sender.nickname + ': ' + message.content));
-			});
-			
 			$('#chat form').submit(function() {
 				$.post('${pageContext.request.contextPath}/concert/chat', {
 					concertId: '${command.id}'
@@ -176,6 +267,87 @@
 				}
 			});
 			
+			for (var i = 1 ; i <= 8 ; i++) {
+				var $img = $IMG({
+					src: '<c:url value="/img/concert/" />profile' + i + '.jpg'
+				}).appendTo('#stage');
+				
+				$img.mouseover(function() {
+					var $span = $SPAN({
+						cls : 'ui-tooltip',
+						style : {
+							position : 'absolute',
+							top : $(this).offset().top,
+							left : $(this).offset().left
+						}
+					}, 'TEST!!').appendTo('body');
+					$span.css({
+						display : 'none',
+						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
+						top : '-=' + $span.outerHeight() + 'px'
+					});
+					$span.fadeIn(100);
+					setTimeout(function() {
+						$span.fadeOut(function() {
+							$(this).remove();
+						});
+					}, 2000);
+				});
+			}
+			
+			var addImg = function(connectId, userInfo) {
+				if ($('#user-' + userInfo.id).size() === 0) { 
+					$IMG({
+						id : 'connect-' + connectId,
+						cls : 'user-' + userInfo.id,
+						src: '<c:url value="/img/concert/" />profile4.jpg'
+					}).appendTo('#stage').hide().fadeIn();
+				}
+			};
+
+			RealtimeWebClient.addConnectHandler('Concert', '${command.id}', function(userInfos) {
+				for (var connectId in userInfos) {
+					addImg(connectId, userInfos[connectId]);
+				}
+			});
+			
+			RealtimeWebClient.join('Concert', '${command.id}', function(data) {
+				addImg(data.connectId, data.userInfo);
+			}, function(data) {
+				$('#connect-' + data.connectId).remove();
+			});
+			
+			RealtimeWebClient.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
+				$('#messages').append($LI($SPAN({
+					style : {
+						fontWeight: 'bold'
+					}
+				}, message.sender.nickname), ': ' + message.content));
+				
+				$('.user-' + message.sender.id).each(function() {
+					var $img = $(this);
+					var $span = $SPAN({
+						cls : 'ui-tooltip',
+						style : {
+							position : 'absolute',
+							top : $img.offset().top,
+							left : $img.offset().left
+						}
+					}, message.content).appendTo('body');
+					$span.css({
+						display : 'none',
+						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
+						top : '-=' + $span.outerHeight() + 'px'
+					});
+					$span.fadeIn(100);
+					setTimeout(function() {
+						$span.fadeOut(function() {
+							$(this).remove();
+						});
+					}, 2000);
+				});
+			});
+			
 		});
 		
 		function toogle(el, img1, img2) {
@@ -197,14 +369,24 @@
 		
 			<div id="concert-wrapper">
 				<div id="concert">
-					<!-- ?autoplay=1 -->
-					<iframe width="480" height="360" src="http://www.youtube.com/embed/JFPcMlNml0s" frameborder="0" allowfullscreen></iframe>
+					<iframe width="480" height="360" src="http://www.youtube.com/embed/JFPcMlNml0s?autoplay=1" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			
 			<div id="info-wrapper">
 				<div id="info">
-					${command.title}
+					<p>
+						<label>공연 이름</label> ${command.title}
+					</p>
+					<p>
+						<label>시작 시간</label> 12:20
+					</p>
+					<p>
+						<label>종료 시간</label> 14:20
+					</p>
+					<p>
+						<label>밴드 정보</label> test
+					</p>
 				</div>
 			</div>
 			
@@ -221,14 +403,6 @@
 			
 			<div id="stage-wrapper">
 				<div id="stage">
-					<img src="<c:url value="/img/concert/profile1.jpg" />">
-					<img src="<c:url value="/img/concert/profile2.jpg" />">
-					<img src="<c:url value="/img/concert/profile3.jpg" />">
-					<img src="<c:url value="/img/concert/profile4.jpg" />">
-					<img src="<c:url value="/img/concert/profile5.jpg" />">
-					<img src="<c:url value="/img/concert/profile6.jpg" />">
-					<img src="<c:url value="/img/concert/profile7.jpg" />">
-					<img src="<c:url value="/img/concert/profile8.jpg" />">
 				</div>
 			</div>
 		</div>
