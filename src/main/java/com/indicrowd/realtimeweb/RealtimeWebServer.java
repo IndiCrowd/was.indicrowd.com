@@ -64,13 +64,13 @@ public class RealtimeWebServer {
 							userId = Long.parseLong(json.getString("userId"));
 							userInfo = UserInfo.findUserInfo(userId);
 							
-							if (connectedUserInfos.get("namespace") == null) {
+							if (connectedUserInfos.get(namespace) == null) {
 								connectedUserInfos.put(namespace, new HashMap<String, Map<String, UserInfo>>());
 							}
-							if (connectedUserInfos.get("namespace").get("id") == null) {
-								connectedUserInfos.get("namespace").put(id, new HashMap<String, UserInfo>());
+							if (connectedUserInfos.get(namespace).get(id) == null) {
+								connectedUserInfos.get(namespace).put(id, new HashMap<String, UserInfo>());
 							}
-							connectedUserInfos.get("namespace").get("id").put(connectId, userInfo);
+							connectedUserInfos.get(namespace).get(id).put(connectId, userInfo);
 						}
 
 						HashMap<String, List<SockJSSocket>> map = SOCKET_MAP.get(namespace);
@@ -126,7 +126,7 @@ public class RealtimeWebServer {
 
 												send(namespace, id, "disconnect", disconnect);
 
-												connectedUserInfos.get("namespace").get("id").remove(connectId);
+												connectedUserInfos.get(namespace).get(id).remove(connectId);
 
 												System.out.println("=== RealtimeWeb Server Disconnected(" + namespace + "." + id + ":" + sock + ") ===");
 

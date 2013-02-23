@@ -58,8 +58,7 @@ RealtimeWebClient.send = function(data) {
 	}
 };
 
-RealtimeWebClient.join = function(namespace, id, connectHandler,
-		disconnectHandler) {
+RealtimeWebClient.join = function(namespace, id, connectHandler, disconnectHandler) {
 	var d = {
 		namespace : namespace,
 		id : id,
