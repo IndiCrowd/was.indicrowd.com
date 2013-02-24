@@ -201,6 +201,19 @@
 				padding: 20px;
 			}
 			
+			#messages-wrapper {
+				color: #fff;
+				/* height: 300px; */
+				overflow-y: scroll;
+			}
+			#messages {
+			}
+			.message {
+				margin-bottom: 5px;
+			}
+			#form-wrapper {
+			}
+			
 			#stage-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
@@ -318,7 +331,7 @@
 			});
 			
 			RealtimeWebClient.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
-				$('#messages').append($LI($SPAN({
+				$('#messages').append($LI({cls: 'message'}, $SPAN({
 					style : {
 						fontWeight: 'bold'
 					}
@@ -392,12 +405,16 @@
 			
 			<div id="chat-wrapper">
 				<div id="chat">
-					<ul id="messages">
-					</ul>
-					<form>
-						<input id="message">
-						<input type="submit">
-					</form>
+					<div id="messages-wrapper">
+						<ul id="messages">
+						</ul>
+					</div>
+					<div id="form-wrapper">
+						<form>
+							<input id="message">
+							<input type="submit">
+						</form>
+					</div>
 				</div>
 			</div>
 			
