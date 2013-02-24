@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
+import com.indicrowd.ListInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Message;
 import com.indicrowd.realtimeweb.RealtimeWebServer;
@@ -21,6 +22,16 @@ import com.indicrowd.realtimeweb.RealtimeWebServer;
 @Controller
 @RequestMapping("concert")
 public class ConcertController extends AbstractController {
+
+	@RequestMapping
+	public String main(Model model) {
+
+		ListInfo<Concert> listInfo = new ListInfo<Concert>();
+		listInfo.setList(Concert.findAllConcerts());
+		model.addAttribute("command", listInfo);
+
+		return "concert/main";
+	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -44,14 +55,14 @@ public class ConcertController extends AbstractController {
 	@RequestMapping(value = "/{concertId}", method = RequestMethod.GET)
 	public String hall(@PathVariable("concertId") Long concertId, Model model) {
 		model.addAttribute("command", Concert.findConcert(concertId));
-		return "concert/hall";
+		return "concert/view";
 	}
-	
+
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/admin", method = RequestMethod.GET)
 	public String hallAdmin(@PathVariable("concertId") Long concertId, Model model) {
 		model.addAttribute("command", Concert.findConcert(concertId));
-		return "concert/hallAdmin";
+		return "concert/viewAdmin";
 	}
 
 	@Secured("ROLE_USER")
@@ -60,12 +71,12 @@ public class ConcertController extends AbstractController {
 		if (message.getConcertId() != null) {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
-				
+
 				message.setConcert(concert);
 				message.setSender(authService.getUserInfo());
 				message.setSendDate(new Date());
 				message.persist();
-				
+
 				RealtimeWebServer.send("Concert", message.getConcert().getId(), "newMessage", message);
 			}
 		}

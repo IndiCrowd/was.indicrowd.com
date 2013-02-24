@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="principal" />
+<script>
+var USER_ID = '${principal.id}';
+</script>
+</sec:authorize>
 <script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>
 <script src="<c:url value="/js/$HTML.js" />"></script>
 <script src="<c:url value="/js/sockjs-0.2.1.min.js" />"></script>
 <script src="<c:url value="/js/json2.js" />"></script>
 <script src="<c:url value="/js/RealtimeWebClient.js" />"></script>
+<script>
+$(function() {
+	RealtimeWebClient.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
+	RealtimeWebClient.join('IndiCrowd', 'init', function(data) {
+		console.log('connect:', data);
+	}, function(data) {
+		console.log('disconnect:', data);
+	});
+});
+</script>
+
 <!--[if lt IE 9]>
 <script src="<c:url value="/js/respond.min.js" />"></script>
 <![endif]-->

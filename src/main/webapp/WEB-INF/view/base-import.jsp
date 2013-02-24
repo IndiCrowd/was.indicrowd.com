@@ -28,32 +28,6 @@
  <!--[if lt IE 9]>
    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
  <![endif]-->
- <style>
+<style>
 	@import url(<c:url value="/css/init.css" />);
-</style>		
-<script>
-var contextPath = '${pageContext.request.contextPath}';
-var USER_ID = undefined;
-</script>
-
-<sec:authorize access="isAuthenticated()">
-<sec:authentication property="principal" var="principal" />
-<script>
-var USER_ID = '${principal.id}';
-</script>
-</sec:authorize>
-
-<script src="<c:url value="/js/jquery-1.8.2.min.js"/>"></script>
-<script src="<c:url value="/js/sockjs-0.2.1.min.js"/>"></script>
-<script src="<c:url value="/js/json2.js"/>"></script>
-<script src="<c:url value="/js/RealtimeWebClient.js"/>"></script>
-<script>
-$(function() {
-	RealtimeWebClient.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
-	RealtimeWebClient.join('IndiCrowd', 'init', function(data) {
-		console.log('connect:', data);
-	}, function(data) {
-		console.log('disconnect:', data);
-	});
-});
-</script>
+</style>

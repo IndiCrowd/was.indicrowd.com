@@ -19,6 +19,8 @@ import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.sockjs.SockJSServer;
 import org.vertx.java.core.sockjs.SockJSSocket;
 
+import com.indicrowd.user.model.UserInfo;
+
 /**
  * @author 심영재
  */
@@ -28,7 +30,7 @@ public class RealtimeWebServer {
 	private static final HashMap<String, HashMap<String, List<SockJSSocket>>> SOCKET_MAP = new HashMap<String, HashMap<String, List<SockJSSocket>>>();
 	private static final int PORT = 9090;
 
-	private static Map<String, Long> connectedUserIds = new HashMap<String, Long>();
+	private static Map<String, Map<String, Map<String, UserInfo>>> connectedUserInfos = new HashMap<String, Map<String, Map<String, UserInfo>>>();
 
 	static {
 
@@ -39,7 +41,7 @@ public class RealtimeWebServer {
 
 		sockJSServer.installApp(config, new Handler<SockJSSocket>() {
 
-			String connectId;
+			private String connectId;
 
 			@Override
 			public void handle(final SockJSSocket sock) {
@@ -56,10 +58,19 @@ public class RealtimeWebServer {
 						String namespace = json.getString("namespace");
 						String id = json.getString("id");
 						Long userId = null;
+						UserInfo userInfo = null;
 
 						if (json.getString("userId") != null) {
 							userId = Long.parseLong(json.getString("userId"));
-							connectedUserIds.put(connectId, userId);
+							userInfo = UserInfo.findUserInfo(userId);
+
+							if (connectedUserInfos.get(namespace) == null) {
+								connectedUserInfos.put(namespace, new HashMap<String, Map<String, UserInfo>>());
+							}
+							if (connectedUserInfos.get(namespace).get(id) == null) {
+								connectedUserInfos.get(namespace).put(id, new HashMap<String, UserInfo>());
+							}
+							connectedUserInfos.get(namespace).get(id).put(connectId, userInfo);
 						}
 
 						HashMap<String, List<SockJSSocket>> map = SOCKET_MAP.get(namespace);
@@ -75,14 +86,17 @@ public class RealtimeWebServer {
 						sockets.add(sock);
 
 						Connect connect = new Connect();
-						connect.setId(connectId);
-						connect.setUserId(userId);
+						connect.setConnectId(connectId);
+						connect.setNamespace(namespace);
+						connect.setId(id);
+						connect.setConnectId(connectId);
+						connect.setUserInfo(userInfo);
 						connect.setCount(sockets.size());
 						connect.setConnectDate(new Date());
 
 						send(namespace, id, "connect", connect);
 
-						System.out.println("=== RealtimeWeb Server Connected(" + namespace + "." + id + ":" + sock + ") ===");
+						System.out.println("=== RealtimeWeb Server Connected(" + connect + ") ===");
 
 					}
 				});
@@ -103,16 +117,18 @@ public class RealtimeWebServer {
 												sockets.remove(sock);
 
 												Disconnect disconnect = new Disconnect();
-												disconnect.setId(connectId);
-												disconnect.setUserId(connectedUserIds.get(connectId));
+												disconnect.setConnectId(connectId);
+												disconnect.setNamespace(namespace);
+												disconnect.setId(id);
+												disconnect.setUserInfo(connectedUserInfos.get(namespace).get(id).get(connectId));
 												disconnect.setCount(sockets.size());
 												disconnect.setDisconnectDate(new Date());
 
 												send(namespace, id, "disconnect", disconnect);
 
-												connectedUserIds.remove(connectId);
+												connectedUserInfos.get(namespace).get(id).remove(connectId);
 
-												System.out.println("=== RealtimeWeb Server Disconnected(" + namespace + "." + id + ":" + sock + ") ===");
+												System.out.println("=== RealtimeWeb Server Disconnected(" + disconnect + ") ===");
 
 												if (sockets.size() == 0) {
 													map.remove(sockets);
@@ -146,6 +162,7 @@ public class RealtimeWebServer {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("isMe", true);
 		data.put("connectId", sock.writeHandlerID);
+		data.put("connectedUserInfos", connectedUserInfos);
 
 		StringWriter writer = new StringWriter();
 		try {

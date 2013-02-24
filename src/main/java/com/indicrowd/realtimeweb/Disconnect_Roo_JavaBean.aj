@@ -4,9 +4,26 @@
 package com.indicrowd.realtimeweb;
 
 import com.indicrowd.realtimeweb.Disconnect;
+import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
 
 privileged aspect Disconnect_Roo_JavaBean {
+    
+    public String Disconnect.getConnectId() {
+        return this.connectId;
+    }
+    
+    public void Disconnect.setConnectId(String connectId) {
+        this.connectId = connectId;
+    }
+    
+    public String Disconnect.getNamespace() {
+        return this.namespace;
+    }
+    
+    public void Disconnect.setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
     
     public String Disconnect.getId() {
         return this.id;
@@ -16,12 +33,12 @@ privileged aspect Disconnect_Roo_JavaBean {
         this.id = id;
     }
     
-    public Long Disconnect.getUserId() {
-        return this.userId;
+    public UserInfo Disconnect.getUserInfo() {
+        return this.userInfo;
     }
     
-    public void Disconnect.setUserId(Long userId) {
-        this.userId = userId;
+    public void Disconnect.setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
     
     public int Disconnect.getCount() {
