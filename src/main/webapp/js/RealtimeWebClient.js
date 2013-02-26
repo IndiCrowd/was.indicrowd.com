@@ -84,6 +84,9 @@ RealtimeWebClient.send = function(data) {
 };
 
 RealtimeWebClient.join = function(namespace, id, connectHandler, disconnectHandler) {
+	if(USER_ID == undefined){
+		USER_ID = "";
+	}
 	var d = {
 		namespace : namespace,
 		id : id,

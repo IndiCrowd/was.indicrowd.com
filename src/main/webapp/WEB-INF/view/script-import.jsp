@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
+<script>var USER_ID = '';</script>
 <sec:authorize access="isAuthenticated()">
 <sec:authentication property="principal" var="principal" />
 <script>
-var USER_ID = '${principal.id}';
+USER_ID = '${principal.id}';
 </script>
 </sec:authorize>
 <script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>

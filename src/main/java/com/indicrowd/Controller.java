@@ -1,6 +1,10 @@
 package com.indicrowd;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.indicrowd.band.BandInfo;
 
 @org.springframework.stereotype.Controller
 public class Controller extends AbstractController {
@@ -14,10 +18,6 @@ public class Controller extends AbstractController {
 		return "main";
 	}
 
-	@RequestMapping("/band/home")
-	public String bandHome() {
-		return "band/home";
-	}
 
 	@RequestMapping("/jwp")
 	public String jwp() {
