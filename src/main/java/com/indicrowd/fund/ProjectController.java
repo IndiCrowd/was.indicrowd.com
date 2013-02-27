@@ -82,11 +82,11 @@ public class ProjectController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{projectId}/open", method = RequestMethod.POST)
 	public String open(@PathVariable Long projectId, Model model) {
-		
+
 		Project project = Project.findProject(projectId);
 		project.setOpened(true);
 		project.merge();
-		
+
 		return "redirect/fund/project/" + projectId;
 	}
 
@@ -122,10 +122,35 @@ public class ProjectController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable Long id, Model model) {
-
 		model.addAttribute("command", Project.findProject(id));
-
 		return "fund/project/view";
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/invest", method = RequestMethod.GET)
+	public void invest(@ModelAttribute("command") Investor investor, Model model) {
+		// just view
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/invest", method = RequestMethod.POST)
+	public String invest(@Valid @ModelAttribute("command") Investor investor, BindingResult bindingResult, Model model) throws IOException {
+
+		if (bindingResult.hasErrors()) {
+			return "fund/project/invest";
+		} else {
+
+			investor.setProject(Project.findProject(investor.getProjectId()));
+
+			if (investor.getRewardId() != null) {
+				investor.setReward(Reward.findReward(investor.getRewardId()));
+			}
+
+			investor.setInvestDate(new Date());
+			investor.persist();
+
+			return "redirect/fund/project/" + investor.getProjectId();
+		}
 	}
 
 }
