@@ -73,8 +73,6 @@ public class ConnectHandler implements Handler<Buffer> {
 		connect.setConnectDate(new Date());
 
 		service.send(namespace, id, "connect", connect);
-		
-		System.out.println(service.getConnectedUserInfos().get(namespace).get(id).keySet());
 	}
 
 }
