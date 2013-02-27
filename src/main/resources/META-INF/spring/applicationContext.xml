@@ -20,6 +20,7 @@
     <util:properties id="databaseConfig" location="classpath:META-INF/config/#{projectSwitch.mode}/database.properties"/>
     <util:properties id="userfileConfig" location="classpath:META-INF/config/#{projectSwitch.mode}/userfile.properties"/>
     <util:properties id="snsConfig" location="classpath:META-INF/config/#{projectSwitch.mode}/sns.properties"/>
+    <util:properties id="rtwConfig" location="classpath:META-INF/config/#{projectSwitch.mode}/rtw.properties"/>
     <!--
         Turn on AspectJ @Configurable support. As a result, any time you
         instantiate an object, Spring will attempt to perform dependency

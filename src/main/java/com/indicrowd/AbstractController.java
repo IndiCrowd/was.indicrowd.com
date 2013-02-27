@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.indicrowd.auth.AuthService;
 import com.indicrowd.file.FileService;
 import com.indicrowd.file.ImageService;
+import com.indicrowd.rtw.RTWService;
 import com.indicrowd.tag.TagService;
 import com.indicrowd.user.model.UserInfo;
 
@@ -25,6 +26,9 @@ public abstract class AbstractController {
 	
 	@Autowired
 	protected TagService tagService;
+	
+	@Autowired
+	protected RTWService rtwService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

@@ -17,7 +17,6 @@ import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Message;
-import com.indicrowd.realtimeweb.RealtimeWebServer;
 
 @Controller
 @RequestMapping("concert")
@@ -77,7 +76,7 @@ public class ConcertController extends AbstractController {
 				message.setSendDate(new Date());
 				message.persist();
 
-				RealtimeWebServer.send("Concert", message.getConcert().getId(), "newMessage", message);
+				rtwService.send("Concert", message.getConcert().getId(), "newMessage", message);
 			}
 		}
 	}

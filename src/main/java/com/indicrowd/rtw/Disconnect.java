@@ -1,4 +1,4 @@
-package com.indicrowd.realtimeweb;
+package com.indicrowd.rtw;
 
 import java.util.Date;
 
