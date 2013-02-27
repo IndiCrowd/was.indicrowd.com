@@ -7,71 +7,60 @@
 		<meta charset="utf-8">
 		<title>TEST</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<style>
-			#video-wrapper {
-				float: left;
-				width: 70%;
-			}
-			#chat-wrapper {
-				float: left;
-				width: 30%;
-			}
-			#stage-wrapper {
-				float: left;
-				width: 30%;
-			}
-		</style>
-		
-		<script type="text/javascript" src="<c:url value="/js/jwplayer.js" />"></script>
-		<script>
-		$(function() {
-			
-			jwplayer("jwpalyer").setup({
-		        file: "<c:url value="/img/test.mp4" />",
-		        image: "<c:url value="/img/test.jpg" />"
-		    });
-			
-			RTW.join('Concert', '${command.id}');
-			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
-				console.log(message);
-				$('#messages').append($LI(message.sender.nickname + ': ' + message.content));
-			});
-			
-			$('#chat').submit(function() {
-				$.post('${pageContext.request.contextPath}/concert/chat', {
-					concertId: '${command.id}'
-					, content: $('#message').val()
-				}, function(data) {
-					console.log(data);
-				}, 'json');
-				$('#message').val('');
-				return false;
-			});
-			
-		});
-		</script>
-		
 	</head>
 	
 	<body>
 		
-		<div>
-			<div id="video-wrapper">
-				<div id="jwpalyer">Loading the player...</div>
+		<div id="wrapper">
+		
+			<h1><a href="#">${command.title}</a></h1>
+		
+			<div id="concert-wrapper">
+				<div id="concert">
+					<iframe width="480" height="360" src="http://www.youtube.com/embed/JFPcMlNml0s?autoplay=1" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			
+			<div id="info-wrapper">
+				<div id="info">
+					<p>
+						<label>공연 이름</label> ${command.title}
+					</p>
+					<p>
+						<label>시작 시간</label> 12:20
+					</p>
+					<p>
+						<label>종료 시간</label> 14:20
+					</p>
+					<p>
+						<label>밴드 정보</label> test
+					</p>
+				</div>
 			</div>
 			
 			<div id="chat-wrapper">
-				<ul id="messages">
-				</ul>
-				<form id="chat">
-					<input id="message">
-					<input type="submit">
-				</form>
+				<div id="chat">
+					<div id="messages-wrapper">
+						<ul id="messages">
+						</ul>
+					</div>
+					<div id="form-wrapper">
+						<form>
+							<input id="message">
+							<input type="submit">
+						</form>
+					</div>
+				</div>
 			</div>
 			
 			<div id="stage-wrapper">
-				stage
+				<div id="stage">
+				</div>
+			</div>
+		</div>
+		<div id="footer-wrapper">
+			<div id="footer">
+				&copy; IndiCrowd
 			</div>
 		</div>
 		
