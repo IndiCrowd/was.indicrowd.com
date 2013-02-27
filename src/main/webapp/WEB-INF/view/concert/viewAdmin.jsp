@@ -32,8 +32,8 @@
 		        image: "<c:url value="/img/test.jpg" />"
 		    });
 			
-			RealtimeWebClient.join('Concert', '${command.id}');
-			RealtimeWebClient.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
+			RTW.join('Concert', '${command.id}');
+			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				console.log(message);
 				$('#messages').append($LI(message.sender.nickname + ': ' + message.content));
 			});

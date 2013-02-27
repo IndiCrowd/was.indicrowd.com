@@ -12,11 +12,11 @@ USER_ID = '${principal.id}';
 <script src="<c:url value="/js/$HTML.js" />"></script>
 <script src="<c:url value="/js/sockjs-0.2.1.min.js" />"></script>
 <script src="<c:url value="/js/json2.js" />"></script>
-<script src="<c:url value="/js/RealtimeWebClient.js" />"></script>
+<script src="<c:url value="/js/RTW.js" />"></script>
 <script>
 $(function() {
-	RealtimeWebClient.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
-	RealtimeWebClient.join('IndiCrowd', 'init', function(data) {
+	RTW.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
+	RTW.join('IndiCrowd', 'init', function(data) {
 		console.log('connect:', data);
 	}, function(data) {
 		console.log('disconnect:', data);

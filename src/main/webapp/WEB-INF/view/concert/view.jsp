@@ -318,19 +318,19 @@
 				}
 			};
 
-			RealtimeWebClient.addConnectHandler('Concert', '${command.id}', function(userInfos) {
+			RTW.addConnectHandler('Concert', '${command.id}', function(userInfos) {
 				for (var connectId in userInfos) {
 					addImg(connectId, userInfos[connectId]);
 				}
 			});
 			
-			RealtimeWebClient.join('Concert', '${command.id}', function(data) {
+			RTW.join('Concert', '${command.id}', function(data) {
 				addImg(data.connectId, data.userInfo);
 			}, function(data) {
 				$('#connect-' + data.connectId).remove();
 			});
 			
-			RealtimeWebClient.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
+			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				$('#messages').append($LI({cls: 'message'}, $SPAN({
 					style : {
 						fontWeight: 'bold'
