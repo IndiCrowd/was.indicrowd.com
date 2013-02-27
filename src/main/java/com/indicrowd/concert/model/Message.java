@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,6 +25,7 @@ public class Message {
 	@JoinColumn(name = "concertId", nullable = false)
 	private Concert concert;
 	
+	@NotNull
 	@Transient
 	private Long concertId;
 

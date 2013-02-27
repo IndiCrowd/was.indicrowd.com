@@ -66,8 +66,10 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
-	public void chat(@ModelAttribute("command") Message message) {
-		if (message.getConcertId() != null) {
+	public String chat(@Valid @ModelAttribute("command") Message message, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "concert/chat";
+		} else {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
 
@@ -78,6 +80,7 @@ public class ConcertController extends AbstractController {
 
 				rtwService.send("Concert", message.getConcert().getId(), "newMessage", message);
 			}
+			return "redirect:/concert/" + concert.getId();
 		}
 	}
 

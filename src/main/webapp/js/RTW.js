@@ -37,7 +37,7 @@ RTW.init = function(sock) {
 	sock.onmessage = function(e) {
 		var data = JSON.parse(e.data);
 
-		if (data.isMe === true) {
+		if (data.connectId !== undefined && data.connectedUserInfos !== undefined) {
 			RTW.connectId = data.connectId;
 			RTW.connectedUserInfos = data.connectedUserInfos;
 

@@ -35,10 +35,12 @@ public class ConnectHandler implements Handler<Buffer> {
 		Long userId = null;
 		UserInfo userInfo = null;
 
-		if (json.getString("userId") != null && !json.getString("userId").equals("")) {
+		if (json.getString("userId") != null) {
 
-			userId = Long.parseLong(json.getString("userId"));
-			userInfo = UserInfo.findUserInfo(userId);
+			if (!json.getString("userId").equals("")) {
+				userId = Long.parseLong(json.getString("userId"));
+				userInfo = UserInfo.findUserInfo(userId);
+			}
 
 			if (service.getConnectedUserInfos().get(namespace) == null) {
 				service.getConnectedUserInfos().put(namespace, new HashMap<String, Map<String, UserInfo>>());
@@ -71,6 +73,8 @@ public class ConnectHandler implements Handler<Buffer> {
 		connect.setConnectDate(new Date());
 
 		service.send(namespace, id, "connect", connect);
+		
+		System.out.println(service.getConnectedUserInfos().get(namespace).get(id).keySet());
 	}
 
 }
