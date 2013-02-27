@@ -11,7 +11,7 @@ import org.vertx.java.core.sockjs.SockJSSocket;
 
 public class ServerHandler implements Handler<SockJSSocket> {
 
-	private static final ObjectMapper mapper = new ObjectMapper();
+	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	private RTWService service;
 
@@ -28,7 +28,7 @@ public class ServerHandler implements Handler<SockJSSocket> {
 
 		StringWriter writer = new StringWriter();
 		try {
-			mapper.writeValue(writer, data);
+			MAPPER.writeValue(writer, data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

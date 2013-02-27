@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vertx.java.core.Vertx;
 import org.vertx.java.core.buffer.Buffer;
@@ -22,13 +20,12 @@ import com.indicrowd.user.model.UserInfo;
 @Service
 public class RTWService {
 
-	private static final ObjectMapper mapper = new ObjectMapper();
+	private static final int PORT = 9090;
+
+	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	private Map<String, Map<String, Set<SockJSSocket>>> sockets = new HashMap<String, Map<String, Set<SockJSSocket>>>();
 	private Map<String, Map<String, Map<String, UserInfo>>> connectedUserInfos = new HashMap<String, Map<String, Map<String, UserInfo>>>();
-
-	@Autowired
-	private Properties rtwConfig;
 
 	public RTWService() {
 		Vertx vertx = Vertx.newVertx();
@@ -36,7 +33,8 @@ public class RTWService {
 		SockJSServer sockJSServer = vertx.createSockJSServer(server);
 		JsonObject config = new JsonObject().putString("prefix", "/r");
 		sockJSServer.installApp(config, new ServerHandler(this));
-		server.listen(Integer.parseInt(rtwConfig.getProperty("port")));
+		server.listen(PORT);
+		System.out.println("Starting RTW [\"rtw-" + PORT + "\"]");
 	}
 
 	public boolean send(String namespace, Object _id, String handlerName, Object object) {
@@ -53,7 +51,7 @@ public class RTWService {
 
 			StringWriter writer = new StringWriter();
 			try {
-				mapper.writeValue(writer, data);
+				MAPPER.writeValue(writer, data);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
