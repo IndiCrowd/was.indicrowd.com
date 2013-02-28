@@ -16,7 +16,7 @@
 	
 			<h1>프로젝트 생성</h1> 
 			
-			<form:form>
+			<form:form enctype="multipart/form-data">
 				<div class="use-preview">
 					<c:if test="${command.id == null}">
 					<img src="<c:url value="/img/fund/project/blank.png" />">
