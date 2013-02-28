@@ -52,4 +52,6 @@ $(function() {
 <script defer="defer" src="<c:url value="/js/modernizr.js" />"></script>
 <script defer="defer" src="<c:url value="/js/retina.js" />"></script>
 <script defer="defer" src="<c:url value="/js/custom.js" />"></script>
+
+<script src="<c:url value="/js/preview.js" />"></script>
 <!-- end: Java Script -->

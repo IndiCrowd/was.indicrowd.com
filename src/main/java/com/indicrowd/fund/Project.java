@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -73,11 +74,11 @@ public class Project {
 	@Transient
 	private String genresStr;
 
-	@NotEmpty
+	@NotNull
 	@Column(nullable = false)
 	private Date startDate;
 
-	@NotEmpty
+	@NotNull
 	@Column(nullable = false)
 	private Date endDate;
 
