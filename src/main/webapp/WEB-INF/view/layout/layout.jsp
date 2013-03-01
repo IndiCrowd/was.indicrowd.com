@@ -46,7 +46,7 @@
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
 							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>
-	              			
+	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<li class="active">
 								<sec:authorize access="isAnonymous()">
@@ -55,7 +55,9 @@
 								<sec:authorize access="isAuthenticated()">
 									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
 								</sec:authorize></li>
-							<li class="active" ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
+							<sec:authorize access="isAnonymous()">
+								<li class="active" ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
+							</sec:authorize>
 	            		</ul>
 	          		</div>
 	        	</div>

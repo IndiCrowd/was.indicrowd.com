@@ -35,8 +35,9 @@
 	<div class="span12">
 
 		<!-- start: Team -->
+		
 		<div id="video-clip-gallary">
-
+		
 
 			<!-- start: Row -->
 			<div class="row-fluid">

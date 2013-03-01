@@ -3,11 +3,14 @@ package com.indicrowd.post;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -16,6 +19,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.user.model.UserInfo;
+import com.indicrowd.util.DateUtil;
 
 @RooJavaBean
 @RooToString
@@ -31,6 +35,9 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	UserInfo userInfo;
+	
+	
+	
 	String author;
 	int commentCount;
 	String summary;
@@ -50,8 +57,10 @@ public class Post {
 	}
 	public String getMonthString(){
 		
-		return new DateFormatSymbols().getMonths()[date.get(Calendar.MONTH)];
+		return DateUtil.getMonthString(date);
 	}
+	
+	
 	
 	public static List<Post> findPostsByBandId(Long bandId,int page,int postPerPage) {
 		int startRecord = postPerPage * (page-1) ;
@@ -62,4 +71,15 @@ public class Post {
 						Post.class).setParameter("bandId", bandId)
 				.getResultList();
 	}
+	
+	public List<Comment> getCommentList() {
+		long postId = getId();
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Comment o WHERE o.hide != true AND o.post.id = :postId ORDER BY id DESC",
+						Comment.class).setParameter("postId", postId)
+				.getResultList();
+	}
+	
+	
 }

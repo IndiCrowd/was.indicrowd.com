@@ -14,6 +14,7 @@
 <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/layerslider.css"/>" rel="stylesheet" type="text/css">
 
+
 <!--[if lt IE 9 ]>
   <link href="css/styleIE.css" rel="stylesheet">
 <![endif]-->

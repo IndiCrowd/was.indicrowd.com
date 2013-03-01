@@ -4,18 +4,19 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <sec:authentication property="principal" var="principal" />
 
 
 				
 		<!--start: Wrapper-->
 		<div id="wrapper">
-						
+					
 			<!--start: Row -->
 			<div class="row-fluid">
 			
 				<div class="posts span8">
-					<c:forEach items="${recentPostList }" var="post">
+
 					<!-- start: Post -->
 					<div class="post first">
 						<c:choose>
@@ -42,33 +43,66 @@
 							</div>
 							<div class="post-description">
 								<p>
-									${post.summary }
+									${post.content }
 								</p>
 							</div>
-							<a class="post-entry" href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}">더보기...</a>
 						</div>
 					</div>
 					<!-- end: Post -->
-					</c:forEach>
 					
+					<!-- start: Comments -->
+					<h3 >댓글 <span class="comments-amount">(${post.commentCount })</span></h3>
+										
+					<div class="comments-sec">
 
-					<ul class="pagination">
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li class="current"></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-						<a href="#"><li></li></a>
-					</ul>
+						<ol class="commentlist">
+							<c:forEach items="${post.commentList }" var="comment">
+								<li class="span12">
+									<div class="comments">
+									
+									 
+										<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=50" alt="" width="50" height="50" border="0" /> </div>
+										<div class="comment-des">
+										<div class="comment-by"><strong>${comment.userInfo.nickname }</strong><span class="reply"><span style="color:#aaa">/ </span><a href="#">답글</a></span> <span class="date"></span></div>
+											<p>${comment.content }</p>
+										</div>
+									</div>	
+								</li>
+							</c:forEach>
+							
+						 </ol>
 
-				</div>
+					</div>
+					<!-- end: Comments -->
+					
+					<div class="clearfix"></div>
+					
+					<hr>
+
+					<!-- start: Comment Add -->
+					<h3>댓글을 남겨주세요!</h3>
+										
+					<!-- Form -->
+					<div id="contact-form" class="span12">
+						<form:form id="add-comment-form">
+							<div class="field span1">
+								<img src=""/>
+							</div>
+							<div class="field span8">
+									<form:textarea path="content"  class="span12"/>
+							</div>
+	
+							<div class="field span3">
+								<input type="button" id="send" value="댓글 달기!"/>
+							</div>
+						</form:form>
+						
+						
+					</div>		
+
+					<!-- end: Comment Add -->
+				
+				</div>	
 
 				<jsp:include page="./menu.jsp"></jsp:include>
 			

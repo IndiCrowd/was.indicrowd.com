@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.indicrowd.post.Comment;
 import com.indicrowd.post.Post;
 import com.indicrowd.tag.Tag;
 
@@ -42,6 +43,24 @@ public class BandController {
 		}
 		model.addAttribute("bandInfo", bandInfo);
 		return "band/blog";
+	}
+	
+	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.GET)
+	public String postPage(@ModelAttribute("command") Comment comment,@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, Model model){
+		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
+		if(bandInfo == null){
+			System.out.println("밴드 정보가 없습니다.");
+		}else{
+			String category = bandInfo.getCategory();
+			
+			String[] tags = category.split(" ");
+			model.addAttribute("tags",tags);
+		}
+		Post post = Post.findPost(postId);
+		model.addAttribute("post", post);
+		model.addAttribute("commentList",post.getCommentList());
+		model.addAttribute("bandInfo", bandInfo);
+		return "band/post";
 	}
 	
 	@RequestMapping(value = "/create" , method = RequestMethod.GET)
