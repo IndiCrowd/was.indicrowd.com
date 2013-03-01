@@ -24,7 +24,13 @@
 		</style>
 		
 		<jsp:include page="../script-import.jsp" />
-		
+        <script type="text/javascript" src="<c:url value="/js/swfobject.js" />" ></script>
+		<script type="text/javascript">
+            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+            var swfVersionStr = '11.1.0';
+            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+            var xiSwfUrlStr = '<c:url value="/swf/playerProductInstall.swf" />';
+        </script>
 		
 		
 		<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet'>
@@ -262,135 +268,6 @@
 				color: #fff;
 			}
 		</style>
-		
-		<script>
-		$(function() {
-			
-			$('#chat form').submit(function() {
-				$.post('${pageContext.request.contextPath}/concert/chat', {
-					concertId: '${command.id}'
-					, content: $('#message').val()
-				}, function(data) {
-					console.log(data);
-				}, 'json');
-				$('#message').val('');
-				return false;
-			});
-			
-			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
-			
-			$('#wrapper').css({
-				background: 'url(' + bg + ')',
-				backgroundSize: 'auto 700px'
-			});
-			
-			var isOn = false;
-			$('#concert').click(function() {
-				if (isOn === false) {
-					$IMG({
-						src: '<c:url value="/img/concert/cats.jpg" />',
-						style : {
-							borderRadius : '0 0 5px 5px'
-						}
-					}).appendTo('#concert');
-					isOn = true;
-				} else {
-					$('#concert img').remove();
-					isOn = false;
-				}
-			});
-			
-			for (var i = 1 ; i <= 8 ; i++) {
-				var $img = $IMG({
-					src: '<c:url value="/img/concert/" />profile' + i + '.jpg'
-				}).appendTo('#stage');
-				
-				$img.mouseover(function() {
-					var $span = $SPAN({
-						cls : 'ui-tooltip',
-						style : {
-							position : 'absolute',
-							top : $(this).offset().top,
-							left : $(this).offset().left
-						}
-					}, 'TEST!!').appendTo('body');
-					$span.css({
-						display : 'none',
-						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
-						top : '-=' + $span.outerHeight() + 'px'
-					});
-					$span.fadeIn(100);
-					setTimeout(function() {
-						$span.fadeOut(function() {
-							$(this).remove();
-						});
-					}, 2000);
-				});
-			}
-			
-			var addImg = function(connectId, userInfo) {
-				if ($('#user-' + userInfo.id).size() === 0) { 
-					$IMG({
-						id : 'connect-' + connectId,
-						cls : 'user-' + userInfo.id,
-						src: '<c:url value="/img/concert/" />profile4.jpg'
-					}).appendTo('#stage').hide().fadeIn();
-				}
-			};
-
-			RTW.addConnectHandler('Concert', '${command.id}', function(userInfos) {
-				for (var connectId in userInfos) {
-					addImg(connectId, userInfos[connectId]);
-				}
-			});
-			
-			RTW.join('Concert', '${command.id}', function(data) {
-				addImg(data.connectId, data.userInfo);
-			}, function(data) {
-				$('#connect-' + data.connectId).remove();
-			});
-			
-			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
-				$('#messages').append($LI({cls: 'message'}, $SPAN({
-					style : {
-						fontWeight: 'bold'
-					}
-				}, message.sender.nickname), ': ' + message.content));
-				
-				$('.user-' + message.sender.id).each(function() {
-					var $img = $(this);
-					var $span = $SPAN({
-						cls : 'ui-tooltip',
-						style : {
-							position : 'absolute',
-							top : $img.offset().top,
-							left : $img.offset().left
-						}
-					}, message.content).appendTo('body');
-					$span.css({
-						display : 'none',
-						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
-						top : '-=' + $span.outerHeight() + 'px'
-					});
-					$span.fadeIn(100);
-					setTimeout(function() {
-						$span.fadeOut(function() {
-							$(this).remove();
-						});
-					}, 2000);
-				});
-			});
-			
-		});
-		
-		function toogle(el, img1, img2) {
-			if (el.src.indexOf(img1) === -1) {
-				el.src = img1;
-			} else {
-				el.src = img2;
-			}
-		}
-		</script>
 		
 		<decorator:head />
 		
