@@ -1,6 +1,10 @@
 package com.indicrowd;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -14,25 +18,28 @@ import com.indicrowd.tag.TagService;
 import com.indicrowd.user.model.UserInfo;
 
 public abstract class AbstractController {
-	
+
 	@Autowired
 	protected AuthService authService;
-	
+
 	@Autowired
 	protected FileService fileService;
-	
+
 	@Autowired
 	protected ImageService imageService;
-	
+
 	@Autowired
 	protected TagService tagService;
-	
+
 	@Autowired
 	protected RTWService rtwService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 	@ModelAttribute("signedUserInfo")

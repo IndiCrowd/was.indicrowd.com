@@ -9,6 +9,7 @@ USER_ID = '${principal.id}';
 </script>
 </sec:authorize>
 <script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>
+<script src="<c:url value="/js/jquery-ui-1.10.1.custom.min.js" />"></script>
 <script src="<c:url value="/js/$HTML.js" />"></script>
 <script src="<c:url value="/js/sockjs-0.2.1.min.js" />"></script>
 <script src="<c:url value="/js/json2.js" />"></script>
@@ -54,7 +55,12 @@ $(function() {
 <script defer="defer" src="<c:url value="/js/custom.js" />"></script>
 
 <script>
+$('.datepicker').datepicker();
+</script>
+
+<script>
 var CONTEXT_PATH = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value="/js/preview.js" />"></script>
+<script src="<c:url value="/js/tag.js" />"></script>
 <!-- end: Java Script -->

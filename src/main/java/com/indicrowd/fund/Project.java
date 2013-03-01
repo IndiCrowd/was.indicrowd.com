@@ -20,7 +20,6 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.indicrowd.tag.Tag;
 import com.indicrowd.user.model.UserInfo;
 
 @RooJavaBean
@@ -53,17 +52,6 @@ public class Project {
 	 */
 	@Transient
 	private CommonsMultipartFile profilePhoto;
-
-	/**
-	 * 메인 장르
-	 */
-	@ManyToOne
-	@JoinColumn(name = "mainGenre", nullable = false)
-	private Tag mainGenre;
-
-	@NotEmpty
-	@Transient
-	private String mainGenreStr;
 
 	/**
 	 * 추가 장르들

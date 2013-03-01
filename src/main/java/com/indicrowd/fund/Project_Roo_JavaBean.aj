@@ -5,7 +5,6 @@ package com.indicrowd.fund;
 
 import com.indicrowd.fund.Project;
 import com.indicrowd.fund.ProjectGenre;
-import com.indicrowd.tag.Tag;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
 import java.util.Set;
@@ -59,22 +58,6 @@ privileged aspect Project_Roo_JavaBean {
     
     public void Project.setProfilePhoto(CommonsMultipartFile profilePhoto) {
         this.profilePhoto = profilePhoto;
-    }
-    
-    public Tag Project.getMainGenre() {
-        return this.mainGenre;
-    }
-    
-    public void Project.setMainGenre(Tag mainGenre) {
-        this.mainGenre = mainGenre;
-    }
-    
-    public String Project.getMainGenreStr() {
-        return this.mainGenreStr;
-    }
-    
-    public void Project.setMainGenreStr(String mainGenreStr) {
-        this.mainGenreStr = mainGenreStr;
     }
     
     public Set<ProjectGenre> Project.getGenres() {

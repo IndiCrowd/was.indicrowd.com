@@ -13,6 +13,7 @@
 <link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/layerslider.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/smoothness/jquery-ui-1.10.1.custom.min.css"/>" rel="stylesheet" type="text/css">
 
 
 <!--[if lt IE 9 ]>

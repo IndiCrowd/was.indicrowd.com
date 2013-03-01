@@ -40,13 +40,13 @@ public class ProjectController extends AbstractController {
 		if (!bindingResult.hasFieldErrors("profilePhoto") && project.getProfilePhoto() != null && project.getProfilePhoto().getSize() > 0 && !imageService.isImageFile(project.getProfilePhoto())) {
 			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
 		}
+		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && project.getEndDate().getTime() < project.getStartDate().getTime()) {
+			bindingResult.rejectValue("startDate", "Over.startDate");
+		}
 
 		if (bindingResult.hasErrors()) {
 			return "fund/project/create";
 		} else {
-
-			// 장르
-			project.setMainGenre(tagService.inputTag(project.getMainGenreStr()));
 
 			// 장르 태그
 			Set<Tag> genreTags = tagService.inputTags(project.getGenresStr());
@@ -74,20 +74,23 @@ public class ProjectController extends AbstractController {
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/{projectId}/rewards", method = RequestMethod.GET)
-	public void rewards(@PathVariable Long projectId, Model model) {
+	@RequestMapping("/{projectId}/rewards")
+	public String rewards(@PathVariable Long projectId, Model model) {
 		model.addAttribute("command", Project.findProject(projectId));
+		return "fund/project/rewards";
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/{projectId}/open", method = RequestMethod.POST)
+	@RequestMapping("/{projectId}/open")
 	public String open(@PathVariable Long projectId, Model model) {
 
 		Project project = Project.findProject(projectId);
-		project.setOpened(true);
-		project.merge();
+		if (project.getCreator().getId().equals(authService.getUserId())) {
+			project.setOpened(true);
+			project.merge();
+		}
 
-		return "redirect/fund/project/" + projectId;
+		return "redirect:/fund/project/" + projectId;
 	}
 
 	@RequestMapping("/list")
@@ -120,16 +123,16 @@ public class ProjectController extends AbstractController {
 		return "fund/project/list";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping("/{id}")
 	public String view(@PathVariable Long id, Model model) {
 		model.addAttribute("command", Project.findProject(id));
 		return "fund/project/view";
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/invest", method = RequestMethod.GET)
-	public void invest(@ModelAttribute("command") Investor investor, Model model) {
-		// just view
+	@RequestMapping(value = "/{id}/invest", method = RequestMethod.GET)
+	public String invest(@PathVariable Long id, @ModelAttribute("command") Investor investor, Model model) {
+		return "fund/project/invest";
 	}
 
 	@Secured("ROLE_USER")
