@@ -30,22 +30,6 @@
 				backgroundSize: 'auto 700px'
 			});
 			
-			var isOn = false;
-			$('#concert').click(function() {
-				if (isOn === false) {
-					$IMG({
-						src: '<c:url value="/img/concert/cats.jpg" />',
-						style : {
-							borderRadius : '0 0 5px 5px'
-						}
-					}).appendTo('#concert');
-					isOn = true;
-				} else {
-					$('#concert img').remove();
-					isOn = false;
-				}
-			});
-			
 			for (var i = 1 ; i <= 8 ; i++) {
 				var $img = $IMG({
 					src: '<c:url value="/img/concert/" />profile' + i + '.jpg'
