@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
+import com.indicrowd.ListInfo;
 
 @Controller
 @RequestMapping("/fund/reward")
@@ -44,6 +45,21 @@ public class RewardController extends AbstractController {
 	public String view(@PathVariable Long id, Model model) {
 		model.addAttribute("command", Reward.findReward(id));
 		return "fund/reward/view";
+	}
+	
+	@RequestMapping("/list")
+	public String list(Long projectId, Model model) {
+
+		ListInfo<Reward> listInfo = new ListInfo<Reward>();
+
+		listInfo.setPage(1);
+		listInfo.setCountPerPage(-1);
+		listInfo.setList(Reward.findAllRewardsByProjectId(projectId));
+		listInfo.setCount((long) listInfo.getList().size());
+
+		model.addAttribute("command", listInfo);
+
+		return "fund/reward/list";
 	}
 
 }

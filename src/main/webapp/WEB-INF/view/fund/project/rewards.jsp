@@ -8,6 +8,13 @@
 
 	<head>
 		<title>프로젝트 보상 입력</title>
+		
+		<script>
+		function createRewardForm() {
+			
+		}
+		</script>
+		
 	</head>
 
 	<body>
@@ -20,6 +27,8 @@
 	
 		<div id="wrapper">
 			<div id="content">
+			
+				<a href="javascript:createRewardForm">보상 추가</a>
 				<a href="<c:url value="/fund/project/${command.id}/open" />">보상 입력 완료</a>
 			</div>
 		</div>
