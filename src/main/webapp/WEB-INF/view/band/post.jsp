@@ -44,8 +44,12 @@
 				'<p>'+comment.content +'</p>'+
 			'</div>'+
 		'</div>');
-		var commentCount = $("#commentCount");
-		commentCount.html(commentCount.html()*1+1);
+		$(".commentCount").each(function(i,commentCount){
+			commentCount = $(commentCount);
+			commentCount.html(commentCount.html()*1+1);	
+		});
+		
+		
 	}
 </script>
 
@@ -62,7 +66,7 @@
 				<c:choose>
 					<c:when test="${post.type eq 'img' }">
 						<div class="picture">
-							<a href="post.html"><img src="${post.src }" alt="" /></a>
+							<img src="${post.src }" alt="" />
 						</div>
 					</c:when>
 				</c:choose>
@@ -81,7 +85,7 @@
 					<div class="post-meta">
 						<span><i class="fa-icon-user"></i>By <a href="#">${post.author
 								}</a></span> <span><i class="fa-icon-comments-alt"></i>With <a
-							href="#"><span id="commentCount">${post.commentCount }</span>개의 댓글</a></span>
+							href="#"><span class="commentCount">${post.commentCount }</span>개의 댓글</a></span>
 					</div>
 					<div class="post-description">
 						<p>${post.content }</p>
@@ -92,7 +96,7 @@
 
 			<!-- start: Comments -->
 			<h3>
-				댓글 <span class="comments-amount">(${post.commentCount })</span>
+				댓글 (<span class="comments-amount commentCount">${post.commentCount }</span>)
 			</h3>
 
 			<div id="commentlist" class="comments-sec commentlist">

@@ -71,6 +71,44 @@ public class BandController extends AbstractController{
 	}
 	
 	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.GET)
+	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId,Model model){
+		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
+		model.addAttribute("bandInfo", bandInfo);
+		if(bandInfo == null){
+			
+		}else{
+			String category = bandInfo.getCategory();
+			
+			String[] tags = category.split(" ");
+			model.addAttribute("tags",tags);
+		}
+		return "band/addPost";
+		
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.POST)
+	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId){
+		System.out.println(post);
+		UserInfo userInfo = authService.getUserInfo();
+		post.setAuthor(userInfo.getNickname());
+		post.setDate(Calendar.getInstance());
+		post.setBandInfo(BandInfo.findBandInfo(bandId));
+		post.setCommentCount(0);
+		post.setUserInfo(userInfo);
+		if(post.getContent().length() >= 50){
+			post.setSummary(post.getContent().substring(0, 50)+"...");
+		}else{
+			post.setSummary(post.getContent());
+		}
+		
+		post.merge();
+		return "redirect:/band/"+bandId;
+		
+	}
+	
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create" , method = RequestMethod.GET)
 	public void create(@ModelAttribute("command") BandInfo bandInfo){
 		
