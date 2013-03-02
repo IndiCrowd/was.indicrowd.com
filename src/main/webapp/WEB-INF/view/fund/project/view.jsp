@@ -20,6 +20,44 @@
 	
 		<div id="wrapper">
 			<div id="content">
+			
+				<p>
+					title : ${command.title}
+				</p>
+				<p>
+					summary : ${command.summary}
+				</p>
+				<p>
+					content : ${command.content}
+				</p>
+				<p>
+					creator : ${command.creator.nickname}
+				</p>
+				<p>
+					createDate : ${command.createDate}
+				</p>
+				<p>
+					genres :
+					<c:forEach items="${command.genres}" var="genre">
+						${genre.tag.repTagInput.tagInputStr}
+					</c:forEach>
+				</p>
+				<p>
+					startDate : ${command.startDate}
+				</p>
+				<p>
+					endDate : ${command.endDate}
+				</p>
+				<p>
+					targetFigure : ${command.targetFigure}
+				</p>
+				<p>
+					contact : ${command.contact}
+				</p>
+				<p>
+					opened : ${command.opened}
+				</p>
+				
 				<a href="<c:url value="/fund/project/${command.id}/invest" />">후원하기</a>
 			</div>
 		</div>
