@@ -22,15 +22,9 @@
 
 	<!-- start: Sidebar Menu -->
 	<div class="widget">
-		<div class="title">
-			<h3>Menu</h3>
-		</div>
 		<ul class="links-list-alt">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="contact.html">Contact</a></li>
-			<li><a href="post.html">Single Post</a></li>
-			<li><a href="about.html">About Us</a></li>
-			<li><a href="pricing.html">Pricing Tables</a></li>
+			<li><a href="${pageContext.request.contextPath }/band/${bandInfo.id}">홈</a></li>
+			<li><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post">글 남기기</a></li>
 		</ul>
 	</div>
 	<!-- end: Sidebar Menu -->

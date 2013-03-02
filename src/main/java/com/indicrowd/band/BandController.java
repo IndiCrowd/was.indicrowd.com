@@ -1,7 +1,12 @@
 package com.indicrowd.band;
 
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,13 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.indicrowd.AbstractController;
 import com.indicrowd.post.Comment;
 import com.indicrowd.post.Post;
 import com.indicrowd.tag.Tag;
+import com.indicrowd.user.model.UserInfo;
 
 @Controller
 @RequestMapping("/band")
-public class BandController {
+public class BandController extends AbstractController{
 
 	@RequestMapping("/home")
 	public String bandHome(Model model) {
@@ -31,7 +38,7 @@ public class BandController {
 	public String bandBlog(@PathVariable("bandId") Long bandId,Model model){
 		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
 		if(bandInfo == null){
-			System.out.println("밴드 정보가 없습니다.");
+			
 		}else{
 			String category = bandInfo.getCategory();
 			
@@ -49,7 +56,7 @@ public class BandController {
 	public String postPage(@ModelAttribute("command") Comment comment,@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, Model model){
 		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
 		if(bandInfo == null){
-			System.out.println("밴드 정보가 없습니다.");
+			
 		}else{
 			String category = bandInfo.getCategory();
 			
@@ -63,19 +70,82 @@ public class BandController {
 		return "band/post";
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.GET)
+	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId,Model model){
+		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
+		model.addAttribute("bandInfo", bandInfo);
+		if(bandInfo == null){
+			
+		}else{
+			String category = bandInfo.getCategory();
+			
+			String[] tags = category.split(" ");
+			model.addAttribute("tags",tags);
+		}
+		return "band/addPost";
+		
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.POST)
+	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId){
+		System.out.println(post);
+		UserInfo userInfo = authService.getUserInfo();
+		post.setAuthor(userInfo.getNickname());
+		post.setDate(Calendar.getInstance());
+		post.setBandInfo(BandInfo.findBandInfo(bandId));
+		post.setCommentCount(0);
+		post.setUserInfo(userInfo);
+		if(post.getContent().length() >= 50){
+			post.setSummary(post.getContent().substring(0, 50)+"...");
+		}else{
+			post.setSummary(post.getContent());
+		}
+		
+		post.merge();
+		return "redirect:/band/"+bandId;
+		
+	}
+	
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create" , method = RequestMethod.GET)
 	public void create(@ModelAttribute("command") BandInfo bandInfo){
 		
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model){
+	public String create(@ModelAttribute("comment") BandInfo bandInfo,BindingResult bindingResult, Model model){
 		if (bindingResult.hasErrors()) {
 			return "band/create";
 		} else {
 			bandInfo.persist();
 			//return "redirect:/concert/" + concert.getId();
 			return "band/create";
+		}
+	}
+	
+	
+	@RequestMapping(value = "/{bandId}/post/{postId}/reply", method = RequestMethod.POST)
+	public void postReply(@ModelAttribute("comment") Comment comment,@PathVariable("postId") Long postId,BindingResult bindingResult,Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		comment.setDate(Calendar.getInstance());
+		
+		comment.setPostId(postId);
+		UserInfo userInfo = authService.getUserInfo();
+		if(userInfo == null) model.addAttribute("command",null);
+		else{
+			comment.setUserInfo(userInfo);
+			Comment result = comment.merge();
+			if(result != null){
+				Post post = Post.findPost(postId);
+				post.setCommentCount(post.getCommentCount()+1);
+				post.setId(postId);
+				
+				post.merge();
+				
+			}
+			model.addAttribute("command",result);
 		}
 	}
 }

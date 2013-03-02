@@ -4,18 +4,17 @@
 package com.indicrowd.post;
 
 import com.indicrowd.post.Comment;
-import com.indicrowd.post.Post;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Calendar;
 
 privileged aspect Comment_Roo_JavaBean {
     
-    public Post Comment.getPost() {
-        return this.post;
+    public long Comment.getPostId() {
+        return this.postId;
     }
     
-    public void Comment.setPost(Post post) {
-        this.post = post;
+    public void Comment.setPostId(long postId) {
+        this.postId = postId;
     }
     
     public UserInfo Comment.getUserInfo() {

@@ -16,12 +16,13 @@
 			
 				<div class="posts span8">
 					<c:forEach items="${recentPostList }" var="post">
+					<c:set value="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}" var="postUrl"/>
 					<!-- start: Post -->
 					<div class="post first">
 						<c:choose>
 							<c:when test="${post.type eq 'img' }">								
 								<div class="picture">
-									<a href="post.html"><img src="${post.src }" alt="" /></a>
+									<a href="${postUrl }"><img src="${post.src }" alt="" /></a>
 								</div>
 							</c:when>
 						</c:choose>
@@ -34,18 +35,18 @@
 						</div>	
 						<div class="post-content">
 							<div class="post-title">
-								<h2><a href="post.html">${post.title }</a></h2>
+								<h2><a href="${postUrl }">${post.title }</a></h2>
 							</div>
 							<div class="post-meta">
 								<span><i class="fa-icon-user"></i>By <a href="#">${post.author }</a></span> 
-								<span><i class="fa-icon-comments-alt"></i>With <a href="#">${post.commentCount }개의 댓글</a></span>
+								<span><i class="fa-icon-comments-alt"></i>With <a href="${postUrl }">${post.commentCount }개의 댓글</a></span>
 							</div>
 							<div class="post-description">
 								<p>
 									${post.summary }
 								</p>
 							</div>
-							<a class="post-entry" href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}">더보기...</a>
+							<a class="post-entry" href="${postUrl }">더보기...</a>
 						</div>
 					</div>
 					<!-- end: Post -->

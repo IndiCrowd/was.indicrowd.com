@@ -19,9 +19,9 @@ import com.indicrowd.util.DateUtil;
 @RooToString
 @RooJpaActiveRecord
 public class Comment {
-	@ManyToOne
-	@JoinColumn(name = "postId", nullable = false)
-	Post post;
+	
+	@Column(nullable = false)
+	long postId;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable =false)
