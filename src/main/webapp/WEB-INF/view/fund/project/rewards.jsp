@@ -28,6 +28,7 @@
 					),
 					$P(
 						$LABEL('목표 기금액'),
+						$IMG({src:'<c:url value="/img/energy.png" />'}),
 						$INPUT({
 							name : 'pledgeAmount'
 						})

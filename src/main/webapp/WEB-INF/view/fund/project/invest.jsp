@@ -40,6 +40,7 @@
 						<p>
 							<label>
 								<h5>액수</h5>
+								<img src="<c:url value="/img/energy.png" />">
 								<form:input path="amount" />
 								<spring:bind path="amount"><span class="error">${status.errorMessage}</span></spring:bind>
 							</label>

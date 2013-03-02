@@ -49,6 +49,7 @@
 					endDate : ${command.endDate}
 				</p>
 				<p>
+					<img src="<c:url value="/img/energy.png" />">
 					targetFigure : ${command.targetFigure}
 				</p>
 				<p>

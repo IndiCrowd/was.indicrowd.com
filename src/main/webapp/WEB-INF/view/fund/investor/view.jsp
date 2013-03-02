@@ -21,6 +21,7 @@
 		<div id="wrapper">
 			<div id="content">
 				<p>
+					<img src="<c:url value="/img/energy.png" />">
 					amount : ${command.amount}
 				</p>
 				<p>

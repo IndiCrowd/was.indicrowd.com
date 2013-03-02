@@ -80,6 +80,7 @@
 						<p>
 							<label>
 								<h5>목표 기금</h5>
+								<img src="<c:url value="/img/energy.png" />">
 								<form:input path="targetFigure" />
 								<spring:bind path="targetFigure"><span class="error">${status.errorMessage}</span></spring:bind>
 							</label>
