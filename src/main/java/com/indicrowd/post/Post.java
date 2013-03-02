@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -76,7 +77,7 @@ public class Post {
 		long postId = getId();
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Comment o WHERE o.hide != true AND o.post.id = :postId ORDER BY id DESC",
+						"SELECT o FROM Comment o WHERE o.hide != true AND o.postId = :postId ORDER BY id",
 						Comment.class).setParameter("postId", postId)
 				.getResultList();
 	}
