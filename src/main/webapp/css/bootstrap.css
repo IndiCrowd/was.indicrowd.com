@@ -4141,9 +4141,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs .open .dropdown-toggle,
 .nav-pills .open .dropdown-toggle,
 .nav > li.dropdown.open.active > a:hover {
-  color: #ffffff;
   background-color: #999999;
-  border-color: #999999;
 }
 
 .nav li.dropdown.open .caret,
@@ -4769,8 +4767,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
-  color: #ffffff;
-  background-color: #111111;
+  color: #666;
 }
 
 .navbar-inverse .nav li.dropdown > a:hover .caret {

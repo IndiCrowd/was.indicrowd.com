@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -27,6 +28,8 @@ import com.indicrowd.util.DateUtil;
 @RooJpaActiveRecord
 public class Post {
 	Calendar date;
+	
+	@NotEmpty
 	String title;
 
 	@ManyToOne
@@ -44,6 +47,7 @@ public class Post {
 	String summary;
 	@Lob
 	@Size
+	@NotEmpty
 	@Column
 	String content;
 	String type;

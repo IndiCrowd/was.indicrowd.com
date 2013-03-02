@@ -58,6 +58,20 @@
 							<sec:authorize access="isAnonymous()">
 								<li class="active" ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<li class><ul class="nav nav-pills">
+								  <li class="active dropdown">
+								  	<a class="dropdown-toggle"
+								       data-toggle="dropdown"
+								       href="#" >
+								    <c:if test="${principal.socialImageUrl ne ''}"><img width="22" height="22" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
+								  	<ul class="dropdown-menu">
+								      <li class="active" ><a href="#"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
+								    </ul>
+								  </li>
+								</ul>
+								</li>
+							</sec:authorize>
 	            		</ul>
 	          		</div>
 	        	</div>

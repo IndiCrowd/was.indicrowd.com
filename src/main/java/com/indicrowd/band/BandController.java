@@ -97,10 +97,12 @@ public class BandController extends AbstractController{
 		post.setBandInfo(BandInfo.findBandInfo(bandId));
 		post.setCommentCount(0);
 		post.setUserInfo(userInfo);
-		if(post.getContent().length() >= 50){
-			post.setSummary(post.getContent().substring(0, 50)+"...");
-		}else{
-			post.setSummary(post.getContent());
+		if(post.getContent() !=null){
+			if(post.getContent().length() >= 200){
+				post.setSummary(post.getContent().substring(0, 199)+"...");
+			}else{
+				post.setSummary(post.getContent());
+			}
 		}
 		
 		post.merge();

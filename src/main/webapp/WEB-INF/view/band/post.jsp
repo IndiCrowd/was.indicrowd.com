@@ -37,7 +37,7 @@
 			'</div>'+
 			'<div class="comment-des">'+
 				'<div class="comment-by">'+
-					'<strong>'+comment.userInfo.nickname +'</strong><span'+
+					'<strong>'+comment.userInfo.nickname +'</strong><span '+
 						'class="reply"><span style="color: #aaa">/ </span>'+
 						'</span> <span class="date">'+comment.monthString +'</span>'+
 				'</div>'+
@@ -79,7 +79,7 @@
 				<div class="post-content">
 					<div class="post-title">
 						<h2>
-							<a href="post.html">${post.title }</a>
+							<a href="#">${post.title }</a>
 						</h2>
 					</div>
 					<div class="post-meta">

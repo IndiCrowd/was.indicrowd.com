@@ -292,7 +292,7 @@ header {
 }
 
 .navbar .nav > li > a {
-	color: #a3a3a3;
+	color: #666;
 	text-shadow: 0 1px 0 #ffffff;
 	border-top:4px solid transparent;
 	font-size: 14px;
@@ -309,7 +309,7 @@ header {
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
   	background: transparent !important;		
-  	color: #bfbfbf;
+  	color: #666;
 }
 
 .navbar .nav > .active > a,
