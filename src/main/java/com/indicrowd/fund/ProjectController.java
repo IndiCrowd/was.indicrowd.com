@@ -132,18 +132,21 @@ public class ProjectController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{id}/invest", method = RequestMethod.GET)
 	public String invest(@PathVariable Long id, @ModelAttribute("command") Investor investor, Model model) {
+		model.addAttribute("rewards", Reward.findAllRewardsByProjectId(id));
 		return "fund/project/invest";
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/invest", method = RequestMethod.POST)
-	public String invest(@Valid @ModelAttribute("command") Investor investor, BindingResult bindingResult, Model model) throws IOException {
+	@RequestMapping(value = "/{id}/invest", method = RequestMethod.POST)
+	public String invest(@PathVariable Long id, @Valid @ModelAttribute("command") Investor investor, BindingResult bindingResult, Model model) throws IOException {
 
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("rewards", Reward.findAllRewardsByProjectId(id));
 			return "fund/project/invest";
 		} else {
 
-			investor.setProject(Project.findProject(investor.getProjectId()));
+			investor.setUserInfo(authService.getUserInfo());
+			investor.setProject(Project.findProject(id));
 
 			if (investor.getRewardId() != null) {
 				investor.setReward(Reward.findReward(investor.getRewardId()));
@@ -152,7 +155,7 @@ public class ProjectController extends AbstractController {
 			investor.setInvestDate(new Date());
 			investor.persist();
 
-			return "redirect/fund/investor/" + investor.getId();
+			return "redirect:/fund/investor/" + investor.getId();
 		}
 	}
 

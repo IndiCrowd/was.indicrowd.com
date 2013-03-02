@@ -63,5 +63,6 @@ var CONTEXT_PATH = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value="/js/preview.js" />"></script>
 <script src="<c:url value="/js/tag.js" />"></script>
-<script src="<c:url value="/js/reward.js" />"></script>
+<script src="<c:url value="/js/js2form.js" />"></script>
+<script src="<c:url value="/js/form2js.js" />"></script>
 <!-- end: Java Script -->

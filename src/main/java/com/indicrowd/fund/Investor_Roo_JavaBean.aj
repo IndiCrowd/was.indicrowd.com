@@ -19,14 +19,6 @@ privileged aspect Investor_Roo_JavaBean {
         this.project = project;
     }
     
-    public Long Investor.getProjectId() {
-        return this.projectId;
-    }
-    
-    public void Investor.setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
-    
     public Reward Investor.getReward() {
         return this.reward;
     }
@@ -41,6 +33,14 @@ privileged aspect Investor_Roo_JavaBean {
     
     public void Investor.setRewardId(Long rewardId) {
         this.rewardId = rewardId;
+    }
+    
+    public int Investor.getAmount() {
+        return this.amount;
+    }
+    
+    public void Investor.setAmount(int amount) {
+        this.amount = amount;
     }
     
     public UserInfo Investor.getUserInfo() {

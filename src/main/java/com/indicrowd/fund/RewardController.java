@@ -36,7 +36,7 @@ public class RewardController extends AbstractController {
 
 			reward.setProject(Project.findProject(reward.getProjectId()));
 			reward.persist();
-
+			
 			return "redirect:/fund/reward/" + reward.getId();
 		}
 	}
