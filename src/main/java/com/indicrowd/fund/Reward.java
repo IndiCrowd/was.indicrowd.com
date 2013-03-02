@@ -1,5 +1,7 @@
 package com.indicrowd.fund;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,5 +35,9 @@ public class Reward {
 
 	@Column(nullable = false)
 	private int maxInvestorCount;
+	
+	public static List<Reward> findAllRewardsByProjectId(Long projectId) {
+		return entityManager().createQuery("SELECT o FROM Reward o WHERE o.project.id = :projectId ORDER BY o.id DESC", Reward.class).setParameter("projectId", projectId).getResultList();
+	}
 
 }

@@ -152,7 +152,7 @@ public class ProjectController extends AbstractController {
 			investor.setInvestDate(new Date());
 			investor.persist();
 
-			return "redirect/fund/project/" + investor.getProjectId();
+			return "redirect/fund/investor/" + investor.getId();
 		}
 	}
 
