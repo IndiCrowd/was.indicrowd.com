@@ -52,7 +52,7 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}", method = RequestMethod.GET)
-	public String hall(@PathVariable("concertId") Long concertId, Model model) {
+	public String view(@PathVariable("concertId") Long concertId, Model model) {
 		model.addAttribute("command", Concert.findConcert(concertId));
 		model.addAttribute("userId", authService.getUserId());
 
@@ -61,10 +61,18 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/admin", method = RequestMethod.GET)
-	public String hallAdmin(@PathVariable("concertId") Long concertId, Model model) {
+	public String viewAdmin(@PathVariable("concertId") Long concertId, Model model) {
 		model.addAttribute("command", Concert.findConcert(concertId));
 
 		return "concert/viewAdmin";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{concertId}/feed", method = RequestMethod.GET)
+	public String viewFeed(@PathVariable("concertId") Long concertId, Model model) {
+		model.addAttribute("command", Concert.findConcert(concertId));
+
+		return "concert/viewFeed";
 	}
 
 	@Secured("ROLE_USER")

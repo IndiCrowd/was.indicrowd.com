@@ -19,4 +19,8 @@
 		<pattern>/concert/*</pattern>
 	</decorator>
 	
+	<decorator name="base" page="base.jsp">
+		<pattern>/concert/*/feed</pattern>
+	</decorator>
+	
 </decorators>
