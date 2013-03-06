@@ -30,34 +30,6 @@
 				backgroundSize: 'auto 700px'
 			});
 			
-			for (var i = 1 ; i <= 8 ; i++) {
-				var $img = $IMG({
-					src: '<c:url value="/img/concert/" />profile' + i + '.jpg'
-				}).appendTo('#stage');
-				
-				$img.mouseover(function() {
-					var $span = $SPAN({
-						cls : 'ui-tooltip',
-						style : {
-							position : 'absolute',
-							top : $(this).offset().top,
-							left : $(this).offset().left
-						}
-					}, 'TEST!!').appendTo('body');
-					$span.css({
-						display : 'none',
-						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
-						top : '-=' + $span.outerHeight() + 'px'
-					});
-					$span.fadeIn(100);
-					setTimeout(function() {
-						$span.fadeOut(function() {
-							$(this).remove();
-						});
-					}, 2000);
-				});
-			}
-			
 			var addImg = function(connectId, userInfo) {
 				if ($('#user-' + userInfo.id).size() === 0) { 
 					$IMG({
@@ -136,6 +108,7 @@
 		            '480', '360', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
+		        
 		        
 		        return $('#StreamSubscriber');
 			};
