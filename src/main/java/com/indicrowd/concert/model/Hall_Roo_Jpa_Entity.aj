@@ -3,7 +3,7 @@
 
 package com.indicrowd.concert.model;
 
-import com.indicrowd.concert.model.Reservation;
+import com.indicrowd.concert.model.Hall;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,32 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-privileged aspect Reservation_Roo_Jpa_Entity {
+privileged aspect Hall_Roo_Jpa_Entity {
     
-    declare @type: Reservation: @Entity;
+    declare @type: Hall: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long Reservation.id;
+    private Long Hall.id;
     
     @Version
     @Column(name = "version")
-    private Integer Reservation.version;
+    private Integer Hall.version;
     
-    public Long Reservation.getId() {
+    public Long Hall.getId() {
         return this.id;
     }
     
-    public void Reservation.setId(Long id) {
+    public void Hall.setId(Long id) {
         this.id = id;
     }
     
-    public Integer Reservation.getVersion() {
+    public Integer Hall.getVersion() {
         return this.version;
     }
     
-    public void Reservation.setVersion(Integer version) {
+    public void Hall.setVersion(Integer version) {
         this.version = version;
     }
     

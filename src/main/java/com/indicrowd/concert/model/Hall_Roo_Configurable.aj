@@ -3,11 +3,11 @@
 
 package com.indicrowd.concert.model;
 
-import com.indicrowd.concert.model.Reservation;
+import com.indicrowd.concert.model.Hall;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Reservation_Roo_Configurable {
+privileged aspect Hall_Roo_Configurable {
     
-    declare @type: Reservation: @Configurable;
+    declare @type: Hall: @Configurable;
     
 }

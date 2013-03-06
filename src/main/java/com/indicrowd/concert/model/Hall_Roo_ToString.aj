@@ -3,13 +3,13 @@
 
 package com.indicrowd.concert.model;
 
-import com.indicrowd.concert.model.Reservation;
+import com.indicrowd.concert.model.Hall;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Reservation_Roo_ToString {
+privileged aspect Hall_Roo_ToString {
     
-    public String Reservation.toString() {
+    public String Hall.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

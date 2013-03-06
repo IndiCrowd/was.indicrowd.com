@@ -33,17 +33,17 @@ public class ConcertController extends AbstractController {
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public void create(@ModelAttribute("command") Concert concert, Model model) {
+	@RequestMapping(value = "/reservate", method = RequestMethod.GET)
+	public void reservate(@ModelAttribute("command") Concert concert, Model model) {
 		// just view
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
+	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			return "concert/create";
+			return "concert/reservate";
 		} else {
 			concert.persist();
 			return "redirect:/concert/" + concert.getId();

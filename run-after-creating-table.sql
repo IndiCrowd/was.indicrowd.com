@@ -18,3 +18,6 @@ create unique index UserConnectionRank on UserConnection(userId);
 /* 권한 설정 */
 insert into auth (authority, name, version) values ("ROLE_USER", "회원", 0);
 insert into auth (authority, name, version) values ("ROLE_ADMIN", "관리자", 0);
+
+/* 기본 홀 생성 */
+insert into hall (name, create_date, version) values ("기본 홀", now(), 0);

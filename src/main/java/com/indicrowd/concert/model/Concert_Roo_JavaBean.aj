@@ -4,6 +4,8 @@
 package com.indicrowd.concert.model;
 
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.concert.model.Hall;
+import java.util.Date;
 
 privileged aspect Concert_Roo_JavaBean {
     
@@ -13,6 +15,38 @@ privileged aspect Concert_Roo_JavaBean {
     
     public void Concert.setTitle(String title) {
         this.title = title;
+    }
+    
+    public Hall Concert.getHall() {
+        return this.hall;
+    }
+    
+    public void Concert.setHall(Hall hall) {
+        this.hall = hall;
+    }
+    
+    public Long Concert.getHallId() {
+        return this.hallId;
+    }
+    
+    public void Concert.setHallId(Long hallId) {
+        this.hallId = hallId;
+    }
+    
+    public Date Concert.getStartDate() {
+        return this.startDate;
+    }
+    
+    public void Concert.setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    
+    public Date Concert.getEndDate() {
+        return this.endDate;
+    }
+    
+    public void Concert.setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
     
 }
