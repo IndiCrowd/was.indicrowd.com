@@ -24,7 +24,8 @@ html { -webkit-font-smoothing: antialiased; }
 body {
 	
 	font-weight: 400;
-	background: url('../img/strange_bullseyes.png');
+	background-color: #ccc;
+	background-image: url('../img/strange_bullseyes.png');
 	color: #000;
 	font-size: 12px;
 	z-index : -2;
