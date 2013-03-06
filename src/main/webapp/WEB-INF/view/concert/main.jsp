@@ -56,7 +56,7 @@
 	</table>
 	</div>
 	<div class="span3">
-	<a href="${pageContext.request.contextPath}/concert/create"><button class="btn btn-primary">방송하기!</button></a>
+	<a href="${pageContext.request.contextPath}/concert/reservate"><button class="btn btn-primary">방송하기!</button></a>
 	</div>
 </div>
 <!--  end wrapper -->

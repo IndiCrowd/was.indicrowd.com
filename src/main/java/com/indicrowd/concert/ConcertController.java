@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.Message;
 
 @Controller
@@ -41,12 +42,17 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
 	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
+		
+		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && concert.getEndDate().getTime() < concert.getStartDate().getTime()) {
+			bindingResult.rejectValue("startDate", "Over.startDate");
+		}
 
 		if (bindingResult.hasErrors()) {
 			return "concert/reservate";
 		} else {
+			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.persist();
-			return "redirect:/concert/" + concert.getId();
+			return "redirect:/concert";
 		}
 	}
 
