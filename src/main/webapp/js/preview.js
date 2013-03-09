@@ -1,13 +1,9 @@
 $(function() {
 	$('.use-preview').each(function() {
 		var $this = $(this);
-		var $find = $this.find('.find');
 		var $input = $this.find('input[type="file"]');
 		var $img = $this.find('img');
-
-		$find.click(function() {
-			$input.click();
-		});
+		
 		$img.click(function() {
 			$input.click();
 		});

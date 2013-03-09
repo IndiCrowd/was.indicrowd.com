@@ -30,13 +30,20 @@
 				backgroundSize: 'auto 700px'
 			});
 			
+			var userImgs = {};
 			var addImg = function(connectId, userInfo) {
-				if ($('#user-' + userInfo.id).size() === 0) { 
+				console.log(userImgs[userInfo.id]);
+				if (userImgs[userInfo.id] === undefined) {
+					userImgs[userInfo.id] = 1;
+					
 					$IMG({
-						id : 'connect-' + connectId,
-						cls : 'user-' + userInfo.id,
+						//id : 'connect-' + connectId,
+						id : 'user-' + userInfo.id,
 						src: '<c:url value="/img/concert/" />profile4.jpg'
 					}).appendTo('#stage').hide().fadeIn();
+					
+				} else {
+					userImgs[userInfo.id]++;
 				}
 			};
 
@@ -49,7 +56,11 @@
 			RTW.join('Concert', '${command.id}', function(data) {
 				addImg(data.connectId, data.userInfo);
 			}, function(data) {
-				$('#connect-' + data.connectId).remove();
+				userImgs[data.userInfo.id]--;
+				if (userImgs[data.userInfo.id] === 0) {
+					delete userImgs[data.userInfo.id];
+					$('#user-' + data.userInfo.id).remove();
+				}
 			});
 			
 			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
@@ -59,7 +70,7 @@
 					}
 				}, message.sender.nickname), ': ' + message.content));
 				
-				$('.user-' + message.sender.id).each(function() {
+				$('#user-' + message.sender.id).each(function() {
 					var $img = $(this);
 					var $span = $SPAN({
 						cls : 'ui-tooltip',
