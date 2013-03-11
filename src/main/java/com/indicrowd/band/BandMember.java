@@ -22,4 +22,5 @@ public class BandMember {
 	@ManyToOne
 	@JoinColumn(name = "bandRoleTypeId", nullable = false)
 	BandRoleType bandRoleType;
+	String alias;
 }

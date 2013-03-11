@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
-import com.indicrowd.post.Post;
-
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord

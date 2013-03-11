@@ -34,4 +34,12 @@ privileged aspect BandMember_Roo_JavaBean {
         this.bandRoleType = bandRoleType;
     }
     
+    public String BandMember.getAlias() {
+        return this.alias;
+    }
+    
+    public void BandMember.setAlias(String alias) {
+        this.alias = alias;
+    }
+    
 }

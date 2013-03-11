@@ -63,7 +63,7 @@ public class BandController extends AbstractController{
 			String[] tags = category.split(" ");
 			model.addAttribute("tags",tags);
 		}
-		Post post = Post.findPost(postId);
+		Post post = Post.findPostWithAuthorInfo(postId);
 		model.addAttribute("post", post);
 		model.addAttribute("commentList",post.getCommentList());
 		model.addAttribute("bandInfo", bandInfo);
@@ -92,7 +92,6 @@ public class BandController extends AbstractController{
 	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId){
 		System.out.println(post);
 		UserInfo userInfo = authService.getUserInfo();
-		post.setAuthor(userInfo.getNickname());
 		post.setDate(Calendar.getInstance());
 		post.setBandInfo(BandInfo.findBandInfo(bandId));
 		post.setCommentCount(0);
@@ -133,7 +132,7 @@ public class BandController extends AbstractController{
 	public void postReply(@ModelAttribute("comment") Comment comment,@PathVariable("postId") Long postId,BindingResult bindingResult,Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		comment.setDate(Calendar.getInstance());
 		
-		comment.setPostId(postId);
+		comment.setPost(Post.findPost(postId));
 		UserInfo userInfo = authService.getUserInfo();
 		if(userInfo == null) model.addAttribute("command",null);
 		else{
@@ -147,6 +146,7 @@ public class BandController extends AbstractController{
 				post.merge();
 				
 			}
+			result.setPost(null);
 			model.addAttribute("command",result);
 		}
 	}

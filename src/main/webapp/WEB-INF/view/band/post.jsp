@@ -104,12 +104,12 @@
 
 				<c:forEach items="${post.commentList }" var="comment">
 					<div class="comments">
-						<div class="avatar">
-							<img src="${comment.userInfo.socialImageUrl }" alt="" border="0" />
+						<div class="avatar" style="min-height: 70px;">
+							<img width="50px" height="50px" src="${comment.authorImageUrl }" alt="" border="0" />
 						</div>
 						<div class="comment-des">
 							<div class="comment-by">
-								<strong>${comment.userInfo.nickname }</strong><span
+								<strong>${comment.author }</strong><span
 									class="reply"><span style="color: #aaa">/ </span></span> <span class="date">${comment.monthString }</span>
 							</div>
 							<p>${comment.content }</p>

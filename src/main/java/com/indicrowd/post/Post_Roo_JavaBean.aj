@@ -42,12 +42,28 @@ privileged aspect Post_Roo_JavaBean {
         this.userInfo = userInfo;
     }
     
+    public BandInfo Post.getWriteBandInfo() {
+        return this.writeBandInfo;
+    }
+    
+    public void Post.setWriteBandInfo(BandInfo writeBandInfo) {
+        this.writeBandInfo = writeBandInfo;
+    }
+    
     public String Post.getAuthor() {
         return this.author;
     }
     
     public void Post.setAuthor(String author) {
         this.author = author;
+    }
+    
+    public String Post.getAuthorImageUrl() {
+        return this.authorImageUrl;
+    }
+    
+    public void Post.setAuthorImageUrl(String authorImageUrl) {
+        this.authorImageUrl = authorImageUrl;
     }
     
     public int Post.getCommentCount() {

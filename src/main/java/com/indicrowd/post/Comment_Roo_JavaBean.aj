@@ -3,18 +3,20 @@
 
 package com.indicrowd.post;
 
+import com.indicrowd.band.BandInfo;
 import com.indicrowd.post.Comment;
+import com.indicrowd.post.Post;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Calendar;
 
 privileged aspect Comment_Roo_JavaBean {
     
-    public long Comment.getPostId() {
-        return this.postId;
+    public Post Comment.getPost() {
+        return this.post;
     }
     
-    public void Comment.setPostId(long postId) {
-        this.postId = postId;
+    public void Comment.setPost(Post post) {
+        this.post = post;
     }
     
     public UserInfo Comment.getUserInfo() {
@@ -25,12 +27,36 @@ privileged aspect Comment_Roo_JavaBean {
         this.userInfo = userInfo;
     }
     
+    public BandInfo Comment.getWriteBandInfo() {
+        return this.writeBandInfo;
+    }
+    
+    public void Comment.setWriteBandInfo(BandInfo writeBandInfo) {
+        this.writeBandInfo = writeBandInfo;
+    }
+    
     public String Comment.getContent() {
         return this.content;
     }
     
     public void Comment.setContent(String content) {
         this.content = content;
+    }
+    
+    public String Comment.getAuthor() {
+        return this.author;
+    }
+    
+    public void Comment.setAuthor(String author) {
+        this.author = author;
+    }
+    
+    public String Comment.getAuthorImageUrl() {
+        return this.authorImageUrl;
+    }
+    
+    public void Comment.setAuthorImageUrl(String authorImageUrl) {
+        this.authorImageUrl = authorImageUrl;
     }
     
     public Calendar Comment.getDate() {
