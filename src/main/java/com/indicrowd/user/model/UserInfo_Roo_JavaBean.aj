@@ -3,9 +3,11 @@
 
 package com.indicrowd.user.model;
 
+import com.indicrowd.band.BandInfo;
 import com.indicrowd.user.model.UserAuth;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 privileged aspect UserInfo_Roo_JavaBean {
@@ -144,6 +146,14 @@ privileged aspect UserInfo_Roo_JavaBean {
     
     public void UserInfo.setAuths(Set<UserAuth> auths) {
         this.auths = auths;
+    }
+    
+    public List<BandInfo> UserInfo.getUserBand() {
+        return this.userBand;
+    }
+    
+    public void UserInfo.setUserBand(List<BandInfo> userBand) {
+        this.userBand = userBand;
     }
     
 }

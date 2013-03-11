@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.indicrowd.band.BandInfo;
 import com.indicrowd.user.model.UserInfo;
 
 @Service
@@ -24,11 +25,13 @@ public class AuthService {
 		if (authentication == null) {
 			return null;
 		}
-		Object princiapl = authentication.getPrincipal();
-		if (!(princiapl instanceof UserInfo)) {
+		Object principal = authentication.getPrincipal();
+		if (!(principal instanceof UserInfo)) {
 			return null;
 		}
-		return (UserInfo) princiapl;
+		UserInfo userInfo = (UserInfo) principal;
+		userInfo.setUserBand(BandInfo.findBandInfoListByUserId(userInfo.getId()));
+		return userInfo;
 	}
 	
 	public void setUserInfo(UserInfo userInfo) {

@@ -2,6 +2,8 @@ package com.indicrowd;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.indicrowd.band.BandInfo;
+
 @org.springframework.stereotype.Controller
 public class Controller extends AbstractController {
 
@@ -11,6 +13,7 @@ public class Controller extends AbstractController {
 
 	@RequestMapping("/")
 	public String main() {
+		System.out.println(BandInfo.findBandInfoListByUserId(1));
 		return "main";
 	}
 

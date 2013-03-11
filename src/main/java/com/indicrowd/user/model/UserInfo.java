@@ -2,6 +2,7 @@ package com.indicrowd.user.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.indicrowd.auth.Auth;
+import com.indicrowd.band.BandInfo;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @RooJavaBean
@@ -129,6 +131,9 @@ public class UserInfo implements UserDetails {
 	 */
 	@OneToMany(mappedBy = "userInfo", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private Set<UserAuth> auths = new HashSet<UserAuth>();
+	
+	@Transient
+	private List<BandInfo> userBand;
 
 	@Override
 	public Set<Auth> getAuthorities() {

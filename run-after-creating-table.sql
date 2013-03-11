@@ -21,3 +21,7 @@ insert into auth (authority, name, version) values ("ROLE_ADMIN", "관리자", 0
 
 /* 기본 홀 생성 */
 insert into hall (name, create_date, version) values ("기본 홀", now(), 0);
+
+/* 밴드 Role 설정*/
+insert into band_role_type( name, priority) values("BAND_ADMIN",0);
+insert into band_role_type( name, priority) values("BAND_MEMBER",1);

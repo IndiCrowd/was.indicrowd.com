@@ -67,6 +67,10 @@
 								    <c:if test="${principal.socialImageUrl ne ''}"><img width="22" height="22" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
 								  	<ul class="dropdown-menu">
 								      <li class="active" ><a href="#"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
+								      <c:forEach var="band" items="${principal.userBand }">
+								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
+								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" width="22" height="22" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
+								      </c:forEach>
 								    </ul>
 								  </li>
 								</ul>
