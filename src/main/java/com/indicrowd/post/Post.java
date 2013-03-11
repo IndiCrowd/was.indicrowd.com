@@ -104,8 +104,8 @@ public class Post {
 				.getResultList();
 		for(int i=0; i<commentList.size();i++){
 			Comment.setAuthorInfo(commentList.get(i));
+			commentList.get(i).setPost(null);
 		}
-		System.out.println(commentList);
 		return commentList;
 	}
 	
