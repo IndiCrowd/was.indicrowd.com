@@ -41,6 +41,7 @@ $(function() {
 <script src="<c:url value="/js/twitter.js" />"></script>
 <script src="<c:url value="/js/jquery.placeholder.min.js" />"></script>
 
+<script src="<c:url value="/js/jquery.spritely.js" />"></script>
 <script src="<c:url value="/js/jquery-easing-1.3.js" />"></script>
 <script src="<c:url value="/js/layerslider.kreaturamedia.jquery.js" />"></script>
 
