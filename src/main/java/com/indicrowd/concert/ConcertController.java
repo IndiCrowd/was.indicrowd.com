@@ -82,7 +82,19 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping("/{concertId}/iconFeed")
 	public void iconFeed(@PathVariable("concertId") Long concertId, @Valid @ModelAttribute("command") IconFeed iconFeed, BindingResult bindingResult, Model model) {
+		Concert concert = Concert.findConcert(concertId);
 		
+		System.out.println(iconFeed);
+		
+		if (concert != null) {
+
+			iconFeed.setConcert(concert);
+			iconFeed.setSender(authService.getUserInfo());
+			iconFeed.setSendDate(new Date());
+			iconFeed.persist();
+
+			rtwService.send("Concert", iconFeed.getConcert().getId(), "iconFeed", iconFeed);
+		}
 	}
 
 	@Secured("ROLE_USER")

@@ -41,7 +41,7 @@ function completeObjectReference(o) {
 
 function GET(url, po, f) {
 
-	if (f === undefined) {
+	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}
@@ -53,7 +53,7 @@ function GET(url, po, f) {
 
 function POST(url, po, f) {
 	
-	if (f === undefined) {
+	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}
@@ -65,7 +65,7 @@ function POST(url, po, f) {
 
 function PUT(url, po, f) {
 	
-	if (f === undefined) {
+	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}
@@ -82,7 +82,7 @@ function PUT(url, po, f) {
 
 function DEL(url, po, f) {
 	
-	if (f === undefined) {
+	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}

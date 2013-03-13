@@ -383,6 +383,28 @@
 					}, 2000);
 				});
 			});
+			
+			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
+
+				var $div = $DIV({
+					style: {
+						background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+						width: 150,
+						height: 150,
+						position: 'absolute',
+						top: 100,
+						right: 100,
+						zIndex: 100000
+					}
+				}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
+				
+				setTimeout(function() {
+					$div.fadeOut(function() {
+						$(this).remove();
+					});
+				}, 2000);
+			});
+			
 		});
 
 			
@@ -399,18 +421,9 @@
 		
 		<script>
 		function applause() {
-			
-			$DIV({
-				style: {
-					background: 'url(<c:url value="/img/yj_hands.png" />)',
-					width: 150,
-					height: 150,
-					position: 'absolute',
-					top: 100,
-					zIndex: 100000
-				}
-			}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
-		
+			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
+				iconName: 'yj_hands'
+			});
 		};
 		</script>
 		
@@ -443,6 +456,9 @@
 					</p>
 					<p>
 						<label>밴드 정보</label> test
+					</p>
+					<p>
+						<a href="javascript:applause();">박수!</a>
 					</p>
 				</div>
 			</div>
