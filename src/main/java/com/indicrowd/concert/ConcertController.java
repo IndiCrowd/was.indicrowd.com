@@ -106,9 +106,35 @@ public class ConcertController extends AbstractController {
 		}
 	}
 	
-	@RequestMapping(value = "/chat/list")
-	public String chatList(Model model) {
+	@RequestMapping("/{concertId}/chat/list")
+	public String chatList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
+		list(concertId, 1, countPerPage, model);
 		return "concert/chatList";
+	}
+	
+	@RequestMapping("/{concertId}/chat/list/{page}")
+	public String list(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
+
+		if (page < 1) {
+			page = 1;
+		}
+
+		if (countPerPage == null) {
+			countPerPage = 20;
+		} else if (countPerPage > 50) {
+			countPerPage = 50;
+		}
+
+		ListInfo<Message> listInfo = new ListInfo<Message>();
+
+		listInfo.setPage(page);
+		listInfo.setCountPerPage(countPerPage);
+		listInfo.setCount(Message.countMessageByConcertId(concertId));
+		listInfo.setList(Message.findMessageEntriesByConcertId(concertId, (page - 1) * countPerPage, countPerPage));
+
+		model.addAttribute("command", listInfo);
+
+		return "bbs/article/list";
 	}
 
 }

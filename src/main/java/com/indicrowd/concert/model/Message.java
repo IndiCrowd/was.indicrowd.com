@@ -1,6 +1,8 @@
 package com.indicrowd.concert.model;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -40,5 +42,15 @@ public class Message {
 	
 	@Column(nullable = false)
 	private Date sendDate;
+	
+	public static List<Message> findMessageEntriesByConcertId(Long concertId, int firstResult, int maxResults) {
+		List<Message> list = entityManager().createQuery("SELECT o FROM Message o WHERE o.concert.id = :concertId ORDER BY o.id DESC", Message.class).setParameter("concertId", concertId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+		Collections.reverse(list);
+		return list;
+	}
+
+	public static Long countMessageByConcertId(Long concertId) {
+		return entityManager().createQuery("SELECT COUNT(o) FROM Message o WHERE o.concert.id = :concertId", Long.class).setParameter("concertId", concertId).getSingleResult();
+	}
 
 }

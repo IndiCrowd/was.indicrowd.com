@@ -34,7 +34,7 @@ $(function() {
 
 		if (tagsStr !== '') {
 			GET(CONTEXT_PATH + '/tag/' + encodeURIComponent(tagsStr) + '.json', {}, function(command) {
-				if (command.id !== undefined) {
+				if (command.version !== undefined) {
 					$tagHint.css({
 						left : left + length * fontSize + padding,
 						top : top + height
