@@ -30,7 +30,13 @@ public class ConnectHandler implements Handler<Buffer> {
 
 		JsonObject json = new JsonObject(buffer.toString());
 		String namespace = json.getString("namespace");
-		String id = json.getString("id");
+		String id;
+		
+		try {
+			id = json.getString("id");
+		} catch (Exception e) {
+			id = json.getInteger("id").toString();
+		}
 
 		Long userId = null;
 		UserInfo userInfo = null;

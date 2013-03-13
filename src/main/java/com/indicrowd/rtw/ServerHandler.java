@@ -1,21 +1,23 @@
 package com.indicrowd.rtw;
 
-import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.sockjs.SockJSSocket;
 
+import com.indicrowd.XStreamJsonSingleton;
+import com.thoughtworks.xstream.XStream;
+
 public class ServerHandler implements Handler<SockJSSocket> {
 
-	private static final ObjectMapper MAPPER = new ObjectMapper();
-
+	private XStream xstream = XStreamJsonSingleton.getInstance();
 	private RTWService service;
 
 	public ServerHandler(RTWService service) {
+		
+		xstream.setMode(XStream.ID_REFERENCES);
+		
 		this.service = service;
 	}
 
@@ -26,20 +28,7 @@ public class ServerHandler implements Handler<SockJSSocket> {
 		data.put("connectId", sock.writeHandlerID);
 		data.put("connectedUserInfos", service.getConnectedUserInfos());
 
-		StringWriter writer = new StringWriter();
-		try {
-			MAPPER.writeValue(writer, data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		String json = writer.toString();
-		if (!sock.writeQueueFull()) {
-			sock.writeBuffer(new Buffer(json));
-		} else {
-			sock.pause();
-			sock.drainHandler(new ResumHandler(sock));
-		}
+		sock.writeBuffer(new Buffer(xstream.toXML(data)));
 
 		// 접속
 		sock.dataHandler(new ConnectHandler(service, sock));
