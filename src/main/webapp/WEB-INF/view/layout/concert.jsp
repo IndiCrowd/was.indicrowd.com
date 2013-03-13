@@ -326,18 +326,35 @@
 			});
 			
 			var addMessage = function(message) {
+				if ($('#messages').find('.message').size() > 100) {
+					// 100개가 넘으면 맨 위에 것을 지워줌
+					$('#messages').find('.message:first').remove();
+				}
+				
+				var t = $('#messages-wrapper').scrollTop();
+				$('#messages-wrapper').scrollTop(100000000000);
+				var t2 = $('#messages-wrapper').scrollTop();
+				
 				$('#messages').append($LI({cls: 'message'}, $SPAN({
 					style : {
 						fontWeight: 'bold'
 					}
 				}, message.sender.nickname), ': ' + message.content));
-				$('#messages-wrapper').scrollTop(100000000000);
+				
+				// 스크롤이 맨 아래일때만 자동으로 아래로 내려줌, 아닐경우 스크롤 유지.
+				if (t < t2) {
+					$('#messages-wrapper').scrollTop(t);
+				} else {
+					$('#messages-wrapper').scrollTop(100000000000);
+				}
+				
 			};
 			
 			GET('<c:url value="/concert/${command.id}/chat/list" />', function(command) {
 				for (var i in command.list) {
 					addMessage(command.list[i]);
 				}
+				$('#messages-wrapper').scrollTop(100000000000);
 			});
 			
 			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
@@ -381,9 +398,9 @@
 		
 		
 		<script>
-		$(function() {
+		function applause() {
 			
-			/*$DIV({
+			$DIV({
 				style: {
 					background: 'url(<c:url value="/img/yj_hands.png" />)',
 					width: 150,
@@ -392,9 +409,9 @@
 					top: 100,
 					zIndex: 100000
 				}
-			}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');*/
+			}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
 		
-		});
+		};
 		</script>
 		
 		<decorator:head />
