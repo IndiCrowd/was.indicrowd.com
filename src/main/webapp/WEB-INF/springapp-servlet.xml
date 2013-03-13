@@ -43,15 +43,18 @@
 		</property>
 		<property name="defaultViews">
 			<list>
-			    <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+			    <bean class="com.indicrowd.MappingJsonView">
 			        <property name="modelKey" value="command" />
 			    </bean>
+			    <!-- 
+			    일단 XML은 사용하지 않는다.
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<property name="marshaller">
 						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" p:autodetectAnnotations="true" />
 					</property>
 					<property name="modelKey" value="command" />
 				</bean>
+				 -->
 			</list>
 		</property>
 	</bean>

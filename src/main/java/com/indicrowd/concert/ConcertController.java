@@ -27,9 +27,7 @@ public class ConcertController extends AbstractController {
 	@RequestMapping
 	public String main(Model model) {
 
-		ListInfo<Concert> listInfo = new ListInfo<Concert>();
-		listInfo.setList(Concert.findAllConcerts());
-		model.addAttribute("command", listInfo);
+		model.addAttribute("command", ListInfo.getAllListInfo(Concert.findAllConcerts()));
 
 		return "concert/main";
 	}

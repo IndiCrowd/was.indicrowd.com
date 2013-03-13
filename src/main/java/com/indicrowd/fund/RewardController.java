@@ -50,14 +50,7 @@ public class RewardController extends AbstractController {
 	@RequestMapping("/list")
 	public String list(Long projectId, Model model) {
 
-		ListInfo<Reward> listInfo = new ListInfo<Reward>();
-
-		listInfo.setPage(1);
-		listInfo.setCountPerPage(-1);
-		listInfo.setList(Reward.findAllRewardsByProjectId(projectId));
-		listInfo.setCount((long) listInfo.getList().size());
-
-		model.addAttribute("command", listInfo);
+		model.addAttribute("command", ListInfo.getAllListInfo(Reward.findAllRewardsByProjectId(projectId)));
 
 		return "fund/reward/list";
 	}

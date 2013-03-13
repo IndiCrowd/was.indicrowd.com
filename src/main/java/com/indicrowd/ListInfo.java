@@ -38,4 +38,17 @@ public class ListInfo<C> {
 
 	private List<C> list;
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ListInfo getAllListInfo(List list) {
+
+		ListInfo listInfo = new ListInfo();
+
+		listInfo.setPage(0);
+		listInfo.setCountPerPage(-1);
+		listInfo.setCount((long) list.size());
+		listInfo.setList(list);
+
+		return listInfo;
+	}
+
 }
