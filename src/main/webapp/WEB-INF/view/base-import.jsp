@@ -15,7 +15,9 @@
 <link href="<c:url value="/css/layerslider.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/smoothness/jquery-ui-1.10.1.custom.min.css"/>" rel="stylesheet" type="text/css">
 
-
+<!-- start: Favicon -->
+	<link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>">
+<!-- end: Favicon -->
 <!--[if lt IE 9 ]>
   <link href="css/styleIE.css" rel="stylesheet">
 <![endif]-->

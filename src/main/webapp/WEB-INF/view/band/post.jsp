@@ -132,11 +132,26 @@
 			
 			<!-- Form -->
 			<div id="contact-form" class="span12">
+				
 				<form:form id="add-comment-form">
-					<div class="field span1">
-						<img src="" />
+					<div class="field span2">
+						<ul class="nav nav-pills">
+					  <li class="active dropdown">
+					  	<a class="dropdown-toggle"
+					       data-toggle="dropdown"
+					       href="#" >
+					    <c:if test="${principal.socialImageUrl ne ''}"><img width="22" height="22" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
+					  	<ul class="dropdown-menu">
+					      <li class="active" ><a href="#"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
+					      <c:forEach var="band" items="${principal.userBand }">
+					      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
+					      <li class="active" ><a href="#"><c:if test="${band.imageFilePath ne ''}"><img border="0" width="22" height="22" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
+					      </c:forEach>
+					    </ul>
+					  </li>
+					</ul>
 					</div>
-					<div class="field span8">
+					<div class="field span7">
 						<form:textarea id="content" path="content" class="span12" />
 					</div>
 

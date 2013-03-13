@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<script>var USER_ID = '';</script>
-<sec:authorize access="isAuthenticated()">
-<sec:authentication property="principal" var="principal" />
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <script>
-USER_ID = '${principal.id}';
+	var USER_ID = '';
 </script>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+	<script>
+		USER_ID = '${principal.id}';
+	</script>
 </sec:authorize>
 <script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>
 <script src="<c:url value="/js/jquery-ui-1.10.1.custom.min.js" />"></script>
@@ -19,14 +23,14 @@ USER_ID = '${principal.id}';
 <script src="<c:url value="/js/IndiCrowd.js" />"></script>
 
 <script>
-$(function() {
-	RTW.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
-	RTW.join('IndiCrowd', 'init', function(data) {
-		console.log('connect:', data);
-	}, function(data) {
-		console.log('disconnect:', data);
+	$(function() {
+		RTW.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
+		RTW.join('IndiCrowd', 'init', function(data) {
+			console.log('connect:', data);
+		}, function(data) {
+			console.log('disconnect:', data);
+		});
 	});
-});
 </script>
 
 <!--[if lt IE 9]>
@@ -58,13 +62,53 @@ $(function() {
 <script defer="defer" src="<c:url value="/js/modernizr.js" />"></script>
 <script defer="defer" src="<c:url value="/js/retina.js" />"></script>
 <script defer="defer" src="<c:url value="/js/custom.js" />"></script>
+<!--  script for perfectum -->
+
+<script src="<c:url value="/js/jquery-migrate-1.0.0.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery-ui-1.10.0.custom.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.ui.touch-punch.js" />"></script>
+
+<script src="<c:url value="/js/jquery.cookie.js" />"></script>
+
+<script src="<c:url value="/js/fullcalendar.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.dataTables.min.js" />"></script>
+
+
+<script src="<c:url value="/js/jquery.chosen.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.uniform.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.cleditor.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.noty.js" />"></script>
+
+<script src="<c:url value="/js/jquery.elfinder.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.raty.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.iphone.toggle.js" />"></script>
+
+<script src="<c:url value="/js/jquery.uploadify-3.1.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.gritter.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.masonry.min.js" />"></script>
+
+<script src="<c:url value="/js/jquery.knob.js" />"></script>
+
+<script src="<c:url value="/js/jquery.sparkline.min.js" />"></script>
+
+
 
 <script>
-$('.datepicker').datepicker();
+	$('.datepicker').datepicker();
 </script>
 
 <script>
-var CONTEXT_PATH = '${pageContext.request.contextPath}';
+	var CONTEXT_PATH = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value="/js/preview.js" />"></script>
 <script src="<c:url value="/js/tag.js" />"></script>

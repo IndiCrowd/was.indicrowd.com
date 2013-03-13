@@ -40,9 +40,8 @@
 		
 
 			<!-- start: Row -->
+			<!-- 
 			<div class="row-fluid">
-
-				<!-- start: About Member -->
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
@@ -54,11 +53,8 @@
 					</div>
 					<p class="text-info"><a href="#">벤딩머신(Vending Machine) - SPR(Live)</a></p>
 				</div>
-				<!-- end: About Member -->
 
 				<hr class="clean visible-phone">
-
-				<!-- start: About Member -->
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
@@ -71,11 +67,9 @@
 					<p class="text-info"><a href="#">슈퍼스타K 4 - PSY_Gangnam Style with [Superstark4 10회] 딕펑스_"고추잠자리" @생방송 무대</a></p>
 					
 				</div>
-				<!-- end: About Member -->
 
 				<hr class="clean visible-phone">
 
-				<!-- start: About Member -->
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
@@ -89,11 +83,9 @@
 						</p>
 					
 				</div>
-				<!-- end: About Member -->
 
 				<hr class="clean visible-phone">
 
-				<!-- start: About Member -->
 				<div class="span3">
 					<div class="widget">
 						<div class="flex-video widescreen">
@@ -107,11 +99,10 @@
 						</p>
 					
 				</div>
-				<!-- end: About Member -->
 
 				<hr class="clean visible-phone">
 
-			</div>
+			</div> -->
 			<!-- end: Row -->
 
 		</div>

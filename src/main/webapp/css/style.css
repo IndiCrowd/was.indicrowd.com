@@ -14,10 +14,23 @@
 =================================================================== */
 @import url("social-icons.css");			/* Social Icons */
 @import url("fancybox.css");				/* Fancybox */
+
 @import url("font-awesome.css");			/* Font Awesome*/
 @import url("font-awesome-ie7.css");		/* Font Awesome*/
 @import url("glyphicons.css");				/* Glyphicons SVG & Font */
 @import url("halflings.css");				/* Glyphicons Halflings SVG & Font */
+/* for perfectum*/
+@import url("fullcalendar.css");
+@import url("chosen.css");
+@import url("uniform.default.css");
+@import url("jquery.cleditor.css");
+@import url("jquery.noty.css");
+@import url("noty_theme_default.css");
+@import url("elfinder.min.css");
+@import url("elfinder.theme.css");
+@import url("jquery.iphone.toggle.css");
+@import url("uploadify.css");
+@import url("jquery.gritter.css");
 
 html { -webkit-font-smoothing: antialiased; }
 
@@ -340,12 +353,12 @@ header {
 .dropdown-menu li > a:focus,
 .dropdown-submenu:hover > a {
   	color: #666;
-  	background: #080808 !important;	
+  	/*background: #080808 !important;*/	
 }
 
 .dropdown-menu .active > a {
 	color: #080808 !important;
-  	background: transparent !important;
+  	/*background: transparent !important;*/
 }
 .dropdown-menu .active > a:hover {
   	color: #666 !important;
@@ -2887,4 +2900,2507 @@ a.buy:hover {
 		margin-top: -0px !important;
 	}
     
-}	
+}
+/* for perfectum*/
+.perfectum {
+  @-webkit-keyframes loading {
+    /* line 130, ../../app/assets/stylesheets/style.css.scss */
+    0% {
+      -webkit-transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    /* line 131, ../../app/assets/stylesheets/style.css.scss */
+    25% {
+      opacity: 1;
+    }
+
+    /* line 132, ../../app/assets/stylesheets/style.css.scss */
+    50% {
+      -webkit-transform: translateX(30px);
+      opacity: 0;
+    }
+
+    /* line 133, ../../app/assets/stylesheets/style.css.scss */
+    100% {
+      opacity: 0;
+    }
+}
+
+  @-moz-keyframes loading {
+    /* line 137, ../../app/assets/stylesheets/style.css.scss */
+    0% {
+      -moz-transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    /* line 138, ../../app/assets/stylesheets/style.css.scss */
+    25% {
+      opacity: 1;
+    }
+
+    /* line 139, ../../app/assets/stylesheets/style.css.scss */
+    50% {
+      -moz-transform: translateX(30px);
+      opacity: 0;
+    }
+
+    /* line 140, ../../app/assets/stylesheets/style.css.scss */
+    100% {
+      opacity: 0;
+    }
+}
+
+  @-o-keyframes loading {
+    /* line 144, ../../app/assets/stylesheets/style.css.scss */
+    0% {
+      -o-transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    /* line 145, ../../app/assets/stylesheets/style.css.scss */
+    25% {
+      opacity: 1;
+    }
+
+    /* line 146, ../../app/assets/stylesheets/style.css.scss */
+    50% {
+      -o-transform: translateX(30px);
+      opacity: 0;
+    }
+
+    /* line 147, ../../app/assets/stylesheets/style.css.scss */
+    100% {
+      opacity: 0;
+    }
+}
+
+  @-ms-keyframes loading {
+    /* line 151, ../../app/assets/stylesheets/style.css.scss */
+    0% {
+      -ms-transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    /* line 152, ../../app/assets/stylesheets/style.css.scss */
+    25% {
+      opacity: 1;
+    }
+
+    /* line 153, ../../app/assets/stylesheets/style.css.scss */
+    50% {
+      -ms-transform: translateX(30px);
+      opacity: 0;
+    }
+
+    /* line 154, ../../app/assets/stylesheets/style.css.scss */
+    100% {
+      opacity: 0;
+    }
+}
+
+  @keyframes loading {
+    /* line 158, ../../app/assets/stylesheets/style.css.scss */
+    0% {
+      -ms-transform: translateX(-30px);
+      opacity: 0;
+    }
+
+    /* line 159, ../../app/assets/stylesheets/style.css.scss */
+    25% {
+      opacity: 1;
+    }
+
+    /* line 160, ../../app/assets/stylesheets/style.css.scss */
+    50% {
+      -ms-transform: translateX(30px);
+      opacity: 0;
+    }
+
+    /* line 161, ../../app/assets/stylesheets/style.css.scss */
+    100% {
+      opacity: 0;
+    }
+}
+
+  /* Header Section
+  =================================================================== */
+  /* Navigation Section
+  =================================================================== */
+  /* Notifications & Labels
+  =================================================================== */
+  /* Quick Buttons
+  =================================================================== */
+  /* Quick Buttons Small
+  =================================================================== */
+  /* Dashboard Lists
+  =================================================================== */
+  /* Support tickets
+  =================================================================== */
+  /* Chat
+  =================================================================== */
+  /* Forms
+  =================================================================== */
+  /* Buttons
+  =================================================================== */
+  /* Alert Boxes
+  =================================================================== */
+  /* Tabs
+  =================================================================== */
+  /* Forms
+  =================================================================== */
+  /* Masonry Gallery
+  =================================================================== */
+  /* Login Box
+  =================================================================== */
+  /* UI - Uniform
+  =================================================================== */
+  /* UI - Sliders & Progress
+  =================================================================== */
+  /* ToDo List
+  =================================================================== */
+  /* Skill Bars
+  =================================================================== */
+  /* Star Rating
+  =================================================================== */
+  /* Footer
+  =================================================================== */
+  /* Sparkline stats
+  =================================================================== */
+  /* Circle stats
+  =================================================================== */
+  /* Notifications Center
+  =================================================================== */
+  /* Query Loader
+  =================================================================== */
+  /* Glyphicons Red
+  =================================================================== */
+}
+/* line 33, ../../app/assets/stylesheets/style.css.scss */
+.perfectum body {
+  background: url(../img/bg.jpg) repeat-y top right, url(../img/dbg.jpg) repeat top left;
+  color: #646464;
+  border: none;
+}
+/* line 40, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay {
+  background: #383838;
+  position: fixed;
+  opacity:0.5;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  top: 54px;
+  left: 0px;
+}
+/* line 50, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul {
+  padding: 0;
+  margin: 300px auto 0;
+  list-style: none;
+  text-align: center;
+  display: block;
+}
+/* line 58, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 4px;
+  -webkit-animation: loading 2.5s infinite;
+  -moz-animation: loading 2.5s infinite;
+  -o-animation: loading 2.5s infinite;
+  -ms-animation: loading 2.5s infinite;
+  animation: loading 2.5s infinite;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: cubic-bezier(0.03, 0.615, 0.995, 0.415);
+  -moz-animation-timing-function: cubic-bezier(0.03, 0.615, 0.995, 0.415);
+  -o-animation-timing-function: cubic-bezier(0.03, 0.615, 0.995, 0.415);
+  -ms-animation-timing-function: cubic-bezier(0.03, 0.615, 0.995, 0.415);
+  animation-timing-function: cubic-bezier(0.03, 0.615, 0.995, 0.415);
+}
+/* line 85, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li6 {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -o-animation-delay: 0.1s;
+  -ms-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+/* line 93, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li5 {
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-delay: 0.25s;
+  -o-animation-delay: 0.25s;
+  -ms-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+/* line 100, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li4 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  -ms-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+/* line 107, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li3 {
+  -webkit-animation-delay: 0.75s;
+  -moz-animation-delay: 0.75s;
+  -o-animation-delay: 0.75s;
+  -ms-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+/* line 114, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li2 {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  animation-delay: 1s;
+}
+/* line 121, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #overlay ul li.li1 {
+  -webkit-animation-delay: 1.25s;
+  -moz-animation-delay: 1.25s;
+  -o-animation-delay: 1.25s;
+  -ms-animation-delay: 1.25s;
+  animation-delay: 1.25s;
+}
+/* line 165, ../../app/assets/stylesheets/style.css.scss */
+.perfectum a {
+  color: #646464;
+}
+/* line 169, ../../app/assets/stylesheets/style.css.scss */
+.perfectum hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #e0dfdf;
+  border-bottom: 1px solid #fefefe;
+}
+/* line 178, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h1 {
+  font-size: 18px;
+  line-height: 18px;
+}
+/* line 183, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h2 {
+  font-size: 16px;
+  line-height: 16px;
+}
+/* line 188, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h3 {
+  font-size: 15px;
+  line-height: 15px;
+}
+/* line 193, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h4 {
+  font-size: 14px;
+  line-height: 14px;
+}
+/* line 198, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h5 {
+  font-size: 13px;
+  line-height: 13px;
+}
+/* line 203, ../../app/assets/stylesheets/style.css.scss */
+.perfectum h6 {
+  font-size: 12px;
+  line-height: 12px;
+}
+/* line 208, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .green {
+  color: #78CD51;
+}
+/* line 212, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .red {
+  color: #FA603D;
+}
+/* line 216, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .blue {
+  color: #67C2EF;
+}
+/* line 220, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .yellow {
+  color: #FABB3D;
+}
+/* line 224, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .well {
+  border: 1px solid #dddddd;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 235, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .breadcrumb {
+  margin: -20px 0px;
+  border: 0px;
+  color: #aaa;
+  background: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 248, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .breadcrumb span {
+  text-shadow: 1px 1px 0px white;
+}
+/* line 252, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .breadcrumb a {
+  color: #aaa;
+  text-shadow: 0px 1px 1px white;
+}
+/* line 257, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .breadcrumb a:hover {
+  color: #646464;
+  text-shadow: 0px 1px 1px white;
+  text-decoration: none;
+}
+/* line 263, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-small {
+  text-align: center;
+  position: relative;
+  display: block;
+  margin: 20px;
+}
+/* line 271, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-small-link {
+  border: 1px solid #dddddd;
+  margin-bottom: -1px;
+  padding: 30px 0px;
+  font-size: 26px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fafafa', endColorstr='#efefef', GradientType=0);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  color: #646464;
+  text-shadow: 0px 1px 1px white;
+}
+/* line 294, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-small-link:hover {
+  border: 1px solid #3c4049;
+  margin-bottom: -1px;
+  padding: 30px 0px;
+  color: #fff;
+  background-color: #4e525d;
+  background-image: -moz-linear-gradient(top, #4e525d, #3c4049);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4e525d), to(#3c4049));
+  background-image: -webkit-linear-gradient(top, #4e525d, #3c4049);
+  background-image: -o-linear-gradient(top, #4e525d, #3c4049);
+  background-image: linear-gradient(to bottom, #4e525d, #3c4049);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4e525d', endColorstr='#3c4049', GradientType=0);
+  text-shadow: 0px 1px 1px black;
+  text-decoration: none;
+}
+/* line 310, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-small-title {
+  width: 100%;
+  margin: 10px auto;
+  font-size: 15px;
+  color: #aaa;
+  text-shadow: 0px 1px 1px white;
+}
+/* line 320, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box {
+  margin: 20px 0px;
+}
+/* line 325, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header {
+  height: 20px;
+  border: 1px solid #dddddd;
+  margin-bottom: -1px;
+  padding: 10px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fafafa', endColorstr='#efefef', GradientType=0);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 2px 2px 0px 0px;
+  -moz-border-radius: 2px 2px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
+  overflow: hidden;
+}
+/* line 346, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header h2 {
+  font-size: 16px;
+  line-height: 16px;
+  float: left;
+  margin-top: 2px;
+  color: #646464;
+  font-weight: normal;
+  text-shadow: 0px 1px 0px white;
+}
+/* line 356, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header h2 i {
+  margin: 1px 3px 0px 5px;
+  opacity: .4;
+}
+/* line 361, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header .break {
+  border-left: 1px solid #fcfcfc;
+  border-right: 1px solid #dddddd;
+  margin: -12px 10px -10px 10px;
+  padding: 12px 0px 10px 0px;
+}
+/* line 369, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header .box-icon {
+  float: right;
+  margin-top: 1px;
+}
+/* line 374, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header .box-icon i {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  opacity: .4;
+}
+/* line 383, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header .box-icon i:hover {
+  opacity: .8;
+}
+/* line 387, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-header .box-icon a {
+  margin: 0px 5px;
+}
+/* line 391, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .box-content {
+  margin-top: -1px;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  background: #fcfcfc;
+  -webkit-border-radius: 0px 0px 2px 2px;
+  -moz-border-radius: 0px 0px 2px 2px;
+  border-radius: 0px 0px 2px 2px;
+  -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.6);
+}
+/* line 407, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background: url(../img/dbg.jpg);
+  border-left: 0px solid #0a0c0e;
+  border-right: 0px solid #0a0c0e;
+  border-top: 1px solid #0a0c0e;
+  border-bottom: 2px solid #0a0c0e;
+  filter: none;
+  text-shadow: 1px 1px 1px #0a0c0e;
+  color: #fff;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+/* line 430, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .navbar-inner a {
+  color: #646464;
+}
+/* line 434, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .navbar-inner a i {
+  opacity: .8;
+}
+/* line 438, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .navbar-inner a:hover i {
+  opacity: 1;
+}
+/* line 442, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .brand img {
+  margin: -12px 0px -5px 0px;
+}
+/* line 446, ../../app/assets/stylesheets/style.css.scss */
+.perfectum a.brand span {
+  color: #fff;
+  text-shadow: 1px 1px 2px #0a0c0e;
+}
+/* line 451, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav {
+  border-right: 1px solid #0a0c0e;
+  border-left: 1px solid #212121;
+  padding: 0px;
+  color: white !important;
+}
+/* line 458, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav .nav {
+  margin: 0px;
+}
+/* line 461, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav .btn {
+  display: inline-block;
+  padding: 11px 20px;
+  margin-top: 0px;
+  margin-left: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background: transparent;
+  border-left: 1px solid #0a0c0e;
+  border-right: 1px solid #212121;
+  border-top: 0px solid #bbbbbb;
+  border-bottom: 0px solid #bbbbbb;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 485, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav .btn i {
+  text-shadow: 0px 1px 1px #0a0c0e !important;
+}
+/* line 489, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav .btn .caret {
+  border-top-color: #dddddd !important;
+  border-bottom-color: #dddddd !important;
+}
+/* line 494, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .header-nav .btn:hover .caret {
+  border-top-color: white !important;
+  border-bottom-color: white !important;
+}
+/* line 500, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #under-header {
+  margin: -20px 0px 20px 0px;
+  border-top: px solid #fcfcfc;
+}
+/* line 508, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li > a {
+  margin: 2px;
+  color: #646464;
+  border: 1px solid #dddddd;
+  background: transparent;
+  background-image: -moz-linear-gradient(top, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fafafa', endColorstr='#efefef', GradientType=0);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 524, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sidebar-nav > ul > li > ul {
+  margin: 0px;
+  padding: 5px 0px 5px 25px;
+  list-style: none;
+  display: none;
+}
+/* line 531, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sidebar-nav > ul > li > ul > li {
+  padding: 5px 0px 5px 0px;
+}
+/* line 535, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sidebar-nav > ul > li > ul > li > a:hover {
+  text-decoration: none;
+}
+/* line 539, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li > a > i {
+  opacity: .6;
+  margin-top: 1px;
+  margin-right: 5px;
+}
+/* line 545, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li.active > a {
+  margin: 2px;
+  border: 1px solid #3c4049;
+  color: #fff;
+  background: #0a0c0e;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 555, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li.active > a > i {
+  opacity: 1;
+}
+/* line 559, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li:first-child > a {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+}
+/* line 568, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li:last-child > a {
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+/* line 577, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .nav-tabs.nav-stacked > li > a:hover {
+  margin: 2px;
+  border: 1px solid #3c4049;
+  color: #fff;
+  background-color: #4e525d;
+  background-image: -moz-linear-gradient(top, #4e525d, #3c4049);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4e525d), to(#3c4049));
+  background-image: -webkit-linear-gradient(top, #4e525d, #3c4049);
+  background-image: -o-linear-gradient(top, #4e525d, #3c4049);
+  background-image: linear-gradient(to bottom, #4e525d, #3c4049);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4e525d', endColorstr='#3c4049', GradientType=0);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 595, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .navbar .nav li.dropdown.open > .dropdown-toggle,
+.perfectum .navbar .nav li.dropdown.active > .dropdown-toggle,
+.perfectum .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  color: #555555;
+  background-color: #000;
+  outline: 0;
+}
+/* line 601, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  max-width: 300px;
+  padding: 0px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  text-shadow: none;
+  background-color: #fcfcfc;
+  border: 4px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clipp: padding;
+  background-clip: padding-box;
+}
+/* line 627, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+/* line 632, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu .divider {
+  *width: 100%;
+  height: 1px;
+  margin: 0px 1px;
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid white;
+}
+/* line 642, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu a {
+  display: block;
+  padding: 5px 10px !important;
+  clear: both;
+  font-weight: normal;
+  line-height: 20px;
+  color: #333333;
+  white-space: normal !important;
+}
+/* line 652, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu li {
+  border-top: 1px solid white;
+  border-bottom: 1px solid #f6f6f6;
+}
+/* line 657, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu li:first-child {
+  border-top: 0px !important;
+}
+/* line 661, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu li:last-child {
+  border-bottom: 0px !important;
+}
+/* line 667, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu li > a:hover,
+.perfectum .dropdown-menu li > a:focus,
+.perfectum .dropdown-submenu:hover > a {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0088cc;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+/* line 682, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu .active > a,
+.perfectum .dropdown-menu .active > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0088cc;
+  background-color: #0081c2;
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  outline: 0 !important;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+/* line 698, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu .disabled > a,
+.perfectum .dropdown-menu .disabled > a:hover {
+  color: #999999;
+}
+/* line 702, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu .disabled > a:hover {
+  text-decoration: none;
+  cursor: default;
+  background-color: transparent;
+}
+/* line 708, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu-title {
+  background: #f6f6f6;
+  color: #646464;
+  padding: 5px 10px;
+  display: block;
+}
+/* line 716, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .dropdown-menu ul,
+.perfectum .dropdown-menu ul li {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+/* line 723, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.notifications li,
+.perfectum ul.tasks li,
+.perfectum ul.messages li {
+  width: 260px;
+}
+/* line 729, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.notifications li .avatar img,
+.perfectum ul.tasks li .avatar img,
+.perfectum ul.messages li .avatar img {
+  float: left;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 740, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.messages li .header {
+  display: block;
+}
+/* line 744, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.messages li .header .from {
+  font-size: 12px;
+  font-weight: bold;
+}
+/* line 751, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.notifications li .time,
+.perfectum ul.tasks li .header .percent,
+.perfectum ul.messages li .header .time {
+  font-size: 11px;
+  font-weight: bold;
+  font-style: italic;
+  position: absolute;
+  right: 5px;
+}
+/* line 759, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tasks li .title,
+.perfectum ul.notifications li .message {
+  font-size: 12px;
+}
+/* line 763, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.notifications li.warning a {
+  color: #FA5833;
+}
+/* line 767, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.messages li .message {
+  font-size: 11px;
+}
+/* line 776, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  line-height: 16px;
+  height: 16px;
+  padding: 6px 10px;
+  color: white !important;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+}
+/* line 796, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification-small {
+  padding: 2px 7px;
+  color: white !important;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+  border-width: 1px;
+  border-style: solid;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+}
+/* line 811, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification-small,
+.perfectum .notification {
+  border-color: #2FABE9;
+  background-color: #67C2EF;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #acddf6), color-stop(100%, #67c2ef));
+  background-image: -webkit-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -moz-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -ms-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -o-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: linear-gradient(top, #acddf6, #67c2ef);
+}
+/* line 823, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification-small.green,
+.perfectum .notification.green {
+  border-color: #5AAD34;
+  background-color: #78CD51;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a6dd8d), color-stop(100%, #78cd51));
+  background-image: -webkit-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -moz-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -ms-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -o-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: linear-gradient(top, #a6dd8d, #78cd51);
+}
+/* line 835, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification-small.yellow,
+.perfectum .notification.yellow {
+  border-color: #F4A506;
+  background-color: #FABB3D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcd588), color-stop(100%, #fabb3d));
+  background-image: -webkit-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -moz-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -ms-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -o-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: linear-gradient(top, #fcd588, #fabb3d);
+}
+/* line 847, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .notification-small.red,
+.perfectum .notification.red {
+  border-color: #FA5833;
+  background-color: #FA603D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fc9d88), color-stop(100%, #fa603d));
+  background-image: -webkit-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -moz-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -ms-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -o-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: linear-gradient(top, #fc9d88, #fa603d);
+}
+/* line 859, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-important,
+.perfectum .badge-important {
+  border-color: #FA5833;
+  background-color: #FA603D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fc9d88), color-stop(100%, #fa603d));
+  background-image: -webkit-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -moz-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -ms-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -o-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: linear-gradient(top, #fc9d88, #fa603d);
+}
+/* line 871, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-important[href],
+.perfectum .badge-important[href] {
+  border-color: #FA5833;
+  background-color: #FA603D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fc9d88), color-stop(100%, #fa603d));
+  background-image: -webkit-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -moz-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -ms-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: -o-linear-gradient(top, #fc9d88, #fa603d);
+  background-image: linear-gradient(top, #fc9d88, #fa603d);
+}
+/* line 883, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-warning,
+.perfectum .badge-warning {
+  border-color: #F4A506;
+  background-color: #FABB3D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcd588), color-stop(100%, #fabb3d));
+  background-image: -webkit-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -moz-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -ms-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -o-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: linear-gradient(top, #fcd588, #fabb3d);
+}
+/* line 895, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-warning[href],
+.perfectum .badge-warning[href] {
+  border-color: #F4A506;
+  background-color: #FABB3D;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcd588), color-stop(100%, #fabb3d));
+  background-image: -webkit-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -moz-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -ms-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: -o-linear-gradient(top, #fcd588, #fabb3d);
+  background-image: linear-gradient(top, #fcd588, #fabb3d);
+}
+/* line 907, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-success,
+.perfectum .badge-success {
+  border-color: #5AAD34;
+  background-color: #78CD51;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a6dd8d), color-stop(100%, #78cd51));
+  background-image: -webkit-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -moz-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -ms-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -o-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: linear-gradient(top, #a6dd8d, #78cd51);
+}
+/* line 919, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-success[href],
+.perfectum .badge-success[href] {
+  border-color: #5AAD34;
+  background-color: #78CD51;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a6dd8d), color-stop(100%, #78cd51));
+  background-image: -webkit-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -moz-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -ms-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: -o-linear-gradient(top, #a6dd8d, #78cd51);
+  background-image: linear-gradient(top, #a6dd8d, #78cd51);
+}
+/* line 931, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-info,
+.perfectum .badge-info {
+  border-color: #2FABE9;
+  background-color: #67C2EF;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #acddf6), color-stop(100%, #67c2ef));
+  background-image: -webkit-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -moz-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -ms-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -o-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: linear-gradient(top, #acddf6, #67c2ef);
+}
+/* line 943, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .label-info[href],
+.perfectum .badge-info[href] {
+  border-color: #2FABE9;
+  background-color: #67C2EF;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #acddf6), color-stop(100%, #67c2ef));
+  background-image: -webkit-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -moz-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -ms-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: -o-linear-gradient(top, #acddf6, #67c2ef);
+  background-image: linear-gradient(top, #acddf6, #67c2ef);
+}
+/* line 957, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button {
+  border: 1px solid #dddddd;
+  margin-bottom: -1px;
+  padding: 30px 0px 10px 0px;
+  font-size: 14px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fafafa', endColorstr='#efefef', GradientType=0);
+  -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  color: #646464;
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+/* line 988, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button:hover {
+  text-decoration: none;
+  border-color: #a5a5a5;
+  color: #444444;
+  text-shadow: 0 1px 0px white;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+/* line 1002, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button:hover .notification {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+}
+/* line 1013, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button i {
+  font-size: 32px;
+}
+/* line 1020, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button-small {
+  border: 1px solid #dddddd;
+  padding: 15px 0px 0px 0px;
+  font-size: 10px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fafafa', endColorstr='#efefef', GradientType=0);
+  -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  color: #646464;
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+/* line 1050, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button-small:hover {
+  text-decoration: none;
+  border-color: #a5a5a5;
+  color: #444444;
+  text-shadow: 0 1px 0px white;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+/* line 1064, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button-small:hover .notification {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+}
+/* line 1075, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .quick-button-small i {
+  font-size: 20px;
+}
+/* line 1083, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li {
+  padding: 5px 0;
+  list-style: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 12px;
+}
+/* line 1091, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li i {
+  opacity: .7;
+}
+/* line 1095, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li:first-child {
+  border-top: none;
+  border-bottom: 1px solid #ebebeb;
+}
+/* line 1100, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li:last-child {
+  border-bottom: none;
+}
+/* line 1104, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list a:hover {
+  text-decoration: none;
+}
+/* line 1108, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list {
+  margin: 0;
+}
+/* line 1112, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li a span {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  text-align: right;
+  width: 50px;
+  zoom: 1;
+}
+/* line 1122, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li .avatar {
+  height: 50px;
+  width: 50px;
+  padding: 1px;
+  float: left;
+  margin-top: 3px;
+  margin-right: 15px;
+  border: 1px solid #ebebeb;
+}
+/* line 1132, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.dashboard-list li .avatar img {
+  height: 40px;
+  width: 40px;
+  padding: 1px;
+  float: left;
+  margin-top: 3px;
+  margin-right: 15px;
+  border: 1px solid #ebebeb;
+}
+/* line 1145, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets {
+  margin: 0;
+}
+/* line 1149, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li {
+  list-style: none;
+  padding: 5px 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 12px;
+}
+/* line 1157, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li:first-child {
+  border-top: none;
+  border-bottom: 1px solid #ebebeb;
+}
+/* line 1162, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li:last-child {
+  border-bottom: none;
+}
+/* line 1167, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .header {
+  width: 100%;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 13px;
+}
+/* line 1174, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .header .title {
+  float: left;
+  text-align: left;
+}
+/* line 1179, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .header .number {
+  float: right;
+  text-align: right;
+}
+/* line 1184, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .avatar img {
+  height: 36px;
+  width: 36px;
+  padding: 1px;
+  float: left;
+  margin-top: 1px;
+  margin-right: 10px;
+  border: 1px solid #ebebeb;
+}
+/* line 1194, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .content {
+  display: inline-block;
+  width: 100%;
+}
+/* line 1200, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .content .name,
+.perfectum ul.tickets li.ticket .content .status {
+  float: left;
+  text-align: left;
+  width: 50%;
+}
+/* line 1207, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.tickets li.ticket .content .priority,
+.perfectum ul.tickets li.ticket .content .date {
+  float: right;
+  text-align: right;
+}
+/* line 1215, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat {
+  margin: 0;
+}
+/* line 1219, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li {
+  list-style: none;
+  padding: 5px 0;
+  margin: 10px auto;
+  font-size: 12px;
+}
+/* line 1227, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li img.avatar {
+  height: 50px;
+  width: 50px;
+  padding: 1px;
+  border: 1px solid #ebebeb;
+}
+/* line 1234, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.left img.avatar {
+  float: left;
+  margin-right: 10px;
+}
+/* line 1239, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.right img.avatar {
+  float: right;
+  margin-left: 10px;
+}
+/* line 1244, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li .message {
+  display: block;
+  border: 1px solid #dddddd;
+  padding: 5px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+}
+/* line 1257, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.left .message {
+  text-align: left;
+  margin-left: 65px;
+  background: white;
+}
+/* line 1263, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.left .message .arrow {
+  height: 10px;
+  width: 10px;
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  background: url(../img/chat-left.png) no-repeat 0px 0px;
+}
+/* line 1273, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.right .message .arrow {
+  height: 10px;
+  width: 10px;
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: -10px;
+  background: url(../img/chat-right.png) no-repeat 0px 0px;
+}
+/* line 1283, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li.right .message {
+  text-align: right;
+  margin-right: 65px;
+  background: #f6f6f6;
+}
+/* line 1289, ../../app/assets/stylesheets/style.css.scss */
+.perfectum ul.chat li .message .text {
+  display: block;
+}
+/* line 1293, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .chat-form {
+  border-top: 1px solid #dddddd;
+  background: #eee;
+  padding: 10px;
+  margin: 20px -10px -10px -10px;
+}
+/* line 1300, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .chat-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  -webkit-box-sizing: border-box;
+  /* Safari, Chrome et al  */
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  height: 80px;
+  outline: 0px !important;
+  font-size: 12px;
+}
+/* line 1315, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .form-actions {
+  padding: 19px 20px 20px;
+  margin: 20px -10px -30px -10px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  *zoom: 1;
+}
+/* line 1324, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .form-actions:before,
+.perfectum .form-actions:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+/* line 1330, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .form-actions:after {
+  clear: both;
+}
+/* line 1338, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-primary {
+  background-color: #006dcc;
+  color: #ffffff;
+  background-image: -moz-linear-gradient(top, #67c2ef, #2fabe9);
+  background-image: -ms-linear-gradient(top, #67c2ef, #2fabe9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#67c2ef), to(#2fabe9));
+  background-image: -webkit-linear-gradient(top, #67c2ef, #2fabe9);
+  background-image: -o-linear-gradient(top, #67c2ef, #2fabe9);
+  background-image: linear-gradient(top, #67c2ef, #2fabe9);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'67c2ef, endColorstr='#'2FABE9, GradientType=0);
+  border-color: #1598d9 #1598d9 #007bb8 #1598d9;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+/* line 1357, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-primary:hover,
+.perfectum .btn-primary:active,
+.perfectum .btn-primary.active,
+.perfectum .btn-primary.disabled,
+.perfectum .btn-primary[disabled] {
+  background-color: #2FABE9;
+}
+/* line 1362, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-primary:active,
+.perfectum .btn-primary.active {
+  background-color: #2fabe9 \9;
+}
+/* line 1366, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-warning {
+  background-color: #faa732;
+  color: #ffffff;
+  background-image: -moz-linear-gradient(top, #fabb3d, #f4a506);
+  background-image: -ms-linear-gradient(top, #fabb3d, #f4a506);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fabb3d), to(#f4a506));
+  background-image: -webkit-linear-gradient(top, #fabb3d, #f4a506);
+  background-image: -o-linear-gradient(top, #fabb3d, #f4a506);
+  background-image: linear-gradient(top, #fabb3d, #f4a506);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'fabb3d, endColorstr='#'F4A506, GradientType=0);
+  border-color: #f89406 #f89406 #ad6704;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+/* line 1386, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-warning:hover,
+.perfectum .btn-warning:active,
+.perfectum .btn-warning.active,
+.perfectum .btn-warning.disabled,
+.perfectum .btn-warning[disabled] {
+  background-color: #F4A506;
+}
+/* line 1391, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-warning:active,
+.perfectum .btn-warning.active {
+  background-color: #f4a506 \9;
+}
+/* line 1395, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-danger {
+  background-color: #da4f49;
+  color: #ffffff;
+  background-image: -moz-linear-gradient(top, #fa603d, #f1360a);
+  background-image: -ms-linear-gradient(top, #fa603d, #f1360a);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fa603d), to(#f1360a));
+  background-image: -webkit-linear-gradient(top, #fa603d, #f1360a);
+  background-image: -o-linear-gradient(top, #fa603d, #f1360a);
+  background-image: linear-gradient(top, #fa603d, #f1360a);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'fa603d, endColorstr='#'f1360a, GradientType=0);
+  border-color: #f1360a #f1360a #f1360a;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+/* line 1414, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-danger:hover,
+.perfectum .btn-danger:active,
+.perfectum .btn-danger.active,
+.perfectum .btn-danger.disabled,
+.perfectum .btn-danger[disabled] {
+  background-color: #f1360a;
+}
+/* line 1419, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-danger:active,
+.perfectum .btn-danger.active {
+  background-color: #f1360a \9;
+}
+/* line 1423, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-success {
+  background-color: #5bb75b;
+  color: #ffffff;
+  background-image: -moz-linear-gradient(top, #78cd51, #5aad34);
+  background-image: -ms-linear-gradient(top, #78cd51, #5aad34);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#78cd51), to(#5aad34));
+  background-image: -webkit-linear-gradient(top, #78cd51, #5aad34);
+  background-image: -o-linear-gradient(top, #78cd51, #5aad34);
+  background-image: linear-gradient(top, #78cd51, #5aad34);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'78cd51, endColorstr='#'5AAD34, GradientType=0);
+  border-color: #5aad34 #5aad34 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+/* line 1442, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-success:hover,
+.perfectum .btn-success:active,
+.perfectum .btn-success.active,
+.perfectum .btn-success.disabled,
+.perfectum .btn-success[disabled] {
+  background-color: #5AAD34;
+}
+/* line 1447, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-success:active,
+.perfectum .btn-success.active {
+  background-color: #5aad34 \9;
+}
+/* line 1451, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-info {
+  background-color: #49afcd;
+  color: #ffffff;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -ms-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(top, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'5bc0de, endColorstr='#'2f96b4, GradientType=0);
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+/* line 1470, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-info:hover,
+.perfectum .btn-info:active,
+.perfectum .btn-info.active,
+.perfectum .btn-info.disabled,
+.perfectum .btn-info[disabled] {
+  background-color: #2f96b4;
+}
+/* line 1475, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-info:active,
+.perfectum .btn-info.active {
+  background-color: #24748c \9;
+}
+/* line 1479, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-inverse {
+  color: #ffffff;
+  background-color: #363636;
+  *background-color: #222222;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 black;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+/* line 1499, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-inverse:hover,
+.perfectum .btn-inverse:active,
+.perfectum .btn-inverse.active,
+.perfectum .btn-inverse.disabled,
+.perfectum .btn-inverse[disabled] {
+  color: #ffffff;
+  background-color: #222222;
+  *background-color: #151515;
+}
+/* line 1506, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .btn-inverse:active,
+.perfectum .btn-inverse.active {
+  background-color: #080808 \9;
+}
+/* line 1512, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .alert {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 15px;
+  position: relative;
+  padding: 14px 40px 14px 18px;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(180, 180, 180, 0.1);
+  box-shadow: 0px 1px 1px 0px rgba(180, 180, 180, 0.1);
+}
+/* line 1523, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .alert.alert-success {
+  background-color: #edf6e5 !important;
+  color: #7a9659 !important;
+  border: 1px solid #9fc76f !important;
+}
+/* line 1529, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .alert.alert-error {
+  background-color: #fdeaea !important;
+  color: #ca6f74 !important;
+  border: 1px solid #f27b81 !important;
+}
+/* line 1535, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .alert {
+  background-color: #fffee1 !important;
+  color: #daac50 !important;
+  border: 1px solid #f5c056 !important;
+}
+/* line 1541, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .alert.alert-info {
+  background-color: #e9f8ff !important;
+  color: #5d9fa9 !important;
+  border: 1px solid #75c7d3 !important;
+}
+/* line 1550, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs {
+  *zoom: 1;
+  margin-top: -52px;
+}
+/* line 1555, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > li {
+  float: right;
+}
+/* line 1559, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs {
+  border-bottom: none;
+}
+/* line 1563, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > li {
+  margin-bottom: -1px;
+}
+/* line 1567, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  margin-left: -3px;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 1579, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > li > a:hover {
+  border-color: #ddd;
+}
+/* line 1583, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > .active > a {
+  color: #555555;
+  cursor: default;
+  background-color: #fcfcfc;
+  border-left: 1px solid #dddddd;
+}
+/* line 1590, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .tab-menu.nav-tabs > .active > a:hover {
+  background-color: #fafafa;
+}
+/* line 1614, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .add-on,
+.perfectum textarea,
+.perfectum input[type="text"],
+.perfectum input[type="password"],
+.perfectum input[type="datetime"],
+.perfectum input[type="datetime-local"],
+.perfectum input[type="date"],
+.perfectum input[type="month"],
+.perfectum input[type="time"],
+.perfectum input[type="week"],
+.perfectum input[type="number"],
+.perfectum input[type="email"],
+.perfectum input[type="url"],
+.perfectum input[type="search"],
+.perfectum input[type="tel"],
+.perfectum input[type="color"],
+.perfectum input[type="file"],
+.perfectum .uneditable-input {
+  border-color: #dddddd !important;
+}
+/* line 1621, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .masonry-thumb {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 6px;
+}
+/* line 1630, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box {
+  width: 400px;
+  margin: 100px auto;
+  background: whitesmoke;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1ZjVmNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjE5JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijc3JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNWY1ZjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, whitesmoke 0%, white 19%, white 77%, whitesmoke 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(19%, white), color-stop(77%, white), color-stop(100%, whitesmoke));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, whitesmoke 0%, white 19%, white 77%, whitesmoke 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, whitesmoke 0%, white 19%, white 77%, whitesmoke 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, whitesmoke 0%, white 19%, white 77%, whitesmoke 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, whitesmoke 0%, white 19%, white 77%, whitesmoke 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#f5f5f5',GradientType=0 );
+  /* IE6-8 */
+  color: #000;
+  overflow: hidden;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.15);
+}
+/* line 1653, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .icons {
+  text-align: right;
+  margin: 20px 15px;
+}
+/* line 1659, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .icons i {
+  text-align: right;
+  opacity: .2;
+  margin: 0px 5px;
+}
+/* line 1665, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .icons i:hover {
+  opacity: .8;
+}
+/* line 1669, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box h2 {
+  color: #646464;
+  margin-left: 30px;
+  font-family: monaco;
+  font-weight: normal;
+}
+/* line 1676, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box h3 {
+  color: #646464;
+  margin-left: 30px;
+  font-family: monaco;
+  font-weight: normal;
+}
+/* line 1683, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box p {
+  margin: 10px 30px;
+  font-weight: normal;
+}
+/* line 1688, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .input-prepend {
+  background: #fff;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0px;
+  border-left: 3px solid white;
+}
+/* line 1696, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .input-prepend-focus {
+  background: #fcfcfc;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0px;
+  border-left: 3px solid #646464;
+}
+/* line 1704, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .add-on {
+  border: 1px solid #eeeeee !important;
+  background: #fff;
+  margin-left: -10px;
+  padding: 10px;
+}
+/* line 1711, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .add-on i {
+  opacity: .1;
+}
+/* line 1716, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box input[type="text"],
+.perfectum .login-box input[type="password"] {
+  border: 1px solid #eeeeee !important;
+  color: #aaa;
+  border-left: none !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 42px !important;
+}
+/* line 1726, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .remember {
+  margin-top: 20px;
+  margin-left: 20px;
+  float: left;
+}
+/* line 1732, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .login-box .button-login {
+  margin-top: 20px;
+  margin-right: 20px;
+  float: right;
+}
+/* line 1741, ../../app/assets/stylesheets/style.css.scss */
+.perfectum div.checker {
+  margin-top: -4px !important;
+}
+/* line 1745, ../../app/assets/stylesheets/style.css.scss */
+.perfectum div.radio {
+  margin-top: -4px !important;
+}
+/* line 1749, ../../app/assets/stylesheets/style.css.scss */
+.perfectum div.uploader {
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  border-radius: 14px;
+}
+/* line 1758, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-slider-handle {
+  display: inline-block;
+  background: #fcfcfc;
+  /* Old browsers */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZmNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2Y3ZjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f7f7f7));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f7f7f7 100%);
+  /* W3C */
+  border: 1px solid #cbcbcb;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  height: 16px;
+  width: 16px;
+  -webkit-box-shadow: 0 1px 0 white, 0 1px 0 white inset;
+  box-shadow: 0 1px 0 white, 0 1px 0 white inset;
+  margin-right: 12px;
+  outline: none;
+}
+/* line 1780, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .slider {
+  border: 1px solid #c9c9c9;
+  height: 6px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 0 white;
+  -moz-box-shadow: 0 1px 0 white;
+  box-shadow: 0 1px 0 white;
+  position: relative;
+  margin: 8px 0;
+  background: #fcfcfc;
+  /* Old browsers */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZmNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMmYyZjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f2f2f2));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f2f2f2 100%);
+  /* W3C */
+}
+/* line 1801, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-slider-range {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  height: 100%;
+  position: absolute;
+  margin-top: -1px;
+  margin-left: -1px;
+  -webkit-box-shadow: 0 1px 0 white !important;
+  -moz-box-shadow: 0 1px 0 white !important;
+  box-shadow: 0 1px 0 white !important;
+}
+/* line 1814, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderVertical .ui-slider-range {
+  width: 100%;
+  top: auto;
+  bottom: auto;
+}
+/* line 1820, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-slider-range-max {
+  right: -1px;
+}
+/* line 1824, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-slider-range-min {
+  left: -1px;
+}
+/* line 1828, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderVertical .ui-slider-range-max {
+  top: -px;
+}
+/* line 1832, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderVertical .ui-slider-range-min {
+  bottom: 0;
+}
+/* line 1836, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderBlue .ui-slider-range, .perfectum .progressBlue .ui-progressbar-value {
+  background: #67c2ef;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY3YzJlZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyZmFiZTkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #67c2ef 0%, #2fabe9 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #67c2ef), color-stop(100%, #2fabe9));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #67c2ef 0%, #2fabe9 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #67c2ef 0%, #2fabe9 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #67c2ef 0%, #2fabe9 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #67c2ef 0%, #2fabe9 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67c2ef', endColorstr='#2fabe9',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #0098e4;
+}
+/* line 1850, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderGreen .ui-slider-range, .perfectum .progressGreen .ui-progressbar-value {
+  background: #bdea74;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JkZWE3NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiNmUzNzAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #bdea74 0%, #b6e370 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bdea74), color-stop(100%, #b6e370));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #bdea74 0%, #b6e370 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #bdea74 0%, #b6e370 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #bdea74 0%, #b6e370 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #bdea74 0%, #b6e370 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdea74', endColorstr='#b6e370',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #96bb5c;
+}
+/* line 1864, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderDarkGreen .ui-slider-range, .perfectum .progressDarkGreen .ui-progressbar-value {
+  background: #78cd51;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzc4Y2Q1MSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YWFkMzQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #78cd51 0%, #5aad34 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #78cd51), color-stop(100%, #5aad34));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #78cd51 0%, #5aad34 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #78cd51 0%, #5aad34 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #78cd51 0%, #5aad34 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #78cd51 0%, #5aad34 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78cd51', endColorstr='#5aad34',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #3f8b1c;
+}
+/* line 1878, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderPink .ui-slider-range, .perfectum .progressPink .ui-progressbar-value {
+  background: #e84c8a;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U4NGM4YSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMjE2NjgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #e84c8a 0%, #e21668 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e84c8a), color-stop(100%, #e21668));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #e84c8a 0%, #e21668 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #e84c8a 0%, #e21668 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #e84c8a 0%, #e21668 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #e84c8a 0%, #e21668 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e84c8a', endColorstr='#e21668',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #9e0c47;
+}
+/* line 1892, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderOrange .ui-slider-range, .perfectum .progressOrange .ui-progressbar-value {
+  background: #fa603d;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhNjAzZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYTU4MzMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fa603d 0%, #fa5833 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fa603d), color-stop(100%, #fa5833));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fa603d 0%, #fa5833 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fa603d 0%, #fa5833 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fa603d 0%, #fa5833 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fa603d 0%, #fa5833 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa603d', endColorstr='#fa5833',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #c13a1a;
+}
+/* line 1906, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderLightOrange .ui-slider-range, .perfectum .progressLightOrange .ui-progressbar-value {
+  background: #fabb3d;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYmIzZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNGE1MDYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fabb3d 0%, #f4a506 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fabb3d), color-stop(100%, #f4a506));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fabb3d 0%, #f4a506 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fabb3d 0%, #f4a506 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fabb3d 0%, #f4a506 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fabb3d 0%, #f4a506 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fabb3d', endColorstr='#f4a506',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #d79103;
+}
+/* line 1920, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderRed .ui-slider-range, .perfectum .progressRed .ui-progressbar-value {
+  background: #ff5454;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmNTQ1NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #ff5454 0%, red 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff5454), color-stop(100%, red));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ff5454 0%, red 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ff5454 0%, red 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ff5454 0%, red 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ff5454 0%, red 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5454', endColorstr='#ff0000',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #be0000;
+}
+/* line 1934, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderYellow .ui-slider-range, .perfectum .progressYellow .ui-progressbar-value {
+  background: #eae874;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZTg3NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlM2UyNzAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #eae874 0%, #e3e270 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eae874), color-stop(100%, #e3e270));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #eae874 0%, #e3e270 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #eae874 0%, #e3e270 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #eae874 0%, #e3e270 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #eae874 0%, #e3e270 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eae874', endColorstr='#e3e270',GradientType=0 );
+  /* IE6-8 */
+  border: 1px solid #bbb95c;
+}
+/* line 1948, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-slider-handle {
+  position: absolute !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll #f7f7f7 !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll, -webkit-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%) !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll, -moz-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%) !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll, -o-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%) !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll, -ms-linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%) !important;
+  background: url("../img/i_16_radio.png") no-repeat center center scroll, linear-gradient(top, #fcfcfc 0%, #f7f7f7 100%) !important;
+  margin: -3px -3px -3px -3px !important;
+  -webkit-box-shadow: 0 1px 0 white inset !important;
+  box-shadow: 0 1px 0 white inset !important;
+  outline: none !important;
+}
+/* line 1962, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sliderVertical {
+  float: left;
+  height: 100px;
+  margin-right: 40px;
+  width: 5px;
+}
+/* line 1969, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .progress {
+  border: 1px solid #c9c9c9;
+  height: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 0 white;
+  -moz-box-shadow: 0 1px 0 white;
+  box-shadow: 0 1px 0 white;
+  background: #fcfcfc;
+  /* Old browsers */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZmNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMmYyZjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f2f2f2));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f2f2f2 100%);
+  /* W3C */
+  position: relative;
+}
+/* line 1989, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .ui-progressbar-value {
+  height: 100%;
+  top: 0px;
+  position: absolute;
+  left: 0px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 1999, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .progressBarValue span {
+  font-size: 12px;
+}
+/* line 2003, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .progressBarValue span.progressCustomValueVal {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 5px;
+  color: #FA5833;
+}
+/* line 2007, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .progressSlim {
+  border: 1px solid #c9c9c9;
+  height: 6px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 0 white;
+  -moz-box-shadow: 0 1px 0 white;
+  box-shadow: 0 1px 0 white;
+  position: relative;
+  margin: 8px 0;
+  background: #fcfcfc;
+  /* Old browsers */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZmNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMmYyZjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f2f2f2));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fcfcfc 0%, #f2f2f2 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f2f2f2 100%);
+  /* W3C */
+}
+/* line 2028, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .progressSlim .ui-progressbar-value {
+  height: 100%;
+  top: 0px;
+  position: absolute;
+  left: 0px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 2040, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+/* line 2046, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo ul li {
+  margin-left: 0px !important;
+  padding: 5px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #f6f6f6;
+  font-size: 12px;
+}
+/* line 2054, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo-actions {
+  position: absolute;
+  right: 20px;
+}
+/* line 2059, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo .label {
+  position: absolute;
+  right: 80px;
+}
+/* line 2064, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo-actions i {
+  opacity: .3;
+  margin: -2px 5px 0px 5px;
+}
+/* line 2069, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo-actions i:hover {
+  opacity: .6;
+}
+/* line 2073, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo ul li:first-child {
+  border-top: 0px;
+}
+/* line 2077, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .todo ul li:last-child {
+  border-bottom: 0px;
+}
+/* line 2083, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .skill-bar h5 {
+  margin-bottom: 6px;
+}
+/* line 2087, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .skill-bar li {
+  margin-bottom: 12px;
+  list-style: none;
+  margin-left: -26px;
+  padding-left: 0px;
+}
+/* line 2094, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .meter {
+  height: 23px;
+  position: relative;
+  background: #f6f6f6;
+}
+/* line 2100, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .meter > span {
+  display: block;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+/* line 2107, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .meter > span:after, .perfectum .animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+/* line 2118, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .meter > span:after,
+.perfectum .animate > span > spans li.current {
+  background: #f16529;
+}
+/* line 2125, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 30px;
+}
+/* line 2131, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .rating span.star,
+.perfectum .rating span.star {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
+/* line 2138, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .rating span.star:hover,
+.perfectum .rating span.star:hover {
+  cursor: pointer;
+}
+/* line 2142, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .rating span.star:before,
+.perfectum .rating span.star:before {
+  content: "\f006";
+  padding-right: 5px;
+  color: #999999;
+}
+/* line 2150, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .rating span.star:hover:before,
+.perfectum .rating span.star:hover:before,
+.perfectum .rating span.star:hover ~ span.star:before,
+.perfectum .rating span.star:hover ~ span.star:before {
+  content: "\f005";
+  color: #e3cf7a;
+}
+/* line 2158, ../../app/assets/stylesheets/style.css.scss */
+.perfectum footer {
+  position: relative;
+  min-height: 24px;
+  background: url(../img/dbg.jpg);
+  border-top: 1px solid #0a0c0e;
+  border-bottom: 2px solid #0a0c0e;
+  text-shadow: 1px 1px 1px #0a0c0e;
+  color: #A7A7A7;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.1);
+}
+/* line 2175, ../../app/assets/stylesheets/style.css.scss */
+.perfectum footer p {
+  position: relative;
+}
+/* line 2182, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats {
+  position: relative;
+  margin-bottom: -4px;
+}
+/* line 2187, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats ul {
+  margin: 0;
+}
+/* line 2191, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats li {
+  margin-bottom: 0;
+  line-height: 32px;
+  padding-top: 3px;
+  font-size: 12px;
+}
+/* line 2198, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats li .number {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 0px 0px 0px 2px;
+  color: #FA5833;
+}
+/* line 2205, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats li span:first-child {
+  margin-right: 5px;
+}
+/* line 2209, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .sparkLineStats h4 {
+  position: relative;
+  border-bottom: 1px solid #c4c4c4;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  line-height: 37px;
+  -webkit-box-shadow: 0 1px 0px white;
+  -moz-box-shadow: 0 1px 0px white;
+  box-shadow: 0 1px 0px white;
+}
+/* line 2224, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStats {
+  text-align: center;
+  position: relative;
+}
+/* line 2225, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: inset 0 0px 0 2px rgba(0, 0, 0, 0.2), 0 0px 0 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 0px 0 2px rgba(0, 0, 0, 0.2), 0 0px 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0px 0 2px rgba(0, 0, 0, 0.2), 0 0px 0 4px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  width: 120px;
+  height: 120px;
+  margin: 10px auto;
+}
+/* line 2240, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem i {
+  font-size: 30px;
+  position: absolute;
+  top: 30%;
+  margin-top: 0px;
+  width: 100%;
+  text-align: center;
+}
+/* line 2249, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.orange, .perfectum .circleStatsItem.orange i {
+  color: #FA5833;
+}
+/* line 2250, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.lightorange, .perfectum .circleStatsItem.lightorange i {
+  color: #f4a70c;
+}
+/* line 2251, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.blue, .perfectum .circleStatsItem.blue i {
+  color: #2FABE9;
+}
+/* line 2252, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.green, .perfectum .circleStatsItem.green i {
+  color: #b9e672;
+}
+/* line 2253, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.yellow, .perfectum .circleStatsItem.yellow i {
+  color: #e7e572;
+}
+/* line 2254, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem.pink, .perfectum .circleStatsItem.pink i {
+  color: #e42b75;
+}
+/* line 2256, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem input {
+  cursor: default;
+  box-shadow: none;
+  border: none;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 120px;
+  border-color: rgba(0, 0, 0, 0.8);
+}
+/* line 2267, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem .plus {
+  font-size: 16px;
+  position: absolute;
+  top: 55%;
+  margin-left: 30px;
+}
+/* line 2274, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem .percent {
+  font-size: 14px;
+  position: absolute;
+  top: 57%;
+  margin-left: 78px;
+}
+/* line 2282, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .circleStatsItem input:focus {
+  outline: 0;
+  outline: thin dotted 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 2293, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #notifications-center {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 8888;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  width: 300px;
+  height: 100%;
+  -webkit-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.45);
+  box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.45);
+}
+/* line 2307, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #notifications-center .item {
+  border-top: 1px solid #444444;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+  height: 50px;
+  padding: 10px;
+}
+/* line 2315, ../../app/assets/stylesheets/style.css.scss */
+.perfectum #notifications-center .item img {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+/* line 2324, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .QOverlay {
+  background-color: #000000;
+  z-index: 9999;
+}
+/* line 2329, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .QLoader {
+  background-color: #CCCCCC;
+  height: 1px;
+}
+/* line 2334, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .QAmt {
+  color: #333333;
+  font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 50px;
+  height: 50px;
+  width: 100px;
+  margin: -60px 0 0 -50px;
+}
+/* line 2348, ../../app/assets/stylesheets/style.css.scss */
+.perfectum .icon-red {
+  background-image: url("../img/glyphicons-halflings-red.png");
+}
