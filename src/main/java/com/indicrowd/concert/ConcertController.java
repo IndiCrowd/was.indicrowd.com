@@ -17,6 +17,7 @@ import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
+import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
 
 @Controller
@@ -80,6 +81,12 @@ public class ConcertController extends AbstractController {
 
 		return "concert/viewFeed";
 	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping("/{concertId}/iconFeed")
+	public void iconFeed(@PathVariable("concertId") Long concertId, @Valid @ModelAttribute("command") IconFeed iconFeed, BindingResult bindingResult, Model model) {
+		
+	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
@@ -99,6 +106,11 @@ public class ConcertController extends AbstractController {
 			}
 			return "redirect:/concert/" + concert.getId();
 		}
+	}
+	
+	@RequestMapping(value = "/chat/list")
+	public String chatList(Model model) {
+		return "concert/chatList";
 	}
 
 }
