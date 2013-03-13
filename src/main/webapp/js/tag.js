@@ -33,17 +33,17 @@ $(function() {
 		};
 
 		if (tagsStr !== '') {
-			$.get(CONTEXT_PATH + '/tag/' + encodeURIComponent(tagsStr) + '.json', function(data) {
-				if (data.command !== undefined && data.command !== null) {
+			GET(CONTEXT_PATH + '/tag/' + encodeURIComponent(tagsStr) + '.json', {}, function(command) {
+				if (command.id !== undefined) {
 					$tagHint.css({
 						left : left + length * fontSize + padding,
 						top : top + height
 					});
-					$tagHint.text(data.command.repTagInput.tagInputStr);
+					$tagHint.text(command.repTagInput.tagInputStr);
 					$tagsStr.after($tagHint);
 					$tagHint.show();
 				}
-			}, 'json');
+			});
 		}
 	});
 });

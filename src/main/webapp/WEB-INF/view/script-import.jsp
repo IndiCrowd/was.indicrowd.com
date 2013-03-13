@@ -14,6 +14,10 @@ USER_ID = '${principal.id}';
 <script src="<c:url value="/js/sockjs-0.2.1.min.js" />"></script>
 <script src="<c:url value="/js/json2.js" />"></script>
 <script src="<c:url value="/js/RTW.js" />"></script>
+
+<script src="<c:url value="/js/date.format.js" />"></script>
+<script src="<c:url value="/js/IndiCrowd.js" />"></script>
+
 <script>
 $(function() {
 	RTW.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
