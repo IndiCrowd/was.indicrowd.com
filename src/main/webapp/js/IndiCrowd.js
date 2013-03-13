@@ -40,18 +40,36 @@ function completeObjectReference(o) {
 }
 
 function GET(url, po, f) {
+
+	if (f === undefined) {
+		f = po;
+		po = {};
+	}
+
 	$.get(url, po, function(data) {
 		f(completeObjectReference(data.command));
 	}, 'json');
 }
 
 function POST(url, po, f) {
+	
+	if (f === undefined) {
+		f = po;
+		po = {};
+	}
+
 	$.post(url, po, function(data) {
 		f(completeObjectReference(data.command));
 	}, 'json');
 }
 
 function PUT(url, po, f) {
+	
+	if (f === undefined) {
+		f = po;
+		po = {};
+	}
+	
 	$.ajax({
 		type: 'PUT',
 		url: url,
@@ -63,6 +81,12 @@ function PUT(url, po, f) {
 }
 
 function DEL(url, po, f) {
+	
+	if (f === undefined) {
+		f = po;
+		po = {};
+	}
+	
 	$.ajax({
 		type: 'DELETE',
 		url: url,

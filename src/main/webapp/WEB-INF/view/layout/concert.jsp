@@ -229,8 +229,9 @@
 			
 			#messages-wrapper {
 				color: #fff;
-				/* height: 300px; */
+				height: 345px;
 				overflow-y: scroll;
+				margin-bottom: 10px;
 			}
 			#messages {
 			}
@@ -273,12 +274,12 @@
 		$(function() {
 			
 			$('#chat form').submit(function() {
-				$.post('${pageContext.request.contextPath}/concert/chat', {
+				POST('${pageContext.request.contextPath}/concert/chat', {
 					concertId: '${command.id}'
 					, content: $('#message').val()
 				}, function(data) {
 					console.log(data);
-				}, 'json');
+				});
 				$('#message').val('');
 				return false;
 			});
@@ -286,7 +287,8 @@
 			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
 			
 			$('#wrapper').css({
-				background: 'url(' + bg + ')',
+				//background: 'url(' + bg + ')',
+				background: 'white',
 				backgroundSize: 'auto 700px'
 			});
 			
@@ -323,12 +325,23 @@
 				}
 			});
 			
-			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
+			var addMessage = function(message) {
 				$('#messages').append($LI({cls: 'message'}, $SPAN({
 					style : {
 						fontWeight: 'bold'
 					}
 				}, message.sender.nickname), ': ' + message.content));
+				$('#messages-wrapper').scrollTop(100000000000);
+			};
+			
+			GET('<c:url value="/concert/${command.id}/chat/list" />', function(command) {
+				for (var i in command.list) {
+					addMessage(command.list[i]);
+				}
+			});
+			
+			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
+				addMessage(message);
 				
 				$('#user-' + message.sender.id).each(function() {
 					var $img = $(this);
@@ -370,7 +383,7 @@
 		<script>
 		$(function() {
 			
-			$DIV({
+			/*$DIV({
 				style: {
 					background: 'url(<c:url value="/img/yj_hands.png" />)',
 					width: 150,
@@ -379,7 +392,7 @@
 					top: 100,
 					zIndex: 100000
 				}
-			}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
+			}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');*/
 		
 		});
 		</script>

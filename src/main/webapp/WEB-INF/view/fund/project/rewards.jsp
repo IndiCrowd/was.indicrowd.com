@@ -61,7 +61,7 @@
 						$form.find('input[name="description"]').after('설명을 입력해주세요.');
 					} else {
 					
-						$.post('<c:url value="/fund/reward/create.json" />', value, function(data) {
+						POST('<c:url value="/fund/reward/create.json" />', value, function(data) {
 							if (data.command.id === undefined || data.command.id === null) {
 								$form.prepend('오류가 있습니다.');
 							} else {
@@ -72,7 +72,7 @@
 								location.href = '<c:url value="/fund/project/${command.id}/open" />';
 							}
 							
-						}, 'json');
+						});
 					}
 						
 					return false;
