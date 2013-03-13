@@ -33,6 +33,49 @@
 					$(this).remove();
 				});
 			});
+			
+			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
+
+				var $ani;
+				var $div = $DIV(
+					{ style: {
+						position: 'absolute',
+						top: Math.floor(Math.random() * ($(window).height() - 150)),
+						left: Math.floor(Math.random() * ($(window).width() - 170)),
+						zIndex: 100000
+					} },
+					$ani = $DIV({
+						style: {
+							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							width: 150,
+							height: 150
+						}
+					}).sprite({fps: 12, no_of_frames: 3, rewind: true}),
+					$DIV(
+						{
+							style: {
+								marginTop: 10,
+								textAlign: 'center'
+							}
+						},
+						$SPAN({style:{
+							fontSize: 14,
+							textAlign: 'center',
+							color: '#fff',
+							background: '#000',
+							padding: '3px 7px',
+							borderRadius: 5
+						}},iconFeed.sender.nickname)
+					)
+				).appendTo('body');
+				
+				setTimeout(function() {
+					$div.fadeOut(function() {
+						$ani.destroy();
+						$div.remove();
+					});
+				}, 2000);
+			});
  
 		});
 		

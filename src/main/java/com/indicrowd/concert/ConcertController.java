@@ -84,8 +84,6 @@ public class ConcertController extends AbstractController {
 	public void iconFeed(@PathVariable("concertId") Long concertId, @Valid @ModelAttribute("command") IconFeed iconFeed, BindingResult bindingResult, Model model) {
 		Concert concert = Concert.findConcert(concertId);
 		
-		System.out.println(iconFeed);
-		
 		if (concert != null) {
 
 			iconFeed.setConcert(concert);

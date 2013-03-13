@@ -400,7 +400,8 @@
 				
 				setTimeout(function() {
 					$div.fadeOut(function() {
-						$(this).remove();
+						$div.destroy();
+						$div.remove();
 					});
 				}, 2000);
 			});
