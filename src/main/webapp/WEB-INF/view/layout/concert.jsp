@@ -287,8 +287,8 @@
 			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
 			
 			$('#wrapper').css({
-				//background: 'url(' + bg + ')',
-				background: 'white',
+				background: 'url(' + bg + ')',
+				//background: 'white',
 				backgroundSize: 'auto 700px'
 			});
 			
@@ -385,8 +385,11 @@
 			});
 			
 			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
+				
+				var randomId = "x" + randomString(8);
 
 				var $div = $DIV({
+					id : randomId,
 					style: {
 						background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
 						width: 150,
@@ -459,7 +462,7 @@
 						<label>밴드 정보</label> test
 					</p>
 					<p>
-						<a href="javascript:applause();">박수!</a>
+						<a href="javascript:applause();" style="color:#fff; font-weight:bold;">박수!</a>
 					</p>
 				</div>
 			</div>

@@ -1,13 +1,13 @@
 function completeObjectReference(o) {
-	
+
 	var f1 = function(o) {
 		var to = {};
-		for (var i in o) {
+		for ( var i in o) {
 			if (Object.prototype.toString.call(o[i]) === '[object Array]' && o[i][0] === '@map') {
-				
+
 				var name = o[i][1];
 				var value = o[i][2];
-				
+
 				if (typeof value === 'object') {
 					to[name] = f1(value);
 				} else {
@@ -20,7 +20,7 @@ function completeObjectReference(o) {
 		return to;
 	};
 	o = f1(o);
-	
+
 	var keyMap = {};
 	var f2 = function(o) {
 		if (o['@id'] !== undefined) {
@@ -29,7 +29,7 @@ function completeObjectReference(o) {
 		} else if (o['@reference'] !== undefined) {
 			return keyMap[o['@reference']];
 		}
-		for (var i in o) {
+		for ( var i in o) {
 			if (typeof o[i] === 'object') {
 				o[i] = f2(o[i]);
 			}
@@ -52,7 +52,7 @@ function GET(url, po, f) {
 }
 
 function POST(url, po, f) {
-	
+
 	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
@@ -64,16 +64,16 @@ function POST(url, po, f) {
 }
 
 function PUT(url, po, f) {
-	
+
 	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}
-	
+
 	$.ajax({
-		type: 'PUT',
-		url: url,
-		data: po,
+		type : 'PUT',
+		url : url,
+		data : po,
 		dataType : 'json'
 	}, function(data) {
 		f(completeObjectReference(data.command));
@@ -81,18 +81,32 @@ function PUT(url, po, f) {
 }
 
 function DEL(url, po, f) {
-	
+
 	if (f === undefined && typeof po === 'function') {
 		f = po;
 		po = {};
 	}
-	
+
 	$.ajax({
-		type: 'DELETE',
-		url: url,
-		data: po,
+		type : 'DELETE',
+		url : url,
+		data : po,
 		dataType : 'json'
 	}, function(data) {
 		f(completeObjectReference(data.command));
 	});
+}
+
+function randomString(length) {
+	var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+
+	if (!length) {
+		length = Math.floor(Math.random() * chars.length);
+	}
+
+	var str = '';
+	for ( var i = 0; i < length; i++) {
+		str += chars[Math.floor(Math.random() * chars.length)];
+	}
+	return str;
 }

@@ -37,6 +37,8 @@
 			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
 
 				var $ani;
+				var randomId = "x" + randomString(8);
+				
 				var $div = $DIV(
 					{ style: {
 						position: 'absolute',
@@ -45,6 +47,7 @@
 						zIndex: 100000
 					} },
 					$ani = $DIV({
+						id : randomId,
 						style: {
 							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
 							width: 150,
