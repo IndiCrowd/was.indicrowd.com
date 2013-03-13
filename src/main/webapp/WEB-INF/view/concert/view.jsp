@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<sec:authentication property="principal" var="principal" />
 
 <!DOCTYPE html>
 <html>
@@ -17,9 +20,9 @@
 				// open the flash StreamPublisher
 		        var flashvars = {};
 		        flashvars.serverSubscribeStr = '${command.id}';
-		        flashvars.clientPublishStr = '${userId}';
+		        flashvars.clientPublishStr = '${principal.id}';
 		        // TODO: Change url that is client default image.
-				flashvars.clientDefaultImage = '<c:url value="/img/concert/" />profile1.jpg';
+				flashvars.clientDefaultImage = '${principal.socialImageUrl}';
 		        
 		        var params = {};
 		        params.quality = 'high';
