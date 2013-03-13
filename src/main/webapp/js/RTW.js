@@ -35,8 +35,8 @@ RTW.init = function(sock) {
 
 	// 등록된 핸들러 실행
 	sock.onmessage = function(e) {
-		var data = JSON.parse(e.data);
-
+		var data = completeObjectReference(JSON.parse(e.data).map);
+		
 		if (data.connectId !== undefined && data.connectedUserInfos !== undefined) {
 			RTW.connectId = data.connectId;
 			RTW.connectedUserInfos = data.connectedUserInfos;
