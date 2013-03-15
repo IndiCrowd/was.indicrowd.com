@@ -24,7 +24,7 @@
 
 <script>
 	$(function() {
-		RTW.init(new SockJS('http://${pageContext.request.serverName}:9090/r'));
+		RTW.init(new SockJS('http://${pageContext.request.serverName}:9190/r'));
 		RTW.join('IndiCrowd', 'init', function(data) {
 			console.log('connect:', data);
 		}, function(data) {
