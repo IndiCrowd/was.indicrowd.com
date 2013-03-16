@@ -20,6 +20,7 @@
 
 package com.indicrowd;
 
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -196,11 +197,16 @@ public class MappingJsonView extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		if (model.get("command") != null) {
-			xstream.alias("command", model.get("command").getClass());
-			xstream.toXML(model.get("command"), response.getOutputStream());
+		if (model.get("json") != null) {
+			response.getOutputStream().write(model.get("json").toString().getBytes(Charset.forName("UTF-8")));
 		} else {
-			xstream.toXML(null, response.getOutputStream());
+		
+			if (model.get("command") != null) {
+				xstream.alias("command", model.get("command").getClass());
+				xstream.toXML(model.get("command"), response.getOutputStream());
+			} else {
+				xstream.toXML(null, response.getOutputStream());
+			}
 		}
 	}
 

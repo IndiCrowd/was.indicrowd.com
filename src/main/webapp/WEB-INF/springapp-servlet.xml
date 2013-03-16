@@ -43,9 +43,7 @@
 		</property>
 		<property name="defaultViews">
 			<list>
-			    <bean class="com.indicrowd.MappingJsonView">
-			        <property name="modelKey" value="command" />
-			    </bean>
+			    <bean class="com.indicrowd.MappingJsonView" />
 			    <!-- 
 			    일단 XML은 사용하지 않는다.
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">

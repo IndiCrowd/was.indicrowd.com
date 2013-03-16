@@ -350,7 +350,7 @@
 				
 			};
 			
-			GET('<c:url value="/concert/${command.id}/chat/list" />', function(command) {
+			GET('<c:url value="/concert/${command.id}/chat/cachedList" />', function(command) {
 				for (var i in command.list) {
 					addMessage(command.list[i]);
 				}
