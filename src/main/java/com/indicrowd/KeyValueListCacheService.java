@@ -124,6 +124,18 @@ public class KeyValueListCacheService {
 
 		return getCachedList(keySet, emptyValueIndexMap);
 	}
+	
+	// JSON 반환
+	public List<String> listDesc(String key, Long beforeScore, int count, Map<String, Integer> emptyValueIndexMap) {
+
+		// 읽어오는 순간 expire 시간 재생성
+		jedis.expire(key, COMMON_EXPIRE_SECOND);
+
+		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
+		Set<String> keySet = jedis.zrevrangeByScore(key, "(" + Long.toString(beforeScore), "+inf", 0, count);
+
+		return getCachedList(keySet, emptyValueIndexMap);
+	}
 
 	// JSON 반환
 	public List<String> getCachedList(Set<String> keySet, Map<String, Integer> emptyValueIndexMap) {

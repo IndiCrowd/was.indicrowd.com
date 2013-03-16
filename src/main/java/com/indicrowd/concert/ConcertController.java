@@ -157,7 +157,7 @@ public class ConcertController extends AbstractController {
 		}
 
 		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
-		List<String> chatJsonList = keyValueListCacheService.list(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
+		List<String> chatJsonList = keyValueListCacheService.listDesc(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
 		
 		Collections.reverse(chatJsonList);
 		
