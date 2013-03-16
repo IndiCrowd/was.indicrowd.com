@@ -122,7 +122,15 @@ public class KeyValueListCacheService {
 		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
 		Set<String> keySet = jedis.zrangeByScore(key, "(" + Long.toString(beforeScore), "+inf", 0, count);
 
-		return getCachedList(keySet, emptyValueIndexMap);
+		if (keySet.size() > 0) {
+			String[] keySets = keySet.toArray(new String[] {});
+			List<String> jsonList = jedis.mget(keySets);
+
+			// 순서 반대로.
+			Collections.reverse(jsonList);
+			return jsonList;
+		}
+		return new ArrayList<>();
 	}
 	
 	// JSON 반환
@@ -132,7 +140,7 @@ public class KeyValueListCacheService {
 		jedis.expire(key, COMMON_EXPIRE_SECOND);
 
 		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
-		Set<String> keySet = jedis.zrevrangeByScore(key, "(" + Long.toString(beforeScore), "+inf", 0, count);
+		Set<String> keySet = jedis.zrevrangeByScore(key, "+inf", "(" + Long.toString(beforeScore), 0, count);
 
 		return getCachedList(keySet, emptyValueIndexMap);
 	}
