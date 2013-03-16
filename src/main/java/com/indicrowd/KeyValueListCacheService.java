@@ -31,7 +31,7 @@ public class KeyValueListCacheService {
 	private void initJedis() {
 		jedis = new Jedis(redisHost);
 		jedis.auth(redisAuth);
-		jedis.flushDB();
+		//jedis.flushDB();
 	}
 	
 	@Value("#{storeConfig.redisHost}")

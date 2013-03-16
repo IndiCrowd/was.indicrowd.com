@@ -1,5 +1,6 @@
 package com.indicrowd.concert;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -132,13 +133,23 @@ public class ConcertController extends AbstractController {
 
 	@RequestMapping("/{concertId}/chat/list")
 	public String chatList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
-		list(concertId, 1, countPerPage, model);
+		chatList(concertId, 1, countPerPage, model);
 		return "concert/chatList";
 	}
 
 	@RequestMapping("/{concertId}/chat/cachedList")
-	public void chatCachedList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
+	public String chatCachedList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
+		chatCachedList(concertId, 1, countPerPage, model);
+		return "concert/chatList";
+	}
+	
+	@RequestMapping("/{concertId}/chat/cachedList/{page}")
+	public void chatCachedList(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
 		
+		if (page < 1) {
+			page = 1;
+		}
+
 		if (countPerPage == null) {
 			countPerPage = 20;
 		} else if (countPerPage > 50) {
@@ -146,7 +157,9 @@ public class ConcertController extends AbstractController {
 		}
 
 		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
-		List<String> chatJsonList = keyValueListCacheService.list(getChatIndexKey(concertId), 0l, 10, emptyValueIndexMap);
+		List<String> chatJsonList = keyValueListCacheService.list(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
+		
+		Collections.reverse(chatJsonList);
 		
 		/*
 		// 비어있는 값들이 있을때...
@@ -225,7 +238,7 @@ public class ConcertController extends AbstractController {
 	}
 
 	@RequestMapping("/{concertId}/chat/list/{page}")
-	public String list(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
+	public String chatList(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
 
 		if (page < 1) {
 			page = 1;
