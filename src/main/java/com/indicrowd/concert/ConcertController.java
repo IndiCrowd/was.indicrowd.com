@@ -1,6 +1,5 @@
 package com.indicrowd.concert;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -158,70 +157,6 @@ public class ConcertController extends AbstractController {
 
 		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
 		List<String> chatJsonList = keyValueListCacheService.listDesc(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
-		
-		/*
-		// 비어있는 값들이 있을때...
-		if (emptyValueIndexMap.size() > 0) {
-			
-			List<Long> articleIdList = new ArrayList<>();
-			for (String key : emptyValueIndexMap.keySet()) {
-				// article:{id}
-				Long id = Long.parseLong(key.substring(8));
-				articleIdList.add(id);
-			}
-			
-			List<Article> addArticleList = Article.findArticlesByIds(articleIdList);
-			
-			// 가져온 값들도 캐시에 넣어줍니다.
-			for (Article article : addArticleList) {
-				String key = cacheArticle(article);
-				
-				ObjectMapper om = new ObjectMapper();
-				try {
-					// 필요없는 property 제외
-					om.getSerializationConfig().addMixInAnnotations(article.getClass(), JsonIgnoreResultModelPropertyesMixIn.class);
-					// 그리고 원래 글 목록에 삽입.
-					articleJsonList.set(emptyValueIndexMap.get(key), om.writeValueAsString(article));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		// 캐시에서 불러온 글 목록 수가 예상보다 적을때...
-		if (articleJsonList.size() < count) {
-			
-			Long addBeforeArticleId = null;
-			if (articleJsonList.size() > 0) {
-				
-				ObjectMapper om = new ObjectMapper();
-				try {
-					addBeforeArticleId = om.readValue(articleJsonList.get(articleJsonList.size() - 1), Article.class).getId();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if (addBeforeArticleId == null || addBeforeArticleId > 1) { // 마지막 글 id가 1보다 클때만 가져옴. 그 이하는 의미없음.
-				List<Article> addArticleList = Article.findArticlesByWriterId(writerId, addBeforeArticleId, count - articleJsonList.size());
-				
-				// 가져온 값들도 캐시에 넣어줍니다.
-				for (Article article : addArticleList) {
-					cacheArticle(article);
-					
-					ObjectMapper om = new ObjectMapper();
-					try {
-						// 필요없는 property 제외
-						om.getSerializationConfig().addMixInAnnotations(article.getClass(), JsonIgnoreResultModelPropertyesMixIn.class);
-						// 그리고 원래 글 목록에 삽입.
-						articleJsonList.add(om.writeValueAsString(article));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-		*/
 		
 		String returnJson = "{\"command\": {\"list\": [";
 		for (int i = 0; i < chatJsonList.size(); i++) {
