@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script>
 	var USER_ID = '';
+	var USER_FILE_BASE_URL = '<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />';
 </script>
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal" />

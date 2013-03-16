@@ -120,3 +120,19 @@ function randomString(length) {
 	}
 	return str;
 }
+
+function userDisplayName(userInfo) {
+	if (!userInfo.socialUser) {
+		return userInfo.nickname;
+	} else {
+		return userInfo.socialDisplayName;
+	}
+}
+
+function userProfilePhoto(userInfo) {
+	if (!userInfo.socialUser) {
+		return USER_FILE_BASE_URL + '/profilethumb/' + userInfo.id;
+	} else {
+		return userInfo.socialImageUrl;
+	}
+}
