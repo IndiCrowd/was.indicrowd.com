@@ -65,28 +65,15 @@
 <!--  script for perfectum -->
 
 <script src="<c:url value="/js/jquery-migrate-1.0.0.min.js" />"></script>
-
-<script src="<c:url value="/js/jquery-ui-1.10.0.custom.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.ui.touch-punch.js" />"></script>
-
 <script src="<c:url value="/js/jquery.cookie.js" />"></script>
-
 <script src="<c:url value="/js/fullcalendar.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.dataTables.min.js" />"></script>
-
-
 <script src="<c:url value="/js/jquery.chosen.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.uniform.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.cleditor.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.noty.js" />"></script>
-
 <script src="<c:url value="/js/jquery.elfinder.min.js" />"></script>
-
 <script src="<c:url value="/js/jquery.raty.min.js" />"></script>
 
 <script src="<c:url value="/js/jquery.iphone.toggle.js" />"></script>
