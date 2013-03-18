@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!-- start: Page Title -->
 <div id="page-title">
 	<h2>개성있는 밴드들을 만나보세요!</h2>
@@ -14,7 +13,9 @@
 
 <!--start: Wrapper-->
 <div id="wrapper">
-
+	<div class="row">
+		<a href="#generateBand" role="button" class="btn offset10" data-toggle="modal">밴드 생성</a>	
+	</div>
 	<div id="filters">
 		<ul class="option-set" data-option-key="filter">
 			<li><a href="#filter" class="selected" data-option-value="*">All</a></li>
@@ -47,3 +48,19 @@
 
 </div>
 <!-- end: Wrapper  -->
+<!-- Modal -->
+
+<div id="generateBand" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>body</p>
+  </div>
+  <div class="modal-footer">
+  	
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button><button class="btn btn-primary">Save changes</button>
+    
+  </div>
+</div>

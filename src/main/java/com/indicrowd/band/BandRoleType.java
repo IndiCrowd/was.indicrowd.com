@@ -8,6 +8,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 public class BandRoleType {
+	
+	public static final long BAND_ADMIN = 1;
+	public static final long BAND_MEMBER = 2;
+	
 	Long root_type_id; // recursive
 	String name;
 	int priority;

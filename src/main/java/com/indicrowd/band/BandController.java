@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ import com.indicrowd.user.model.UserInfo;
 @Controller
 @RequestMapping("/band")
 public class BandController extends AbstractController{
+	
+	@Autowired
+	BandService bandService;
 
 	@RequestMapping("/home")
 	public String bandHome(Model model) {
@@ -117,12 +121,12 @@ public class BandController extends AbstractController{
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute("comment") BandInfo bandInfo,BindingResult bindingResult, Model model){
+	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model){
 		if (bindingResult.hasErrors()) {
 			return "band/create";
 		} else {
-			bandInfo.persist();
-			//return "redirect:/concert/" + concert.getId();
+			UserInfo userInfo = authService.getUserInfo();
+			bandService.generateNewBand(userInfo, bandInfo);
 			return "band/create";
 		}
 	}

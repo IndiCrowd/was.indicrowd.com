@@ -285,7 +285,7 @@ jQuery(document).ready(function($){
 
 		if($(this).hasClass('btn')) {
 
-			$(this).wrap('<div class="btn-overlay" />');
+			//$(this).wrap('<div class="btn-overlay" />');
 
 			var inner = $(this).html();
 			
@@ -304,7 +304,7 @@ jQuery(document).ready(function($){
 
 		if($(this).hasClass('btnOverlay')) {
 			
-			$(this).wrap('<div class="btn-overlay" />');
+			//$(this).wrap('<div class="btn-overlay" />');
 
 			var inner = $(this).html();
 			
@@ -705,7 +705,7 @@ $(document).ready(function(){
 	});
 			
 	/* ---------- Acivate Functions ---------- */
-	$("#overlay").delay(1250).fadeOut(500);
+	//$("#overlay").delay(1250).fadeOut(500);
 	template_functions();
 	init_masonry();
 	sparkline_charts();
@@ -1340,7 +1340,7 @@ function calendars(){
 	$('#main_calendar').fullCalendar({
 		header: {
 			left: 'title',
-			right: 'prev,next today,month,agendaWeek,agendaDay'
+			right: 'prev,next agendaDay,agendaWeek,month,today'
 		},
 		editable: true,
 		events: [

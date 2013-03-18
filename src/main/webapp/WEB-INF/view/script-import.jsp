@@ -34,6 +34,10 @@
 		});
 	});
 </script>
+<script >
+function autoBlurFucntion() {if(event.srcElement.tagName=="A") document.body.focus();}
+document.onfocusin=autoBlurFucntion;
+</script>
 
 <!--[if lt IE 9]>
 <script src="<c:url value="/js/respond.min.js" />"></script>

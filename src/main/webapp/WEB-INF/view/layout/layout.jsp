@@ -25,18 +25,7 @@
 		
 	</head>
 	
-	<body>
-		<div class="perfectum">
-		<div  id="overlay"><ul>
-		  <li class="li1"></li>
-		  <li class="li2"></li>
-		  <li class="li3"></li>
-		  <li class="li4"></li>
-		  <li class="li5"></li>
-		  <li class="li6"></li>
-		</ul></div>
-		</div>
-		
+	<body>		
 		<!--start: Header -->
 	<header>
 		
@@ -85,66 +74,7 @@
 								</ul>
 								</li>
 							</sec:authorize>
-							<div class="perfectum" style="float:left">
-							<li class="dropdown hidden-phone">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="icon-tasks icon-white"></i> <span class="label label-warning hidden-phone">17</span>
-							</a>
-							<ul class="dropdown-menu tasks">
-								<li>
-									<span class="dropdown-menu-title">You have 17 tasks in progress</span>
-                            	</li>
-								<li>
-                                    <a href="#">
-										<span class="header">
-											<span class="title">iOS Development</span>
-											<span class="percent"></span>
-										</span>
-                                        <div class="taskProgress progressSlim progressYellow">80</div> 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-										<span class="header">
-											<span class="title">Android Development</span>
-											<span class="percent"></span>
-										</span>
-                                        <div class="taskProgress progressSlim progressYellow">47</div> 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-										<span class="header">
-											<span class="title">Django Project For Google</span>
-											<span class="percent"></span>
-										</span>
-                                        <div class="taskProgress progressSlim progressYellow">32</div> 
-                                    </a>
-                                </li>
-								<li>
-                                    <a href="#">
-										<span class="header">
-											<span class="title">SEO for new sites</span>
-											<span class="percent"></span>
-										</span>
-                                        <div class="taskProgress progressSlim progressYellow">63</div> 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-										<span class="header">
-											<span class="title">New blog posts</span>
-											<span class="percent"></span>
-										</span>
-                                        <div class="taskProgress progressSlim progressYellow">80</div> 
-                                    </a>
-                                </li>
-								<li>
-                            		<a class="dropdown-menu-sub-footer">View all tasks</a>
-								</li>	
-							</ul>
-						</li>
-						</div>
+							
 	            		</ul>
 	          		</div>
 	        	</div>
