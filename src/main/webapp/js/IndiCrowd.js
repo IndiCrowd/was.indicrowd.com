@@ -47,7 +47,9 @@ function GET(url, po, f) {
 	}
 
 	$.get(url, po, function(data) {
-		f(completeObjectReference(data.command));
+		if (f !== undefined) {
+			f(completeObjectReference(data.command));
+		}
 	}, 'json');
 }
 
@@ -59,7 +61,9 @@ function POST(url, po, f) {
 	}
 
 	$.post(url, po, function(data) {
-		f(completeObjectReference(data.command));
+		if (f !== undefined) {
+			f(completeObjectReference(data.command));
+		}
 	}, 'json');
 }
 
@@ -74,9 +78,12 @@ function PUT(url, po, f) {
 		type : 'PUT',
 		url : url,
 		data : po,
-		dataType : 'json'
-	}, function(data) {
-		f(completeObjectReference(data.command));
+		dataType : 'json',
+		success : function(data) {
+			if (f !== undefined) {
+				f(completeObjectReference(data.command));
+			}
+		}
 	});
 }
 
@@ -91,9 +98,12 @@ function DEL(url, po, f) {
 		type : 'DELETE',
 		url : url,
 		data : po,
-		dataType : 'json'
-	}, function(data) {
-		f(completeObjectReference(data.command));
+		dataType : 'json',
+		success : function(data) {
+			if (f !== undefined) {
+				f(completeObjectReference(data.command));
+			}
+		}
 	});
 }
 
@@ -109,4 +119,20 @@ function randomString(length) {
 		str += chars[Math.floor(Math.random() * chars.length)];
 	}
 	return str;
+}
+
+function userDisplayName(userInfo) {
+	if (!userInfo.socialUser) {
+		return userInfo.nickname;
+	} else {
+		return userInfo.socialDisplayName;
+	}
+}
+
+function userProfilePhoto(userInfo) {
+	if (!userInfo.socialUser) {
+		return USER_FILE_BASE_URL + '/profilethumb/' + userInfo.id;
+	} else {
+		return userInfo.socialImageUrl;
+	}
 }

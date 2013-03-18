@@ -1,6 +1,9 @@
 package com.indicrowd.concert;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -41,7 +44,7 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
 	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
-		
+
 		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && concert.getEndDate().getTime() < concert.getStartDate().getTime()) {
 			bindingResult.rejectValue("startDate", "Over.startDate");
 		}
@@ -70,7 +73,7 @@ public class ConcertController extends AbstractController {
 
 		return "concert/viewAdmin";
 	}
-	
+
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/feed", method = RequestMethod.GET)
 	public String viewFeed(@PathVariable("concertId") Long concertId, Model model) {
@@ -78,12 +81,12 @@ public class ConcertController extends AbstractController {
 
 		return "concert/viewFeed";
 	}
-	
+
 	@Secured("ROLE_USER")
 	@RequestMapping("/{concertId}/iconFeed")
 	public void iconFeed(@PathVariable("concertId") Long concertId, @Valid @ModelAttribute("command") IconFeed iconFeed, BindingResult bindingResult, Model model) {
 		Concert concert = Concert.findConcert(concertId);
-		
+
 		if (concert != null) {
 
 			iconFeed.setConcert(concert);
@@ -93,6 +96,14 @@ public class ConcertController extends AbstractController {
 
 			rtwService.send("Concert", iconFeed.getConcert().getId(), "iconFeed", iconFeed);
 		}
+	}
+
+	private String getChatIndexKey(Long targetConcertId) {
+		return "IndiCrowd:concert:" + targetConcertId + ":chat";
+	}
+
+	public String getChatKey(Long id) {
+		return "IndiCrowd:chat:" + id;
 	}
 
 	@Secured("ROLE_USER")
@@ -109,20 +120,58 @@ public class ConcertController extends AbstractController {
 				message.setSendDate(new Date());
 				message.persist();
 
+				String chatKey = getChatKey(message.getId());
+				keyValueListCacheService.set(chatKey, message);
+				keyValueListCacheService.addIndex(getChatIndexKey(concert.getId()), message.getId(), chatKey);
+
 				rtwService.send("Concert", message.getConcert().getId(), "newMessage", message);
 			}
 			return "redirect:/concert/" + concert.getId();
 		}
 	}
-	
+
 	@RequestMapping("/{concertId}/chat/list")
 	public String chatList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
-		list(concertId, 1, countPerPage, model);
+		chatList(concertId, 1, countPerPage, model);
+		return "concert/chatList";
+	}
+
+	@RequestMapping("/{concertId}/chat/cachedList")
+	public String chatCachedList(@PathVariable("concertId") Long concertId, Integer countPerPage, Model model) {
+		chatCachedList(concertId, 1, countPerPage, model);
 		return "concert/chatList";
 	}
 	
+	@RequestMapping("/{concertId}/chat/cachedList/{page}")
+	public void chatCachedList(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
+		
+		if (page < 1) {
+			page = 1;
+		}
+
+		if (countPerPage == null) {
+			countPerPage = 20;
+		} else if (countPerPage > 50) {
+			countPerPage = 50;
+		}
+
+		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
+		List<String> chatJsonList = keyValueListCacheService.listDesc(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
+		
+		String returnJson = "{\"command\": {\"list\": [";
+		for (int i = 0; i < chatJsonList.size(); i++) {
+			returnJson += chatJsonList.get(i);
+			if (i != chatJsonList.size() - 1) {
+				returnJson += ",";
+			}
+		}
+		returnJson += "]}}";
+
+		model.addAttribute("json", returnJson);
+	}
+
 	@RequestMapping("/{concertId}/chat/list/{page}")
-	public String list(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
+	public String chatList(@PathVariable("concertId") Long concertId, @PathVariable int page, Integer countPerPage, Model model) {
 
 		if (page < 1) {
 			page = 1;

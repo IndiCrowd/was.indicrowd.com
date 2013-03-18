@@ -33,6 +33,9 @@ public abstract class AbstractController {
 
 	@Autowired
 	protected RTWService rtwService;
+	
+	@Autowired
+	protected KeyValueListCacheService keyValueListCacheService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

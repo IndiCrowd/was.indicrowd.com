@@ -350,7 +350,7 @@
 				
 			};
 			
-			GET('<c:url value="/concert/${command.id}/chat/list" />', function(command) {
+			GET('<c:url value="/concert/${command.id}/chat/cachedList" />', function(command) {
 				for (var i in command.list) {
 					addMessage(command.list[i]);
 				}
@@ -387,26 +387,55 @@
 			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
 				
 				var randomId = "x" + randomString(8);
-
-				var $div = $DIV({
-					id : randomId,
-					style: {
-						background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
-						width: 150,
-						height: 150,
-						position: 'absolute',
-						top: 100,
-						right: 100,
-						zIndex: 100000
-					}
-				}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
 				
-				setTimeout(function() {
-					$div.fadeOut(function() {
-						$div.destroy();
-						$div.remove();
-					});
-				}, 2000);
+				if (iconFeed.iconName === 'yj_hands') {
+
+					var $div = $DIV({
+						id : randomId,
+						style: {
+							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							width: 150,
+							height: 150,
+							position: 'absolute',
+							top: 100,
+							right: 100,
+							zIndex: 100000
+						}
+					}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
+					
+					setTimeout(function() {
+						$div.fadeOut(function() {
+							$div.destroy();
+							$div.remove();
+						});
+					}, 2000);
+				
+				}
+				
+				else if (iconFeed.iconName === 'balloons') {
+
+					var $div = $DIV({
+						id : randomId,
+						style: {
+							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							width: 150,
+							height: 150,
+							position: 'absolute',
+							top: 100,
+							right: 100,
+							zIndex: 100000
+						}
+					}).sprite({fps: 12, no_of_frames: 6, on_last_frame: function(obj) {
+			            obj.destroy();
+			            $div.fadeOut(function() {
+							$div.remove();
+						});
+			        }}).appendTo('body');
+					
+					$div.hide();
+					$div.fadeIn();
+				
+				}
 			});
 			
 		});
@@ -427,6 +456,11 @@
 		function applause() {
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
 				iconName: 'yj_hands'
+			});
+		};
+		function balloon() {
+			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
+				iconName: 'balloons'
 			});
 		};
 		</script>
@@ -463,6 +497,7 @@
 					</p>
 					<p>
 						<a href="javascript:applause();" style="color:#fff; font-weight:bold;">박수!</a>
+						<a href="javascript:balloon();" style="color:#fff; font-weight:bold;">물폭탄!</a>
 					</p>
 				</div>
 			</div>

@@ -13,6 +13,7 @@ import com.thoughtworks.xstream.mapper.MapperWrapper;
 public class XStreamJsonSingleton {
 
 	private static XStream xstream;
+	private static XStream xstreamDropRoot;
 
 	private XStreamJsonSingleton() {
 		// not use.
@@ -38,6 +39,28 @@ public class XStreamJsonSingleton {
 		}
 
 		return xstream;
+	}
+
+	public static XStream getDropRootInstance() {
+
+		if (xstreamDropRoot == null) {
+			xstreamDropRoot = new XStream(new JsonDropRootHierarchicalStreamDriver()) {
+
+				protected MapperWrapper wrapMapper(final MapperWrapper next) {
+					return new HibernateMapper(next);
+				}
+
+			};
+			xstreamDropRoot.registerConverter(new HibernateProxyConverter());
+			xstreamDropRoot.registerConverter(new HibernatePersistentCollectionConverter(xstreamDropRoot.getMapper()));
+			xstreamDropRoot.registerConverter(new HibernatePersistentMapConverter(xstreamDropRoot.getMapper()));
+			xstreamDropRoot.registerConverter(new HibernatePersistentSortedMapConverter(xstreamDropRoot.getMapper()));
+			xstreamDropRoot.registerConverter(new HibernatePersistentSortedSetConverter(xstreamDropRoot.getMapper()));
+			xstreamDropRoot.registerConverter(new CustomMapConverter(xstreamDropRoot.getMapper()));
+			xstreamDropRoot.registerConverter(new CustomDateConvert());
+		}
+
+		return xstreamDropRoot;
 	}
 
 }

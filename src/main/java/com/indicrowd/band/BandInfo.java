@@ -1,5 +1,6 @@
 package com.indicrowd.band;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,7 +10,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class BandInfo {
+public class BandInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@NotEmpty
 	String name;
 	@NotEmpty
