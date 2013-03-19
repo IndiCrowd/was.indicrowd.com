@@ -7,34 +7,36 @@
 
 <sec:authentication property="principal" var="principal" />
 
-<link href="<c:url value="/css/movingboxes.css"/>" rel="stylesheet"
-	type="text/css">
-<style>
-	#slider-two {width:80%}
-	#slider-two li{width:80%}
-</style>
+<link href="<c:url value="/css/movingboxes.css"/>" rel="stylesheet" type="text/css">
 <!--start: Wrapper-->
 <div id="wrapper">
-	<!-- start: Flexslider -->
-<!-- Slider #2 (images of slider #1 reversed) -->
-		<div id="slider-two">
+	<div id="broadcast-slider">
 
-			<div>
-				<img src="${pageContext.request.contextPath }/img/band/dalis.jpg" alt="picture">
-				<h2>On Air! 42명 시청중 - <span>이상한 나라의 달리스</span></h2>
-			</div>
-
-			<div>
-				<img src="${pageContext.request.contextPath }/img/band/jrabbit.jpg" alt="picture">
-				<h2>On Air! 63명 시청중 - <span>제이래빗</span></h2>
-			</div>
-
-			<div>
-				<img src="${pageContext.request.contextPath }/img/band/forest.jpg" alt="picture">
-				<h2>On Air! 27명 시청중 - <span>숨의 숲</span></h2>
-			</div>
-
+		<div>
+			<img src="${pageContext.request.contextPath }/img/band/dalis.jpg"
+				alt="picture">
+			<h2>
+				On Air! 42명 시청중 - <span>이상한 나라의 달리스</span>
+			</h2>
 		</div>
+
+		<div>
+			<img src="${pageContext.request.contextPath }/img/band/jrabbit.jpg"
+				alt="picture">
+			<h2>
+				On Air! 63명 시청중 - <span>제이래빗</span>
+			</h2>
+		</div>
+
+		<div>
+			<img src="${pageContext.request.contextPath }/img/band/forest.jpg"
+				alt="picture">
+			<h2>
+				On Air! 27명 시청중 - <span>숨의 숲</span>
+			</h2>
+		</div>
+
+	</div>
 	<!-- start: Row -->
 	<div class="row-fluid">
 
@@ -139,30 +141,4 @@
 <!--  end wrapper -->
 
 <script src="<c:url value="/js/jquery.movingboxes.min.js" />"></script>
-
-<script>
-var timer;
-$(window).resize(function(){
-    clearTimeout(timer);
-    var slider = $('#slider-two').data('movingBoxes');
-    slider.options.width = $(window).width() * 0.5; // make 50% browser width
-    slider.options.panelWidth = 0.7; // make 70% of wrapper width
-    // prevent updating continuously, aka throttle resize
-    timer = setTimeout(function(){
-        slider.update(false);
-    }, 100);
-});
-$(function(){
-	
-	$('#slider-two').movingBoxes({
-		startPanel   : 0,      // start with this panel
-		reducedSize  : 0.8,    // non-current panel size: 80% of panel size
-		buildNav     : true,   // if true, navigation links will be added
-		navFormatter : function(index, panel){ return panel.find('h2 span').text(); } // function which gets nav text from span inside the panel header
-
-		// width and panelWidth options removed in v2.2.2, but still backwards compatible
-		// width        : 500,    // overall width of movingBoxes (not including navigation arrows)
-		// panelWidth   : 0.7,    // current panel width
-
-	});
-});</script>
+<script src="<c:url value="/js/broadcast-slider.js" />"></script>

@@ -22,7 +22,7 @@
 	
 html .fc,
 .fc table {
-	font-size: 1em;
+	/*font-size: 1em;*/
 	}
 	
 .fc td,
@@ -267,9 +267,11 @@ html .fc,
 ------------------------------------------------------------------------*/
 	 
 .fc-event {
+	font-weight : bold;
+	font-size :16px;
 	border-style: solid;
 	border-width: 0;
-	font-size: .85em;
+	/*font-size: .85em;*/
 	cursor: default;
 	}
 	
@@ -585,7 +587,7 @@ table.fc-border-separate {
 	
 .fc-event-vert .fc-event-time {
 	white-space: nowrap;
-	font-size: 10px;
+	/*font-size: 10px;*/
 	}
 	
 .fc-event-vert .fc-event-bg { /* makes the event lighter w/ a semi-transparent overlay  */
@@ -613,7 +615,7 @@ table.fc-border-separate {
 	height: 8px      !important;
 	overflow: hidden !important;
 	line-height: 8px !important;
-	font-size: 11px  !important;
+	/*font-size: 11px  !important;*/
 	font-family: monospace;
 	text-align: center;
 	cursor: s-resize;

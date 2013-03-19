@@ -5404,3 +5404,6 @@ a.buy:hover {
 .perfectum .icon-red {
   background-image: url("../img/glyphicons-halflings-red.png");
 }
+
+#broadcast-slider {width:80% ; visibility: hidden;}
+#broadcast-slider li{width:80%}
