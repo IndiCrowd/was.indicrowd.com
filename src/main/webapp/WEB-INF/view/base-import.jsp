@@ -15,6 +15,7 @@
 <link href="<c:url value="/css/layerslider.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/smoothness/jquery-ui-1.10.1.custom.min.css"/>" rel="stylesheet" type="text/css">
 
+<script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>
 <!-- start: Favicon -->
 	<link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>">
 <!-- end: Favicon -->
