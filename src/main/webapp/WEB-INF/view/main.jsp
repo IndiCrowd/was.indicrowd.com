@@ -10,8 +10,8 @@
 <link href="<c:url value="/css/movingboxes.css"/>" rel="stylesheet"
 	type="text/css">
 <style>
-	#slider-two {width:50%}
-	#slider-two li{width:50%}
+	#slider-two {width:80%}
+	#slider-two li{width:80%}
 </style>
 <!--start: Wrapper-->
 <div id="wrapper">
@@ -20,21 +20,18 @@
 		<div id="slider-two">
 
 			<div>
-				<img src="${pageContext.request.contextPath }/img/jrabbit.jpg" alt="picture">
-				<h2>News Heading - <span>제이래빗</span></h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/fensterbme/499006584/">more</a></p>
+				<img src="${pageContext.request.contextPath }/img/band/dalis.jpg" alt="picture">
+				<h2>On Air! 42명 시청중 - <span>이상한 나라의 달리스</span></h2>
 			</div>
 
 			<div>
-				<img src="${pageContext.request.contextPath }/img/jrabbit.jpg" alt="picture">
-				<h2>News Heading - <span>Monica</span></h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/emikohime/294092478/">more</a></p>
+				<img src="${pageContext.request.contextPath }/img/band/jrabbit.jpg" alt="picture">
+				<h2>On Air! 63명 시청중 - <span>제이래빗</span></h2>
 			</div>
 
 			<div>
-				<img src="${pageContext.request.contextPath }/img/jrabbit.jpg" alt="picture">
-				<h2>News Heading - <span>Lin</span></h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/ruudvanleeuwen/468309897/">more</a></p>
+				<img src="${pageContext.request.contextPath }/img/band/forest.jpg" alt="picture">
+				<h2>On Air! 27명 시청중 - <span>숨의 숲</span></h2>
 			</div>
 
 		</div>
@@ -158,7 +155,7 @@ $(window).resize(function(){
 $(function(){
 	
 	$('#slider-two').movingBoxes({
-		startPanel   : 1,      // start with this panel
+		startPanel   : 0,      // start with this panel
 		reducedSize  : 0.8,    // non-current panel size: 80% of panel size
 		buildNav     : true,   // if true, navigation links will be added
 		navFormatter : function(index, panel){ return panel.find('h2 span').text(); } // function which gets nav text from span inside the panel header
