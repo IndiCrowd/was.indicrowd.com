@@ -38,17 +38,19 @@
 								<form:form enctype="multipart/form-data" cssClass="form-horizontal">
 									<fieldset>
 										
-										<div class="control-group use-preview">
+										<div class="control-group use-preview <spring:bind path="profilePhoto"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 											<label class="control-label" for="profilePhoto">프로젝트 사진</label>
 											<div class="controls">
 												<form:input type="file" path="profilePhoto" cssClass="input-file uniform_on" />
-												<spring:bind path="profilePhoto"><p class="error">${status.errorMessage}</p></spring:bind>
-												<c:if test="${command.id == null}">
-												<img class="img-polaroid" style="width:180px; height:180px;" src="<c:url value="/img/fund/project/blank.png" />">
-												</c:if>
-												<c:if test="${command.id != null}">
-												<img class="img-polaroid" style="width:180px; height:180px;" src="<spring:eval expression="@userfileConfig.baseUrl" />/projectthumb/${command.id}">
-												</c:if>
+												<form:errors path="profilePhoto" cssClass="help-inline" />
+												<p style="margin-top:10px;">
+													<c:if test="${command.id == null}">
+													<img class="img-polaroid" style="width:180px; height:180px;" src="<c:url value="/img/fund/project/blank.png" />">
+													</c:if>
+													<c:if test="${command.id != null}">
+													<img class="img-polaroid" style="width:180px; height:180px;" src="<spring:eval expression="@userfileConfig.baseUrl" />/projectthumb/${command.id}">
+													</c:if>
+												</p>
 											</div>
 										</div>
 										
