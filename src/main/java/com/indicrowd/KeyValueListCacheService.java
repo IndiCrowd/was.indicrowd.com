@@ -130,7 +130,7 @@ public class KeyValueListCacheService {
 			Collections.reverse(jsonList);
 			return jsonList;
 		}
-		return new ArrayList<>();
+		return new ArrayList<String>();
 	}
 	
 	// JSON 반환
@@ -155,7 +155,7 @@ public class KeyValueListCacheService {
 			Collections.reverse(jsonList);
 			return jsonList;
 		}
-		return new ArrayList<>();
+		return new ArrayList<String>();
 	}
 
 	// JSON 반환

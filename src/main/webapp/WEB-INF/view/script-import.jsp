@@ -94,9 +94,15 @@ document.onfocusin=autoBlurFucntion;
 <script src="<c:url value="/js/jquery.sparkline.min.js" />"></script>
 
 
-
+<script src="<c:url value="/js/jquery-ui-timepicker-addon.js" />"></script>
 <script>
 	$('.datepicker').datepicker();
+	$('.datetimepicker').datetimepicker();
+	$('.cleditor').cleditor({
+		width: 600,
+		height: 400
+	});
+	$("input:checkbox, input:radio, input:file").not('[data-no-uniform="true"],#uniform-is-ajax').uniform();
 </script>
 
 <script>

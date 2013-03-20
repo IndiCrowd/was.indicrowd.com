@@ -1,13 +1,19 @@
 $(function() {
 	$('.use-preview').each(function() {
 		var $this = $(this);
+		var $find = $this.find('.find');
 		var $input = $this.find('input[type="file"]');
 		var $img = $this.find('img');
-		
-		$img.click(function() {
+
+		$find.click(function() {
 			$input.click();
 		});
+		// IE 버그...
+		//$img.click(function() {
+		//	$input.click();
+		//});
 
+		var $div;
 		$input.change(function() {
 			if (!/(\.gif|\.jpg|\.jpeg|\.png)$/i.test(this.value)) {
 				alert("이미지 형식의 파일을 선택하십시오");
@@ -28,13 +34,21 @@ $(function() {
 					img_path = selectionRange.text.toString();
 					this.blur();
 				}
-
-				$('<div />').insertAfter($img).css({
+				
+				if ($div !== undefined) {
+					$div.remove();
+				}
+				$div = $('<div />').insertAfter($img).css({
 					width : $img.outerWidth(),
 					height : $img.outerHeight(),
+					'float' : 'left',
+					marginRight : $img.css('margin-right'),
 					filter : "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='file://" + img_path + "', sizingMethod='scale')"
 				});
-				$img.remove();
+				$div.click(function() {
+					$input.click();
+				});
+				$img.hide();
 			}
 
 			// IE를 제외한 최신 브라우저

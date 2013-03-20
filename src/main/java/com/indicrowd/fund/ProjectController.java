@@ -3,6 +3,7 @@ package com.indicrowd.fund;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -116,9 +117,15 @@ public class ProjectController extends AbstractController {
 		listInfo.setPage(page);
 		listInfo.setCountPerPage(countPerPage);
 		listInfo.setCount(Project.countProjects());
-		listInfo.setList(Project.findProjectEntries((page - 1) * countPerPage, countPerPage));
+		//listInfo.setList(Project.findProjectEntries((page - 1) * countPerPage, countPerPage));
+		
+		// 우선 전체 다 가져옴
+		listInfo.setList(Project.findAllProjects());
 
 		model.addAttribute("command", listInfo);
+		
+		List<Tag> tagList = Tag.findAllTags();
+		model.addAttribute("tagList", tagList);
 
 		return "fund/project/list";
 	}

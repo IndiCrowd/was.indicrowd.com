@@ -155,7 +155,7 @@ public class ConcertController extends AbstractController {
 			countPerPage = 50;
 		}
 
-		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
+		Map<String, Integer> emptyValueIndexMap = new HashMap<String, Integer>();
 		List<String> chatJsonList = keyValueListCacheService.listDesc(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
 		
 		String returnJson = "{\"command\": {\"list\": [";
