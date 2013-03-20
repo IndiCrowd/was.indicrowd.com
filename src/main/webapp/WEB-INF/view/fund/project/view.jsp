@@ -14,33 +14,82 @@
 	
 		<div id="page-title">
 		
-			<h2>프로젝트 보기</h2>
+			<h2>${command.title}</h2>
 		
 		</div>
 	
+		<!--start: Wrapper-->
+		<div id="wrapper">
+						
+			<!--start: Row -->
+			<div class="row-fluid">
+			
+				<div class="posts span8">
+					<!-- start: Post -->
+					<div class="post first">
+						<div class="picture" style="margin-bottom: 20px;">
+							<img src="<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />/projectphoto/${command.id}" alt="" />
+						</div>
+						<div class="post-content">
+							<div class="post-description">
+								<p>
+									${command.content}
+								</p>
+							</div>
+							<a class="post-entry" href="#">더보기...</a>
+						</div>
+					</div>
+					<!-- end: Post -->
+
+				</div>
+
+				<!-- start: Sidebar -->
+				
+				<div class="sidebar span4">
+				
+					<!-- start: Text Widget -->
+					<div class="widget first">
+						<img src="<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />/projectthumb/${command.id}" alt="" />
+						<h2>${command.title}</h2>
+						<p>${command.summary}</p>
+					</div>
+					<!-- end: Text Widget -->
+				
+					<!-- start: Sidebar Menu -->
+					<div class="widget">
+						<ul class="links-list-alt">
+							<li>test</li>
+							<li>test</li>
+						</ul>
+					</div>
+					<!-- end: Sidebar Menu -->
+					<!-- start: Tags -->
+					<div class="widget last">
+						<div class="title">
+							<h3>Tags</h3>
+						</div>
+						<div class="tags">
+							<c:forEach items="${command.genres}" var="genre">
+								<a href="#">${genre.tag.repTagInput.tagInputStr}</a>
+							</c:forEach>
+				
+						</div>
+					</div>
+					<!-- end: Tags -->
+				
+				</div>
+				<!-- end: Sidebar -->
+			
+			<!--end: Row -->
+			</div>
+	
+		</div>
+		<!-- end: Wrapper  -->
+	
 		<div id="wrapper">
 			<div id="content">
-			
-				<p>
-					title : ${command.title}
-				</p>
-				<p>
-					summary : ${command.summary}
-				</p>
-				<p>
-					content : ${command.content}
-				</p>
-				<p>
-					creator : ${command.creator.nickname}
-				</p>
 				<p>
 					createDate : ${command.createDate}
-				</p>
-				<p>
-					genres :
-					<c:forEach items="${command.genres}" var="genre">
-						${genre.tag.repTagInput.tagInputStr}
-					</c:forEach>
 				</p>
 				<p>
 					startDate : ${command.startDate}
@@ -58,6 +107,10 @@
 				<p>
 					opened : ${command.opened}
 				</p>
+				
+				<c:forEach items="${rewards}" var="reward">
+				${reward.description}
+				</c:forEach>
 				
 				<a href="<c:url value="/fund/project/${command.id}/invest" />">후원하기</a>
 			</div>

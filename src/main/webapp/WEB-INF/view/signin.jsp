@@ -53,9 +53,11 @@
 							</div>
 							<div class="actions">
 							
-								<button type="submit" class="btn span12">로그인!</button>
+								<button type="submit" class="btn span12" style="margin-bottom: 10px;">로그인</button>
 								
-								<a href="${pageContext.request.contextPath}/user/join"><button type="button" class="btn span12" onClick="#">회원가입!</button></a>
+								<p style="margin-bottom: 5px;">아직 회원이 아니세요?</p>
+								
+								<a href="${pageContext.request.contextPath}/user/join"><button type="button" class="btn span12" onClick="#">회원가입</button></a>
 							</div>
 					</form>
 					

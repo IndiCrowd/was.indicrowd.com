@@ -100,6 +100,14 @@ privileged aspect Project_Roo_JavaBean {
         this.targetFigure = targetFigure;
     }
     
+    public boolean Project.isEnabled() {
+        return this.enabled;
+    }
+    
+    public void Project.setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
     public String Project.getContact() {
         return this.contact;
     }

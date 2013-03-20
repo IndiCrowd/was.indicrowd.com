@@ -37,8 +37,8 @@ public class Project {
 	@Column(length = 1000)
 	private String summary;
 
-	@Size(max = 5000)
-	@Column(length = 5000)
+	@Size(max = 200000)
+	@Column(length = 200000)
 	private String content;
 
 	@ManyToOne
@@ -73,6 +73,9 @@ public class Project {
 
 	@Column(nullable = false)
 	private int targetFigure;
+	
+	@Column(nullable = false)
+	private boolean enabled = true;
 
 	@NotEmpty
 	@Size(max = 320)
@@ -83,7 +86,7 @@ public class Project {
 	private boolean opened = false;
 	
 	public static List<Project> findAllProjects() {
-        return entityManager().createQuery("SELECT o FROM Project o ORDER BY id DESC", Project.class).getResultList();
+        return entityManager().createQuery("SELECT o FROM Project o WHERE o.enabled = true ORDER BY id DESC", Project.class).getResultList();
     }
 
 }

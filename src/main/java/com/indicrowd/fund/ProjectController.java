@@ -133,6 +133,7 @@ public class ProjectController extends AbstractController {
 	@RequestMapping("/{id}")
 	public String view(@PathVariable Long id, Model model) {
 		model.addAttribute("command", Project.findProject(id));
+		model.addAttribute("rewards", Reward.findAllRewardsByProjectId(id));
 		return "fund/project/view";
 	}
 
