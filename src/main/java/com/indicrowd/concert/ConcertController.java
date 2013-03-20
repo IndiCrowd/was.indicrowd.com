@@ -117,8 +117,6 @@ public class ConcertController extends AbstractController {
 	public String getChatKey(Long id) {
 		return "IndiCrowd:chat:" + id;
 	}
-	
-	public String 
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
