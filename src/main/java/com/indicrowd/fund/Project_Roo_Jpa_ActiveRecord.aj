@@ -24,10 +24,6 @@ privileged aspect Project_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Project o", Long.class).getSingleResult();
     }
     
-    public static List<Project> Project.findAllProjects() {
-        return entityManager().createQuery("SELECT o FROM Project o", Project.class).getResultList();
-    }
-    
     public static Project Project.findProject(Long id) {
         if (id == null) return null;
         return entityManager().find(Project.class, id);

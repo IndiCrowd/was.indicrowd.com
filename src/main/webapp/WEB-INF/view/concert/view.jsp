@@ -100,6 +100,11 @@
 				userID: '${principal.id}',
 				cameraState: state
 			});
+			
+			console.log({
+				userID: '${principal.id}',
+				cameraState: state
+			});
 		}
 		
 		</script>

@@ -6,7 +6,7 @@
 
 
 
-/* All - ¸ðµç ÇØ»óµµ °ø¿ë ½ºÅ¸ÀÏ */
+/* All - ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 th, td {
 	border: none;
 }
@@ -15,20 +15,32 @@ textarea {
 	width: 15em;
 	height: 5em;
 }
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
   
-/* Mobile - ¸ð¹ÙÀÏ ÇØ»óµµ Àü¿ë ½ºÅ¸ÀÏ */
+/* Mobile - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
   
-/* Tablet & Desktop #1 - ÅÂºí¸´ PC¿Í µ¥½ºÅ©Åé °ø¿ë ½ºÅ¸ÀÏ #1 */
+/* Tablet & Desktop #1 - ï¿½Âº? PCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ #1 */
 @media all and (min-width:481px) {
 	
 }
   
-/* Tablet & Desktop #2 - ÅÂºí¸´ PC¿Í µ¥½ºÅ©Åé °ø¿ë ½ºÅ¸ÀÏ #2 */
+/* Tablet & Desktop #2 - ï¿½Âº? PCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ #2 */
 @media all and (min-width:768px) {
 
 }
   
-/* Desktop - µ¥½ºÅ©Åé Àü¿ë ½ºÅ¸ÀÏ */
+/* Desktop - ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 @media all and (min-width:990px) {
 
 }

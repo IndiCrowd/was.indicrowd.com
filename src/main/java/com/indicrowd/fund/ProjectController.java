@@ -3,6 +3,7 @@ package com.indicrowd.fund;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -37,7 +38,7 @@ public class ProjectController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute("command") Project project, BindingResult bindingResult, Model model) throws IOException {
 
-		if (!bindingResult.hasFieldErrors("profilePhoto") && project.getProfilePhoto() != null && project.getProfilePhoto().getSize() > 0 && !imageService.isImageFile(project.getProfilePhoto())) {
+		if (!bindingResult.hasFieldErrors("profilePhoto") && (project.getProfilePhoto() == null || project.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(project.getProfilePhoto()))) {
 			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
 		}
 		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && project.getEndDate().getTime() < project.getStartDate().getTime()) {
@@ -64,10 +65,10 @@ public class ProjectController extends AbstractController {
 			project.setCreateDate(new Date());
 			project.persist();
 
-			if (project.getProfilePhoto().getSize() > 0) {
+			//if (project.getProfilePhoto().getSize() > 0) {
 				fileService.save(project.getProfilePhoto(), "projectphoto/" + project.getId().toString(), true);
 				fileService.save(imageService.generateThumb(project.getProfilePhoto()), "projectthumb/" + project.getId().toString(), true);
-			}
+			//}
 
 			return "redirect:/fund/project/" + project.getId() + "/rewards";
 		}
@@ -116,9 +117,15 @@ public class ProjectController extends AbstractController {
 		listInfo.setPage(page);
 		listInfo.setCountPerPage(countPerPage);
 		listInfo.setCount(Project.countProjects());
-		listInfo.setList(Project.findProjectEntries((page - 1) * countPerPage, countPerPage));
+		//listInfo.setList(Project.findProjectEntries((page - 1) * countPerPage, countPerPage));
+		
+		// 우선 전체 다 가져옴
+		listInfo.setList(Project.findAllProjects());
 
 		model.addAttribute("command", listInfo);
+		
+		List<Tag> tagList = Tag.findAllTags();
+		model.addAttribute("tagList", tagList);
 
 		return "fund/project/list";
 	}

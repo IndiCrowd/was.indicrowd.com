@@ -2,6 +2,7 @@ package com.indicrowd.fund;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -80,5 +81,9 @@ public class Project {
 	
 	@Column(nullable = false)
 	private boolean opened = false;
+	
+	public static List<Project> findAllProjects() {
+        return entityManager().createQuery("SELECT o FROM Project o ORDER BY id DESC", Project.class).getResultList();
+    }
 
 }
