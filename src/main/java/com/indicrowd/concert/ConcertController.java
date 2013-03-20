@@ -99,31 +99,10 @@ public class ConcertController extends AbstractController {
 		}
 	}
 	
-	/*
-	@Secured("ROLE_USER")
-	@RequestMapping("/{concertId}/userState")
-	public void updateUserState(@PathVariable("concertId") Long concertId,Long userID, Boolean cameraState, Model model) {
-		Concert concert = Concert.findConcert(concertId);
-
-		System.out.println(userID + " " + cameraState);
-		
-		UserState userState = new UserState();
-		userState.setCameraState(cameraState);
-		userState.setUserID(userID);
-
-		if (concert != null) {
-			
-			rtwService.send("Concert", concert.getId(), "userState", userState);
-		}
-	}
-	*/
-
 	@Secured("ROLE_USER")
 	@RequestMapping("/{concertId}/userState")
 	public void updateUserState(@PathVariable("concertId") Long concertId,@Valid @ModelAttribute("command")UserState userState , BindingResult bindingResult, Model model) {
 		Concert concert = Concert.findConcert(concertId);
-
-		System.out.println(userState);
 
 		if (concert != null) {
 			
@@ -138,6 +117,8 @@ public class ConcertController extends AbstractController {
 	public String getChatKey(Long id) {
 		return "IndiCrowd:chat:" + id;
 	}
+	
+	public String 
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)

@@ -16,8 +16,6 @@
 			RTW.addHandler('Concert', '${command.id}', 'userState', function(userState) {
 				var userImg = '<c:url value="/img/concert/" />profile4.jpg';
 				
-				console.log('Allive ' + userState + ' ' + userState.userID + ' ' + userState.cameraState);
-				
 				$('#user-' + userState.userID).each(function() {
 					if (userState.cameraState) {
 						openStreamUser(userState.userID, userImg);
