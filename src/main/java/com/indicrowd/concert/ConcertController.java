@@ -22,6 +22,7 @@ import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
+import com.indicrowd.concert.model.UserState;
 
 @Controller
 @RequestMapping("concert")
@@ -97,7 +98,39 @@ public class ConcertController extends AbstractController {
 			rtwService.send("Concert", iconFeed.getConcert().getId(), "iconFeed", iconFeed);
 		}
 	}
+	
+	/*
+	@Secured("ROLE_USER")
+	@RequestMapping("/{concertId}/userState")
+	public void updateUserState(@PathVariable("concertId") Long concertId,Long userID, Boolean cameraState, Model model) {
+		Concert concert = Concert.findConcert(concertId);
 
+		System.out.println(userID + " " + cameraState);
+		
+		UserState userState = new UserState();
+		userState.setCameraState(cameraState);
+		userState.setUserID(userID);
+
+		if (concert != null) {
+			
+			rtwService.send("Concert", concert.getId(), "userState", userState);
+		}
+	}
+	*/
+
+	@Secured("ROLE_USER")
+	@RequestMapping("/{concertId}/userState")
+	public void updateUserState(@PathVariable("concertId") Long concertId,@Valid @ModelAttribute("command")UserState userState , BindingResult bindingResult, Model model) {
+		Concert concert = Concert.findConcert(concertId);
+
+		System.out.println(userState);
+
+		if (concert != null) {
+			
+			rtwService.send("Concert", concert.getId(), "userState", userState);
+		}
+	}
+	
 	private String getChatIndexKey(Long targetConcertId) {
 		return "IndiCrowd:concert:" + targetConcertId + ":chat";
 	}
@@ -155,7 +188,7 @@ public class ConcertController extends AbstractController {
 			countPerPage = 50;
 		}
 
-		Map<String, Integer> emptyValueIndexMap = new HashMap<>();
+		Map<String, Integer> emptyValueIndexMap = new HashMap<String, Integer>();
 		List<String> chatJsonList = keyValueListCacheService.listDesc(getChatIndexKey(concertId), 0l, countPerPage, emptyValueIndexMap);
 		
 		String returnJson = "{\"command\": {\"list\": [";

@@ -14,15 +14,25 @@
 		
 		<script>
 		$(function() {
-
+			
+			var hasFlash = function() {
+				var ret = false;
+				try {
+				  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+				  if(fo) ret = true;
+				}catch(e){
+				  if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined) ret = true;
+				}
+				return ret;
+			};
+			
+			
+			
 			var openStreamSubscriber = function ()
 			{
 				// open the flash StreamPublisher
 		        var flashvars = {};
 		        flashvars.serverSubscribeStr = '${command.id}';
-		        flashvars.clientPublishStr = '${principal.id}';
-		        // TODO: Change url that is client default image.
-				flashvars.clientDefaultImage = '${principal.socialImageUrl}';
 		        
 		        var params = {};
 		        params.quality = 'high';
@@ -45,14 +55,58 @@
 		        return $('#StreamSubscriber');
 			};
 			
-			openStreamSubscriber();
+
+			var openStreamUserPublisher = function() {
+		        var flashvars = {};
+		        flashvars.clientPublishStr = '${principal.id}';
+				flashvars.clientDefaultImage = '${principal.socialImageUrl}';
+		        
+		        var params = {};
+		        params.quality = 'high';
+	            params.bgcolor = 'transparent';
+		        params.allowscriptaccess = 'sameDomain';
+		        params.allowfullscreen = 'true';
+		        
+		        var attributes = {};
+		        attributes.id = 'userface';
+		        attributes.align = 'middle';
+		        
+		        swfobject.embedSWF(
+		            '<c:url value="/swf/StreamUserPublisher.swf" />', 'userface', 
+		            '100', '100', 
+		            swfVersionStr, xiSwfUrlStr, 
+		            flashvars, params, attributes);
+		        
+		        return $('#userface');
+			};
+			
+
+			if (hasFlash()) {
+				openStreamSubscriber();
+				openStreamUserPublisher();
+			} else {
+				$VIDEO({
+					width: '480',
+					height: '360',
+					src: 'http://infty123.iptime.org:1935/live/ngrp:${command.id}_all/playlist.m3u8',
+					controls: 'true'
+				}).appendTo('#StreamSubscriber');		
+			}
  
 		});
+		
+		function userCamState(state) {
+			POST('<c:url value="/concert/${command.id}/userState.json" />', {
+				userID: '${principal.id}',
+				cameraState: state
+			});
+		}
 		
 		</script>
 	</head>
 	
 	<body>
+		
 		
 		<div id="StreamSubscriber"></div>
 		

@@ -23,7 +23,9 @@
 			@import url(<c:url value="/css/init.css" />);
 		</style>
 		
+		<script src="<c:url value="/js/jquery-1.9.1.min.js" />"></script>
 		<jsp:include page="../script-import.jsp" />
+		
         <script type="text/javascript" src="<c:url value="/js/swfobject.js" />" ></script>
 		<script type="text/javascript">
             // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
@@ -193,6 +195,17 @@
 				padding: 20px;
 				line-height: 0;
 			}
+			#userface-wrapper {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				left: 640px;
+				top: 110px;
+			}
+			#userface {
+				width: 100px;
+				height: 100px;
+			}
 			
 			#info-wrapper {
 				background: rgba(0, 0, 0, .5);
@@ -205,6 +218,7 @@
 			}
 			#info {
 				padding: 20px;
+				padding-left: 130px;
 				color: #fff;
 			}
 			#info p {
@@ -272,6 +286,22 @@
 		
 		<script>
 		$(function() {
+			var userImgs = {};
+			var addImg = function(connectId, userInfo) {
+				console.log(userImgs[userInfo.id]);
+				if (userImgs[userInfo.id] === undefined) {
+					userImgs[userInfo.id] = 1;
+					
+					$IMG({
+						//id : 'connect-' + connectId,
+						id : 'user-' + userInfo.id,
+						src: '<c:url value="/img/concert/" />profile4.jpg'
+					}).appendTo('#stage').hide().fadeIn();
+					
+				} else {
+					userImgs[userInfo.id]++;
+				}
+			};
 			
 			$('#chat form').submit(function() {
 				POST('${pageContext.request.contextPath}/concert/chat', {
@@ -292,22 +322,6 @@
 				backgroundSize: 'auto 700px'
 			});
 			
-			var userImgs = {};
-			var addImg = function(connectId, userInfo) {
-				console.log(userImgs[userInfo.id]);
-				if (userImgs[userInfo.id] === undefined) {
-					userImgs[userInfo.id] = 1;
-					
-					$IMG({
-						//id : 'connect-' + connectId,
-						id : 'user-' + userInfo.id,
-						src: '<c:url value="/img/concert/" />profile4.jpg'
-					}).appendTo('#stage').hide().fadeIn();
-					
-				} else {
-					userImgs[userInfo.id]++;
-				}
-			};
 
 			RTW.addConnectHandler('Concert', '${command.id}', function(userInfos) {
 				for (var connectId in userInfos) {
@@ -481,6 +495,7 @@
 				</div>
 			</div>
 			
+			
 			<div id="info-wrapper">
 				<div id="info">
 					<p>
@@ -500,6 +515,10 @@
 						<a href="javascript:balloon();" style="color:#fff; font-weight:bold;">물폭탄!</a>
 					</p>
 				</div>
+			</div>
+			
+			<div id="userface-wrapper">
+				<img id="userface" src="${principal.socialImageUrl}" />
 			</div>
 			
 			<div id="chat-wrapper">
