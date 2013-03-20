@@ -11,12 +11,30 @@
 		
 		<script>
 		
-		$(function() {			
-
-			var openStreamUser = function(connectId, userId, userImg)
+		$(function() {	
+			
+			RTW.addHandler('Concert', '${command.id}', 'userState', function(userState) {
+				var userImg = '<c:url value="/img/concert/" />profile4.jpg';
+				
+				$('#user-' + userState.userID).each(function() {
+					if (userState.cameraState) {
+						openStreamUser(userState.userID, userImg);
+					} else {
+						var img = $IMG({
+							id : 'user-' + userState.userID,
+							src: userImg
+						});
+						
+						$(this).replaceWith(img).hide().fadeIn();
+					}
+				});
+				
+			});
+			
+			var openStreamUser = function(userId, userImg)
 			{			
 				// open the flash Stream User
-				var replaceId = 'connect-' + connectId;
+				var replaceId = 'user-' + userId;
 		        var flashvars = {};
 				flashvars.clientStreamStr = userId;
 				flashvars.clientDefaultImage = userImg;
@@ -28,17 +46,17 @@
 		        
 		        var attributes = {};
 		        attributes.id = replaceId;
-		        attributes.class = 'user-'+userId;
 		        attributes.align = 'middle';
 		        
-		        swfobject.embedSWF(
+		        var res = swfobject.embedSWF(
 		            '<c:url value="/swf/StreamUser.swf" />', replaceId, 
 		            '100', '100', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
-
+		        
 		        return $('#'+replaceId);
 			};
+			
 			
 			var openStreamPublisher = function() {
 		        var flashvars = {};
@@ -53,7 +71,7 @@
 		        var attributes = {};
 		        attributes.id = 'StreamPublisher';
 		        attributes.align = 'middle';
-		        
+
 		        swfobject.embedSWF(
 		            '<c:url value="/swf/StreamPublisher.swf" />', 'StreamPublisher', 
 		            '480', '360', 
@@ -62,9 +80,10 @@
 		        
 		        return $('#StreamPublisher');
 			};
-			
 
 			openStreamPublisher();
+			
+			
 		});
 		
 		function resizeStreamPublisher(width, height)

@@ -22,6 +22,7 @@ import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
+import com.indicrowd.concert.model.UserState;
 
 @Controller
 @RequestMapping("concert")
@@ -97,7 +98,18 @@ public class ConcertController extends AbstractController {
 			rtwService.send("Concert", iconFeed.getConcert().getId(), "iconFeed", iconFeed);
 		}
 	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping("/{concertId}/userState")
+	public void updateUserState(@PathVariable("concertId") Long concertId,@Valid @ModelAttribute("command")UserState userState , BindingResult bindingResult, Model model) {
+		Concert concert = Concert.findConcert(concertId);
 
+		if (concert != null) {
+			
+			rtwService.send("Concert", concert.getId(), "userState", userState);
+		}
+	}
+	
 	private String getChatIndexKey(Long targetConcertId) {
 		return "IndiCrowd:concert:" + targetConcertId + ":chat";
 	}
