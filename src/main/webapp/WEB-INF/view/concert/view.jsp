@@ -94,6 +94,13 @@
 			}
  
 		});
+
+
+		function resizeStreamPublisher(width, height)
+		{
+			$('#userface').width(width);
+			$('#userface').height(height);
+		}
 		
 		function userCamState(state) {
 			POST('<c:url value="/concert/${command.id}/userState.json" />', {
@@ -106,7 +113,6 @@
 	</head>
 	
 	<body>
-		
 		
 		<div id="StreamSubscriber"></div>
 		
