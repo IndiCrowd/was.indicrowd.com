@@ -4,5 +4,6 @@
 *.war
 *.ear
 /log.roo
+/target
 
 .DS_Store
