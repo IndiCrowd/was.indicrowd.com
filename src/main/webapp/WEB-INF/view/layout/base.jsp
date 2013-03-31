@@ -23,6 +23,7 @@
 			@import url(<c:url value="/css/init.css" />);
 		</style>
 		
+		<script src="<c:url value="/js/jquery-1.9.1.min.js" />"></script>
 		<jsp:include page="../script-import.jsp" />
 		
 		<decorator:head />

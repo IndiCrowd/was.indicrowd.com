@@ -10,7 +10,7 @@
         <aspectj.version>1.7.0.RC1</aspectj.version>
         <java.version>7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <roo.version>1.2.2.RELEASE</roo.version>
+        <roo.version>1.2.3.RELEASE</roo.version>
         <slf4j.version>1.6.4</slf4j.version>
         <spring.version>3.1.1.RELEASE</spring.version>
         <spring-social.version>1.0.2.RELEASE</spring-social.version>
@@ -126,13 +126,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.13</version>
-			<classifier />
+			<classifier/>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring.version}</version>
-			<classifier />
+			<classifier/>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -144,7 +144,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.version}</version>
-			<classifier />
+			<classifier/>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -156,13 +156,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring.version}</version>
-			<classifier />
+			<classifier/>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring.version}</version>
-			<classifier />
+			<classifier/>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.social</groupId>
