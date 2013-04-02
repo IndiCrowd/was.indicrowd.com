@@ -52,7 +52,7 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href="${pageContext.request.contextPath}">IndiCrowd</a>
+					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" width="182px" height="45px"/></a>
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
 							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>

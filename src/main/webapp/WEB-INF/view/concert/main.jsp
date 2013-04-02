@@ -62,7 +62,7 @@
 		<div class="row">
 		<div class="span12 perfectum" id="timeTableDiv" >
 			<h2 style="text-align: center"><- 2013/4/2 -></h2>
-			
+			<p><a href="<c:url value="/concert/reservate" />"><button class="btn btn-primary offset10">예약하기</button></a></p>
 				
 			<table id="timeTable" class="table table-bordered">
 				<tr>
