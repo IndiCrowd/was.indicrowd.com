@@ -10,6 +10,25 @@
 				.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
 	}
 </script>
+<style>
+	#timeTableDiv{
+		height: 300px;
+		overflow: auto;
+		background-color: #FFFFFF
+	}
+	#timeTable .time{
+		height: 120px;
+		padding-top: 10px;
+		text-align: center;
+		color: #ffffff;
+		font-size: 12px;
+		text-align: center;
+		margin: 0;
+		width: 66px;
+		font-weight: bold;
+		background-color: #AFAFAF;
+	}
+</style>
 <!--start: Wrapper-->
 <div id="wrapper" class="row">
 	<div class="span9">
@@ -40,23 +59,26 @@
 			</div>
 
 		</div>
-		<div class="perfectum">
-			<div class="row-fluid sortable">
-				<div class="box">
-				  <div class="box-header" data-original-title>
-					  
-				  </div>
-				  <div class="box-content">
-					
-
-						<div id="calendar"></div>
-
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
+		<div class="row">
+		<div class="span9 perfectum" id="timeTableDiv" >
+			<h2 style="text-align: center"><- 2013/4/2 -></h2>
+			
+			<table id="timeTable" class="table table-bordered">
+				<tr>
+					<th></th>
+					<!-- list of halls -->
+					<th>연습실</th>
+				</tr>
+				<c:forEach begin="0" end="23" varStatus="i">
+					<tr>
+						<td class="time span2"><c:if test="${i.index<10  }">0</c:if>${i.index }:00</td>
+						<td>aaa</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
-		<table class="table">
+		</div>
+		<table  class="table">
 			
 			<c:forEach items="${command.list}" var="command">
 				<tr>
@@ -76,9 +98,4 @@
 <!--  end wrapper -->
 <script src="<c:url value="/js/jquery.movingboxes.min.js" />"></script>
 <script src="<c:url value="/js/broadcast-slider.js" />"></script>
-<script>$(function(){
-		calendars();
-		var date = new Date();
-		var hour = date.getHours();
-		$(".fc-slot"+(hour*2)).focus();
-	});</script>
+

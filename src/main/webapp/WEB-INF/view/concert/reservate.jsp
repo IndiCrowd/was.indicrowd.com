@@ -18,6 +18,7 @@
 			
 			<form:form>
 				<form:hidden path="hallId" value="1" />
+				<form:hidden path="bandId" value="5" />
 				<fieldset>
 					<p>
 						<label>
@@ -28,16 +29,30 @@
 					</p>
 					<p>
 						<label>
-							<h5>공연 시작 시간</h5>
-							<form:input path="startDate" cssClass="datepicker" />
+							<h5>공연 시작 날짜</h5>
+							<form:input path="startDate" />
 							<spring:bind path="startDate"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>
 					</p>
 					<p>
 						<label>
-							<h5>공연 종료 시간</h5>
-							<form:input path="endDate" cssClass="datepicker" />
-							<spring:bind path="endDate"><span class="error">${status.errorMessage}</span></spring:bind>
+							<h5>공연 시작 시간</h5>
+							<form:input path="startTime" />
+							<spring:bind path="startTime"><span class="error">${status.errorMessage}</span></spring:bind>
+						</label>
+					</p>
+					<p>
+						<label>
+							<h5>공연시간(30분단위)</h5>
+							<form:input path="duration"/>
+							<spring:bind path="duration"><span class="error">${status.errorMessage}</span></spring:bind>
+						</label>
+					</p>
+					<p>
+						<label>
+							<h5>제한 관객 수</h5>
+							<form:input path="audienceLimit"/>
+							<spring:bind path="audienceLimit"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>
 					</p>
 					<p>

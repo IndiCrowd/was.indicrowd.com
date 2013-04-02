@@ -3,9 +3,9 @@
 
 package com.indicrowd.concert.model;
 
+import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
-import java.util.Date;
 
 privileged aspect Concert_Roo_JavaBean {
     
@@ -15,6 +15,14 @@ privileged aspect Concert_Roo_JavaBean {
     
     public void Concert.setTitle(String title) {
         this.title = title;
+    }
+    
+    public String Concert.getDescription() {
+        return this.description;
+    }
+    
+    public void Concert.setDescription(String description) {
+        this.description = description;
     }
     
     public Hall Concert.getHall() {
@@ -33,20 +41,60 @@ privileged aspect Concert_Roo_JavaBean {
         this.hallId = hallId;
     }
     
-    public Date Concert.getStartDate() {
+    public BandInfo Concert.getBandInfo() {
+        return this.bandInfo;
+    }
+    
+    public void Concert.setBandInfo(BandInfo bandInfo) {
+        this.bandInfo = bandInfo;
+    }
+    
+    public Long Concert.getBandId() {
+        return this.bandId;
+    }
+    
+    public void Concert.setBandId(Long bandId) {
+        this.bandId = bandId;
+    }
+    
+    public Integer Concert.getStartDate() {
         return this.startDate;
     }
     
-    public void Concert.setStartDate(Date startDate) {
+    public void Concert.setStartDate(Integer startDate) {
         this.startDate = startDate;
     }
     
-    public Date Concert.getEndDate() {
-        return this.endDate;
+    public Integer Concert.getStartTime() {
+        return this.startTime;
     }
     
-    public void Concert.setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void Concert.setStartTime(Integer startTime) {
+        this.startTime = startTime;
+    }
+    
+    public Integer Concert.getDuration() {
+        return this.duration;
+    }
+    
+    public void Concert.setDuration(Integer duration) {
+        this.duration = duration;
+    }
+    
+    public int Concert.getAudienceLimit() {
+        return this.audienceLimit;
+    }
+    
+    public void Concert.setAudienceLimit(int audienceLimit) {
+        this.audienceLimit = audienceLimit;
+    }
+    
+    public String Concert.getYoutubeLink() {
+        return this.youtubeLink;
+    }
+    
+    public void Concert.setYoutubeLink(String youtubeLink) {
+        this.youtubeLink = youtubeLink;
     }
     
 }

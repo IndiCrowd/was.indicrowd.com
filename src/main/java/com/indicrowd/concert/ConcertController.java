@@ -46,9 +46,7 @@ public class ConcertController extends AbstractController {
 	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
 	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
 
-		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && concert.getEndDate().getTime() < concert.getStartDate().getTime()) {
-			bindingResult.rejectValue("startDate", "Over.startDate");
-		}
+		System.out.println(bindingResult.toString());
 
 		if (bindingResult.hasErrors()) {
 			return "concert/reservate";

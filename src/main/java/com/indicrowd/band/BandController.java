@@ -122,6 +122,7 @@ public class BandController extends AbstractController{
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model){
+		
 		if (bindingResult.hasErrors()) {
 			return "band/create";
 		} else {
