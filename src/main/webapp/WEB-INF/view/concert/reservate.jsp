@@ -29,21 +29,21 @@
 					</p>
 					<p>
 						<label>
-							<h5>공연 시작 날짜</h5>
+							<h5>공연 시작 날짜(ex)20130402)</h5>
 							<form:input path="startDate" />
 							<spring:bind path="startDate"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>
 					</p>
 					<p>
 						<label>
-							<h5>공연 시작 시간</h5>
+							<h5>공연 시작 시간(ex)1530)</h5>
 							<form:input path="startTime" />
 							<spring:bind path="startTime"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>
 					</p>
 					<p>
 						<label>
-							<h5>공연시간(30분단위)</h5>
+							<h5>공연시간(30분단위, ex)30,60,90)</h5>
 							<form:input path="duration"/>
 							<spring:bind path="duration"><span class="error">${status.errorMessage}</span></spring:bind>
 						</label>

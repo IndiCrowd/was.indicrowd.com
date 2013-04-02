@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
+import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
@@ -52,6 +53,7 @@ public class ConcertController extends AbstractController {
 			return "concert/reservate";
 		} else {
 			concert.setHall(Hall.findHall(concert.getHallId()));
+			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			concert.persist();
 			return "redirect:/concert";
 		}
