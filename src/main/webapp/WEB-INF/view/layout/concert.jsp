@@ -467,15 +467,11 @@
 		
 		
 		<script>
-		function applause() {
+		function useItem(itemName)
+		{
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
-				iconName: 'yj_hands'
-			});
-		};
-		function balloon() {
-			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
-				iconName: 'balloons'
-			});
+				iconName: itemName
+			});	
 		};
 		</script>
 		
@@ -511,8 +507,8 @@
 						<label>밴드 정보</label> test
 					</p>
 					<p>
-						<a href="javascript:applause();" style="color:#fff; font-weight:bold;">박수!</a>
-						<a href="javascript:balloon();" style="color:#fff; font-weight:bold;">물폭탄!</a>
+						<a href="javascript:useItem('yj_hands');" style="color:#fff; font-weight:bold;">박수!</a>
+						<a href="javascript:useItem('balloons');" style="color:#fff; font-weight:bold;">물폭탄!</a>
 					</p>
 				</div>
 			</div>
