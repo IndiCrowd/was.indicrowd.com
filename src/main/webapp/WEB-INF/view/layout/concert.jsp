@@ -189,45 +189,49 @@
 				top: 90px;
 				width: 520px;
 				height: 400px;
-				z-index: 1000;
+				z-index: 50;
 			}
 			#concert {
 				padding: 20px;
 				line-height: 0;
 			}
 			#userface-wrapper {
-				position: absolute;
-				width: 100px;
-				height: 100px;
-				left: 640px;
-				top: 110px;
-			}
-			#userface {
-				width: 100px;
-				height: 100px;
-			}
-			
-			#info-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
 				width: 320px;
-				height: 150px;
+				height: 190px;
 				left: 620px;
 				top: 90px;
 			}
-			#info {
+			
+			#userface-opti {
 				padding: 20px;
-				padding-left: 130px;
-				color: #fff;
-			}
-			#info p {
-				padding: 3px;
-			}
-			#info label {
-				padding-right: 10px;
 			}
 			
+			#userface {
+				color: #fff;
+			}
+			#info-wrapper {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				width: 520px;
+				height:20px;
+				left: 60px;
+				top: 500px;
+				z-index: 100;
+			}
+			#info {
+				padding-top: 3px;
+				padding-left: 20px;
+				backgroud: #000;
+				color: #fff;
+			}
+			#info label {
+				padding-left: 30px;
+				padding-right: 10px;
+			}
 			#chat-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
@@ -235,7 +239,7 @@
 				width: 320px;
 				height: 418px;
 				left: 620px;
-				top: 260px;
+				top: 295px;
 			}
 			#chat {
 				padding: 20px;
@@ -261,7 +265,7 @@
 				position: absolute;
 				width: 520px;
 				left: 60px;
-				top: 510px;
+				top: 530px;
 			}
 			#stage {
 				padding: 16px;
@@ -494,27 +498,25 @@
 			
 			<div id="info-wrapper">
 				<div id="info">
-					<p>
+					<span>
 						<label>공연 이름</label> ${command.title}
-					</p>
-					<p>
+					</span>
+					<span>
 						<label>시작 시간</label> 12:20
-					</p>
-					<p>
+					</span>
+					<span>
 						<label>종료 시간</label> 14:20
-					</p>
-					<p>
+					</span>
+					<span>
 						<label>밴드 정보</label> test
-					</p>
-					<p>
-						<a href="javascript:useItem('yj_hands');" style="color:#fff; font-weight:bold;">박수!</a>
-						<a href="javascript:useItem('balloons');" style="color:#fff; font-weight:bold;">물폭탄!</a>
-					</p>
+					</span>
 				</div>
 			</div>
 			
 			<div id="userface-wrapper">
-				<img id="userface" src="${principal.socialImageUrl}" />
+				<div id="userface-opti">
+					<img id="userface" src="${principal.socialImageUrl}" />
+				</div>
 			</div>
 			
 			<div id="chat-wrapper">

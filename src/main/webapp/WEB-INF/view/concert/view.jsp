@@ -73,7 +73,7 @@
 		        
 		        swfobject.embedSWF(
 		            '<c:url value="/swf/StreamUserPublisher.swf" />', 'userface', 
-		            '100', '100', 
+		            '280', '150', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
 		        
