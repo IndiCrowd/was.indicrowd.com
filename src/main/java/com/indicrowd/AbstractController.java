@@ -14,6 +14,7 @@ import com.indicrowd.auth.AuthService;
 import com.indicrowd.file.FileService;
 import com.indicrowd.file.ImageService;
 import com.indicrowd.rtw.RTWService;
+import com.indicrowd.shop.ItemService;
 import com.indicrowd.tag.TagService;
 import com.indicrowd.user.model.UserInfo;
 
@@ -36,6 +37,9 @@ public abstract class AbstractController {
 	
 	@Autowired
 	protected KeyValueListCacheService keyValueListCacheService;
+	
+	@Autowired
+	protected ItemService itemService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

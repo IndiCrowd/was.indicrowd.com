@@ -13,7 +13,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-		<!--[if IE]>
+		<!--[if lt IE 8]>
 		<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
@@ -59,6 +59,7 @@
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}/shop/list">상점</a></li>
 							<li class="active">
 								<sec:authorize access="isAnonymous()">
 									<a href="${pageContext.request.contextPath}/signin">로그인</a>
@@ -77,7 +78,7 @@
 								       href="#" >
 								    <c:if test="${principal.socialImageUrl ne ''}"><img width="22" height="22" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
 								  	<ul class="dropdown-menu">
-								      <li class="active" ><a href="#"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
+								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
 								      <c:forEach var="band" items="${principal.userBand }">
 								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
 								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" width="22" height="22" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>

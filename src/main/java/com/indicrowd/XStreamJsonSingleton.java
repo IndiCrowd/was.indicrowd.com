@@ -36,6 +36,7 @@ public class XStreamJsonSingleton {
 			xstream.registerConverter(new HibernatePersistentSortedSetConverter(xstream.getMapper()));
 			xstream.registerConverter(new CustomMapConverter(xstream.getMapper()));
 			xstream.registerConverter(new CustomDateConvert());
+			xstream.autodetectAnnotations(true);
 		}
 
 		return xstream;
@@ -58,6 +59,7 @@ public class XStreamJsonSingleton {
 			xstreamDropRoot.registerConverter(new HibernatePersistentSortedSetConverter(xstreamDropRoot.getMapper()));
 			xstreamDropRoot.registerConverter(new CustomMapConverter(xstreamDropRoot.getMapper()));
 			xstreamDropRoot.registerConverter(new CustomDateConvert());
+			xstream.autodetectAnnotations(true);
 		}
 
 		return xstreamDropRoot;
