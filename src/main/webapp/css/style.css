@@ -5418,3 +5418,16 @@ a.buy:hover {
 
 #broadcast-slider {width:80% ; visibility: hidden;}
 #broadcast-slider li{width:80%}
+
+#video-clip-gallary div.span3 {
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+	   -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+    		box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+}
+#video-clip-gallary div.span3 .widget {
+	padding: 0;
+}
