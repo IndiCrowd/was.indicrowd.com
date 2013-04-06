@@ -97,4 +97,12 @@ privileged aspect Concert_Roo_JavaBean {
         this.youtubeLink = youtubeLink;
     }
     
+    public boolean Concert.isIsValid() {
+        return this.isValid;
+    }
+    
+    public void Concert.setIsValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+    
 }

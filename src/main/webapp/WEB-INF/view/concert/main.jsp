@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="<c:url value="/css/movingboxes.css"/>" rel="stylesheet" type="text/css">
-<script>
-	function popup(url, title, w, h) {
-		var left = (screen.width / 2) - (w / 2);
-		var top = (screen.height / 2) - (h / 2) - 40;
-		return window
-				.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
-	}
-</script>
+<c:set var="minimalTop" value="99999"/>
 <style>
 	#timeTableDiv{
 		height: 300px;
@@ -27,6 +21,14 @@
 		width: 66px;
 		font-weight: bold;
 		background-color: #AFAFAF;
+	}
+	.timeTableTop{
+		background-color: #4B5161;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
+	.timeColumn {
+		border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%;cursor: pointer;
 	}
 </style>
 <!--start: Wrapper-->
@@ -60,33 +62,44 @@
 
 		</div>
 		<div class="row">
-		<div class="span12 perfectum" id="timeTableDiv" >
+		
 			<h2 style="text-align: center"><- 2013/4/2 -></h2>
 			<p><a href="<c:url value="/concert/reservate" />"><button class="btn btn-primary offset10">예약하기</button></a></p>
-				
-			<table id="timeTable" class="table table-bordered">
+		
+		<div class="span12">
+		<c:set var="tableWidth" value="${1070/fn:length(command) }"/>
+		<table id="timeTable" class="table table-bordered" style="margin-bottom:0px">
 				<tr>
-					<th></th>
+					<th class="timeTableTop" style="width:66px"></th>
 					<!-- list of halls -->
-					<th style="text-align:center">연습실</th>
-					<th style="text-align:center">연습실2</th>
+					<c:forEach var="hall" items="${ command}">
+						<th class="timeTableTop" style="text-align:center;width:${tableWidth}px"><c:out value="${hall.key }"/></th>
+					</c:forEach>
+					<th class="timeTableTop" style="width:19px;padding:0px"></th>
 				</tr>
+			</table>
+		</div>
+		<div class="span12" id="timeTableDiv" >
+			
+			<table id="timeTable" class="table table-bordered" style="margin-bottom: 0px">
 				<c:forEach begin="0" end="23" varStatus="i">
 					<tr>
 						<td class="time span2"><c:if test="${i.index<10  }">0</c:if>${i.index }:00</td>
 						<c:if test="${i.index eq 0 }">
-						<td style="padding:0px;" rowspan="24">
-							<div class="timeTableBox" style="position:relative; height:100%">
-								<div style=" border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%; top:69.5px; height:69.5px">test</div>
-								<div style=" border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%; top:139px; height:69.5px">test</div>
-							</div>
-						</td>
-						<td style="padding:0px;" rowspan="24">
-							<div class="timeTableBox" style="position:relative; height:100%">
-								<div style=" border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%; top:69.5px; height:69.5px">test</div>
-								<div style=" border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%; top:139px; height:69.5px">test</div>
-							</div>
-						</td>
+							<c:forEach var="hall" items="${ command}">
+								<td style="padding:0px;" rowspan="24">
+									<div class="timeTableBox" style="position:relative; height:100%">
+									<c:forEach var="concert" items="${hall.value }">
+										<c:set var="top" value="${((concert.startTime-concert.startTime%100)/100 + concert.startTime%100/60) * 139}"/>
+										<c:if test="${minimalTop > top }"><c:set var="minimalTop" value="${top }"/></c:if>
+										<div class ="timeColumn"  style="top:${top}px; height:${concert.duration/30*67.5 }px">
+											<span class="timeColumnTime"><strong>${fn:substring(concert.startTime,0,2) }:${fn:substring(concert.startTime,2,4) }</strong></span>
+											<span>${concert.title }</span>
+										</div>
+									</c:forEach>
+									</div>
+								</td>
+							</c:forEach>
 						</c:if>
 					</tr>
 				</c:forEach>
@@ -116,4 +129,27 @@
 	{
 	    $("#timeTableDiv").scrollTop(nScroll);
 	}
+	function popup(url, title, w, h) {
+		var left = (screen.width / 2) - (w / 2);
+		var top = (screen.height / 2) - (h / 2) - 40;
+		return window
+				.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
+	}
+	
+	$(function(){
+		moveScroll(${minimalTop});
+		var $li;
+		var $div = $DIV(
+		    $H1('Some title'),
+		    $P('Some exciting paragraph text'),
+		    $BR(),
+		    $UL(
+		        $LI('First item'),
+		        $li = $LI('Second item'), // IS THIS POSSIBLE?
+		        $LI('Third item')
+		    )
+		);
+		$div.appendTo('body');
+		$li.text('YEAH!!!'); // YEAH!!!
+	});
 </script>

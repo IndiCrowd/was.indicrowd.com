@@ -24,4 +24,12 @@ privileged aspect Hall_Roo_JavaBean {
         this.createDate = createDate;
     }
     
+    public boolean Hall.isIsValid() {
+        return this.isValid;
+    }
+    
+    public void Hall.setIsValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+    
 }

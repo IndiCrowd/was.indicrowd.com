@@ -1,6 +1,6 @@
 package com.indicrowd.concert.model;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -62,4 +62,15 @@ public class Concert {
 	
 	@Column(nullable = true)
 	private String youtubeLink;
+	
+	@Column(nullable = false)
+	private boolean isValid = true;
+	
+	public static List<Concert> findConcertListByDateAndHall(Integer date,long hallId){
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Concert o WHERE o.startDate = :date AND o.hall.id = :hallId AND isValid=true",
+						Concert.class).setParameter("hallId", hallId).setParameter("date", date)
+				.getResultList();
+	}
 }

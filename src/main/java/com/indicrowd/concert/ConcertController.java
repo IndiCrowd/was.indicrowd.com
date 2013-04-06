@@ -32,8 +32,15 @@ public class ConcertController extends AbstractController {
 	@RequestMapping
 	public String main(Model model) {
 
-		model.addAttribute("command", ListInfo.getAllListInfo(Concert.findAllConcerts()));
 
+		Map<String, List<Concert>> concertList = new HashMap<String, List<Concert>>(); 
+		List<Hall> validHalls = Hall.getValidConcertHalls();
+		for(int i=0; i<validHalls.size();i++){
+			Hall nowHall = validHalls.get(i);
+			concertList.put(nowHall.getName(), Concert.findConcertListByDateAndHall(20130407, nowHall.getId()));
+		}
+		model.addAttribute("command", concertList);
+		System.out.println(concertList);
 		return "concert/main";
 	}
 
