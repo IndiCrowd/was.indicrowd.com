@@ -2606,6 +2606,15 @@ a.buy:hover {
 	margin: 17px 0px 0px 0px;
 }
 
+#under-footer-menu {
+	margin: 17px 0px 0px 0px;
+}
+
+#under-footer-menu a {
+	color: #ddd;
+	margin-left: 20px;
+}
+
 #under-footer-copyright a {
 	color: #eee;
 }

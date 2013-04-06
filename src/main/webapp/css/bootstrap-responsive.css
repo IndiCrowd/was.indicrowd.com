@@ -1038,6 +1038,7 @@
   }
   .nav-collapse .open > .dropdown-menu {
     display: block;
+    background: #fff;
   }
   .nav-collapse .dropdown-menu:before,
   .nav-collapse .dropdown-menu:after {
@@ -1074,6 +1075,7 @@
   .nav-collapse.collapse {
     height: 0;
     overflow: hidden;
+    background: #000;
   }
   .navbar .btn-navbar {
     display: block;

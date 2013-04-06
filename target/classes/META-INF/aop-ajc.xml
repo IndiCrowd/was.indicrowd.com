@@ -2,14 +2,15 @@
 <aspects>
 <aspect name="com.indicrowd.concert.model.Concert_Roo_Jpa_Entity"/>
 <aspect name="com.indicrowd.fund.Investor_Roo_JavaBean"/>
-<aspect name="com.indicrowd.fund.ProjectGenre_Roo_ToString"/>
 <aspect name="com.indicrowd.fund.ProjectGenre_Roo_JavaBean"/>
+<aspect name="com.indicrowd.fund.ProjectGenre_Roo_ToString"/>
 <aspect name="com.indicrowd.shop.Shop_Roo_ToString"/>
 <aspect name="com.indicrowd.band.BandMember_Roo_Configurable"/>
 <aspect name="com.indicrowd.rtw.Disconnect_Roo_JavaBean"/>
 <aspect name="com.indicrowd.concert.model.IconFeed_Roo_Configurable"/>
 <aspect name="com.indicrowd.tag.Tag_Roo_Jpa_Entity"/>
 <aspect name="com.indicrowd.band.BandRoleType_Roo_Jpa_Entity"/>
+<aspect name="com.indicrowd.test.Item_Roo_JavaBean"/>
 <aspect name="com.indicrowd.fund.ProjectGenre_Roo_Configurable"/>
 <aspect name="com.indicrowd.band.BandMember_Roo_Jpa_Entity"/>
 <aspect name="com.indicrowd.tag.TagInput_Roo_Jpa_Entity"/>
@@ -25,6 +26,7 @@
 <aspect name="com.indicrowd.shop.Shop_Roo_Jpa_ActiveRecord"/>
 <aspect name="com.indicrowd.auth.Auth_Roo_Configurable"/>
 <aspect name="com.indicrowd.band.BandInfo_Roo_JavaBean"/>
+<aspect name="com.indicrowd.test.Item_Roo_ToString"/>
 <aspect name="com.indicrowd.concert.model.IconFeed_Roo_Jpa_ActiveRecord"/>
 <aspect name="com.indicrowd.band.BandMember_Roo_ToString"/>
 <aspect name="com.indicrowd.fund.Investor_Roo_ToString"/>

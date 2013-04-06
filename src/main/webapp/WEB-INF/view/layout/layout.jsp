@@ -53,7 +53,7 @@
 	            		<span class="icon-bar"></span>
 	          		</a>
 					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" width="182px" height="45px"/></a>
-	          		<div class="nav-collapse collapse">
+	          		<div class="nav-collapse collapse pull-right">
 	            		<ul class="nav">
 							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
@@ -131,15 +131,15 @@
 			<div class="row-fluid">
 
 				<!-- start: Under Footer Logo -->
-				<div class="span2">
+				<!-- <div class="span2">
 					<div id="under-footer-logo">
 						<a class="brand" href="#">IndiCrowd</a>
 					</div>
-				</div>
+				</div> -->
 				<!-- end: Under Footer Logo -->
 
 				<!-- start: Under Footer Copyright -->
-				<div class="span9">
+				<div class="span5">
 					
 					<div id="under-footer-copyright">
 						&copy; 2013, <a href="#">IndiCrowd</a>. all right reserved.
@@ -147,6 +147,18 @@
 					
 				</div>
 				<!-- end: Under Footer Copyright -->
+				
+				<div class="span6">
+					
+					<p id="under-footer-menu" class="pull-right">
+						<a href="#">IndiCrowd 소개</a>
+						<a href="#">도움말</a>
+						<a href="#">이용약관</a>
+						<a href="#">개인정보 보호정책</a>
+						<a href="#">제안/문의하기</a>
+					</p>
+					
+				</div>
 
 				<!-- start: Under Footer Back To Top -->
 				<div class="span1">
