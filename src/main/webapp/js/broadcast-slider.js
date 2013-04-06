@@ -12,7 +12,8 @@ $(window).resize(function(){
 $(function(){
 	
 	$('#broadcast-slider').movingBoxes({
-		startPanel   : 1,      // start with this panel
+		startPanel   : 2,      // start with this panel
+		initAnimation: false,
 		reducedSize  : 0.8,    // non-current panel size: 80% of panel size
 		buildNav     : true,   // if true, navigation links will be added
 		navFormatter : function(index, panel){ return panel.find('h2 span').text(); } // function which gets nav text from span inside the panel header
