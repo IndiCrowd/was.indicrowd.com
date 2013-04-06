@@ -305,9 +305,9 @@ header {
 
 .navbar .nav > li > a {
 	color: #666;
-	text-shadow: 0 1px 0 #ffffff;
+	text-shadow: 0 1px 0 ;
 	border-top:4px solid transparent;
-	font-size: 14px;
+	font-size: 17px;
 	padding: 12px 20px;
 	padding: 12px 10px \9;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -326,7 +326,7 @@ header {
 
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:focus {
-  	color: #DDDDDD !important;	
+  	color: #BBBBBB !important;	
   	
   	font-size : 17px;
   	text-decoration: none;
@@ -338,7 +338,6 @@ header {
 
 .navbar .nav > .active > a:hover {
   	background: transparent !important;
-  	font-weight : bold;
   	color: #FFFFFF !important;
   	-webkit-box-shadow: none;
        -moz-box-shadow: none;

@@ -28,7 +28,7 @@
 		color: #FFFFFF;
 	}
 	.timeColumn {
-		border:1px solid #a5a5a5;background:#f5f6f9; position: absolute;width:100%;cursor: pointer;
+		border:1px solid #a5a5a5;background:#E3ECFB; position: absolute;width:100%;cursor: pointer;
 	}
 </style>
 <!--start: Wrapper-->
@@ -92,7 +92,7 @@
 									<c:forEach var="concert" items="${hall.value }">
 										<c:set var="top" value="${((concert.startTime-concert.startTime%100)/100 + concert.startTime%100/60) * 139}"/>
 										<c:if test="${minimalTop > top }"><c:set var="minimalTop" value="${top }"/></c:if>
-										<div class ="timeColumn"  style="top:${top}px; height:${concert.duration/30*67.5 }px">
+										<div class ="timeColumn"  style="top:${top}px; height:${concert.duration/30*67.5 }px" onclick="goConcert(${concert.id})">
 											<span class="timeColumnTime"><strong>${fn:substring(concert.startTime,0,2) }:${fn:substring(concert.startTime,2,4) }</strong></span>
 											<span>${concert.title }</span>
 										</div>
@@ -135,21 +135,12 @@
 		return window
 				.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
 	}
+	function goConcert(id){
+		popup('<c:url value="/concert" />/'+id, 'Concert', 1000, 700);
+	}
 	
 	$(function(){
 		moveScroll(${minimalTop});
-		var $li;
-		var $div = $DIV(
-		    $H1('Some title'),
-		    $P('Some exciting paragraph text'),
-		    $BR(),
-		    $UL(
-		        $LI('First item'),
-		        $li = $LI('Second item'), // IS THIS POSSIBLE?
-		        $LI('Third item')
-		    )
-		);
-		$div.appendTo('body');
-		$li.text('YEAH!!!'); // YEAH!!!
+		
 	});
 </script>

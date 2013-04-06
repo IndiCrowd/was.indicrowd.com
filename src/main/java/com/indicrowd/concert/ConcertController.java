@@ -24,6 +24,7 @@ import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
 import com.indicrowd.concert.model.UserState;
+import com.indicrowd.util.DateUtil;
 
 @Controller
 @RequestMapping("concert")
@@ -31,16 +32,15 @@ public class ConcertController extends AbstractController {
 
 	@RequestMapping
 	public String main(Model model) {
-
-
+		
+		
 		Map<String, List<Concert>> concertList = new HashMap<String, List<Concert>>(); 
 		List<Hall> validHalls = Hall.getValidConcertHalls();
 		for(int i=0; i<validHalls.size();i++){
 			Hall nowHall = validHalls.get(i);
-			concertList.put(nowHall.getName(), Concert.findConcertListByDateAndHall(20130407, nowHall.getId()));
+			concertList.put(nowHall.getName(), Concert.findConcertListByDateAndHall(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")), nowHall.getId()));
 		}
 		model.addAttribute("command", concertList);
-		System.out.println(concertList);
 		return "concert/main";
 	}
 
