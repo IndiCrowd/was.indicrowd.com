@@ -90,10 +90,11 @@
 								<td style="padding:0px;" rowspan="24">
 									<div class="timeTableBox" style="position:relative; height:100%">
 									<c:forEach var="concert" items="${hall.value }">
-										<c:set var="top" value="${((concert.startTime-concert.startTime%100)/100 + concert.startTime%100/60) * 139}"/>
+										
+										<c:set var="top" value="${(concert.startHours + concert.startMinutes/60) * 139}"/>
 										<c:if test="${minimalTop > top }"><c:set var="minimalTop" value="${top }"/></c:if>
 										<div class ="timeColumn"  style="top:${top}px; height:${concert.duration/30*67.5 }px" onclick="goConcert(${concert.id})">
-											<span class="timeColumnTime"><strong>${fn:substring(concert.startTime,0,2) }:${fn:substring(concert.startTime,2,4) }</strong></span>
+											<span class="timeColumnTime"><strong><c:if test="${concert.startHours < 10}">0</c:if>${concert.startHours}:<c:if test="${concert.startMinutes < 10}">0</c:if>${concert.startMinutes }</strong></span>
 											<span>${concert.title }</span>
 										</div>
 									</c:forEach>
@@ -127,7 +128,9 @@
 //스크롤 위치 변경
 	function moveScroll( nScroll)
 	{
-	    $("#timeTableDiv").scrollTop(nScroll);
+		if(nScroll!=99999){
+	    	$("#timeTableDiv").scrollTop(nScroll);
+		}
 	}
 	function popup(url, title, w, h) {
 		var left = (screen.width / 2) - (w / 2);

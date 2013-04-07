@@ -54,11 +54,16 @@ public class ConcertController extends AbstractController {
 	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
 	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
 
-		System.out.println(bindingResult.toString());
+		
 
 		if (bindingResult.hasErrors()) {
 			return "concert/reservate";
 		} else {
+			Date inputDate = concert.getInputDate();
+			
+			concert.setStartDate(Integer.parseInt(DateUtil.getDateString(DateUtil.getCalendar(inputDate.getYear()+1900, inputDate.getMonth(), inputDate.getDate()), "YYYYMMDD")));
+			concert.setStartHours(inputDate.getHours());
+			concert.setStartMinutes(inputDate.getMinutes());
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			concert.persist();

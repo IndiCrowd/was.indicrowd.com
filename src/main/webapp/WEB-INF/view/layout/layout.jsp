@@ -52,7 +52,7 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" width="182px" height="45px"/></a>
+					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" style ="width:182px; height:25px"/></a>
 	          		<div class="nav-collapse collapse pull-right">
 	            		<ul class="nav">
 							<li class="active"><a href="${pageContext.request.contextPath}">홈</a></li>
@@ -76,12 +76,12 @@
 								  	<a class="dropdown-toggle"
 								       data-toggle="dropdown"
 								       href="#" >
-								    <c:if test="${principal.socialImageUrl ne ''}"><img width="22" height="22" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
+								    <c:if test="${principal.socialImageUrl ne ''}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
 								  	<ul class="dropdown-menu">
-								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" width="22" height="22" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
+								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" style="width:22px;height:22px" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
 								      <c:forEach var="band" items="${principal.userBand }">
 								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
-								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" width="22" height="22" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
+								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" style="width:22px;height:22px" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
 								      </c:forEach>
 								    </ul>
 								  </li>
