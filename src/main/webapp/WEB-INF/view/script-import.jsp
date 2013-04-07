@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 <script>
 	var USER_ID = '';
 	var USER_FILE_BASE_URL = '<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />';
