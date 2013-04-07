@@ -201,11 +201,29 @@ public class BandController extends AbstractController{
 				post.setId(postId);
 				
 				post.merge();
-				
 			}
-			result.setPost(null);
 			model.addAttribute("command",result);
 		}
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post/{postId}/reply/{commentId}", method = RequestMethod.PUT)
+	public void updateComment(String commentContent, @PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, @PathVariable("commentId") Long commentId){
+		
+		Comment comment = Comment.findComment(commentId);
+		
+		comment.setContent(commentContent);
+		
+		comment.merge();
+		
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{bandId}/post/{postId}/reply/{commentId}", method = RequestMethod.DELETE)
+	public void delReply(@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, @PathVariable("commentId") Long commentId, Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		Comment comment = Comment.findComment(commentId);
+		comment.remove();
+		
+		model.addAttribute("command", "OK");
+	}
 }
