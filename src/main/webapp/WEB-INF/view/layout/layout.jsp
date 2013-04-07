@@ -42,7 +42,8 @@
 	<header>
 		
 		<!--start: Container -->
-		<div class="container" style="height:54px;">
+		<div style="filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c3c3c', endColorstr='#272727',GradientType=0 ); /* IE6-8 */">
+		<div class="container" style="height:54px; ">
 			
 			<!--start: Navigation -->
 			<div class="navbar navbar-inverse">
@@ -97,7 +98,7 @@
 			
 		</div>
 		<!--end: Container-->			
-			
+		</div>
 	</header>
 	<!--end: Header-->
 	<!--start: Container -->
