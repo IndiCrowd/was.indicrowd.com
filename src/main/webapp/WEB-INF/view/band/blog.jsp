@@ -6,7 +6,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <sec:authentication property="principal" var="principal" />
 
+		<script>
+		function delPost(postId) {
+			var answer = confirm("정말 삭제하시겠습니까?")
+		    if (!answer){
+		        return ;  
+		    }
 
+			$.ajax({
+				url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
+				type : 'DELETE',
+				success : function(object) {
+					console.log(object);
+					alert('삭제되었습니다.');
+					window.location.reload();
+				},
+				error : function(a) {
+					// alert(a);
+				}
+			});
+			
+		}
+		</script>
 				
 		<!--start: Wrapper-->
 		<div id="wrapper">
@@ -40,6 +61,8 @@
 							<div class="post-meta">
 								<span><i class="fa-icon-user"></i>By <a href="#">${post.author }</a></span> 
 								<span><i class="fa-icon-comments-alt"></i>With <a href="${postUrl }">${post.commentCount }개의 댓글</a></span>
+								<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
+								<span><a href="javascript:delPost(${post.id});">삭제</a></span>
 							</div>
 							<div class="post-description">
 								<p>

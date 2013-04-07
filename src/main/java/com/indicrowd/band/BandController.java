@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.post.Comment;
@@ -24,6 +26,7 @@ import com.indicrowd.user.model.UserInfo;
 
 @Controller
 @RequestMapping("/band")
+@SessionAttributes({"postedit"})
 public class BandController extends AbstractController{
 	
 	@Autowired
@@ -88,8 +91,8 @@ public class BandController extends AbstractController{
 			model.addAttribute("tags",tags);
 		}
 		return "band/addPost";
-		
 	}
+	
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.POST)
@@ -112,6 +115,54 @@ public class BandController extends AbstractController{
 		return "redirect:/band/"+bandId;
 		
 	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post/{postId}/form", method = RequestMethod.GET)
+	public String editPost( @PathVariable("bandId") Long bandId,  @PathVariable("postId") Long postId, Model model){
+		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
+		Post post = Post.findPost(postId);
+		model.addAttribute("postedit", post);
+		model.addAttribute("bandInfo", bandInfo);
+		System.out.println(post);
+		
+		if(bandInfo == null){
+			
+		}else{
+			String category = bandInfo.getCategory();
+			
+			String[] tags = category.split(" ");
+			model.addAttribute("tags",tags);
+		}
+		return "band/editPost";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.PUT)
+	public String updatePost(@ModelAttribute("postedit") Post post, @PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, SessionStatus sessionStatus){
+		System.out.println(post);
+		sessionStatus.setComplete();
+		
+		if(post.getContent() !=null){
+			if(post.getContent().length() >= 200){
+				post.setSummary(post.getContent().substring(0, 199)+"...");
+			}else{
+				post.setSummary(post.getContent());
+			}
+		}
+		
+		post.merge();
+		return "redirect:/band/"+bandId+"/post/"+postId;
+		
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.DELETE)
+	public void delPost(@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId){
+		Post post = Post.findPost(postId);
+		
+		post.delAllCommentList();
+		post.remove();
+	}
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create" , method = RequestMethod.GET)
@@ -132,7 +183,8 @@ public class BandController extends AbstractController{
 		}
 	}
 	
-	
+
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{bandId}/post/{postId}/reply", method = RequestMethod.POST)
 	public void postReply(@ModelAttribute("comment") Comment comment,@PathVariable("postId") Long postId,BindingResult bindingResult,Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		comment.setDate(Calendar.getInstance());
@@ -155,4 +207,5 @@ public class BandController extends AbstractController{
 			model.addAttribute("command",result);
 		}
 	}
+	
 }

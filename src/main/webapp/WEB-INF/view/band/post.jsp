@@ -8,6 +8,27 @@
 <sec:authentication property="principal" var="principal" />
 
 <script>
+	function delPost(postId) {
+		var answer = confirm("정말 삭제하시겠습니까?")
+	    if (!answer){
+	        return ;  
+	    }
+
+		$.ajax({
+			url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
+			type : 'DELETE',
+			success : function(object) {
+				console.log(object);
+				alert('삭제되었습니다.');
+				history.back();
+			},
+			error : function(a) {
+				// alert(a);
+			}
+		});
+	}
+	
+	
 	function addReply(content) {
 		$.ajax({
 					url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply.json',
@@ -30,6 +51,7 @@
 					}
 				});
 	}
+	
 	function commentAdded(comment){
 		$("#commentlist").append('<div class="comments">'+
 				'<div class="avatar">'+
@@ -86,6 +108,8 @@
 						<span><i class="fa-icon-user"></i>By <a href="#">${post.author
 								}</a></span> <span><i class="fa-icon-comments-alt"></i>With <a
 							href="#"><span class="commentCount">${post.commentCount }</span>개의 댓글</a></span>
+							<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
+							<span><a href="javascript:delPost(${post.id});">삭제</a></span>
 					</div>
 					<div class="post-description">
 						<p>${post.content }</p>
@@ -112,7 +136,7 @@
 								<strong>${comment.author }</strong><span
 									class="reply"><span style="color: #aaa">/ </span></span> <span class="date">${comment.monthString }</span>
 							</div>
-							<p>${comment.content }</p>
+							<p class="comment-content">${comment.content }</p>
 						</div>
 					</div>
 				</c:forEach>
