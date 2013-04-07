@@ -12,7 +12,7 @@
 <!-- end: Page Title -->
 
 <!--start: Wrapper-->
-<div id="wrapper">
+<div id="wrapper" class="row">
 	<div class="row">
 		<a href="#generateBand" role="button" class="btn offset10" data-toggle="modal">밴드 생성</a>	
 	</div>
@@ -47,20 +47,6 @@
 	<!-- end: Portfolio -->
 
 </div>
+
 <!-- end: Wrapper  -->
 <!-- Modal -->
-
-<div id="generateBand" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>body</p>
-  </div>
-  <div class="modal-footer">
-  	
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button><button class="btn btn-primary">Save changes</button>
-    
-  </div>
-</div>
