@@ -6,7 +6,7 @@
 <c:set var="minimalTop" value="99999"/>
 <style>
 	#timeTableDiv{
-		height: 300px;
+		
 		overflow: auto;
 		background-color: #FFFFFF
 	}

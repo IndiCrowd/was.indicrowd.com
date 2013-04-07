@@ -1,5 +1,6 @@
 package com.indicrowd.concert;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -60,6 +61,10 @@ public class ConcertController extends AbstractController {
 			return "concert/reservate";
 		} else {
 			Date inputDate = concert.getInputDate();
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(inputDate);
+			System.out.println(calendar);
 			
 			concert.setStartDate(Integer.parseInt(DateUtil.getDateString(DateUtil.getCalendar(inputDate.getYear()+1900, inputDate.getMonth(), inputDate.getDate()), "YYYYMMDD")));
 			concert.setStartHours(inputDate.getHours());
