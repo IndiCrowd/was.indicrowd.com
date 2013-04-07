@@ -60,7 +60,7 @@
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li>
-							<li class="active"><a href="${pageContext.request.contextPath}/shop/list">상점</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}/item/list">상점</a></li>
 							<li class="active">
 								<sec:authorize access="isAnonymous()">
 									<a href="${pageContext.request.contextPath}/signin">로그인</a>

@@ -11,15 +11,23 @@ import com.indicrowd.AbstractController;
 @Controller
 @RequestMapping("/item")
 public class ItemController extends AbstractController {
-	
+
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public void update(@PathVariable Long id) {
 	}
-	
+
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void remove(@PathVariable Long id) {
+	}
+
+	@RequestMapping("/list")
+	public void list() {
+	}
+
+	@RequestMapping("/list/{page}")
+	public void list(@PathVariable Long page) {
 	}
 
 }
