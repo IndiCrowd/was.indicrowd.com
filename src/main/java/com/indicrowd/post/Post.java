@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.user.model.UserInfo;
@@ -108,6 +109,15 @@ public class Post {
 		}
 		return commentList;
 	}
-	
+
+    @Transactional
+	public void delAllCommentList() {
+		long postId = getId();
+		
+		entityManager().createQuery(
+					"DELETE FROM Comment o WHERE o.post.id = :postId")
+				.setParameter("postId", postId)
+				.executeUpdate();
+	}
 	
 }

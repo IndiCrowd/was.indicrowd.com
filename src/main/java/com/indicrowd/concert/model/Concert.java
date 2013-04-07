@@ -1,5 +1,6 @@
 package com.indicrowd.concert.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -48,15 +49,23 @@ public class Concert {
 	@Transient
 	private Long bandId;
 	
+	@Transient
+	private Date inputDate;
+	
 	@Column(nullable = false)
 	private Integer startDate;
 	
 	@Column(nullable = false)
-	private Integer startTime;
+	private Integer startHours;
+	
+	@Column(nullable = false)
+	private Integer startMinutes;
+	
 	
 	@Column(nullable = false)
 	private Integer duration;
 
+	
 	@Column(nullable = false)
 	private int audienceLimit;
 	
@@ -69,7 +78,7 @@ public class Concert {
 	public static List<Concert> findConcertListByDateAndHall(Integer date,long hallId){
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE o.startDate = :date AND o.hall.id = :hallId AND isValid=true",
+						"SELECT o FROM Concert o WHERE o.startDate  = :date AND o.hall.id = :hallId AND isValid=true",
 						Concert.class).setParameter("hallId", hallId).setParameter("date", date)
 				.getResultList();
 	}

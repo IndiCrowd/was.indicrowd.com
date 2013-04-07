@@ -6,6 +6,7 @@ package com.indicrowd.concert.model;
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
+import java.util.Date;
 
 privileged aspect Concert_Roo_JavaBean {
     
@@ -57,6 +58,14 @@ privileged aspect Concert_Roo_JavaBean {
         this.bandId = bandId;
     }
     
+    public Date Concert.getInputDate() {
+        return this.inputDate;
+    }
+    
+    public void Concert.setInputDate(Date inputDate) {
+        this.inputDate = inputDate;
+    }
+    
     public Integer Concert.getStartDate() {
         return this.startDate;
     }
@@ -65,12 +74,20 @@ privileged aspect Concert_Roo_JavaBean {
         this.startDate = startDate;
     }
     
-    public Integer Concert.getStartTime() {
-        return this.startTime;
+    public Integer Concert.getStartHours() {
+        return this.startHours;
     }
     
-    public void Concert.setStartTime(Integer startTime) {
-        this.startTime = startTime;
+    public void Concert.setStartHours(Integer startHours) {
+        this.startHours = startHours;
+    }
+    
+    public Integer Concert.getStartMinutes() {
+        return this.startMinutes;
+    }
+    
+    public void Concert.setStartMinutes(Integer startMinutes) {
+        this.startMinutes = startMinutes;
     }
     
     public Integer Concert.getDuration() {

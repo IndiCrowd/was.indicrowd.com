@@ -8,6 +8,26 @@
 <sec:authentication property="principal" var="principal" />
 
 <script>
+	function delPost(postId) {
+		var answer = confirm("정말 삭제하시겠습니까?")
+	    if (!answer){
+	        return ;  
+	    }
+
+		$.ajax({
+			url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
+			type : 'DELETE',
+			success : function(object) {
+				console.log(object);
+				alert('삭제되었습니다.');
+				history.back();
+			},
+			error : function(a) {
+				// alert(a);
+			}
+		});
+	}
+	
 	function addReply(content) {
 		$.ajax({
 					url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply.json',
@@ -21,7 +41,7 @@
 						if(comment == null){
 							alert('로그인이 필요합니다.');
 						}else{
-							commentAdded(comment);
+							commentAdded(id);
 						}
 						
 					},
@@ -30,8 +50,38 @@
 					}
 				});
 	}
+	
+	function delReply(id) {
+
+		var answer = confirm("정말 삭제하시겠습니까?")
+	    if (!answer){
+	        return ;  
+	    }
+		
+		$.ajax({
+					url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply/'+id+'.json',
+					type : 'DELETE',
+					data : {
+					},
+					success : function(object) {
+						console.log(object);
+						var comment = object.command;
+						if(comment == null){
+					
+							alert('로그인이 필요합니다.');
+						}else{
+							$('#comment_' + id).remove();
+						}
+						
+					},
+					error : function(a) {
+						//alert(a);
+					}
+				});
+	}
+	
 	function commentAdded(comment){
-		$("#commentlist").append('<div class="comments">'+
+		$("#commentlist").append('<div id="comment_' + comment.id +'" class="comments">'+
 				'<div class="avatar">'+
 				'<img src="'+comment.userInfo.socialImageUrl+'" alt="" border="0" />'+
 			'</div>'+
@@ -39,7 +89,8 @@
 				'<div class="comment-by">'+
 					'<strong>'+comment.userInfo.nickname +'</strong><span '+
 						'class="reply"><span style="color: #aaa">/ </span>'+
-						'</span> <span class="date">'+comment.monthString +'</span>'+
+						'</span> <span class="date">'+comment.monthString +'</span>'+	
+						'<span><a href="javascript:delReply('+comment.id+');">삭제</a></span>'+
 				'</div>'+
 				'<p>'+comment.content +'</p>'+
 			'</div>'+
@@ -84,8 +135,10 @@
 					</div>
 					<div class="post-meta">
 						<span><i class="fa-icon-user"></i>By <a href="#">${post.author
-								}</a></span> <span><i class="fa-icon-comments-alt"></i>With <a
+								}</a></span> <span><a href="javascript:delPost(${post.id});">삭제</a></span><span><i class="fa-icon-comments-alt"></i>With <a
 							href="#"><span class="commentCount">${post.commentCount }</span>개의 댓글</a></span>
+							<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
+							
 					</div>
 					<div class="post-description">
 						<p>${post.content }</p>
@@ -103,7 +156,7 @@
 
 
 				<c:forEach items="${post.commentList }" var="comment">
-					<div class="comments">
+					<div id="comment_${comment.id}" class="comments">
 						<div class="avatar" style="min-height: 70px;">
 							<img width="50px" height="50px" src="${comment.authorImageUrl }" alt="" border="0" />
 						</div>
@@ -111,8 +164,9 @@
 							<div class="comment-by">
 								<strong>${comment.author }</strong><span
 									class="reply"><span style="color: #aaa">/ </span></span> <span class="date">${comment.monthString }</span>
+								<span><a href="javascript:delReply('${comment.id}');">삭제</a></span>
 							</div>
-							<p>${comment.content }</p>
+							<p class="comment-content">${comment.content }</p>
 						</div>
 					</div>
 				</c:forEach>
