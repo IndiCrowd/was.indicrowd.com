@@ -2,6 +2,7 @@ package com.indicrowd.shop;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +14,7 @@ public class ShopController extends AbstractController {
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("/create")
-	public void create() {
+	public void create(@ModelAttribute("command") Shop shop) {
 	}
 	
 	@Secured("ROLE_ADMIN")
