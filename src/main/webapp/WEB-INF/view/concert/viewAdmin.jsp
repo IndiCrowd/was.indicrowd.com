@@ -36,6 +36,7 @@
 				// open the flash Stream User
 				var replaceId = 'user-' + userId;
 		        var flashvars = {};
+		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 				flashvars.clientStreamStr = userId;
 				flashvars.clientDefaultImage = userImg;
 				
@@ -60,6 +61,7 @@
 			
 			var openStreamPublisher = function() {
 		        var flashvars = {};
+		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.pubStreamStr = '${command.id}';
 		        
 		        var params = {};

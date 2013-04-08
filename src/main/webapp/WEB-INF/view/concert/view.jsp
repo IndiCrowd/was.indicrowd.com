@@ -32,6 +32,7 @@
 			{
 				// open the flash StreamPublisher
 		        var flashvars = {};
+		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.serverSubscribeStr = '${command.id}';
 		        
 		        var params = {};
@@ -58,6 +59,7 @@
 
 			var openStreamUserPublisher = function() {
 		        var flashvars = {};
+		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.clientPublishStr = '${principal.id}';
 				flashvars.clientDefaultImage = '${principal.socialImageUrl}';
 		        
