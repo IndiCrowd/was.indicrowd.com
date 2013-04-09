@@ -411,8 +411,8 @@ header {
 
 .nav .active .dropdown-toggle .caret {
 	margin-left: 10px;
-  	border-top-color: #fff !important;	
-  	border-bottom-color: #fff !important;	
+  	/*border-top-color: #fff !important;	
+  	border-bottom-color: #fff !important;*/	
 }
 
 /* Wrapper
@@ -3702,7 +3702,7 @@ a.buy:hover {
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
 /* line 682, ../../app/assets/stylesheets/style.css.scss */
-.perfectum .dropdown-menu .active > a,
+
 .perfectum .dropdown-menu .active > a:hover {
   color: #ffffff;
   text-decoration: none;
