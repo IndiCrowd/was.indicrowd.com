@@ -156,7 +156,7 @@ html .fc,
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
-	margin-top: -51px;
+	margin-top: -25px;
 	}
 	
 .fc-state-default { /* non-theme */
@@ -519,6 +519,9 @@ table.fc-border-separate {
 	
 /* all-day area */
 	
+.fc-agenda-allday{
+	margin-bottom: 0px;
+}
 .fc-agenda-allday th {
 	border-width: 0 1px;
 	}

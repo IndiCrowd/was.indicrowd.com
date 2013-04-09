@@ -8642,7 +8642,7 @@ a.badge:hover {
   color: #fff;
   text-decoration: none;
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);*/
 }
 /* line 10, ../../app/assets/stylesheets/bootstrap.min.css.scss */
 .perfectum .dropdown-menu > .active > a, .perfectum .dropdown-menu > .active > a:hover, .perfectum .dropdown-menu > .active > a:focus {
@@ -8650,7 +8650,7 @@ a.badge:hover {
   text-decoration: none;
   background-repeat: repeat-x;
   outline: 0;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);*/
 }
 /* line 10, ../../app/assets/stylesheets/bootstrap.min.css.scss */
 .perfectum .dropdown-menu > .disabled > a, .perfectum .dropdown-menu > .disabled > a:hover, .perfectum .dropdown-menu > .disabled > a:focus {

@@ -39,7 +39,7 @@
 											<li class="active dropdown"><a class="dropdown-toggle"
 												data-toggle="dropdown" href="#">
 													<c:if test="${principal.userBand[0].imageFilePath ne ''}">
-														<img border="0" width="22" height="22"
+														<img border="0" style="width:22px ;height:22px"
 															src="${pageContext.request.contextPath}/img/band/${principal.userBand[0].imageFilePath }" />
 													</c:if>${principal.userBand[0].name }<b class="caret"></b></a>
 												<ul class="dropdown-menu">
@@ -47,13 +47,12 @@
 														<!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
 														<li class="active"><a href="#">
 																<c:if test="${band.imageFilePath ne ''}">
-																	<img border="0" width="22" height="22"
+																	<img border="0" style="width:22px ;height:22px"
 																		src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" />
 																</c:if>${band.name }</a></li>
 													</c:forEach>
 												</ul></li>
 										</ul>
-										<form:errors path="title" cssClass="help-inline" />
 									</div>
 								</div>
 							</c:if>
@@ -70,7 +69,9 @@
 							</div>-->
 							
 							<div class="control-group">
-								<label class="control-label" for="inputDate">공연 일정</label>
+								<label class="control-label" for="inputDate">
+									공연 일정
+								</label>
 								<div class="controls">
 									<div id="calendar"></div>
 								</div>
@@ -111,6 +112,14 @@
 </div>
 <script src="<c:url value="/js/fullcalendar.min.js" />"></script>
 <script>
+/*set of command
+ add Event
+$('#calendar').fullCalendar('renderEvent',{title: 'Lunch',start: new Date(y, m, d, 12, 30),end: new Date(y, m, d, 14, 0),allDay: false})
+
+
+*/
+
+
 var date = new Date();
 var d = date.getDate();
 var m = date.getMonth();
@@ -121,7 +130,14 @@ $('#calendar').fullCalendar({
 		left: 'title',
 		right: 'prev,next today,month,agendaWeek,agendaDay'
 	},
-	editable: true,
+	editable: false,
+	dayClick: function(date, allDay, jsEvent, view) {
+		alert(date);
+	},
+	 viewDisplay: function(view) {
+	        
+	        //alert(view.visStart+","+view.visEnd)
+	    },
 	events: [
 		{
 			title: 'All Day Event',
