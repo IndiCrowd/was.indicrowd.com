@@ -38,8 +38,13 @@
 								<form:form cssClass="form-horizontal">
 									<fieldset>
 										
-										
-										
+										<div class="control-group <spring:bind path="name"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+											<label class="control-label" for="name">상점 명</label>
+											<div class="controls">
+												<form:input path="name" cssClass="input-xlarge" />
+												<form:errors path="name" cssClass="help-inline" />
+											</div>
+										</div>
 										
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">상점 생성</button>
