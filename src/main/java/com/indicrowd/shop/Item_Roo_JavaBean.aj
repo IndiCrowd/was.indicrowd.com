@@ -59,6 +59,22 @@ privileged aspect Item_Roo_JavaBean {
         this.createDate = createDate;
     }
     
+    public int Item.getFrameCount() {
+        return this.frameCount;
+    }
+    
+    public void Item.setFrameCount(int frameCount) {
+        this.frameCount = frameCount;
+    }
+    
+    public CommonsMultipartFile Item.getProfilePhoto() {
+        return this.profilePhoto;
+    }
+    
+    public void Item.setProfilePhoto(CommonsMultipartFile profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+    
     public CommonsMultipartFile Item.getImage() {
         return this.image;
     }

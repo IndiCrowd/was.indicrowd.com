@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,10 +22,9 @@ import com.indicrowd.user.model.UserInfo;
 public class Item {
 	
 	@ManyToOne
-	@JoinColumn(name = "shopId", nullable = false)
+	@JoinColumn(name = "shopId")
 	private Shop shop;
 
-	@NotNull
 	@Transient
 	private Long shopId;
 	
@@ -45,6 +43,12 @@ public class Item {
 
 	@Column(nullable = false)
 	private Date createDate;
+	
+	@Column(nullable = false)
+	private int frameCount;
+	
+	@Transient
+	private CommonsMultipartFile profilePhoto;
 	
 	@Transient
 	private CommonsMultipartFile image;

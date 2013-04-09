@@ -38,7 +38,7 @@
 			<!-- start: Portfolio -->
 			<div id="wall" class="row-fluid">
 				<c:forEach items="${command.list}" var="one">
-				<div class="span3 item shop-${one.shop.id}">
+				<div class="span2 item shop-${one.shop.id}">
 					<div class="picture">
 						<a class="image" href="${pageContext.request.contextPath}/item/${one.id}" title="Title"><img
 							src="<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />/itemthumb/${one.id}" alt="" /></a>
