@@ -4,8 +4,28 @@
 package com.indicrowd.shop;
 
 import com.indicrowd.shop.Item;
+import com.indicrowd.shop.Shop;
+import com.indicrowd.user.model.UserInfo;
+import java.util.Date;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect Item_Roo_JavaBean {
+    
+    public Shop Item.getShop() {
+        return this.shop;
+    }
+    
+    public void Item.setShop(Shop shop) {
+        this.shop = shop;
+    }
+    
+    public Long Item.getShopId() {
+        return this.shopId;
+    }
+    
+    public void Item.setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
     
     public String Item.getName() {
         return this.name;
@@ -13,6 +33,38 @@ privileged aspect Item_Roo_JavaBean {
     
     public void Item.setName(String name) {
         this.name = name;
+    }
+    
+    public String Item.getDescription() {
+        return this.description;
+    }
+    
+    public void Item.setDescription(String description) {
+        this.description = description;
+    }
+    
+    public UserInfo Item.getCreator() {
+        return this.creator;
+    }
+    
+    public void Item.setCreator(UserInfo creator) {
+        this.creator = creator;
+    }
+    
+    public Date Item.getCreateDate() {
+        return this.createDate;
+    }
+    
+    public void Item.setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+    
+    public CommonsMultipartFile Item.getImage() {
+        return this.image;
+    }
+    
+    public void Item.setImage(CommonsMultipartFile image) {
+        this.image = image;
     }
     
 }

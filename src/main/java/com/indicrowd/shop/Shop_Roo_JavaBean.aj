@@ -4,6 +4,8 @@
 package com.indicrowd.shop;
 
 import com.indicrowd.shop.Shop;
+import com.indicrowd.user.model.UserInfo;
+import java.util.Date;
 
 privileged aspect Shop_Roo_JavaBean {
     
@@ -13,6 +15,30 @@ privileged aspect Shop_Roo_JavaBean {
     
     public void Shop.setName(String name) {
         this.name = name;
+    }
+    
+    public UserInfo Shop.getCreator() {
+        return this.creator;
+    }
+    
+    public void Shop.setCreator(UserInfo creator) {
+        this.creator = creator;
+    }
+    
+    public Date Shop.getCreateDate() {
+        return this.createDate;
+    }
+    
+    public void Shop.setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+    
+    public int Shop.getItemCount() {
+        return this.itemCount;
+    }
+    
+    public void Shop.setItemCount(int itemCount) {
+        this.itemCount = itemCount;
     }
     
 }
