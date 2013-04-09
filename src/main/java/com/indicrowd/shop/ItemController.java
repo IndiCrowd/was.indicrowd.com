@@ -61,6 +61,8 @@ public class ItemController extends AbstractController {
 	@RequestMapping("/list")
 	public void list(Model model) {
 		model.addAttribute("shops", Shop.findAllShops());
+		
+		model.addAttribute("model", Item.findAllItems());
 	}
 
 	@RequestMapping("/list/{page}")
