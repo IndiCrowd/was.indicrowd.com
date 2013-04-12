@@ -1,5 +1,5 @@
-@import url(init/base.css);
-@import url(init/reset.css);
+/* @import url(init/base.css);
+@import url(init/reset.css); */
 @import url(init/fonts.css);
 
 /* init */
@@ -7,14 +7,14 @@
 
 
 /* All - ��� �ػ� ��� ��Ÿ�� */
-th, td {
+/*th, td {
 	border: none;
 }
 
 textarea {
 	width: 15em;
 	height: 5em;
-}
+}*/
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
