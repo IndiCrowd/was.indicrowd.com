@@ -177,7 +177,7 @@ function objToEvent(obj){
 		allDay: false
 	}
 }
-function reservate(date){
+function reserve(date){
 	$('#myModal').modal('show');
 	var year = date.getFullYear();
 	var month = date.getMonth();
@@ -209,7 +209,7 @@ $('#calendar').fullCalendar({
 	},
 	editable: false,
 	dayClick: function(date, allDay, jsEvent, view) {
-		reservate(date);
+		reserve(date);
 	},
 	 viewDisplay: function(view) {
 	    $("#calendar").fullCalendar( 'removeEvents');
