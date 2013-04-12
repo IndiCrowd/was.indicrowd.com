@@ -1,5 +1,7 @@
 package com.indicrowd.concert;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +10,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
@@ -48,7 +53,36 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/reservate", method = RequestMethod.GET)
 	public void reservate(@ModelAttribute("command") Concert concert, Model model) {
-		// just view
+		Integer today = Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD"));
+		model.addAttribute("todayConcert", Concert.findConcertListByDateRange(today, today));
+	}
+	
+	@RequestMapping(value = "/plan", method = RequestMethod.GET)
+	public void getConcert(Model model, @RequestParam Integer startDate , @RequestParam Integer endDate) throws JsonGenerationException, JsonMappingException, IOException{
+		List<Concert> concertList = Concert.findConcertListByDateRange(startDate, endDate);
+		List<Event> eventList = new ArrayList<Event>();
+		for(int i=0; i<concertList.size(); i++){
+			Event event = new Event();
+			Concert concert = concertList.get(i);
+			event.setTitle(concert.getTitle());
+			event.setStartYear(concert.getStartDate()/10000);
+			event.setStartMonth(concert.getStartDate()/100%100);
+			event.setStartDay(concert.getStartDate()%100);
+			event.setStartHours(concert.getStartHours());
+			event.setStartMinutes(concert.getStartMinutes());
+			
+			Calendar end = DateUtil.getCalendar();
+			end.set(concert.getStartDate()/10000, concert.getStartDate()/100%100, concert.getStartDate()%100, concert.getStartHours(), concert.getStartMinutes() + concert.getDuration());
+			
+			event.setEndYear(end.get(Calendar.YEAR));
+			event.setEndMonth(end.get(Calendar.MONTH));
+			event.setEndDay(end.get(Calendar.DAY_OF_MONTH));
+			event.setEndHours(end.get(Calendar.HOUR_OF_DAY));
+			event.setEndMinutes(end.get(Calendar.MINUTE));
+			
+			eventList.add(event);
+		}
+		model.addAttribute("command", eventList);
 	}
 
 	@Secured("ROLE_USER")
@@ -64,11 +98,10 @@ public class ConcertController extends AbstractController {
 			
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(inputDate);
-			System.out.println(calendar);
 			
-			concert.setStartDate(Integer.parseInt(DateUtil.getDateString(DateUtil.getCalendar(inputDate.getYear()+1900, inputDate.getMonth(), inputDate.getDate()), "YYYYMMDD")));
-			concert.setStartHours(inputDate.getHours());
-			concert.setStartMinutes(inputDate.getMinutes());
+			concert.setStartDate(Integer.parseInt(DateUtil.getDateString(DateUtil.getCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)), "YYYYMMDD")));
+			concert.setStartHours(calendar.get(Calendar.HOUR_OF_DAY));
+			concert.setStartMinutes(calendar.get(Calendar.MINUTE));
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			concert.persist();
