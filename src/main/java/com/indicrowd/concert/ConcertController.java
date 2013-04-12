@@ -86,13 +86,13 @@ public class ConcertController extends AbstractController {
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/reservate", method = RequestMethod.POST)
-	public String reservate(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/reserve", method = RequestMethod.POST)
+	public String reserve(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
 
 		
 
 		if (bindingResult.hasErrors()) {
-			return "concert/reservate";
+			return "concert/reserve";
 		} else {
 			Date inputDate = concert.getInputDate();
 			
