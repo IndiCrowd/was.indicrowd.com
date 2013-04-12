@@ -165,7 +165,7 @@
 					
 					<p id="under-footer-menu" class="pull-right">
 						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
-						<a href="${pageContext.request.contextPath}/help">도움말</a>
+						<%-- <a href="${pageContext.request.contextPath}/help">도움말</a> --%>
 						<a href="${pageContext.request.contextPath}/terms">이용약관</a>
 						<a href="${pageContext.request.contextPath}/policy">개인정보 보호정책</a>
 						<a href="${pageContext.request.contextPath}/contact">제안/문의하기</a>
