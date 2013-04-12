@@ -75,13 +75,9 @@
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/item/list">상점</a></li>
-							<li class="active">
-								<sec:authorize access="isAnonymous()">
-									<a href="${pageContext.request.contextPath}/signin">로그인</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<a href="${pageContext.request.contextPath}/signout">로그아웃</a>
-								</sec:authorize></li>
+							<sec:authorize access="isAnonymous()">
+								<li class="active"><a href="${pageContext.request.contextPath}/signin">로그인</a></li>
+							</sec:authorize>
 							<sec:authorize access="isAnonymous()">
 								<li class="active" ><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 							</sec:authorize>
@@ -91,13 +87,15 @@
 								  	<a class="dropdown-toggle"
 								       data-toggle="dropdown"
 								       href="#" >
-								    <c:if test="${principal.socialImageUrl ne ''}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }<b class="caret"></b></a>
+								    <c:if test="${principal.socialImageUrl ne ''}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname.length() > 6 ? principal.nickname.substring(0, 6).concat('...') : principal.nickname }<b class="caret"></b></a>
 								  	<ul class="dropdown-menu">
+								  	  <li class="active" style="border-bottom: 1px solid #ccc;"><a href="#" style="color: #d86112 !important; font-weight: bold;"><img src="${pageContext.request.contextPath}/img/energy.png"> 1000 <span>energy</span></a></li>
 								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl ne ''}"><img border="0" style="width:22px;height:22px" src="${principal.socialImageUrl }" /> </c:if>${principal.nickname }</a></li>
 								      <c:forEach var="band" items="${principal.userBand }">
 								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
 								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" style="width:22px;height:22px" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
 								      </c:forEach>
+									  <li class="active" style="border-top: 1px solid #ccc;"><a href="${pageContext.request.contextPath}/signout">로그아웃</a></li>
 								    </ul>
 								  </li>
 								</ul>
@@ -166,11 +164,11 @@
 				<div class="span6">
 					
 					<p id="under-footer-menu" class="pull-right">
-						<a href="#">IndiCrowd 소개</a>
-						<a href="#">도움말</a>
-						<a href="#">이용약관</a>
-						<a href="#">개인정보 보호정책</a>
-						<a href="#">제안/문의하기</a>
+						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
+						<a href="${pageContext.request.contextPath}/help">도움말</a>
+						<a href="${pageContext.request.contextPath}/terms">이용약관</a>
+						<a href="${pageContext.request.contextPath}/policy">개인정보 보호정책</a>
+						<a href="${pageContext.request.contextPath}/contact">제안/문의하기</a>
 					</p>
 					
 				</div>

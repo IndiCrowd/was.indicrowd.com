@@ -110,6 +110,56 @@
 
 	</div>
 </div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h1 id="myModalLabel" style="font-size:20px; font-weight: bold">공연할 시간을 정해주세요!</h1>
+  </div>
+  <div class="modal-body" style="font-size: 16px">
+    <p ><span id="modalYear" ></span>년 <span id="modalMonth"></span>월 <span id="modalDate"></span>일  
+    	<select class="span1" id="modalHour">
+    		<option value="0">00시</option>
+    		<option value="1">01시</option>
+    		<option value="2">02시</option>
+    		<option value="3">03시</option>
+    		<option value="4">04시</option>
+    		<option value="5">05시</option>
+    		<option value="6">06시</option>
+    		<option value="7">07시</option>
+    		<option value="8">08시</option>
+    		<option value="9">09시</option>
+    		<option value="10">10시</option>
+    		<option value="11">11시</option>
+    		<option value="12">12시</option>
+    		<option value="13">13시</option>
+    		<option value="14">14시</option>
+    		<option value="15">15시</option>
+    		<option value="16">16시</option>
+    		<option value="17">17시</option>
+    		<option value="18">18시</option>
+    		<option value="19">19시</option>
+    		<option value="20">20시</option>
+    		<option value="21">21시</option>
+    		<option value="22">22시</option>
+    		<option value="23">23시</option>
+    	</select>
+    	<select class="span1" id="modalMinute">
+    		<option value="0">00분</option>
+    		<option value="30">30분</option>
+    	</select>에 </p>
+    	<p><select class="span1" id="modalDuration">
+    		<option value="30">30</option>
+    		<option value="60">60</option>
+    		<option value="90">90</option>
+    	</select>분간 공연합니다.</p>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
 <script src="<c:url value="/js/fullcalendar.min.js" />"></script>
 <script>
 /*set of command
@@ -119,70 +169,79 @@ $('#calendar').fullCalendar('renderEvent',{title: 'Lunch',start: new Date(y, m, 
 
 */
 
-
+function objToEvent(obj){
+	return {
+		title: obj.title,
+		start: new Date(obj.startYear, obj.startMonth- 1, obj.startDay, obj.startHours, obj.startMinutes),
+		end: new Date(obj.endYear, obj.endMonth-1, obj.endDay, obj.endHours, obj.endMinutes),
+		allDay: false
+	}
+}
+function reserve(date){
+	$('#myModal').modal('show');
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var d = date.getDate();
+	var hours = date.getHours();
+	var minutes = date.getMinutes(); 
+	$("#modalYear").html(year);
+	$("#modalMonth").html(month+1);
+	$("#modalDate").html(d);
+	$("#modalHour").val(hours);
+	if(minutes < 30){
+		$("#modalMinute").val(0);
+	}else{
+		$("#modalMinute").val(30);
+	}
+	//$("#modalDate").html(getIntegerDate(date));
+}
 var date = new Date();
 var d = date.getDate();
 var m = date.getMonth();
 var y = date.getFullYear();
-
+var events = []
 $('#calendar').fullCalendar({
+	defaultView: 'agendaWeek',
+	slotMinutes : 15,
 	header: {
 		left: 'title',
 		right: 'prev,next today,month,agendaWeek,agendaDay'
 	},
 	editable: false,
 	dayClick: function(date, allDay, jsEvent, view) {
-		alert(date);
+		reserve(date);
 	},
 	 viewDisplay: function(view) {
-	        
-	        //alert(view.visStart+","+view.visEnd)
-	    },
-	events: [
-		{
-			title: 'All Day Event',
-			start: new Date(y, m, 1)
-		},
-		{
-			title: 'Long Event',
-			start: new Date(y, m, d-5),
-			end: new Date(y, m, d-2)
-		},
-		{
-			id: 999,
-			title: 'Repeating Event',
-			start: new Date(y, m, d-3, 16, 0),
-			allDay: false
-		},
-		{
-			id: 999,
-			title: 'Repeating Event',
-			start: new Date(y, m, d+4, 16, 0),
-			allDay: false
-		},
-		{
-			title: 'Meeting',
-			start: new Date(y, m, d, 10, 30),
-			allDay: false
-		},
-		{
-			title: 'Lunch',
-			start: new Date(y, m, d, 12, 0),
-			end: new Date(y, m, d, 14, 0),
-			allDay: false
-		},
-		{
-			title: 'Birthday Party',
-			start: new Date(y, m, d+1, 19, 0),
-			end: new Date(y, m, d+1, 22, 30),
-			allDay: false
-		},
-		{
-			title: 'Click for Google',
-			start: new Date(y, m, 28),
-			end: new Date(y, m, 29),
-			url: 'http://google.com/'
-		}
-	]
+	    $("#calendar").fullCalendar( 'removeEvents');
+	 	getEvent(getIntegerDate(view.visStart),getIntegerDate(view.visEnd));
+	 	$('.fc-widget-content').hover(function(){
+			$(this).css("background","#F7FBFE");
+		}, function(){
+			$(this).css("background","")
+		});
+	 }
 });
+function getIntegerDate(date){
+	var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var date = date.getDate();
+    if(month < 10) month = "0"+month;
+    if(date < 10) date = "0"+date;
+    return year+""+month+""+date;
+}
+function getEvent(startDate, endDate){
+	$.ajax({
+		url : '${pageContext.request.contextPath}/concert/plan.json?startDate='+startDate+'&endDate='+endDate,
+		dataType :'json',
+		success :function(data){
+			console.log(data.list);
+			for(var i=0;i<data.list.length;i++){
+				console.log(objToEvent(data.list[i]));
+				//console.log(data.list[i])
+				$('#calendar').fullCalendar( 'renderEvent', objToEvent(data.list[i]) );
+			}
+		}
+	});
+}
+
 </script>

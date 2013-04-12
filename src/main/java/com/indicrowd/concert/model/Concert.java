@@ -17,6 +17,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.util.DateUtil;
 
 @RooJavaBean
 @RooToString
@@ -80,6 +81,16 @@ public class Concert {
 				.createQuery(
 						"SELECT o FROM Concert o WHERE o.startDate  = :date AND o.hall.id = :hallId AND isValid=true",
 						Concert.class).setParameter("hallId", hallId).setParameter("date", date)
+				.getResultList();
+	}
+	
+	public static List<Concert> findConcertListByDateRange(Integer startDate,Integer endDate){
+		Integer startDateForQuery = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(startDate), -2));
+		Integer endDateForQuery = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(endDate), 1));
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Concert o WHERE (startDate > :startDate AND startHours > -1 AND startMinutes > -1) AND (startDate < :endDate ) AND isValid = true",
+						Concert.class).setParameter("startDate", startDateForQuery).setParameter("endDate", endDateForQuery)
 				.getResultList();
 	}
 }

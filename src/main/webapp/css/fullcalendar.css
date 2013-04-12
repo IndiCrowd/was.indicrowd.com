@@ -135,6 +135,8 @@ html .fc,
 .fc-widget-content {  /* <td>, usually */
 	border: 1px solid #ddd;
 	color: #646464;
+	cursor: pointer;
+	cursor: hand;
 }
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
@@ -268,7 +270,7 @@ html .fc,
 	 
 .fc-event {
 	font-weight : bold;
-	font-size :16px;
+	font-size :15px;
 	border-style: solid;
 	border-width: 0;
 	/*font-size: .85em;*/

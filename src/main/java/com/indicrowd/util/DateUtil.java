@@ -6,6 +6,30 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class DateUtil {
+	public static void main(String[] args){
+		Calendar cal = getCalendarWithInteger(20130412);
+		cal = getNextMinutes(cal, 80);
+		System.out.println(cal.get(Calendar.HOUR_OF_DAY) +"," + cal.get(Calendar.MINUTE));
+		System.out.println(calendarToInteger(cal));
+	}
+	
+	public static Integer calendarToInteger(Calendar cal){
+		return cal.get(Calendar.YEAR)*10000 + (cal.get(Calendar.MONTH)+1)*100 + cal.get(Calendar.DAY_OF_MONTH);
+	}
+	public static Calendar getNextMinutes(Calendar cal, int count){
+		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE) + count);
+		return cal;
+	}
+	
+	public static Calendar getNextDay(Calendar cal, int count){
+		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH) + count);
+		return cal;
+	}
+	
+	public static Calendar getCalendarWithInteger(Integer date){
+		return getCalendar(date/10000, date/100%100 - 1, date%100);
+	}
+	
 	public static String getFormedDate(Calendar calendar) {
 		return getMonthString(calendar) + " " + calendar.get(Calendar.DATE) + "일, " + calendar.get(Calendar.YEAR) + "년 ";
 	}
@@ -207,9 +231,7 @@ public class DateUtil {
 		}
 		return getDateString(getCalendar(year,month-1,tempDay,tempHour),"YYYYMMDDHH");
 	}
-	public static void main(String[] args){
-		System.out.println(getBeforeOrNextHour(2012, 11, 4,6,-10));
-	}
+	
 	
 	
 	
