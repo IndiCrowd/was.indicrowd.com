@@ -30,12 +30,10 @@
 						<!-- start: Contact Form -->
 						<div class="span9 separate">
 							
-							<h3>About Us</h3>
+							<h3>저희에게 제안, 문의사항을 보내주세요!</h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+								IndiCrowd 공식 페이스북 <a href="http://www.facebook.com/IndiCrowd" target="_blank">http://www.facebook.com/IndiCrowd</a> 또는 indicrowd@gmail.com 으로 제안, 문의사항을 주세요!<br>
+								아니면, 아래의 폼을 작성해 주셔도 됩니다! :)
 							</p>
 							
 		
@@ -48,22 +46,22 @@
 										
 										<div class="row-fluid">
 											
-												<input class="span4" tabindex="1" id="name" name="name" type="text" value="" placeholder="Name: ..." >
+												<input class="span4" tabindex="1" id="name" name="name" type="text" value="" placeholder="이름: ..." >
 											
-												<input class="span4" tabindex="2" id="email" name="email" type="text" value="" placeholder="Email: ...">
+												<input class="span4" tabindex="2" id="email" name="email" type="text" value="" placeholder="이메일: ...">
 											
-												<input class="span4" tabindex="3" id="www" name="www" type="text" value=""placeholder="WWW: ...">
+												<input class="span4" tabindex="3" id="www" name="www" type="text" value=""placeholder="사이트: ...">
 										
 										</div>	
 		
 										<div class="row-fluid">
 											
-												<textarea class="span12" tabindex="4" id="message" name="message" rows="12" placeholder="Message: ..."></textarea>					
+												<textarea class="span12" tabindex="4" id="message" name="message" rows="12" placeholder="메시지: ..."></textarea>					
 										
 										</div>
 		
 										<div class="actions">
-											<button tabindex="5" type="submit" class="btn">Send message</button>
+											<button tabindex="5" type="submit" class="btn">메일 보내기</button>
 										</div>
 										
 									</fieldset>
@@ -78,39 +76,26 @@
 		
 								<!-- start: Contact Info -->
 								
-								<h3>Contact Info</h3>
+								<h3>연락처</h3>
 								
 								<p>
-									<i class="fa-icon-home"></i> <b>creativeLabs</b>
+									<i class="fa-icon-home"></i> <b>IndiCrowd</b>
 								</p>
 								<p>
-									<i class="fa-icon-map-marker"></i> 30 South Park Avenue
-								</p>
-								<p>	
-									<i class="fa-icon-map-marker"></i> San Francisco, CA 94108, USA
-								</p>	
-								<p>	
-									<i class="fa-icon-phone"></i> Phone: (123) 456-7890
-								</p>
-								<p>	
-									<i class="fa-icon-print"></i> Fax: +08 (123) 456-7890
+									<i class="fa-icon-map-marker"></i> 대한민국 서울특별시
 								</p>
 								<p>
-									<i class="fa-icon-envelope"></i> Email: contact@companyname.com
+									<i class="fa-icon-envelope"></i> Email: indicrowd@gmail.com
 								</p>
 								<p>
-									<i class="fa-icon-globe"></i> Web: companyname.com
+									<i class="fa-icon-globe"></i> Web: www.indicrowd.com
 								</p>	
 								<!-- end: Contact Info -->
 		
 								<!-- start: Social Sites -->
 								<div class="social_profiles">
-									<a href="#" class="social-facebook"></a>
-									<a href="#" class="social-twitter"></a>
-									<a href="#" class="social-linkedin"></a>
-									<a href="#" class="social-pinterest"></a>
-									<a href="#" class="social-dribbble"></a>
-									<a href="#" class="social-forrst"></a>
+									<a href="http://www.facebook.com/IndiCrowd" target="_blank" class="social-facebook"></a>
+									<a href="javascript:alert('트위터는 준비중입니다.');" class="social-twitter"></a>
 								</div>
 								<!-- end: Social Sites -->
 		

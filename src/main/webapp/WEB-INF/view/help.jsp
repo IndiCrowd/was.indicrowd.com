@@ -18,9 +18,9 @@
 		
 		</div>
 	
-		<div id="wrapper">
+		<div id="wrapper" class="full">
 			<div id="content">
-				test
+				도움말은 준비중입니다.
 			</div>
 		</div>
 
