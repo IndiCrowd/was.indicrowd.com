@@ -41,7 +41,7 @@
 						if(comment == null){
 							alert('로그인이 필요합니다.');
 						}else{
-							commentAdded(id);
+							commentAdded(comment);
 						}
 						
 					},
