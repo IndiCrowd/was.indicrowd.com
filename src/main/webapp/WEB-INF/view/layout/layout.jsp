@@ -28,14 +28,7 @@
 	<body>		
 		<div class="perfectum">
 		<div id="overlay" style="display:none;">
-		<ul>
-		  <li class="li1"></li>
-		  <li class="li2"></li>
-		  <li class="li3"></li>
-		  <li class="li4"></li>
-		  <li class="li5"></li>
-		  <li class="li6"></li>
-		</ul>
+		
 		</div>
 		</div>
 		<!--start: Header -->
@@ -195,6 +188,19 @@
 		
 		<!-- load script after page rendered for performance -->
 		<jsp:include page="../script-import.jsp" />
+		
+		<!-- Modal for band concert -->
+		<div id="bandCloseModal" class="modal hide fade">
+		  
+		  <div class="modal-body">
+		    <p style="text-align:center; font-size:20px"><strong>진행 중인 공연에서 나왔습니다.</strong></p>
+		    <p style="font-size:16px"><br/>27명의 팬이 공연을 기다리고 있습니다.</p>
+		    <br/>
+		    <hr/>
+		    <p style="text-align:center;"><button class="btn btn-success">공연장으로 돌아가기!</button> <button class="btn btn-danger">공연 취소</button></p>
+		  </div>
+		  
+		</div>
 	</body>
 	
 </html>

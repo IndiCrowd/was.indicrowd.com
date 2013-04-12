@@ -50,8 +50,6 @@ public class Concert {
 	@Transient
 	private Long bandId;
 	
-	@Transient
-	private Date inputDate;
 	
 	@Column(nullable = false)
 	private Integer startDate;

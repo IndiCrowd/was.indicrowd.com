@@ -62,9 +62,8 @@
 
 		</div>
 		<div class="row">
-		
-			<h2 style="text-align: center"><- 2013/4/2 -></h2>
-			<p><a href="<c:url value="/concert/reservate" />"><button class="btn btn-primary offset10">예약하기</button></a></p>
+			<p><a href="javascript:$('#bandCloseModal').modal({ keyboard: false, backdrop:false});$('#overlay').fadeIn(500)">Test</a></p>
+			<p><a href="<c:url value="/concert/reserve" />"><button class="btn btn-primary offset10">예약하기</button></a></p>
 		
 		<div class="span12">
 		<c:set var="tableWidth" value="${1070/fn:length(command) }"/>

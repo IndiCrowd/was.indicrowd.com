@@ -39,13 +39,12 @@
 											<li class="active dropdown"><a class="dropdown-toggle"
 												data-toggle="dropdown" href="#">
 													<c:if test="${principal.userBand[0].imageFilePath ne ''}">
-														<img border="0" style="width:22px ;height:22px"
+														<img id="bandImage" border="0" style="width:22px ;height:22px"
 															src="${pageContext.request.contextPath}/img/band/${principal.userBand[0].imageFilePath }" />
-													</c:if>${principal.userBand[0].name }<b class="caret"></b></a>
+													</c:if><span id="bandName">${principal.userBand[0].name }</span><b class="caret"></b></a>
 												<ul class="dropdown-menu">
 													<c:forEach var="band" items="${principal.userBand }">
-														<!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
-														<li class="active"><a href="#">
+														<li class="active"><a href="javascript:changeBand('${band.id }','${band.imageFilePath }','${band.name }')">
 																<c:if test="${band.imageFilePath ne ''}">
 																	<img border="0" style="width:22px ;height:22px"
 																		src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" />
@@ -56,18 +55,10 @@
 									</div>
 								</div>
 							</c:if>
-							
-							<!-- div class="control-group <spring:bind path="inputDate"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
-								<label class="control-label" for="inputDate">공연 시작 시간</label>
-								<div class="controls">
-									<div class="input-prepend">
-										<span class="add-on"><i class="icon-time"></i></span>
-										<form:input path="inputDate" cssClass="datetimepicker" />
-									</div>
-									<form:errors path="inputDate" cssClass="help-inline" />
-								</div>
-							</div>-->
-							
+							<form:hidden path="startDate"  />
+							<form:hidden path="startHours"  />
+							<form:hidden path="startMinutes"  />
+								
 							<div class="control-group">
 								<label class="control-label" for="inputDate">
 									공연 일정
@@ -80,7 +71,7 @@
 							<div class="control-group <spring:bind path="duration"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 								<label class="control-label" for="duration">공연시간</label>
 								<div class="controls">
-									 <form:input path="duration" cssStyle="text-align:right" />분
+									 <form:input path="duration" readonly="true" cssStyle="text-align:right; " />분
 									<form:errors path="duration" cssClass="help-inline" />
 								</div>
 							</div>
@@ -116,8 +107,9 @@
     <h1 id="myModalLabel" style="font-size:20px; font-weight: bold">공연할 시간을 정해주세요!</h1>
   </div>
   <div class="modal-body" style="font-size: 16px">
+  	<input type="hidden" id="modalStartDate"/>
     <p ><span id="modalYear" ></span>년 <span id="modalMonth"></span>월 <span id="modalDate"></span>일  
-    	<select class="span1" id="modalHour">
+    	<select class="span1" id="modalHours">
     		<option value="0">00시</option>
     		<option value="1">01시</option>
     		<option value="2">02시</option>
@@ -143,7 +135,7 @@
     		<option value="22">22시</option>
     		<option value="23">23시</option>
     	</select>
-    	<select class="span1" id="modalMinute">
+    	<select class="span1" id="modalMinutes">
     		<option value="0">00분</option>
     		<option value="30">30분</option>
     	</select>에 </p>
@@ -156,18 +148,43 @@
     
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
+  	<button id="modalSubmit" class="btn btn-primary">선택</button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>
+    
   </div>
 </div>
 <script src="<c:url value="/js/fullcalendar.min.js" />"></script>
 <script>
-/*set of command
- add Event
-$('#calendar').fullCalendar('renderEvent',{title: 'Lunch',start: new Date(y, m, d, 12, 30),end: new Date(y, m, d, 14, 0),allDay: false})
-
-
-*/
+function changeBand(id, imagePath, name){
+	$("#bandId").val(id);
+	$("#bandImage").attr("src","${pageContext.request.contextPath}/img/band/"+imagePath);
+	$("#bandName").html(name);
+}
+$(function(){
+	$("#modalSubmit").click(function(){
+		$("#duration").val($("#modalDuration").val());
+		$("#startDate").val($("#modalStartDate").val());
+		$("#startHours").val($("#modalHours").val());
+		$("#startMinutes").val($("#modalMinutes").val());
+		
+		var year = $("#modalStartDate").val()/10000;
+		var month = $("#modalStartDate").val()/100%100 -1;
+		var d = $("#modalStartDate").val()%100;
+		
+		var title = $("#title").val() == '' ? '새로운 예약' : $("#title").val();
+		$('#calendar').fullCalendar( 'removeEvents', 1);
+		$('#calendar').fullCalendar( 'renderEvent', { 
+			id: 1,
+			title: title,
+			start: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()),
+			end: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()*1+$("#modalDuration").val()*1),
+			allDay:false,
+			backgroundColor: '#f9a022',
+			borderColor : '#f9a022'
+		} );
+		$("#myModal").modal('hide');
+	});
+});
 
 function objToEvent(obj){
 	return {
@@ -175,10 +192,11 @@ function objToEvent(obj){
 		start: new Date(obj.startYear, obj.startMonth- 1, obj.startDay, obj.startHours, obj.startMinutes),
 		end: new Date(obj.endYear, obj.endMonth-1, obj.endDay, obj.endHours, obj.endMinutes),
 		allDay: false
-	}
+	};
 }
 function reserve(date){
 	$('#myModal').modal('show');
+	$("#modalStartDate").val(getIntegerDate(date));
 	var year = date.getFullYear();
 	var month = date.getMonth();
 	var d = date.getDate();
@@ -187,19 +205,14 @@ function reserve(date){
 	$("#modalYear").html(year);
 	$("#modalMonth").html(month+1);
 	$("#modalDate").html(d);
-	$("#modalHour").val(hours);
+	$("#modalHours").val(hours);
 	if(minutes < 30){
-		$("#modalMinute").val(0);
+		$("#modalMinutes").val(0);
 	}else{
-		$("#modalMinute").val(30);
+		$("#modalMinutes").val(30);
 	}
-	//$("#modalDate").html(getIntegerDate(date));
 }
-var date = new Date();
-var d = date.getDate();
-var m = date.getMonth();
-var y = date.getFullYear();
-var events = []
+
 $('#calendar').fullCalendar({
 	defaultView: 'agendaWeek',
 	slotMinutes : 15,
@@ -217,17 +230,17 @@ $('#calendar').fullCalendar({
 	 	$('.fc-widget-content').hover(function(){
 			$(this).css("background","#F7FBFE");
 		}, function(){
-			$(this).css("background","")
+			$(this).css("background","");
 		});
 	 }
 });
 function getIntegerDate(date){
 	var year = date.getFullYear();
     var month = date.getMonth()+1;
-    var date = date.getDate();
+    var d = date.getDate();
     if(month < 10) month = "0"+month;
-    if(date < 10) date = "0"+date;
-    return year+""+month+""+date;
+    if(d < 10) d = "0"+d;
+    return year+""+month+""+d;
 }
 function getEvent(startDate, endDate){
 	$.ajax({
@@ -236,8 +249,6 @@ function getEvent(startDate, endDate){
 		success :function(data){
 			console.log(data.list);
 			for(var i=0;i<data.list.length;i++){
-				console.log(objToEvent(data.list[i]));
-				//console.log(data.list[i])
 				$('#calendar').fullCalendar( 'renderEvent', objToEvent(data.list[i]) );
 			}
 		}

@@ -11,7 +11,7 @@
 	
 	<decorator name="layout" page="layout.jsp">
 		<pattern>/*</pattern>
-		<pattern>/concert/reservate</pattern>
+		<pattern>/concert/reserve</pattern>
 		<pattern>/concert/</pattern>
 	</decorator>
 	
