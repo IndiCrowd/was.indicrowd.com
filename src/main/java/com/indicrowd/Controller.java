@@ -39,5 +39,9 @@ public class Controller extends AbstractController {
 	@RequestMapping("/contact")
 	public void contact() {
 	}
+	
+	@RequestMapping("/energy")
+	public void energy() {
+	}
 
 }
