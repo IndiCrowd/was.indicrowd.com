@@ -51,10 +51,9 @@ public class ConcertController extends AbstractController {
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/reservate", method = RequestMethod.GET)
-	public void reservate(@ModelAttribute("command") Concert concert, Model model) {
-		Integer today = Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD"));
-		model.addAttribute("todayConcert", Concert.findConcertListByDateRange(today, today));
+	@RequestMapping(value = "/reserve", method = RequestMethod.GET)
+	public void reserve(@ModelAttribute("command") Concert concert, Model model) {
+		
 	}
 	
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
@@ -94,14 +93,7 @@ public class ConcertController extends AbstractController {
 		if (bindingResult.hasErrors()) {
 			return "concert/reserve";
 		} else {
-			Date inputDate = concert.getInputDate();
 			
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(inputDate);
-			
-			concert.setStartDate(Integer.parseInt(DateUtil.getDateString(DateUtil.getCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)), "YYYYMMDD")));
-			concert.setStartHours(calendar.get(Calendar.HOUR_OF_DAY));
-			concert.setStartMinutes(calendar.get(Calendar.MINUTE));
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			concert.persist();
