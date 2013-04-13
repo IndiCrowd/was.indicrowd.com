@@ -13,7 +13,7 @@
 	    if (!answer){
 	        return ;  
 	    }
-
+		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
 			type : 'DELETE',
@@ -29,7 +29,17 @@
 	}
 	
 	function addReply(content) {
-		$.ajax({
+		POST('${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply.json',{
+			content : content
+		},function(object) {
+			console.log(object);
+			var comment = object;
+			if(comment == null){
+				alert('로그인이 필요합니다.');
+			}else{
+				commentAdded(comment);
+			}});
+		/*$.ajax({
 					url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply.json',
 					type : 'POST',
 					data : {
@@ -48,7 +58,7 @@
 					error : function(a) {
 						//alert(a);
 					}
-				});
+				});*/
 	}
 	
 	function delReply(id) {

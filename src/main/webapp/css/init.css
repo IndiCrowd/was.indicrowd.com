@@ -1,12 +1,12 @@
-/* @import url(init/base.css);
-@import url(init/reset.css); */
+ @import url(init/base.css);
+@import url(init/reset.css); 
 @import url(init/fonts.css);
 
 /* init */
 
 
 
-/* All - ��� �ػ� ��� ��Ÿ�� */
+/* All - ��������� �������� ��������� �������������� */
 /*th, td {
 	border: none;
 }
@@ -28,19 +28,19 @@ textarea {
 .ui-timepicker-rtl dl { text-align: right; }
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
   
-/* Mobile - ����� �ػ� ��� ��Ÿ�� */
+/* Mobile - ��������������� �������� ��������� �������������� */
   
-/* Tablet & Desktop #1 - �º? PC�� ����ũ�� ��� ��Ÿ�� #1 */
+/* Tablet & Desktop #1 - �����? PC������ �������������������� ��������� �������������� #1 */
 @media all and (min-width:481px) {
 	
 }
   
-/* Tablet & Desktop #2 - �º? PC�� ����ũ�� ��� ��Ÿ�� #2 */
+/* Tablet & Desktop #2 - �����? PC������ �������������������� ��������� �������������� #2 */
 @media all and (min-width:768px) {
 
 }
   
-/* Desktop - ����ũ�� ��� ��Ÿ�� */
+/* Desktop - �������������������� ��������� �������������� */
 @media all and (min-width:990px) {
 
 }
