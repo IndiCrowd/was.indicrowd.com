@@ -57,6 +57,22 @@ privileged aspect Concert_Roo_JavaBean {
         this.bandId = bandId;
     }
     
+    public boolean Concert.isStartEvent() {
+        return this.startEvent;
+    }
+    
+    public void Concert.setStartEvent(boolean startEvent) {
+        this.startEvent = startEvent;
+    }
+    
+    public boolean Concert.isEndEvent() {
+        return this.endEvent;
+    }
+    
+    public void Concert.setEndEvent(boolean endEvent) {
+        this.endEvent = endEvent;
+    }
+    
     public Integer Concert.getStartDate() {
         return this.startDate;
     }

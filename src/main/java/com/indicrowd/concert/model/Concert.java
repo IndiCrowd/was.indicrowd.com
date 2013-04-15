@@ -50,6 +50,11 @@ public class Concert {
 	@Transient
 	private Long bandId;
 	
+	@Transient
+	private boolean startEvent;
+	
+	@Transient
+	private boolean endEvent;
 	
 	@Column(nullable = false)
 	private Integer startDate;
@@ -89,6 +94,15 @@ public class Concert {
 				.createQuery(
 						"SELECT o FROM Concert o WHERE (startDate > :startDate AND startHours > -1 AND startMinutes > -1) AND (startDate < :endDate ) AND isValid = true",
 						Concert.class).setParameter("startDate", startDateForQuery).setParameter("endDate", endDateForQuery)
+				.getResultList();
+	}
+	
+	public static List<Concert> findConcertStatusList(Integer startDate,Integer queryHours, Integer queryMinutes){
+
+		return entityManager()
+				.createQuery(
+						"SELECT o,CASE WHEN ((startHours - :queryHours = 0 AND startMinutes - :queryMinutes = 3) OR (startHours - :queryHours = 1 AND startMinutes - :queryMinutes = -57 )) THEN 1 ELSE 0 END AS o.startEvent FROM Concert o WHERE startDate = :startDate AND ((startHours - :queryHours = 0 AND startMinutes - :queryMinutes = 3) OR (startHours - :queryHours = 1 AND startMinutes - :queryMinutes = -57 ) OR  (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 0 AND (startMinutes+duration )%60 -:queryMinutes = 5) OR (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 1 AND (startMinutes+duration )%60 - :queryMinutes = -55) OR 15*100+55 BETWEEN startHours*100+ startMinutes AND FLOOR(startHours + (duration+startMinutes) / 60)*100+(startMinutes+duration )%60)",
+					Concert.class).setParameter("startDate", startDate).setParameter("queryHours",queryHours).setParameter("queryMinutes", queryMinutes)
 				.getResultList();
 	}
 }
