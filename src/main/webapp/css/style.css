@@ -5432,7 +5432,7 @@ a.buy:hover {
 #broadcast-slider {width:80% ; visibility: hidden;}
 #broadcast-slider li{width:80%}
 
-#video-clip-gallary div.span3 {
+.gallery .wrapper {
 	padding: 10px;
 	background: #fff;
 	border: 1px solid #999;
@@ -5441,8 +5441,44 @@ a.buy:hover {
 	   -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
     		box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
 }
-#video-clip-gallary div.span3 .widget {
+.gallery h1 {
+	text-align: center;
 	padding: 0;
+}
+.gallery h2 {
+	text-align: center;
+	padding: 5px 0 5px 0;
+	margin: 31px 0 15px 0;
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(100,100,100,.3), rgba(0,0,0,0));
+	  background: -moz-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));
+	  background: -ms-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));
+	  background: -o-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));	
+}
+.gallery .widget {
+	padding: 0;
+}
+.gallery .flex-image img {
+	width: 100%;
+}
+.gallery .concert {
+	height: 40px;
+}
+.gallery .concert img {
+	height: 100%;
+	float: left;
+}
+.gallery .concert h4 {
+	float: left;
+	padding: 5px 0 0 10px;
+	line-height: 1em;
+	text-align: left;
+}
+.gallery .concert h4 .time {
+	text-align: left;
+	display: block;
+	padding: 0;
+	margin: 0;
+	color: #999;
 }
 #sns-share {
 	margin-top: 16px;

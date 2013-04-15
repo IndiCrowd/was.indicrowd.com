@@ -53,83 +53,88 @@
 	
 				<!-- start: Team -->
 	
-				<div id="video-clip-gallary">
+				<div id="video-clip-gallary" class="gallery">
 	
 	
 					<!-- start: Row -->
 	
 					<div class="row-fluid">
 						<div class="span3">
-							<div class="widget">
-								<div class="flex-video widescreen">
-									<iframe src="http://www.youtube.com/embed/n7Q4_IWGlOs"
-										width="480" height="256" frameborder="0" webkitAllowFullScreen
-										mozallowfullscreen allowFullScreen></iframe>
+							<div class="wrapper">
+								<div class="widget">
+									<div class="flex-video widescreen">
+										<iframe src="http://www.youtube.com/embed/n7Q4_IWGlOs"
+											width="480" height="256" frameborder="0" webkitAllowFullScreen
+											mozallowfullscreen allowFullScreen></iframe>
+									</div>
 								</div>
+								<div class="team-name">
+									밴딩머신 <span> / Rock</span>
+								</div>
+								<p class="text-info">
+									<a href="#">벤딩머신(Vending Machine) - SPR(Live)</a>
+								</p>
 							</div>
-							<div class="team-name">
-								밴딩머신 <span> / Rock</span>
-							</div>
-							<p class="text-info">
-								<a href="#">벤딩머신(Vending Machine) - SPR(Live)</a>
-							</p>
 						</div>
 	
 						<hr class="clean visible-phone">
 						<div class="span3">
-							<div class="widget">
-								<div class="flex-video widescreen">
-									<iframe src="http://www.youtube.com/embed/FgAaUI6n44I"
-										width="480" height="256" frameborder="0" webkitAllowFullScreen
-										mozallowfullscreen allowFullScreen></iframe>
+							<div class="wrapper">
+								<div class="widget">
+									<div class="flex-video widescreen">
+										<iframe src="http://www.youtube.com/embed/FgAaUI6n44I"
+											width="480" height="256" frameborder="0" webkitAllowFullScreen
+											mozallowfullscreen allowFullScreen></iframe>
+									</div>
 								</div>
-							</div>
-							<div class="team-name">
-								딕펑스 <span> / Rock</span>
-							</div>
-							<p class="text-info">
-								<a href="#">슈퍼스타K 4 - PSY_Gangnam Style with [Superstark4
-									10회] 딕펑스_"고추잠자리" @생방송 무대</a>
-							</p>
-	
-						</div>
-	
-						<hr class="clean visible-phone">
-	
-						<div class="span3">
-							<div class="widget">
-								<div class="flex-video widescreen">
-									<iframe src="http://www.youtube.com/embed/x6VHNkwL-qw"
-										width="480" height="256" frameborder="0" webkitAllowFullScreen
-										mozallowfullscreen allowFullScreen></iframe>
+								<div class="team-name">
+									딕펑스 <span> / Rock</span>
 								</div>
+								<p class="text-info">
+									<a href="#">슈퍼스타K 4 - PSY_Gangnam Style with [Superstark4
+										10회] 딕펑스_"고추잠자리" @생방송 무대</a>
+								</p>
 							</div>
-							<div class="team-name">
-								10cm <span> / Rock Folk</span>
-							</div>
-							<p class="text-info">
-								<a href="#">10cm - Fine Thank You And You</a>
-							</p>
-	
 						</div>
 	
 						<hr class="clean visible-phone">
 	
 						<div class="span3">
-							<div class="widget">
-								<div class="flex-video widescreen">
-									<iframe src="http://www.youtube.com/embed/xrrpiApmMTQ"
-										width="480" height="256" frameborder="0" webkitAllowFullScreen
-										mozallowfullscreen allowFullScreen></iframe>
+							<div class="wrapper">
+								<div class="widget">
+									<div class="flex-video widescreen">
+										<iframe src="http://www.youtube.com/embed/x6VHNkwL-qw"
+											width="480" height="256" frameborder="0" webkitAllowFullScreen
+											mozallowfullscreen allowFullScreen></iframe>
+									</div>
 								</div>
+								<div class="team-name">
+									10cm <span> / Rock Folk</span>
+								</div>
+								<p class="text-info">
+									<a href="#">10cm - Fine Thank You And You</a>
+								</p>
 							</div>
-							<div class="team-name">
-								브로콜리 너마저 <span> / Rock Folk</span>
-							</div>
-							<p class="text-info">
-								<a href="#">문화콘서트 난장 브로콜리 너마저 - 앵콜요청금지</a>
-							</p>
+						</div>
 	
+						<hr class="clean visible-phone">
+	
+						<div class="span3">
+							<div class="wrapper">
+								<div class="widget">
+									<div class="flex-video widescreen">
+										<iframe src="http://www.youtube.com/embed/xrrpiApmMTQ"
+											width="480" height="256" frameborder="0" webkitAllowFullScreen
+											mozallowfullscreen allowFullScreen></iframe>
+									</div>
+								</div>
+								<div class="team-name">
+									브로콜리 너마저 <span> / Rock Folk</span>
+								</div>
+								<p class="text-info">
+									<a href="#">문화콘서트 난장 브로콜리 너마저 - 앵콜요청금지</a>
+								</p>
+							</div>
 						</div>
 	
 						<hr class="clean visible-phone">
