@@ -2896,6 +2896,14 @@ a.buy:hover {
 		padding: 0px;
 	}
 	
+	#under-footer-copyright {
+		width: 300px;
+	}
+	
+	#under-footer-menu {
+		display: none;
+	}
+	
 }
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
@@ -2906,6 +2914,10 @@ a.buy:hover {
 		padding: 0px;
 	}
 	#sns-share {
+		display: none;
+	}
+	
+	#under-footer-menu {
 		display: none;
 	}
 	

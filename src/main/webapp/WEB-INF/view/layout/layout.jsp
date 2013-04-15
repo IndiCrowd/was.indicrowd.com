@@ -107,7 +107,7 @@
 	</header>
 	<!--end: Header-->
 	<!--start: Container -->
-	<div class="container">
+	<div id="bodyContainer" class="container">
 		<decorator:body />
 	
 	</div>
@@ -145,7 +145,7 @@
 				<!-- end: Under Footer Logo -->
 
 				<!-- start: Under Footer Copyright -->
-				<div class="span5">
+				<div class="span4">
 					
 					<div id="under-footer-copyright">
 						&copy; 2013, <a href="${pageContext.request.contextPath}/about">IndiCrowd</a>. all right reserved.
@@ -154,9 +154,9 @@
 				</div>
 				<!-- end: Under Footer Copyright -->
 				
-				<div class="span6">
+				<div class="span7" id="under-footer-menu">
 					
-					<p id="under-footer-menu" class="pull-right">
+					<p class="pull-right">
 						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
 						<%-- <a href="${pageContext.request.contextPath}/help">도움말</a> --%>
 						<a href="${pageContext.request.contextPath}/terms">이용약관</a>

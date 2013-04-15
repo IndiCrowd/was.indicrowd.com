@@ -18,6 +18,10 @@ public class Controller extends AbstractController {
 	@RequestMapping("/main2")
 	public void main2() {
 	}
+	
+	@RequestMapping("/landing")
+	public void landing() {
+	}
 
 	@RequestMapping("/jwp")
 	public String jwp() {
