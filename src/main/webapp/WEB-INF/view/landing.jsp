@@ -111,69 +111,70 @@
 	</td></tr></table>
 	</div>
 	
+	<script src="<c:url value="/js/skrollr.min.js" />"></script>
+	<script src="<c:url value="/js/skrollr.ie.min.js" />"></script>
+	<script src="<c:url value="/js/skrollr.mobile.min.js" />"></script>
 	<script type="text/javascript">
-	$(function() {
-		var layers = $('.landing');
-		
-		var f = function() {
-			layers.css({
-				height: $(window).height()
-			});
-		};
-		
-		$(window).resize(f);
-		f();
-		
-		var activeLayer = 0;
-		var animateUpSettings = {
-			duration: 200,
-			done: function() {
-				document.body.style.overflow = 'auto';
-			}
-		};
-		var animateDownSettings = {
-			duration: 200,
-			easing: 'sqrt',
-			done: animateUpSettings.done
-		};
+	var layers = $('.landing');
 	
-		var s = skrollr.init({
-			render: function(info) {
-				if(this.isAnimatingTo()) {
-					return;
-				}
-	
-				var lastOffset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
-	
-				if(this.getScrollTop() === lastOffset) {
-					return;
-				}
-	
-				document.body.style.overflow = 'hidden';
-	
-				//Make sure to start animating at the last snap pos
-				this.setScrollTop(lastOffset);
-	
-				if(info.direction === 'down') {
-					if(activeLayer + 1 < layers.length) {
-						
-						activeLayer++;
-	
-						var offset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
-	
-						//Move down slow with nice easing
-						this.animateTo(offset, animateDownSettings);
-					}
-				} else if(activeLayer > 0) {
-					activeLayer--;
-	
-					var offset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
-	
-					//Move up very fast
-					this.animateTo(offset, animateUpSettings);
-				}
-			}
+	var f = function() {
+		layers.css({
+			height: $(window).height()
 		});
+	};
+	
+	$(window).resize(f);
+	f();
+	
+	var activeLayer = 0;
+	var animateUpSettings = {
+		duration: 200,
+		done: function() {
+			document.body.style.overflow = 'auto';
+		}
+	};
+	var animateDownSettings = {
+		duration: 200,
+		easing: 'sqrt',
+		done: animateUpSettings.done
+	};
+
+	var s = skrollr.init({
+		render: function(info) {
+			if(this.isAnimatingTo()) {
+				return;
+			}
+
+			var lastOffset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
+
+			if(this.getScrollTop() === lastOffset) {
+				return;
+			}
+
+			document.body.style.overflow = 'hidden';
+
+			//Make sure to start animating at the last snap pos
+			this.setScrollTop(lastOffset);
+
+			if(info.direction === 'down') {
+				if(activeLayer + 1 < layers.length) {
+					
+					activeLayer++;
+
+					var offset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
+
+					//Move down slow with nice easing
+					this.animateTo(offset, animateDownSettings);
+				}
+			} else if(activeLayer > 0) {
+				activeLayer--;
+
+				var offset = this.relativeToAbsolute(layers.get(activeLayer), 'top', 'top');
+
+				//Move up very fast
+				this.animateTo(offset, animateUpSettings);
+			}
+		}
 	});
 	</script>
 

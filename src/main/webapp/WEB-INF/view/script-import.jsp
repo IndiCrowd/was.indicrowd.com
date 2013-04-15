@@ -113,9 +113,6 @@ document.onfocusin=autoBlurFucntion;
 <script src="<c:url value="/js/tag.js" />"></script>
 <script src="<c:url value="/js/js2form.js" />"></script>
 <script src="<c:url value="/js/form2js.js" />"></script>
-<script src="<c:url value="/js/skrollr.min.js" />"></script>
-<script src="<c:url value="/js/skrollr.ie.min.js" />"></script>
-<script src="<c:url value="/js/skrollr.mobile.min.js" />"></script>
 <!-- end: Java Script -->
 
 <script>
