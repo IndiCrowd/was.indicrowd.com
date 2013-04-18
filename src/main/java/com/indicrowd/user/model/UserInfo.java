@@ -23,12 +23,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.indicrowd.auth.Auth;
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.energy.EnergyEntity;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class UserInfo implements UserDetails {
+public class UserInfo implements UserDetails, EnergyEntity {
 	private static final long serialVersionUID = 1949486363912552327L;
 
 	/**
@@ -150,6 +151,9 @@ public class UserInfo implements UserDetails {
 		userAuth.setUserInfo(this);
 		this.auths.add(userAuth);
 	}
+	
+	@Column(nullable = false)
+	private Long energy = 0l;
 
 	@Override public boolean isAccountNonExpired() { return true; }
 	@Override public boolean isAccountNonLocked() { return true; }
