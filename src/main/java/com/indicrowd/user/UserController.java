@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -44,10 +45,10 @@ public class UserController extends AbstractController {
 		if (!bindingResult.hasFieldErrors("password") && !userInfo.getPassword().equals(userInfo.getPasswordConfirm())) {
 			bindingResult.rejectValue("password", "Equals.passwordConfirm");
 		}
-		if (!bindingResult.hasFieldErrors("username") && UserInfo.isUsernameExists(userInfo.getUsername())) {
+		if (!bindingResult.hasFieldErrors("username") && UserInfo.isUsernameExists(userInfo.getUsername(), true)) {
 			bindingResult.rejectValue("username", "Exists.username");
 		}
-		if (!bindingResult.hasFieldErrors("nickname") && UserInfo.isNicknameExists(userInfo.getNickname())) {
+		if (!bindingResult.hasFieldErrors("nickname") && UserInfo.isNicknameExists(userInfo.getNickname(), true)) {
 			bindingResult.rejectValue("nickname", "Exists.nickname");
 		}
 		if (!bindingResult.hasFieldErrors("termsAgree") && !userInfo.isTermsAgree()) {
@@ -76,6 +77,61 @@ public class UserController extends AbstractController {
 		UserInfo userInfo = UserInfo.findUserInfo(id);
 		model.addAttribute("command", userInfo);
 		return "user/viewInfo";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void update(Model model) {
+		model.addAttribute("command", authService.getUserInfo());
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@Valid @ModelAttribute("command") UserInfo userInfo, BindingResult bindingResult, Model model) {
+		
+		UserInfo originUserInfo = UserInfo.findUserInfo(authService.getUserId());
+		
+		// 비밀번호 확인
+		if (!bindingResult.hasFieldErrors("password") && !userInfo.getPassword().equals(userInfo.getPasswordConfirm())) {
+			bindingResult.rejectValue("password", "Equals.passwordConfirm");
+		}
+		if (!bindingResult.hasFieldErrors("username") && !originUserInfo.getUsername().equals(userInfo.getUsername()) && UserInfo.isUsernameExists(userInfo.getUsername(), true)) {
+			bindingResult.rejectValue("username", "Exists.username");
+		}
+		if (!bindingResult.hasFieldErrors("nickname") && !originUserInfo.getNickname().equals(userInfo.getNickname()) && UserInfo.isNicknameExists(userInfo.getNickname(), true)) {
+			bindingResult.rejectValue("nickname", "Exists.nickname");
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return "user/update";
+		} else {
+			
+			originUserInfo.setPassword(passwordEncoder.encodePassword(userInfo.getPassword(), saltSource.getSalt(userInfo)));
+			originUserInfo.setUsername(userInfo.getUsername());
+			originUserInfo.setNickname(userInfo.getNickname());
+			originUserInfo.merge();
+			
+			authService.auth(originUserInfo);
+			
+			return "redirect:/user/" + originUserInfo.getId();
+		}
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/leave", method = RequestMethod.GET)
+	public void leave(Model model) {
+		model.addAttribute("command", authService.getUserInfo());
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/leave", method = RequestMethod.POST)
+	public String leave() {
+		
+		UserInfo userInfo = UserInfo.findUserInfo(authService.getUserId());
+		userInfo.setEnabled(false);
+		userInfo.merge();
+		
+		return "redirect:/signout";
 	}
 	
 }

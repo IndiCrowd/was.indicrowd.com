@@ -172,21 +172,35 @@ public class UserInfo implements UserDetails, EnergyEntity {
 	/**
 	 * 이미 존재하는 아이디인가?
 	 */
-	public static boolean isUsernameExists(String username) {
-		return entityManager()
-				.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.username = :username", Long.class)
-				.setParameter("username", username)
-				.getSingleResult() > 0l;
+	public static boolean isUsernameExists(String username, boolean includeNotEnabled) {
+		if (includeNotEnabled) {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.username = :username", Long.class)
+					.setParameter("username", username)
+					.getSingleResult() > 0l;
+		} else {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.enabled = true AND o.username = :username", Long.class)
+					.setParameter("username", username)
+					.getSingleResult() > 0l;	
+		}
 	}
 
 	/**
 	 * 이미 존재하는 닉네임인가?
 	 */
-	public static boolean isNicknameExists(String nickname) {
-		return entityManager()
-				.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.nickname = :nickname", Long.class)
-				.setParameter("nickname", nickname)
-				.getSingleResult() > 0l;
+	public static boolean isNicknameExists(String nickname, boolean includeNotEnabled) {
+		if (includeNotEnabled) {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.nickname = :nickname", Long.class)
+					.setParameter("nickname", nickname)
+					.getSingleResult() > 0l;
+		} else {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.enabled = true AND o.nickname = :nickname", Long.class)
+					.setParameter("nickname", nickname)
+					.getSingleResult() > 0l;
+		}
 	}
 	
 }

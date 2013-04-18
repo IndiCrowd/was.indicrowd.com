@@ -30,6 +30,7 @@ public class AuthService {
 			return null;
 		}
 		UserInfo userInfo = (UserInfo) principal;
+		userInfo.setEnergy(UserInfo.findUserInfo(userInfo.getId()).getEnergy());
 		userInfo.setUserBand(BandInfo.findBandInfoListByUserId(userInfo.getId()));
 		return userInfo;
 	}
