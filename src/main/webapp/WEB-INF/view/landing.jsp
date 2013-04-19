@@ -37,11 +37,14 @@
 		width:100%;
 		text-align:center;
 		background-size: 100% 100%;
+		
 	}
 	
 	.landing .wrapper {
 		width: 100%;
 		height: 100%;
+		
+	     overflow: scroll;
 	}
 	
 	.landing .content {
