@@ -31,4 +31,12 @@ privileged aspect StreamingServerInfo_Roo_JavaBean {
         this.rtmpPort = rtmpPort;
     }
     
+    public Long StreamingServerInfo.getHttpPort() {
+        return this.httpPort;
+    }
+    
+    public void StreamingServerInfo.setHttpPort(Long httpPort) {
+        this.httpPort = httpPort;
+    }
+    
 }
