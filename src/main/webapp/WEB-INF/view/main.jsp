@@ -39,22 +39,37 @@
 							<div class="box-header" style="height: 37px; padding:0 0 0 12px;">
 								<h3><i class="icon-music"></i><span class="break"></span>뜨거운 열기를 느껴라!</h3>
 							</div>
-							<div class="box-content" style="padding: 0;">
+							<div class="box-content" style="padding: 0; height: 100%;">
 								<div style="height: 60%;">
 									<div style="width: 59%; height: 100%; float: left;">
-										<div style="padding: 0 10px;">
-											<h4>On Air!</h4>
+										<div style="padding: 0;">
+											<img src="${pageContext.request.contextPath}/img/aa2.png" style="width: 100%; height: 100%;">
 										</div>
 									</div>
-									<div style="border-left:1px solid #ccc; width: 39%; height: 100%; float: right;">
-										<div style="padding: 0 10px;">
-											<h4>Coming Up!</h4>
+									<div style="border-left:1px solid #ddd; width: 39%; height: 100%; float: right;">
+										<div style="padding: 0 10px; height: 100%;">
+											<div style="height: 50%;">
+												<img src="${pageContext.request.contextPath}/img/aa0.png" style="width: 100%; height: 100%;">
+											</div>
+											<div style="height: 50%;">
+												<img src="${pageContext.request.contextPath}/img/aa1.png" style="width: 100%; height: 100%;">
+											</div>
 										</div>
 									</div>
+									<div style="clear:both;"></div>
 								</div>
-								<div style="border-top:1px solid #ccc; height: 40%;">
-									<div style="padding: 0 10px;">
-										<h4>History</h4>
+								<div style="border-top:1px solid #ddd; height: 40%;">
+									<div style="padding: 0;">
+										<div style="width: 33%; float: left;">
+											<img src="${pageContext.request.contextPath}/img/aa3.png" style="width: 100%; height: 100%;">
+										</div>
+										<div style="width: 33%; float: left;">
+											<img src="${pageContext.request.contextPath}/img/aa4.png" style="width: 100%; height: 100%;">
+										</div>
+										<div style="width: 33%; float: left;">
+											<img src="${pageContext.request.contextPath}/img/aa5.png" style="width: 100%; height: 100%;">
+										</div>
+										<div style="clear:both;"></div>
 									</div>
 								</div>
 							</div>
