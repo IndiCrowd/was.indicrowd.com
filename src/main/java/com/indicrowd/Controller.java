@@ -23,10 +23,6 @@ public class Controller extends AbstractController {
 	public void main1() {
 	}
 	
-	@RequestMapping("/main2")
-	public void main2() {
-	}
-	
 	@RequestMapping("/landing")
 	public void landing() {
 	}
