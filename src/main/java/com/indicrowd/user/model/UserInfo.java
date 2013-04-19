@@ -185,4 +185,17 @@ public class UserInfo implements UserDetails {
 				.getSingleResult() > 0l;
 	}
 	
+	public boolean isMemberOfBand(Long bandId) {
+		List<BandInfo> bands = this.getUserBand();
+		
+		for(BandInfo band : bands)
+		{
+			if (band.getId() == bandId) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }
