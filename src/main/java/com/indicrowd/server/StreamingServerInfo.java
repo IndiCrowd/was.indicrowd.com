@@ -23,6 +23,8 @@ public class StreamingServerInfo {
 	String hostname;
 	
 	Long rtmpPort;
+	
+	Long httpPort;
 
 	
 }
