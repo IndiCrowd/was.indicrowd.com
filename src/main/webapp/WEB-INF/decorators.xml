@@ -7,6 +7,7 @@
 		<pattern>/js/*</pattern>
 		<pattern>/css/*</pattern>
 		<pattern>/img/*</pattern>
+		<pattern>/landing</pattern>
 	</excludes>
 	
 	<decorator name="layout" page="layout.jsp">

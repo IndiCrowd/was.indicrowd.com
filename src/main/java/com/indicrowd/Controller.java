@@ -12,7 +12,15 @@ public class Controller extends AbstractController {
 	@RequestMapping("/")
 	public String main() {
 
-		return "main";
+		if (authService.isAnonymous()) {
+			return "redirect:/landing";
+		} else {
+			return "redirect:/main";
+		}
+	}
+	
+	@RequestMapping("/main")
+	public void main1() {
 	}
 	
 	@RequestMapping("/main2")
