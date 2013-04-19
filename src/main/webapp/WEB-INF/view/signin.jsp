@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		
 
-
+<title>로그인</title>
 		
 		<!--start: Wrapper-->
 		<div class="row-fluid">
@@ -49,7 +49,7 @@
 		</c:if>
 		<label> <input type="text" class="span12" name="j_username" value="${param.username}" placeholder="아이디"></label>
 		 <label><input type="password" class="span12" name="j_password" placeholder="비밀번호"></label>
-		 <h5>로그인 유지  <input name="_spring_security_remember_me" type="checkbox" value="true"></h5>
+		 <h5>로그인 유지  <input name="_spring_security_remember_me" type="checkbox" value="true" checked="checked"></h5>
 							</div>
 							<div class="actions">
 							

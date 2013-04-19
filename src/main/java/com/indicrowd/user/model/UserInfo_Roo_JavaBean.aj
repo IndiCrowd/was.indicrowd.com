@@ -156,4 +156,12 @@ privileged aspect UserInfo_Roo_JavaBean {
         this.userBand = userBand;
     }
     
+    public Long UserInfo.getEnergy() {
+        return this.energy;
+    }
+    
+    public void UserInfo.setEnergy(Long energy) {
+        this.energy = energy;
+    }
+    
 }

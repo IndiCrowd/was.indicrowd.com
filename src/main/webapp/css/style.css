@@ -32,7 +32,7 @@
 @import url("uploadify.css");
 @import url("jquery.gritter.css");
 
-html { -webkit-font-smoothing: antialiased; }
+html { background-image: url('../img/wood.png'); -webkit-font-smoothing: antialiased; }
 
 body {
 	

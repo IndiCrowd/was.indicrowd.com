@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.indicrowd.auth.AuthService;
+import com.indicrowd.energy.EnergyService;
 import com.indicrowd.file.FileService;
 import com.indicrowd.file.ImageService;
 import com.indicrowd.rtw.RTWService;
@@ -40,6 +41,9 @@ public abstract class AbstractController {
 	
 	@Autowired
 	protected ItemService itemService;
+	
+	@Autowired
+	protected EnergyService energyService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

@@ -23,12 +23,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.indicrowd.auth.Auth;
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.energy.EnergyEntity;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class UserInfo implements UserDetails {
+public class UserInfo implements UserDetails, EnergyEntity {
 	private static final long serialVersionUID = 1949486363912552327L;
 
 	/**
@@ -150,6 +151,9 @@ public class UserInfo implements UserDetails {
 		userAuth.setUserInfo(this);
 		this.auths.add(userAuth);
 	}
+	
+	@Column(nullable = false)
+	private Long energy = 0l;
 
 	@Override public boolean isAccountNonExpired() { return true; }
 	@Override public boolean isAccountNonLocked() { return true; }
@@ -168,21 +172,35 @@ public class UserInfo implements UserDetails {
 	/**
 	 * 이미 존재하는 아이디인가?
 	 */
-	public static boolean isUsernameExists(String username) {
-		return entityManager()
-				.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.username = :username", Long.class)
-				.setParameter("username", username)
-				.getSingleResult() > 0l;
+	public static boolean isUsernameExists(String username, boolean includeNotEnabled) {
+		if (includeNotEnabled) {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.username = :username", Long.class)
+					.setParameter("username", username)
+					.getSingleResult() > 0l;
+		} else {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.enabled = true AND o.username = :username", Long.class)
+					.setParameter("username", username)
+					.getSingleResult() > 0l;	
+		}
 	}
 
 	/**
 	 * 이미 존재하는 닉네임인가?
 	 */
-	public static boolean isNicknameExists(String nickname) {
-		return entityManager()
-				.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.nickname = :nickname", Long.class)
-				.setParameter("nickname", nickname)
-				.getSingleResult() > 0l;
+	public static boolean isNicknameExists(String nickname, boolean includeNotEnabled) {
+		if (includeNotEnabled) {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.nickname = :nickname", Long.class)
+					.setParameter("nickname", nickname)
+					.getSingleResult() > 0l;
+		} else {
+			return entityManager()
+					.createQuery("SELECT COUNT(o) FROM UserInfo o WHERE o.enabled = true AND o.nickname = :nickname", Long.class)
+					.setParameter("nickname", nickname)
+					.getSingleResult() > 0l;
+		}
 	}
 	
 	public boolean isMemberOfBand(Long bandId) {
