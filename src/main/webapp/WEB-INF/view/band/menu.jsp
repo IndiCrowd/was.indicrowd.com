@@ -24,7 +24,9 @@
 	<div class="widget">
 		<ul class="links-list-alt">
 			<li><a href="${pageContext.request.contextPath }/band/${bandInfo.id}">홈</a></li>
-			<li><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post">글 남기기</a></li>
+			<sec:accesscontrollist domainObject="${bandId}" hasPermission="isBand">
+				<li><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post">글 남기기</a></li>
+			</sec:accesscontrollist>
 		</ul>
 	</div>
 	<!-- end: Sidebar Menu -->

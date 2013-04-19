@@ -51,11 +51,11 @@
 									<spring:bind path="username"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
-									<form:input path="password" placeholder="비밀번호" class="span12"/>
+									<form:password path="password" placeholder="비밀번호" class="span12"/>
 									<spring:bind path="password"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>
-									<form:input path="passwordConfirm" placeholder="비밀번호 확인" class="span12"/>
+									<form:password path="passwordConfirm" placeholder="비밀번호 확인" class="span12"/>
 									<spring:bind path="passwordConfirm"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 								<label>

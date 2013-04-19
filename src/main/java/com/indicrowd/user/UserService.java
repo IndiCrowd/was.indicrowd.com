@@ -14,7 +14,7 @@ public class UserService implements UserDetailsService {
 	public UserInfo loadUserByUsername(String username) {
 		UserInfo userInfo = null;
 		try {
-			if (UserInfo.isUsernameExists(username)) {
+			if (UserInfo.isUsernameExists(username, false)) {
 				userInfo = UserInfo.findUserInfoByUsername(username);
 				//if (userInfo != null) {
 				//	userInfo.getAuths().iterator(); // Lazy 오류 문제를 해결하기 위한 코드

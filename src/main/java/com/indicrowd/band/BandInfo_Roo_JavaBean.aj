@@ -39,4 +39,12 @@ privileged aspect BandInfo_Roo_JavaBean {
         this.imageFilePath = imageFilePath;
     }
     
+    public Long BandInfo.getEnergy() {
+        return this.energy;
+    }
+    
+    public void BandInfo.setEnergy(Long energy) {
+        this.energy = energy;
+    }
+    
 }

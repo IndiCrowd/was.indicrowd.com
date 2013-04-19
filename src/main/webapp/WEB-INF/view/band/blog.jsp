@@ -61,8 +61,11 @@
 							<div class="post-meta">
 								<span><i class="fa-icon-user"></i>By <a href="#">${post.author }</a></span> 
 								<span><i class="fa-icon-comments-alt"></i>With <a href="${postUrl }">${post.commentCount }개의 댓글</a></span>
-								<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
-								<span><a href="javascript:delPost(${post.id});">삭제</a></span>
+								<sec:accesscontrollist domainObject="${post.id}" hasPermission="isBandPost">
+									<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
+									<span><a href="javascript:delPost(${post.id});">삭제</a></span>
+								</sec:accesscontrollist>
+								
 							</div>
 							<div class="post-description">
 								<p>
