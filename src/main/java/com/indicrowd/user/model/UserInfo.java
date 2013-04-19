@@ -208,7 +208,7 @@ public class UserInfo implements UserDetails, EnergyEntity {
 		
 		for(BandInfo band : bands)
 		{
-			if (band.getId() == bandId) {
+			if (band.getId().equals(bandId)) {
 				return true;
 			}
 		}

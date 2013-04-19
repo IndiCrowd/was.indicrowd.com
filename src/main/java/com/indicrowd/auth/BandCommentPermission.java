@@ -20,10 +20,13 @@ public class BandCommentPermission implements Permission {
 			if (comment != null) {
 	            UserInfo userInfo = (UserInfo)authentication.getPrincipal();
 	            
-	            if (comment.getUserInfo().getId() == userInfo.getId()) {
+	            if (comment.getUserInfo().getId().equals(userInfo.getId())) {
 	            	hasPermission = true;
 	            }
 	            else if (comment.getWriteBandInfo() != null && userInfo.isMemberOfBand(comment.getWriteBandInfo().getId())) {
+	            	hasPermission = true;
+	            } 
+	            else if (userInfo.isMemberOfBand(comment.getPost().getBandInfo().getId())) {
 	            	hasPermission = true;
 	            }
 			}

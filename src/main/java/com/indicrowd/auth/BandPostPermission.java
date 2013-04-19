@@ -24,10 +24,13 @@ public class BandPostPermission implements Permission {
             {
 	            UserInfo userInfo = (UserInfo)authentication.getPrincipal();
 	            
-	            if (post.getUserInfo().getId() == userInfo.getId()) {
+	            if (post.getUserInfo().getId().equals(userInfo.getId())) {
 	            	hasPermission = true;
 	            }
 	            else if (post.getWriteBandInfo() != null && userInfo.isMemberOfBand(post.getWriteBandInfo().getId())) {
+	            	hasPermission = true;
+	            }
+	            else if (userInfo.isMemberOfBand(post.getBandInfo().getId())) {
 	            	hasPermission = true;
 	            }
             }

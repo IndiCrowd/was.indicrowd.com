@@ -79,7 +79,7 @@ public class AuthService {
 		
 		UserInfo userInfo = getUserInfo();
 		
-		if (userInfo.getId() != userId)
+		if (!userInfo.getId().equals(userId))
 			return false;
 		
 		return true;
