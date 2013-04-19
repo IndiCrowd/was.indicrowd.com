@@ -203,4 +203,17 @@ public class UserInfo implements UserDetails, EnergyEntity {
 		}
 	}
 	
+	public boolean isMemberOfBand(Long bandId) {
+		List<BandInfo> bands = this.getUserBand();
+		
+		for(BandInfo band : bands)
+		{
+			if (band.getId().equals(bandId)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }

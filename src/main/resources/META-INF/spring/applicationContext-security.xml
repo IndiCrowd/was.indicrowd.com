@@ -18,10 +18,37 @@
         <intercept-url pattern="/css/**" access="permitAll" />
         <intercept-url pattern="/img/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
+    
+    	<expression-handler ref="webExpressionHandler"/>
     </http>
     
-    <beans:bean id="authSuccessHandler" class="com.indicrowd.auth.AuthSuccessHandler" />
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+        <expression-handler ref="expressionHandler"/>
+	</global-method-security>
+	
+	<beans:bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+	        <beans:property name="permissionEvaluator" ref="permissionEvaluator"/>
+    </beans:bean>
     
+	<beans:bean id="webExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler">
+	        <beans:property name="permissionEvaluator" ref="permissionEvaluator"/>
+	</beans:bean>
+    
+    <beans:bean id="permissionEvaluator" class="com.indicrowd.auth.StorytellingPermissionEvaluator">
+    	<beans:constructor-arg index="0">
+    		<beans:map key-type="java.lang.String" value-type="com.indicrowd.auth.Permission">
+                <beans:entry key="isBandPost" value-ref="bandPostPermission"/>
+                <beans:entry key="isBandComment" value-ref="bandCommentPermission"/>
+                <beans:entry key="isBand" value-ref="bandPermission"/>
+    		</beans:map>
+    	</beans:constructor-arg>
+    </beans:bean>
+    
+    <beans:bean id="bandPostPermission" class="com.indicrowd.auth.BandPostPermission" />
+    <beans:bean id="bandCommentPermission" class="com.indicrowd.auth.BandCommentPermission" />
+    <beans:bean id="bandPermission" class="com.indicrowd.auth.BandPermission" />
+    
+    <beans:bean id="authSuccessHandler" class="com.indicrowd.auth.AuthSuccessHandler" />
 	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" />
 	<beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
 		<beans:property name="userPropertyToUse" value="username" />

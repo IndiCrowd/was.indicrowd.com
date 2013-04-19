@@ -1,5 +1,7 @@
 package com.indicrowd.auth;
 
+import java.util.List;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -60,5 +62,26 @@ public class AuthService {
 	public boolean isAuthenticated() {
 		return getUserInfo() != null;
 	}
+	
 
+	public boolean isAuthorizedUserOfBand(Long bandId) {
+		if (!isAuthenticated())
+			return false;
+		
+		UserInfo userInfo = getUserInfo();
+		
+		return userInfo.isMemberOfBand(bandId);
+	}
+	
+	public boolean isAuthorizedUser(Long userId) {
+		if (!isAuthenticated())
+			return false;
+		
+		UserInfo userInfo = getUserInfo();
+		
+		if (!userInfo.getId().equals(userId))
+			return false;
+		
+		return true;
+	}
 }

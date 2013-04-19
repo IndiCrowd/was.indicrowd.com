@@ -8,6 +8,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -76,8 +78,8 @@ public class BandController extends AbstractController{
 		model.addAttribute("bandInfo", bandInfo);
 		return "band/post";
 	}
-	
-	@Secured("ROLE_USER")
+
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#bandId, 'isBand')")
 	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.GET)
 	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId,Model model){
 		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
@@ -93,8 +95,8 @@ public class BandController extends AbstractController{
 		return "band/addPost";
 	}
 	
-	
-	@Secured("ROLE_USER")
+
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#bandId, 'isBand')")
 	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.POST)
 	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId){
 		System.out.println(post);
@@ -116,7 +118,7 @@ public class BandController extends AbstractController{
 		
 	}
 
-	@Secured("ROLE_USER")
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#postId, 'isBandPost')")
 	@RequestMapping(value ="/{bandId}/post/{postId}/form", method = RequestMethod.GET)
 	public String editPost( @PathVariable("bandId") Long bandId,  @PathVariable("postId") Long postId, Model model){
 		BandInfo bandInfo = BandInfo.findBandInfo(bandId);
@@ -135,8 +137,8 @@ public class BandController extends AbstractController{
 		}
 		return "band/editPost";
 	}
-	
-	@Secured("ROLE_USER")
+
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#postId, 'isBandPost')")
 	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.PUT)
 	public String updatePost(@ModelAttribute("postedit") Post post, @PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, SessionStatus sessionStatus){
 		System.out.println(post);
@@ -154,8 +156,8 @@ public class BandController extends AbstractController{
 		return "redirect:/band/"+bandId+"/post/"+postId;
 		
 	}
-	
-	@Secured("ROLE_USER")
+
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#postId, 'isBandPost')")
 	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.DELETE)
 	public void delPost(@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId){
 		Post post = Post.findPost(postId);
@@ -205,8 +207,8 @@ public class BandController extends AbstractController{
 			model.addAttribute("command",result);
 		}
 	}
-	
-	@Secured("ROLE_USER")
+
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#commentId, 'isBandComment')")
 	@RequestMapping(value ="/{bandId}/post/{postId}/reply/{commentId}", method = RequestMethod.PUT)
 	public void updateComment(String commentContent, @PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, @PathVariable("commentId") Long commentId){
 		
@@ -218,7 +220,7 @@ public class BandController extends AbstractController{
 		
 	}
 
-	@Secured("ROLE_USER")
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#commentId, 'isBandComment')")
 	@RequestMapping(value = "/{bandId}/post/{postId}/reply/{commentId}", method = RequestMethod.DELETE)
 	public void delReply(@PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, @PathVariable("commentId") Long commentId, Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		Comment comment = Comment.findComment(commentId);
