@@ -1,5 +1,6 @@
 package com.indicrowd.concert.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.band.BandRoleType;
 import com.indicrowd.util.DateUtil;
 
 @RooJavaBean
@@ -127,6 +129,22 @@ public class Concert {
 						"SELECT o FROM Concert o WHERE (startDate = :startDate AND (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 0 AND (startMinutes+duration )%60 -:queryMinutes = "+ENDS_BEFORE_MINUTES+") OR (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 1 AND (startMinutes+duration )%60 - :queryMinutes = "+(-1 * (60 - ENDS_BEFORE_MINUTES))+")) " +
 						"OR (startDate = :nextDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = -23 AND FLOOR(startHours + (duration+startMinutes) / 60) - :queryMinutes = "+(-1 * (60 - ENDS_BEFORE_MINUTES))+")))",
 					Concert.class).setParameter("startDate", startDate).setParameter("nextDate", nextDate).setParameter("queryHours",queryHours).setParameter("queryMinutes", queryMinutes)
+				.getResultList();
+	}
+	
+	public static List<Concert> findComingUpConcertList(long userId){
+		Calendar cal = Calendar.getInstance();
+		Integer startDate = DateUtil.calendarToInteger(cal);
+		Integer startHours = cal.get(Calendar.HOUR_OF_DAY);
+		Integer startMinutes = cal.get(Calendar.MINUTE);
+		startDate = 20130412;
+		startHours = 15;
+		startMinutes = 31;
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Concert o WHERE ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate) AND o.bandInfo.id IN (SELECT bandInfo.id from BandMember b where b.userInfo.id=:userId AND b.bandRoleType.id=:bandRoleTypeId)" +
+						" ORDER BY startDate,startHours,startMinutes",
+					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setParameter("userId", userId).setParameter("bandRoleTypeId", BandRoleType.BAND_ADMIN)
 				.getResultList();
 	}
 }

@@ -30,6 +30,7 @@ public class ConcertPlanManager {
 	@PostConstruct
 	public void postConstruct(){
 		System.out.println("post construct");
+		System.out.println(Concert.findComingUpConcertList(1).size());
 		//init Concert
 		Calendar cal = Calendar.getInstance();
 		Integer date = DateUtil.calendarToInteger(cal);

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.indicrowd.auth.Auth;
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.concert.model.Concert;
 import com.indicrowd.energy.EnergyEntity;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -136,6 +137,9 @@ public class UserInfo implements UserDetails, EnergyEntity {
 	 */
 	@OneToMany(mappedBy = "userInfo", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private Set<UserAuth> auths = new HashSet<UserAuth>();
+	
+	@Transient
+	private List<Concert> comingUpConcerts;
 	
 	@Transient
 	private List<BandInfo> userBand;

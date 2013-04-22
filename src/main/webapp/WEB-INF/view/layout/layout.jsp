@@ -66,6 +66,7 @@
 	          		<div class="nav-collapse collapse pull-right">
 	            		<ul class="nav">
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}">홈</a></li> --%>
+							<li class="active"><button class="btn btn-primary"><i class="icon-facetime-video icon-white"></i>리허설(5:35)</button></li>
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li> --%>

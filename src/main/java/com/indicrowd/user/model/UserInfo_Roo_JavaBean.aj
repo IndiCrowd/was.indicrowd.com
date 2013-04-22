@@ -4,6 +4,7 @@
 package com.indicrowd.user.model;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.concert.model.Concert;
 import com.indicrowd.user.model.UserAuth;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
@@ -155,6 +156,14 @@ privileged aspect UserInfo_Roo_JavaBean {
     
     public void UserInfo.setAuths(Set<UserAuth> auths) {
         this.auths = auths;
+    }
+    
+    public List<Concert> UserInfo.getComingUpConcerts() {
+        return this.comingUpConcerts;
+    }
+    
+    public void UserInfo.setComingUpConcerts(List<Concert> comingUpConcerts) {
+        this.comingUpConcerts = comingUpConcerts;
     }
     
     public List<BandInfo> UserInfo.getUserBand() {

@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.band.BandMember;
+import com.indicrowd.concert.model.Concert;
 import com.indicrowd.user.model.UserInfo;
 
 @Service
@@ -34,6 +36,9 @@ public class AuthService {
 		UserInfo userInfo = (UserInfo) principal;
 		userInfo.setEnergy(UserInfo.findUserInfo(userInfo.getId()).getEnergy());
 		userInfo.setUserBand(BandInfo.findBandInfoListByUserId(userInfo.getId()));
+		
+		userInfo.setComingUpConcerts(Concert.findComingUpConcertList());
+		
 		return userInfo;
 	}
 	
