@@ -27,7 +27,16 @@
 
 					</div>
 					
-					<form:form>
+					<form:form enctype="multipart/form-data">
+					
+					<div class="use-preview">
+						<img src="<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/${command.id}">
+						<h5>프로필 사진 등록</h5>
+						<p>(사진파일 500KB 이하)</p>
+						<form:input type="file" path="profilePhoto" />
+						<spring:bind path="profilePhoto"><p class="error">${status.errorMessage}</p></spring:bind>
+					</div>
+					
 						<fieldset>
 							<div class="row-fluid">
 								

@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<title>회원가입</title>
 
 		
 		<!--start: Wrapper-->
@@ -20,6 +20,7 @@
 						<h3>계정을 만들어보세요!</h3>
 
 					</div>
+					
 					<form id="facebook-login-form" action="${pageContext.request.contextPath}/signin/facebook" method="POST">
 						<input type="hidden" name="scope" value="email" />
 						<input type="hidden" name="redirect_uri" value="/user/extra" />
@@ -38,7 +39,17 @@
 						<h3 style="background:#f0f0f0">or</h3>
 
 					</div>
-					<form:form id="join-form">
+					<form:form id="join-form" enctype="multipart/form-data">
+					
+					
+					<div class="use-preview">
+						<img src="<spring:eval expression="@userfileConfig.baseUrl" />/img/blankuser.gif">
+						<h5>프로필 사진 등록</h5>
+						<p>(사진파일 500KB 이하)</p>
+						<form:input type="file" path="profilePhoto" />
+						<spring:bind path="profilePhoto"><p class="error">${status.errorMessage}</p></spring:bind>
+					</div>
+					
 						<fieldset>
 							<div class="row-fluid">
 								
@@ -64,6 +75,7 @@
 								</label>
 								<label>
 							<h5>이용약관 동의<form:checkbox id="termsAgree" path="termsAgree" /></h5>
+							<a href="${pageContext.request.contextPath}/terms" target="_blank">이용약관 보기</a>
 							
 							<spring:bind path="termsAgree"><span class="text-error">${status.errorMessage}</span></spring:bind>
 						</label>

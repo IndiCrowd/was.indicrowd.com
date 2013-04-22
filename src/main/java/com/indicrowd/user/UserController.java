@@ -1,5 +1,7 @@
 package com.indicrowd.user;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -37,7 +39,7 @@ public class UserController extends AbstractController {
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(@Valid @ModelAttribute("command") UserInfo userInfo, BindingResult bindingResult, Model model) {
+	public String join(@Valid @ModelAttribute("command") UserInfo userInfo, BindingResult bindingResult, Model model) throws IOException {
 		
 		// other validations
 		
@@ -66,6 +68,15 @@ public class UserController extends AbstractController {
 			userInfo.addAuth("ROLE_USER");
 			userInfo.persist();
 			
+			if (userInfo.getProfilePhoto() != null && userInfo.getProfilePhoto().getSize() > 0) {
+				fileService.save(userInfo.getProfilePhoto(), "profilephoto/" + userInfo.getId().toString(), true);
+				fileService.save(imageService.generateThumb(userInfo.getProfilePhoto()), "profilethumb/" + userInfo.getId().toString(), true);
+			} else {
+				File file = fileService.load("img/blankuser.gif");
+				fileService.save(file, "profilephoto/" + userInfo.getId().toString(), true);
+				fileService.save(imageService.generateThumb(file), "profilethumb/" + userInfo.getId().toString(), true);
+			}
+			
 			authService.auth(userInfo);
 			
 			return "redirect:/";
@@ -87,7 +98,7 @@ public class UserController extends AbstractController {
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("command") UserInfo userInfo, BindingResult bindingResult, Model model) {
+	public String update(@Valid @ModelAttribute("command") UserInfo userInfo, BindingResult bindingResult, Model model) throws IOException {
 		
 		UserInfo originUserInfo = UserInfo.findUserInfo(authService.getUserId());
 		
@@ -110,6 +121,15 @@ public class UserController extends AbstractController {
 			originUserInfo.setUsername(userInfo.getUsername());
 			originUserInfo.setNickname(userInfo.getNickname());
 			originUserInfo.merge();
+			
+			if (userInfo.getProfilePhoto() != null && userInfo.getProfilePhoto().getSize() > 0) {
+				fileService.save(userInfo.getProfilePhoto(), "profilephoto/" + originUserInfo.getId().toString(), true);
+				fileService.save(imageService.generateThumb(userInfo.getProfilePhoto()), "profilethumb/" + originUserInfo.getId().toString(), true);
+			} else {
+				File file = fileService.load("img/blankuser.gif");
+				fileService.save(file, "profilephoto/" + originUserInfo.getId().toString(), true);
+				fileService.save(imageService.generateThumb(file), "profilethumb/" + originUserInfo.getId().toString(), true);
+			}
 			
 			authService.auth(originUserInfo);
 			

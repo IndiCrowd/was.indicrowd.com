@@ -20,6 +20,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.indicrowd.auth.Auth;
 import com.indicrowd.band.BandInfo;
@@ -126,6 +127,9 @@ public class UserInfo implements UserDetails, EnergyEntity {
 	 */
 	@Column(nullable = false)
 	private boolean enabled = true;
+	
+	@Transient
+	private CommonsMultipartFile profilePhoto;
 
 	/**
 	 * 권한 셋

@@ -9,6 +9,7 @@ import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect UserInfo_Roo_JavaBean {
     
@@ -138,6 +139,14 @@ privileged aspect UserInfo_Roo_JavaBean {
     
     public void UserInfo.setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+    
+    public CommonsMultipartFile UserInfo.getProfilePhoto() {
+        return this.profilePhoto;
+    }
+    
+    public void UserInfo.setProfilePhoto(CommonsMultipartFile profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
     
     public Set<UserAuth> UserInfo.getAuths() {
