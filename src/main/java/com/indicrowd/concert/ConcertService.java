@@ -23,25 +23,31 @@ public class ConcertService {
 	KeyValueListCacheService keyValueService;
 	
 	ObjectMapper objMapper = new ObjectMapper();
-	
+	public static final String channelName = "commonChannel";
+	public static final String startConcertKey ="startConcertEventList";
+	public static final String endConcertKey = "endConcert_";
 	public void whenConcertStart(List<Concert> concertList) throws IOException{
 		
-		keyValueService.set("startConcertList", objMapper.writeValueAsString(concertList));
+		
 		for(int i=0; i<concertList.size();i++){
-			//sendHttpRequest();
+			
+			keyValueService.addSetElement(startConcertKey, String.valueOf(concertList.get(i).getId()));
+			keyValueService.publish(channelName, "startConcert");
 		}
-		System.out.println(keyValueService.get("startConcertList"));
+		System.out.println(keyValueService.getSetByKey(startConcertKey));
 	}
 	
 	public void whenConcertEnd(List<Concert> concertList) throws IOException{
-		keyValueService.set("endConcertList", objMapper.writeValueAsString(concertList));
+		
 		for(int i=0; i<concertList.size();i++){
-			
+			String concertId = String.valueOf(concertList.get(i).getId());
+			keyValueService.removeSetElement(startConcertKey, concertId);
+			keyValueService.publish(channelName, endConcertKey+concertId);
 		}
 	}
 	
 	public void manageConcertList(List<Concert> concertList) throws  IOException{
-		keyValueService.set("nowConcertList", objMapper.writeValueAsString(concertList));
+		
 		for(int i=0; i<concertList.size();i++){
 			
 		}

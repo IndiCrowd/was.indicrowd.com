@@ -23,4 +23,13 @@ public class BandMember {
 	@JoinColumn(name = "bandRoleTypeId", nullable = false)
 	BandRoleType bandRoleType;
 	String alias;
+	
+	public static Integer getBandAdminCountByUser(long userId){
+		
+		return entityManager()
+				.createQuery(
+						"SELECT count(o) FROM BandMember o WHERE o.userInfo.id = :userId AND o.bandRoleType = :bandRoleType",
+						Integer.class).setParameter("userId", userId).setParameter("bandRoleType", BandRoleType.BAND_ADMIN)
+				.getSingleResult();
+	}
 }
