@@ -55,6 +55,7 @@ public abstract class AbstractController {
 
 	@ModelAttribute("signedUserInfo")
 	public UserInfo getSignedUserInfo() {
+		System.out.println("Get User Session!!!!!!!!!!!!!!");
 		return authService.getUserInfo();
 	}
 

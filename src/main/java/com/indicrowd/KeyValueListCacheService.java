@@ -34,6 +34,10 @@ public class KeyValueListCacheService {
 		//jedis.flushDB();
 	}
 	
+	public void publish(String channel,String line){
+		jedis.publish(channel, line);
+	}
+	
 	@Value("#{storeConfig.redisHost}")
 	public void setRedisHost(String redisHost) {
 		this.redisHost = redisHost;
