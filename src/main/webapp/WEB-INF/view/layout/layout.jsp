@@ -159,6 +159,7 @@
 				<div class="span7" id="under-footer-menu">
 					
 					<p class="pull-right">
+						<a href="https://www.facebook.com/IndiCrowd" target="_blank"><img src="${pageContext.request.contextPath}/img/facebook_favicon.png"></a>
 						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
 						<%-- <a href="${pageContext.request.contextPath}/help">도움말</a> --%>
 						<a href="${pageContext.request.contextPath}/terms">이용약관</a>
