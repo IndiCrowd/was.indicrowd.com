@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>TEST</title>
+		<title>${command.title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		

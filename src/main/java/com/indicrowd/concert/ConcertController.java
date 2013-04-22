@@ -30,6 +30,7 @@ import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
 import com.indicrowd.concert.model.UserState;
+import com.indicrowd.user.model.UserInfo;
 import com.indicrowd.util.DateUtil;
 
 @Controller
@@ -147,7 +148,7 @@ public class ConcertController extends AbstractController {
 		Concert concert = Concert.findConcert(concertId);
 
 		if (concert != null) {
-			
+			userState.setUserInfo(UserInfo.findUserInfo(userState.getUserID()));
 			rtwService.send("Concert", concert.getId(), "userState", userState);
 		}
 	}

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>TEST</title>
+		<title>${command.title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		
@@ -14,7 +15,7 @@
 		$(function() {	
 			
 			RTW.addHandler('Concert', '${command.id}', 'userState', function(userState) {
-				var userImg = '<c:url value="/img/concert/" />profile4.jpg';
+				var userImg = userState.userInfo.socialImageUrl ? userState.userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userState.userInfo.id;
 				
 				$('#user-' + userState.userID).each(function() {
 					if (userState.cameraState) {
@@ -22,6 +23,10 @@
 					} else {
 						var img = $IMG({
 							id : 'user-' + userState.userID,
+							style : {
+								width: 50,
+								height: 50
+							},
 							src: userImg
 						});
 						

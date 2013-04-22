@@ -2,6 +2,7 @@
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <sec:authentication property="principal" var="principal" />
 
@@ -299,7 +300,11 @@
 					$IMG({
 						//id : 'connect-' + connectId,
 						id : 'user-' + userInfo.id,
-						src: '<c:url value="/img/concert/" />profile4.jpg'
+						style : {
+							width: 50,
+							height: 50
+						},
+						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id
 					}).appendTo('#stage').hide().fadeIn();
 					
 				} else {

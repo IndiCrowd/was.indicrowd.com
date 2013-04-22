@@ -4,6 +4,7 @@
 package com.indicrowd.concert.model;
 
 import com.indicrowd.concert.model.UserState;
+import com.indicrowd.user.model.UserInfo;
 
 privileged aspect UserState_Roo_JavaBean {
     
@@ -13,6 +14,14 @@ privileged aspect UserState_Roo_JavaBean {
     
     public Boolean UserState.getCameraState() {
         return this.cameraState;
+    }
+    
+    public UserInfo UserState.getUserInfo() {
+        return this.userInfo;
+    }
+    
+    public void UserState.setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
     
 }

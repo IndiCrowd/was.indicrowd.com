@@ -13,6 +13,8 @@ public class UserState {
 	private Long userID;
 	
 	private Boolean cameraState;
+	
+	private UserInfo userInfo;
 
 	public void setUserID(Long userID)
 	{
