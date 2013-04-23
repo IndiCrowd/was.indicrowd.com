@@ -72,7 +72,7 @@ public class UserController extends AbstractController {
 				fileService.save(userInfo.getProfilePhoto(), "profilephoto/" + userInfo.getId().toString(), true);
 				fileService.save(imageService.generateThumb(userInfo.getProfilePhoto()), "profilethumb/" + userInfo.getId().toString(), true);
 			} else {
-				File file = fileService.load("img/blankuser.gif");
+				File file = fileService.load("img/blankuser.jpg");
 				fileService.save(file, "profilephoto/" + userInfo.getId().toString(), true);
 				fileService.save(imageService.generateThumb(file), "profilethumb/" + userInfo.getId().toString(), true);
 			}
