@@ -129,4 +129,12 @@ privileged aspect Concert_Roo_JavaBean {
         this.isValid = isValid;
     }
     
+    public boolean Concert.isHasBG() {
+        return this.hasBG;
+    }
+    
+    public void Concert.setHasBG(boolean hasBG) {
+        this.hasBG = hasBG;
+    }
+    
 }

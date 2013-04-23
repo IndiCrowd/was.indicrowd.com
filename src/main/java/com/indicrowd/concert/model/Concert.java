@@ -81,6 +81,9 @@ public class Concert {
 	@Column(nullable = false)
 	private boolean isValid = true;
 	
+	@Column(nullable = false)
+	private boolean hasBG = false;
+	
 	public static final int START_BEFORE_MINUTES = 3;
 	public static final int ENDS_BEFORE_MINUTES =5;
 	

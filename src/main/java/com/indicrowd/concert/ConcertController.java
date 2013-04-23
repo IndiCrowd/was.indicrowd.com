@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
@@ -116,6 +117,23 @@ public class ConcertController extends AbstractController {
 		model.addAttribute("command", Concert.findConcert(concertId));
 
 		return "concert/viewAdmin";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{concertId}/changeBG", method = RequestMethod.POST)
+	public String changeBG(@PathVariable("concertId") Long concertId, @RequestParam CommonsMultipartFile bg, Model model) throws IOException {
+		
+		Concert concert = Concert.findConcert(concertId);
+		
+		if (bg != null && bg.getSize() > 0) {
+					
+			fileService.save(bg, "concertbg/" + concertId.toString(), true);
+			
+			concert.setHasBG(true);
+		}
+		
+		model.addAttribute("command", concert);
+		return "concert/changeBG";
 	}
 
 	@Secured("ROLE_USER")

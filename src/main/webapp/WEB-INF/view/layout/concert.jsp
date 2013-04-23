@@ -323,7 +323,7 @@
 				return false;
 			});
 			
-			var bg = '<c:url value="/img/concert/concertbg.jpg" />';
+			var bg = '<c:if test="${!command.hasBG}"><c:url value="/img/concert/concertbg.jpg" /></c:if><c:if test="${command.hasBG}"><spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}</c:if>';
 			
 			$('#wrapper').css({
 				background: 'url(' + bg + ')',
@@ -515,6 +515,9 @@
 					<span>
 						<label>밴드 정보</label> test
 					</span>
+					<span>
+						<a href="javascript:$('#changeBGForm').show();">배경 바꾸기</a>
+					</span>
 				</div>
 			</div>
 			
@@ -549,6 +552,11 @@
 				&copy; IndiCrowd
 			</div>
 		</div>
+		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" <%--style="display:none;"--%> method="POST" enctype="multipart/form-data" target="changeBGFrame">
+			<input type="file" name="bg">
+			<button type="submit">배경 변경</button>
+		</form>
+		<iframe name="changeBGFrame"></iframe>
 	</body>
 	
 </html>
