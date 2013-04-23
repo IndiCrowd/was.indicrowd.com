@@ -34,7 +34,6 @@ public class ConcertService {
 			keyValueService.addSetElement(startConcertKey, String.valueOf(concertList.get(i).getId()));
 			keyValueService.publish(channelName, "startConcert");
 		}
-		System.out.println(keyValueService.getSetByKey(startConcertKey));
 	}
 	
 	public void whenConcertEnd(List<Concert> concertList) throws IOException{

@@ -61,8 +61,8 @@ function goConcertAdmin(id){
 <script src="<c:url value="/js/bootstrap.js" />"></script>
 <script src="<c:url value="/js/flexslider.js" />"></script>
 <script src="<c:url value="/js/carousel.js" />"></script>
-<!-- script src="<c:url value="/js/jquery.cslider.js" />"></script>
-<script src="<c:url value="/js/slider.js" />"></script-->
+<script src="<c:url value="/js/jquery.cslider.js" />"></script>
+<script src="<c:url value="/js/slider.js" />"></script>
 <script src="<c:url value="/js/fancybox.js" />"></script>
 <script src="<c:url value="/js/twitter.js" />"></script>
 <script src="<c:url value="/js/jquery.placeholder.min.js" />"></script>
