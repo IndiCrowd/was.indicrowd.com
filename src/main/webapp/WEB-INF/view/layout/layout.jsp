@@ -98,7 +98,7 @@
 										}
 									</script>
 									<li class="active">
-										<button onclick="javascript:goConcert('${principal.comingUpConcerts[0].id}')" id="concertStartButton" style="display: none" class="btn btn-warning">
+										<button onclick="javascript:goConcertAdmin('${principal.comingUpConcerts[0].id}')" id="concertStartButton" style="display: none" class="btn btn-warning">
 											<i class="icon-facetime-video icon-white"></i><span id="concertStateMessage"> 리허설 중</span></span><br/><span id="concertTimer">&nbsp;</span>
 										</button>
 									</li>

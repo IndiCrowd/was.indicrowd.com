@@ -46,6 +46,9 @@ function popup(url, title, w, h) {
 function goConcert(id){
 	popup('<c:url value="/concert" />/'+id, 'Concert', 1000, 700);
 }
+function goConcertAdmin(id){
+	popup('<c:url value="/concert" />/'+id+"/admin", 'Concert', 1000, 700);
+}
 </script>
 
 <!--[if lt IE 9]>
