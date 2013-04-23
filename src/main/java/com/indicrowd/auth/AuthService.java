@@ -37,7 +37,7 @@ public class AuthService {
 		userInfo.setEnergy(UserInfo.findUserInfo(userInfo.getId()).getEnergy());
 		userInfo.setUserBand(BandInfo.findBandInfoListByUserId(userInfo.getId()));
 		
-		userInfo.setComingUpConcerts(Concert.findComingUpConcertList());
+		userInfo.setComingUpConcerts(Concert.findComingUpConcertList(userInfo.getId()));
 		
 		return userInfo;
 	}

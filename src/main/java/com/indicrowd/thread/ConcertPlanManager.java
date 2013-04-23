@@ -38,9 +38,9 @@ public class ConcertPlanManager {
 		Integer minute = cal.get(Calendar.MINUTE);
 		
 		
-		date = 20130412;
-		hour = 16;
-		minute = 55;
+		//date = 20130412;
+		//hour = 16;
+		//minute = 55;
 		
 		List<Concert> nowConcertList = Concert.findNowConcertList(date, hour, minute);
 		
@@ -61,7 +61,7 @@ public class ConcertPlanManager {
 				cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH),
 				cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE) + 1, 0);
 
-		jobScheduler.scheduleAtFixedRate(job, 1000, 60 * 1000);
+		jobScheduler.scheduleAtFixedRate(job, dateObj, 60 * 1000);
 
 	}
 
@@ -73,9 +73,9 @@ public class ConcertPlanManager {
 			Integer hour = cal.get(Calendar.HOUR_OF_DAY);
 			Integer minute = cal.get(Calendar.MINUTE);
 
-			date = 20130412;
-			hour = 16;
-			minute = 55;
+			//date = 20130412;
+			//hour = 16;
+			//minute = 55;
 
 			try {
 				System.out.println("----------------start concert----------------------");
