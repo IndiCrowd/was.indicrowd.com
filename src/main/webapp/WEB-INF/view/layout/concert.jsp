@@ -461,6 +461,24 @@
 				}
 			});
 			
+			RTW.addHandler('Concert', '${command.id}', 'changebg', function(b) {
+				
+				var bg = '<spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}';
+				
+				$('#wrapper').fadeOut(1000, function() {
+
+					$('#wrapper').css({
+						background: 'url(' + bg + ')',
+						//background: 'white',
+						backgroundSize: 'auto 700px'
+					});
+					
+					setTimeout(function() {
+						$('#wrapper').fadeIn(1000);
+					}, 1000);
+				});
+			});
+			
 		});
 
 			
@@ -479,9 +497,25 @@
 		function useItem(itemName)
 		{
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
+				concertId: ${command.id},
 				iconName: itemName
 			});	
 		};
+		
+		function changeBG(e) {
+			$('#changeBGForm').show();
+			$('#changeBGForm').css({
+				position: 'absolute',
+				left: e.pageX,
+				top: e.pageY
+			});
+		}
+		
+		$(function() {
+			$('#changeBGForm').submit(function() {
+				$('#changeBGForm').hide();
+			});
+		});
 		</script>
 		
 		<decorator:head />
@@ -516,7 +550,7 @@
 						<label>밴드 정보</label> test
 					</span>
 					<span>
-						<a href="javascript:$('#changeBGForm').show();">배경 바꾸기</a>
+						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
 					</span>
 				</div>
 			</div>
@@ -552,11 +586,11 @@
 				&copy; IndiCrowd
 			</div>
 		</div>
-		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" <%--style="display:none;"--%> method="POST" enctype="multipart/form-data" target="changeBGFrame">
+		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" style="display:none;background:#fff;" method="POST" enctype="multipart/form-data" target="changeBGFrame">
 			<input type="file" name="bg">
 			<button type="submit">배경 변경</button>
 		</form>
-		<iframe name="changeBGFrame"></iframe>
+		<iframe name="changeBGFrame" style="display:none;"></iframe>
 	</body>
 	
 </html>

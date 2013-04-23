@@ -125,10 +125,6 @@ public class UserController extends AbstractController {
 			if (userInfo.getProfilePhoto() != null && userInfo.getProfilePhoto().getSize() > 0) {
 				fileService.save(userInfo.getProfilePhoto(), "profilephoto/" + originUserInfo.getId().toString(), true);
 				fileService.save(imageService.generateThumb(userInfo.getProfilePhoto()), "profilethumb/" + originUserInfo.getId().toString(), true);
-			} else {
-				File file = fileService.load("img/blankuser.gif");
-				fileService.save(file, "profilephoto/" + originUserInfo.getId().toString(), true);
-				fileService.save(imageService.generateThumb(file), "profilethumb/" + originUserInfo.getId().toString(), true);
 			}
 			
 			authService.auth(originUserInfo);
