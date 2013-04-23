@@ -137,9 +137,6 @@ public class Concert {
 		Integer startDate = DateUtil.calendarToInteger(cal);
 		Integer startHours = cal.get(Calendar.HOUR_OF_DAY);
 		Integer startMinutes = cal.get(Calendar.MINUTE);
-		startDate = 20130412;
-		startHours = 15;
-		startMinutes = 31;
 		return entityManager()
 				.createQuery(
 						"SELECT o FROM Concert o WHERE ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate) AND o.bandInfo.id IN (SELECT bandInfo.id from BandMember b where b.userInfo.id=:userId AND b.bandRoleType.id=:bandRoleTypeId)" +

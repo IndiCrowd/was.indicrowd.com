@@ -29,8 +29,6 @@ public class ConcertPlanManager {
 	
 	@PostConstruct
 	public void postConstruct(){
-		System.out.println("post construct");
-		System.out.println(Concert.findComingUpConcertList(1).size());
 		//init Concert
 		Calendar cal = Calendar.getInstance();
 		Integer date = DateUtil.calendarToInteger(cal);
@@ -78,17 +76,9 @@ public class ConcertPlanManager {
 			//minute = 55;
 
 			try {
-				System.out.println("----------------start concert----------------------");
 				concertService.whenConcertStart(Concert.findStartConcertList(date, hour, minute));
-				System.out.println(Concert.findStartConcertList(date, hour,minute));
-				System.out.println("----------------now concert----------------------");
 				concertService.manageConcertList(Concert.findNowConcertList(date, hour, minute));
-				System.out.println(Concert.findNowConcertList(date, hour,minute));
-				System.out.println("----------------end concert----------------------");
 				concertService.whenConcertEnd(Concert.findEndConcertList(date,hour, minute));
-				System.out.println(Concert.findEndConcertList(date, hour,minute));
-				System.out.println("----------------redis--------------------------");
-				System.out.println(keyValueService.getSetByKey(ConcertService.startConcertKey));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

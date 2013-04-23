@@ -1,6 +1,6 @@
 package com.indicrowd.auth;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,8 +36,14 @@ public class AuthService {
 		UserInfo userInfo = (UserInfo) principal;
 		userInfo.setEnergy(UserInfo.findUserInfo(userInfo.getId()).getEnergy());
 		userInfo.setUserBand(BandInfo.findBandInfoListByUserId(userInfo.getId()));
-		
-		userInfo.setComingUpConcerts(Concert.findComingUpConcertList(userInfo.getId()));
+		Long adminCount = BandMember.getBandAdminCountByUser(userInfo.getId());
+		if(adminCount>0){
+			userInfo.setComingUpConcerts(Concert.findComingUpConcertList(userInfo.getId()));
+		}else{
+			if(userInfo.getComingUpConcerts() == null || userInfo.getComingUpConcerts().size() != 0){
+				userInfo.setComingUpConcerts(new ArrayList<Concert>());
+			}
+		}
 		
 		return userInfo;
 	}

@@ -37,6 +37,15 @@
 <script >
 function autoBlurFucntion() {if(event.srcElement.tagName=="A") document.body.focus();}
 document.onfocusin=autoBlurFucntion;
+function popup(url, title, w, h) {
+	var left = (screen.width / 2) - (w / 2);
+	var top = (screen.height / 2) - (h / 2) - 40;
+	return window
+			.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
+}
+function goConcert(id){
+	popup('<c:url value="/concert" />/'+id, 'Concert', 1000, 700);
+}
 </script>
 
 <!--[if lt IE 9]>
@@ -49,8 +58,8 @@ document.onfocusin=autoBlurFucntion;
 <script src="<c:url value="/js/bootstrap.js" />"></script>
 <script src="<c:url value="/js/flexslider.js" />"></script>
 <script src="<c:url value="/js/carousel.js" />"></script>
-<script src="<c:url value="/js/jquery.cslider.js" />"></script>
-<script src="<c:url value="/js/slider.js" />"></script>
+<!-- script src="<c:url value="/js/jquery.cslider.js" />"></script>
+<script src="<c:url value="/js/slider.js" />"></script-->
 <script src="<c:url value="/js/fancybox.js" />"></script>
 <script src="<c:url value="/js/twitter.js" />"></script>
 <script src="<c:url value="/js/jquery.placeholder.min.js" />"></script>
@@ -68,34 +77,7 @@ document.onfocusin=autoBlurFucntion;
 <script defer="defer" src="<c:url value="/js/modernizr.js" />"></script>
 <script defer="defer" src="<c:url value="/js/retina.js" />"></script>
 <script defer="defer" src="<c:url value="/js/custom.js" />"></script>
-<!--  script for perfectum -->
 
-<script src="<c:url value="/js/jquery-migrate-1.0.0.min.js" />"></script>
-<script src="<c:url value="/js/jquery.ui.touch-punch.js" />"></script>
-<script src="<c:url value="/js/jquery.cookie.js" />"></script>
-<script src="<c:url value="/js/fullcalendar.min.js" />"></script>
-<script src="<c:url value="/js/jquery.dataTables.min.js" />"></script>
-<script src="<c:url value="/js/jquery.chosen.min.js" />"></script>
-<script src="<c:url value="/js/jquery.uniform.min.js" />"></script>
-<script src="<c:url value="/js/jquery.cleditor.min.js" />"></script>
-<script src="<c:url value="/js/jquery.noty.js" />"></script>
-<script src="<c:url value="/js/jquery.elfinder.min.js" />"></script>
-<script src="<c:url value="/js/jquery.raty.min.js" />"></script>
-
-<script src="<c:url value="/js/jquery.iphone.toggle.js" />"></script>
-
-<script src="<c:url value="/js/jquery.uploadify-3.1.min.js" />"></script>
-
-<script src="<c:url value="/js/jquery.gritter.min.js" />"></script>
-
-<script src="<c:url value="/js/jquery.masonry.min.js" />"></script>
-
-<script src="<c:url value="/js/jquery.knob.js" />"></script>
-
-<script src="<c:url value="/js/jquery.sparkline.min.js" />"></script>
-
-
-<script src="<c:url value="/js/jquery-ui-timepicker-addon.js" />"></script>
 <script>
 	$('.datepicker').datepicker();
 	$('.datetimepicker').datetimepicker();

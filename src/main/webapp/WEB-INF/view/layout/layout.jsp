@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <sec:authentication property="principal" var="principal" />
 
@@ -66,7 +67,43 @@
 	          		<div class="nav-collapse collapse pull-right">
 	            		<ul class="nav">
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}">홈</a></li> --%>
-							<li class="active"><button class="btn btn-primary"><i class="icon-facetime-video icon-white"></i>리허설(5:35)</button></li>
+							<sec:authorize access="isAuthenticated()">
+								<c:if test="${fn:length(principal.comingUpConcerts) gt 0}">
+									<c:set var="comingUpConcert" value="${principal.comingUpConcerts[0] }" ></c:set>
+									<script>
+										var startDate = ${comingUpConcert.startDate};
+										var date = new Date(startDate/10000, startDate/100%100 - 1, startDate%100, ${comingUpConcert.startHours}, ${comingUpConcert.startMinutes});
+										
+										var remainSecond = parseInt((date - new Date())/1000);
+										$("#concertTimer").html("("+parseInt(remainSecond/60)+":"+ remainSecond%60+")");
+										var interval=setInterval("setConcertTimer()", 1000 );
+										var first = 0;
+										function setConcertTimer(){
+											if(remainSecond > 0 ){
+												var second = remainSecond%60;
+												if( second <10){
+													second= "0"+second;
+												}
+												$("#concertTimer").html("("+parseInt(remainSecond/60)+":"+ second+")");
+												remainSecond--;
+											}else{
+												clearInterval(interval);
+												$("#concertStartButton").removeClass("btn-warning");
+												$("#concertStartButton").addClass("btn-primary");
+												$("#concertStateMessage").html(" 공연 하기 ");
+												$("#concertTimer").html("on Air!");
+											}
+											if(first == 0) $("#concertStartButton").show();
+											first++;
+										}
+									</script>
+									<li class="active">
+										<button onclick="javascript:goConcert('${principal.comingUpConcerts[0].id}')" id="concertStartButton" style="display: none" class="btn btn-warning">
+											<i class="icon-facetime-video icon-white"></i><span id="concertStateMessage"> 리허설 중</span></span><br/><span id="concertTimer">&nbsp;</span>
+										</button>
+									</li>
+								</c:if>
+							</sec:authorize>
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li> --%>
