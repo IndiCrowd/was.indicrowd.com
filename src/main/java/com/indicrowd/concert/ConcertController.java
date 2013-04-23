@@ -123,6 +123,9 @@ public class ConcertController extends AbstractController {
 	@RequestMapping(value = "/{concertId}/changeBG", method = RequestMethod.POST)
 	public String changeBG(@PathVariable("concertId") Long concertId, @RequestParam CommonsMultipartFile bg, Model model) throws IOException {
 		
+		
+		System.out.println("Test");
+		
 		Concert concert = Concert.findConcert(concertId);
 		
 		if (bg != null && bg.getSize() > 0) {
