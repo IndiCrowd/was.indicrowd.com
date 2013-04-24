@@ -67,6 +67,22 @@ privileged aspect Item_Roo_JavaBean {
         this.frameCount = frameCount;
     }
     
+    public boolean Item.isIsRepeat() {
+        return this.isRepeat;
+    }
+    
+    public void Item.setIsRepeat(boolean isRepeat) {
+        this.isRepeat = isRepeat;
+    }
+    
+    public boolean Item.isIsRewind() {
+        return this.isRewind;
+    }
+    
+    public void Item.setIsRewind(boolean isRewind) {
+        this.isRewind = isRewind;
+    }
+    
     public CommonsMultipartFile Item.getProfilePhoto() {
         return this.profilePhoto;
     }

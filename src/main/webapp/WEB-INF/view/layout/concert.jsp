@@ -411,12 +411,12 @@
 				
 				var randomId = "x" + randomString(8);
 				
-				if (iconFeed.iconName === 'yj_hands') {
+				if (iconFeed.item.isRepeat === true) {
 
 					var $div = $DIV({
 						id : randomId,
 						style: {
-							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 							width: 150,
 							height: 150,
 							position: 'absolute',
@@ -424,7 +424,7 @@
 							right: 100,
 							zIndex: 100000
 						}
-					}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
+					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, rewind: iconFeed.item.isRewind}).appendTo('body');
 					
 					setTimeout(function() {
 						$div.fadeOut(function() {
@@ -435,12 +435,12 @@
 				
 				}
 				
-				else if (iconFeed.iconName === 'balloons') {
+				else {
 
 					var $div = $DIV({
 						id : randomId,
 						style: {
-							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 							width: 150,
 							height: 150,
 							position: 'absolute',
@@ -448,7 +448,7 @@
 							right: 100,
 							zIndex: 100000
 						}
-					}).sprite({fps: 12, no_of_frames: 6, on_last_frame: function(obj) {
+					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
 			            obj.destroy();
 			            $div.fadeOut(function() {
 							$div.remove();
@@ -494,11 +494,10 @@
 		
 		
 		<script>
-		function useItem(itemName)
+		function useItem(itemId)
 		{
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
-				concertId: ${command.id},
-				iconName: itemName
+				itemId: itemId
 			});	
 		};
 		
