@@ -61,7 +61,7 @@
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.clientPublishStr = '${principal.id}';
-				flashvars.clientDefaultImage = '${principal.socialImageUrl}';
+				flashvars.clientDefaultImage = '<c:if test="${principal.socialImageUrl == null}"><img style="width:22px;height:22px" border="0" src="<spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}"> </c:if>';
 		        
 		        var params = {};
 		        params.quality = 'high';
