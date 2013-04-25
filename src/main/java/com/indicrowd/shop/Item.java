@@ -47,6 +47,12 @@ public class Item {
 	@Column(nullable = false)
 	private int frameCount;
 	
+	@Column(nullable = false)
+	private boolean isRepeat = false;
+	
+	@Column(nullable = false)
+	private boolean isRewind = false;
+	
 	@Transient
 	private CommonsMultipartFile profilePhoto;
 	

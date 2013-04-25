@@ -96,66 +96,29 @@
 						<div class="pull-left" style="padding-top: 4px; padding-right: 5px;">
 							<img src="${pageContext.request.contextPath}/img/001_15.png">
 						</div>
-						<h3 class="pull-left">Hot Bands for this week!</h3>
+						<h3 class="pull-left">Hot Bands for This Week!</h3>
 						<div style="clear:both;"></div>
 					</div>
-					<% for (int i = 0 ; i < 100 ; i++) { %>
+					<c:forEach items="${bands}" var="band">
 					<div class="wrapper" style="margin-top: 15px;">
 						<div class="widget" style="width: 50%; float:left;">
 							<div class="flex-image">
-								<img src="${pageContext.request.contextPath}/img/band/broccoli.jpg">
+								<img src="${pageContext.request.contextPath}/img/band/${band.imageFilePath}" alt="" />
 							</div>
 						</div>
 						<div style="width: 45%; float:right;">
 							<div class="team-name" style="text-align: left; padding: 0 0 10px 0;">
-								브로콜리 너마저
+								${band.name}
 								<br>
-								<span>Rock Folk</span>
+								<span>${band.category}</span>
 							</div>
 							<p class="text-info" style="margin: 0;">
-								<a href="#">문화콘서트 난장 브로콜리 너마저 - 앵콜요청금지</a>
+								<a href="#">${band.description.length() > 30 ? band.description.substring(0, 30).concat('...') : band.description}</a>
 							</p>
 						</div>
 						<div style="clear:both;"></div>
 					</div>
-					<div class="wrapper" style="margin-top: 15px;">
-						<div class="widget" style="width: 50%; float:left;">
-							<div class="flex-image">
-								<img src="${pageContext.request.contextPath}/img/band/10cm.jpg">
-							</div>
-						</div>
-						<div style="width: 45%; float:right;">
-							<div class="team-name" style="text-align: left; padding: 0 0 10px 0;">
-								10cm
-								<br>
-								<span>Rock Folk</span>
-							</div>
-							<p class="text-info" style="margin: 0;">
-								<a href="#">10cm - Fine Thank You And You</a>
-							</p>
-						</div>
-						<div style="clear:both;"></div>
-					</div>
-					
-					<div class="wrapper" style="margin-top: 15px;">
-						<div class="widget" style="width: 50%; float:left;">
-							<div class="flex-image">
-								<img src="${pageContext.request.contextPath}/img/band/elrvjdtm.jpg">
-							</div>
-						</div>
-						<div style="width: 45%; float:right;">
-							<div class="team-name" style="text-align: left; padding: 0 0 10px 0;">
-								딕펑스
-								<br>
-								<span>Rock</span>
-							</div>
-							<p class="text-info" style="margin: 0;">
-								<a href="#">슈퍼스타K 4 - PSY_Gangnam Style</a>
-							</p>
-						</div>
-						<div style="clear:both;"></div>
-					</div>
-					<% } %>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -31,6 +31,7 @@ import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
 import com.indicrowd.concert.model.UserState;
+import com.indicrowd.shop.Item;
 import com.indicrowd.user.model.UserInfo;
 import com.indicrowd.util.DateUtil;
 
@@ -126,10 +127,14 @@ public class ConcertController extends AbstractController {
 		Concert concert = Concert.findConcert(concertId);
 		
 		if (bg != null && bg.getSize() > 0) {
+			
+			System.out.println("TEST!");
 					
 			fileService.save(bg, "concertbg/" + concertId.toString(), true);
 			
 			concert.setHasBG(true);
+			
+			rtwService.send("Concert", concert.getId(), "changebg", true);
 		}
 		
 		model.addAttribute("command", concert);
@@ -146,12 +151,14 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/{concertId}/iconFeed")
-	public void iconFeed(@PathVariable("concertId") Long concertId, @Valid @ModelAttribute("command") IconFeed iconFeed, BindingResult bindingResult, Model model) {
+	public void iconFeed(@PathVariable("concertId") Long concertId, Long itemId, Model model) {
 		Concert concert = Concert.findConcert(concertId);
 
 		if (concert != null) {
 
+			IconFeed iconFeed = new IconFeed();
 			iconFeed.setConcert(concert);
+			iconFeed.setItem(Item.findItem(itemId));
 			iconFeed.setSender(authService.getUserInfo());
 			iconFeed.setSendDate(new Date());
 			iconFeed.persist();

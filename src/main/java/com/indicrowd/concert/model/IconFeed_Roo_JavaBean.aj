@@ -5,6 +5,7 @@ package com.indicrowd.concert.model;
 
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.IconFeed;
+import com.indicrowd.shop.Item;
 import com.indicrowd.user.model.UserInfo;
 import java.util.Date;
 
@@ -18,12 +19,12 @@ privileged aspect IconFeed_Roo_JavaBean {
         this.concert = concert;
     }
     
-    public Long IconFeed.getConcertId() {
-        return this.concertId;
+    public Item IconFeed.getItem() {
+        return this.item;
     }
     
-    public void IconFeed.setConcertId(Long concertId) {
-        this.concertId = concertId;
+    public void IconFeed.setItem(Item item) {
+        this.item = item;
     }
     
     public UserInfo IconFeed.getSender() {
@@ -32,14 +33,6 @@ privileged aspect IconFeed_Roo_JavaBean {
     
     public void IconFeed.setSender(UserInfo sender) {
         this.sender = sender;
-    }
-    
-    public String IconFeed.getIconName() {
-        return this.iconName;
-    }
-    
-    public void IconFeed.setIconName(String iconName) {
-        this.iconName = iconName;
     }
     
     public Date IconFeed.getSendDate() {

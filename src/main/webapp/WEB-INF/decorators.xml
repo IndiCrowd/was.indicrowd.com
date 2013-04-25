@@ -22,6 +22,7 @@
 	
 	<decorator name="base" page="base.jsp">
 		<pattern>/concert/*/feed</pattern>
+		<pattern>/concert/*/changeBG</pattern>
 	</decorator>
 	
 </decorators>

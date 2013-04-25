@@ -411,12 +411,12 @@
 				
 				var randomId = "x" + randomString(8);
 				
-				if (iconFeed.iconName === 'yj_hands') {
+				if (iconFeed.item.isRepeat === true) {
 
 					var $div = $DIV({
 						id : randomId,
 						style: {
-							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 							width: 150,
 							height: 150,
 							position: 'absolute',
@@ -424,7 +424,7 @@
 							right: 100,
 							zIndex: 100000
 						}
-					}).sprite({fps: 12, no_of_frames: 3, rewind: true}).appendTo('body');
+					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, rewind: iconFeed.item.isRewind}).appendTo('body');
 					
 					setTimeout(function() {
 						$div.fadeOut(function() {
@@ -435,12 +435,12 @@
 				
 				}
 				
-				else if (iconFeed.iconName === 'balloons') {
+				else {
 
 					var $div = $DIV({
 						id : randomId,
 						style: {
-							background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 							width: 150,
 							height: 150,
 							position: 'absolute',
@@ -448,7 +448,7 @@
 							right: 100,
 							zIndex: 100000
 						}
-					}).sprite({fps: 12, no_of_frames: 6, on_last_frame: function(obj) {
+					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
 			            obj.destroy();
 			            $div.fadeOut(function() {
 							$div.remove();
@@ -459,6 +459,24 @@
 					$div.fadeIn();
 				
 				}
+			});
+			
+			RTW.addHandler('Concert', '${command.id}', 'changebg', function(b) {
+				
+				var bg = '<spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}';
+				
+				$('#wrapper').fadeOut(1000, function() {
+
+					$('#wrapper').css({
+						background: 'url(' + bg + ')',
+						//background: 'white',
+						backgroundSize: 'auto 700px'
+					});
+					
+					setTimeout(function() {
+						$('#wrapper').fadeIn(1000);
+					}, 1000);
+				});
 			});
 			
 		});
@@ -476,12 +494,27 @@
 		
 		
 		<script>
-		function useItem(itemName)
+		function useItem(itemId)
 		{
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
-				iconName: itemName
+				itemId: itemId
 			});	
 		};
+		
+		function changeBG(e) {
+			$('#changeBGForm').show();
+			$('#changeBGForm').css({
+				position: 'absolute',
+				left: e.pageX,
+				top: e.pageY
+			});
+		}
+		
+		$(function() {
+			$('#changeBGForm').submit(function() {
+				$('#changeBGForm').hide();
+			});
+		});
 		</script>
 		
 		<decorator:head />
@@ -516,7 +549,7 @@
 						<label>밴드 정보</label> test
 					</span>
 					<span>
-						<a href="javascript:$('#changeBGForm').show();">배경 바꾸기</a>
+						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
 					</span>
 				</div>
 			</div>
@@ -552,11 +585,11 @@
 				&copy; IndiCrowd
 			</div>
 		</div>
-		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" <%--style="display:none;"--%> method="POST" enctype="multipart/form-data" target="changeBGFrame">
+		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" style="display:none;background:#fff;" method="POST" enctype="multipart/form-data" target="changeBGFrame">
 			<input type="file" name="bg">
 			<button type="submit">배경 변경</button>
 		</form>
-		<iframe name="changeBGFrame"></iframe>
+		<iframe name="changeBGFrame" style="display:none;"></iframe>
 	</body>
 	
 </html>
