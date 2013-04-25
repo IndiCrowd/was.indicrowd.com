@@ -11,6 +11,9 @@
             <!-- Uncomment the following two properties for JBoss only -->
             <!-- property name="hibernate.validator.apply_to_ddl" value="false" /-->
             <!-- property name="hibernate.validator.autoregister_listeners" value="false" /-->
+            
+            <property name="hibernate.show_sql" value="true"/> 
+			<property name="hibernate.format_sql" value="true"/>
         </properties>
         <!-- Database에 넣을때 Validation 할 필요 없다. -->
         <validation-mode>NONE</validation-mode>
