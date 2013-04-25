@@ -99,6 +99,10 @@
 			$('#StreamPublisher').height(height);
 		}
 		
+		$(function() {
+			
+		});
+		
 		</script>
 	</head>
 	

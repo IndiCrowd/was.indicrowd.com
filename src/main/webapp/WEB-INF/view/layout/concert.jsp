@@ -40,10 +40,21 @@
 		
 		<style>
 			html, body {
-				background: #000;
+				background: #333;
+				margin: 0;
+				padding: 0;
+			}
+			#background {
+				width: 100%;
+				height: 700px;
+				position:absolute;
+				top:0;
 			}
 			#wrapper {
+				width: 100%;
 				height: 700px;
+				position:absolute;
+				top:0;
 			}
 			
 			h1 { 
@@ -325,7 +336,7 @@
 			
 			var bg = '<c:if test="${!command.hasBG}"><c:url value="/img/concert/concertbg.jpg" /></c:if><c:if test="${command.hasBG}"><spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}</c:if>';
 			
-			$('#wrapper').css({
+			$('#background').css({
 				background: 'url(' + bg + ')',
 				//background: 'white',
 				backgroundSize: 'auto 700px'
@@ -411,6 +422,9 @@
 				
 				var randomId = "x" + randomString(8);
 				
+				var top = $('#user-' + iconFeed.sender.id).offset().top + $('#user-' + iconFeed.sender.id).height() - 140;
+				var left = $('#user-' + iconFeed.sender.id).offset().left;
+				
 				if (iconFeed.item.isRepeat === true) {
 
 					var $div = $DIV({
@@ -420,8 +434,8 @@
 							width: 150,
 							height: 150,
 							position: 'absolute',
-							top: 100,
-							right: 100,
+							top: top,
+							left: left,
 							zIndex: 100000
 						}
 					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, rewind: iconFeed.item.isRewind}).appendTo('body');
@@ -444,8 +458,8 @@
 							width: 150,
 							height: 150,
 							position: 'absolute',
-							top: 100,
-							right: 100,
+							top: top,
+							left: left,
 							zIndex: 100000
 						}
 					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
@@ -465,16 +479,16 @@
 				
 				var bg = '<spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}';
 				
-				$('#wrapper').fadeOut(1000, function() {
+				$('#background').fadeOut(1000, function() {
 
-					$('#wrapper').css({
+					$('#background').css({
 						background: 'url(' + bg + ')',
 						//background: 'white',
 						backgroundSize: 'auto 700px'
 					});
 					
 					setTimeout(function() {
-						$('#wrapper').fadeIn(1000);
+						$('#background').fadeIn(1000);
 					}, 1000);
 				});
 			});
@@ -522,6 +536,8 @@
 	</head>
 	
 	<body>
+	
+		<div id="background"></div>
 	
 		<div id="wrapper">
 		
