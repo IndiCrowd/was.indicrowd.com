@@ -80,6 +80,8 @@
 										var first = 0;
 										function setConcertTimer(){
 											if(remainSecond > 0 ){
+												var day = remainSecond/86400;
+												//var hour = remainSecond;
 												var second = remainSecond%60;
 												if( second <10){
 													second= "0"+second;
@@ -88,8 +90,8 @@
 												remainSecond--;
 											}else{
 												clearInterval(interval);
-												$("#concertStartButton").removeClass("btn-warning");
-												$("#concertStartButton").addClass("btn-primary");
+												$("#concertStartButton").removeClass("btn-success");
+												$("#concertStartButton").addClass("btn-danger");
 												$("#concertStateMessage").html(" 공연 하기 ");
 												$("#concertTimer").html("on Air!");
 											}
@@ -98,8 +100,8 @@
 										}
 									</script>
 									<li class="active">
-										<button onclick="javascript:goConcertAdmin('${principal.comingUpConcerts[0].id}')" id="concertStartButton" style="display: none" class="btn btn-warning">
-											<i class="icon-facetime-video icon-white"></i><span id="concertStateMessage"> 리허설 중</span></span><br/><span id="concertTimer">&nbsp;</span>
+										<button onclick="javascript:goConcertAdmin('${principal.comingUpConcerts[0].id}')" id="concertStartButton" style="display: none" class="btn btn-success">
+											<i class="icon-facetime-video icon-white"></i><span id="concertStateMessage"> 리허설 가능 </span></span><br/><span id="concertTimer">&nbsp;</span>
 										</button>
 									</li>
 								</c:if>
