@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.concert.model.Concert;
 
 @org.springframework.stereotype.Controller
 public class Controller extends AbstractController {
@@ -25,6 +26,8 @@ public class Controller extends AbstractController {
 	@RequestMapping("/main")
 	public void main1(Model model) {
 		model.addAttribute("bands", BandInfo.findAllBandInfoes());
+		model.addAttribute("comingUpConcertList", Concert.findComingUpConcertList(3));
+		model.addAttribute("previousConcertList", Concert.findPreviousConcertList(3));
 	}
 	
 	@RequestMapping("/landing")
