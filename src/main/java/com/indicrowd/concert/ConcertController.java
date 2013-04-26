@@ -59,6 +59,12 @@ public class ConcertController extends AbstractController {
 		
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(value ="/manage", method = RequestMethod.GET)
+	public void manage(Model model){
+		
+	}
+	
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
 	public void getConcert(Model model, @RequestParam Integer startDate , @RequestParam Integer endDate) throws JsonGenerationException, JsonMappingException, IOException{
 		List<Concert> concertList = Concert.findConcertListByDateRange(startDate, endDate);
