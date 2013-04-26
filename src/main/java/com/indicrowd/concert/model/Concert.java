@@ -1,7 +1,6 @@
 package com.indicrowd.concert.model;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.band.BandRoleType;
@@ -83,6 +83,9 @@ public class Concert {
 	
 	@Column(nullable = false)
 	private boolean hasBG = false;
+	
+	@Transient
+	private CommonsMultipartFile photo;
 	
 	public static final int START_BEFORE_MINUTES = 3;
 	public static final int ENDS_BEFORE_MINUTES =5;

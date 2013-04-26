@@ -6,6 +6,7 @@ package com.indicrowd.concert.model;
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.concert.model.Hall;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect Concert_Roo_JavaBean {
     
@@ -135,6 +136,14 @@ privileged aspect Concert_Roo_JavaBean {
     
     public void Concert.setHasBG(boolean hasBG) {
         this.hasBG = hasBG;
+    }
+    
+    public CommonsMultipartFile Concert.getPhoto() {
+        return this.photo;
+    }
+    
+    public void Concert.setPhoto(CommonsMultipartFile photo) {
+        this.photo = photo;
     }
     
 }
