@@ -56,7 +56,7 @@
 		        
 		        var res = swfobject.embedSWF(
 		            '<c:url value="/swf/StreamUser.swf" />', replaceId, 
-		            '100', '100', 
+		            '50', '50', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
 		        
