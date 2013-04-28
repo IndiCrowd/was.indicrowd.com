@@ -1,5 +1,6 @@
 package com.indicrowd.concert;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,9 +96,7 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/reserve", method = RequestMethod.POST)
-	public String reserve(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) {
-
-		
+	public String reserve(@Valid @ModelAttribute("command") Concert concert, BindingResult bindingResult, Model model) throws IOException {
 
 		if (bindingResult.hasErrors()) {
 			return "concert/reserve";
@@ -106,6 +105,16 @@ public class ConcertController extends AbstractController {
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			concert.persist();
+			
+			if (concert.getPhoto() != null && concert.getPhoto().getSize() > 0) {
+				fileService.save(concert.getPhoto(), "concertphoto/" + concert.getId().toString(), true);
+				fileService.save(imageService.generateThumb(concert.getPhoto()), "concertthumb/" + concert.getId().toString(), true);
+			} else {
+				File file = fileService.load("img/blankconcert.jpg");
+				fileService.save(file, "concertphoto/" + concert.getId().toString(), true);
+				fileService.save(imageService.generateThumb(file), "concertthumb/" + concert.getId().toString(), true);
+			}
+			
 			return "redirect:/concert";
 		}
 	}

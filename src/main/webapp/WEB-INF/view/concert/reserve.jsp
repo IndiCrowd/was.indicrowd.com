@@ -24,6 +24,17 @@
 						<form:hidden path="hallId" value="1" />
 						<form:hidden path="bandId" value="5" />
 						<fieldset>
+							<div class="control-group">
+								<div class="controls">
+									<div class="use-preview">
+										<img style="max-width: 100%;" src="<spring:eval expression="@userfileConfig.baseUrl" />/img/blankconcert.jpg">
+										<h5>프로필 사진 등록</h5>
+										<p>(사진파일 500KB 이하)</p>
+										<form:input type="file" path="photo" />
+										<spring:bind path="photo"><p class="error">${status.errorMessage}</p></spring:bind>
+									</div>
+								</div>
+							</div>
 							<div class="control-group <spring:bind path="title"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 								<label class="control-label" for="title">공연명</label>
 								<div class="controls">
