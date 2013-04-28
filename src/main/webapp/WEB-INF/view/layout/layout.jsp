@@ -106,12 +106,12 @@
 									</li>
 								</c:if>
 							</sec:authorize>
-							<li class="active"><a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a></li>
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li> --%>
+							<li class="active"><a href="#fundingReady" data-toggle="modal">크라우드 펀딩</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/item/list">상점</a></li> --%>
-							<li class="active"><a href="${pageContext.request.contextPath}/contact">제안/문의하기</a></li>
+							<li class="active"><a href="#shopReady" data-toggle="modal">상점</a></li>
 							<sec:authorize access="isAnonymous()">
 								<li class="active"><a href="${pageContext.request.contextPath}/signin">로그인</a></li>
 							</sec:authorize>
@@ -202,11 +202,11 @@
 					
 					<p class="pull-right">
 						<a href="https://www.facebook.com/IndiCrowd" target="_blank"><img src="${pageContext.request.contextPath}/img/facebook_favicon.png"></a>
-						<%-- <a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a> --%>
-						<%-- <a href="${pageContext.request.contextPath}/help">도움말</a> --%>
+						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
+						<a href="${pageContext.request.contextPath}/help">도움말</a>
 						<a href="${pageContext.request.contextPath}/terms">이용약관</a>
 						<a href="${pageContext.request.contextPath}/policy">개인정보 보호정책</a>
-						<%-- <a href="${pageContext.request.contextPath}/contact">제안/문의하기</a> --%>
+						<a href="${pageContext.request.contextPath}/contact">제안/문의하기</a>
 					</p>
 					
 				</div>
@@ -246,6 +246,37 @@
 		  </div>
 		  
 		</div>
+ 
+		<!-- Modal -->
+		<div id="fundingReady" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3>크라우드 펀딩</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>크라우드 펀딩과 상점은 현재 준비중입니다…</p>
+		    <p>이용에 불편을 드려 대단히 죄송합니다.</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn btn-primary" data-dismiss="modal">열심히 준비하겠습니다! 화이팅!</button>
+		  </div>
+		</div>
+		
+		<!-- Modal -->
+		<div id="shopReady" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3>상점</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>크라우드 펀딩과 상점은 현재 준비중입니다…</p>
+		    <p>이용에 불편을 드려 대단히 죄송합니다.</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn btn-success" data-dismiss="modal">열심히 준비하겠습니다! 화이팅!</button>
+		  </div>
+		</div>
+		
 	</body>
 	
 </html>
