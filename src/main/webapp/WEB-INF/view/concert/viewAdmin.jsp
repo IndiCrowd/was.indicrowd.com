@@ -87,6 +87,19 @@
 		        
 		        return $('#StreamPublisher');
 			};
+			
+			
+
+			RTW.addHandler('Concert', '${command.id}', 'concertState', function(concertState) {
+				
+				console.log(concertState);
+				
+				$('#StreamPublisher').each(function(index) {
+					this.changeState(concertState);
+				});
+				
+				
+			});
 
 			openStreamPublisher();
 			
@@ -99,9 +112,7 @@
 			$('#StreamPublisher').height(height);
 		}
 		
-		$(function() {
-			
-		});
+
 		
 		</script>
 	</head>

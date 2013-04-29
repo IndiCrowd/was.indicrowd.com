@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -13,14 +14,20 @@ import org.springframework.stereotype.Service;
 
 import com.indicrowd.KeyValueListCacheService;
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.concert.model.ConcertState;
+import com.indicrowd.rtw.RTWService;
 import com.indicrowd.server.StreamingServerInfo;
 
 @Service
 public class ConcertService {
 	
+	private static Logger logger = Logger.getLogger(ConcertService.class);
 	
 	@Autowired
 	KeyValueListCacheService keyValueService;
+	
+	@Autowired
+	protected RTWService rtwService;
 	
 	ObjectMapper objMapper = new ObjectMapper();
 	public static final String channelName = "commonChannel";
@@ -28,11 +35,12 @@ public class ConcertService {
 	public static final String endConcertKey = "endConcert_";
 	public void whenConcertStart(List<Concert> concertList) throws IOException{
 		
-		
 		for(int i=0; i<concertList.size();i++){
+			logger.info("Start Concert : " + concertList.get(i).getId());
 			
 			keyValueService.addSetElement(startConcertKey, String.valueOf(concertList.get(i).getId()));
 			keyValueService.publish(channelName, "startConcert");
+			rtwService.send("Concert", concertList.get(i).getId(), "concertState", ConcertState.PLAYING.toString());
 		}
 	}
 	
@@ -42,6 +50,7 @@ public class ConcertService {
 			String concertId = String.valueOf(concertList.get(i).getId());
 			keyValueService.removeSetElement(startConcertKey, concertId);
 			keyValueService.publish(channelName, endConcertKey+concertId);
+			rtwService.send("Concert", concertList.get(i).getId(), "concertState", ConcertState.END.toString());
 		}
 	}
 	
