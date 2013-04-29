@@ -13,70 +13,45 @@
 	
 <div id="timeline" >
 		<ul id="dates">
-			<li><a href="#4.13" class="selected">4/13</a></li>
-			<li><a href="#1930">1930</a></li>
-			<li><a href="#1944">1944</a></li>
-			<li><a href="#1950">1950</a></li>
-			<li><a href="#1971">1971</a></li>
-			<li><a href="#1977">1977</a></li>
-			<li><a href="#1989">1989</a></li>
-			<li><a href="#1999">1999</a></li>
-			<li><a href="#2001">2001</a></li>
-			<li><a href="#2011">2011</a></li>
+			<li><a href="#2013.4.13" class="selected">4/13</a></li>
+			<li><a href="#2013.4.15">4/15</a></li>
+			<li><a href="#2013.6.13">6/13</a></li>
 		</ul>
 		<ul id="issues">
-			<li id="4.13" class="selected">
-				
-				<h1>4.13</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-				
-				
-			</li>
-			<li id="1930">
-				<img src="${pageContext.request.contextPath}/img/timeline/2.png" width="256" height="256" />
-				<h1>1930</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
-			<li id="1944">
+			<li id="2013.4.13" class="selected">
 				<img src="${pageContext.request.contextPath}/img/timeline/3.png" width="256" height="256" />
-				<h1>1944</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
+				<h1>4/13</h1>
+				<table style="width:100%; font-size:16px;  margin-top:40px; margin-bottom:40px; margin-left:30px">
+					<tr><td>김승하의 기타교실 @ 저녁 6시</td></tr>
+					<tr><td><span class="badge badge-info">공연밴드 </span><a href="#">10cm</a></td></tr>
+					<tr><td><span class="badge badge-success">관객</span> 37명이 관람하였습니다</td></tr>
+				</table>
+				<hr/>
+				<p><button class="btn btn-success">공연 수정</button> <button class="btn btn-danger">공연 기록 삭제</button></p>
 			</li>
-			<li id="1950">
-				<img src="${pageContext.request.contextPath}/img/timeline/4.png" width="256" height="256" />
-				<h1>1950</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
+			<li id="2013.4.15">
+				<img src="${pageContext.request.contextPath}/img/timeline/3.png" width="256" height="256" />
+				<h1>4/15</h1>
+				<table style="width:100%; font-size:16px;  margin-top:40px; margin-bottom:40px; margin-left:30px">
+					<tr><td>김승하의 기타교실 @ 저녁 6시</td></tr>
+					<tr><td><span class="badge badge-info">공연밴드 </span><a href="#">10cm</a></td></tr>
+					<tr><td><span class="badge badge-success">관객</span> 37명이 관람하였습니다</td></tr>
+				</table>
+				<hr/>
+				<p><button class="btn btn-success">공연 수정</button> <button class="btn btn-danger">공연 기록 삭제</button></p>
 			</li>
-			<li id="1971">
-				<img src="${pageContext.request.contextPath}/img/timeline/5.png" width="256" height="256" />
-				<h1>1971</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
+			<li id="2013.6.13">
+				<img src="${pageContext.request.contextPath}/img/timeline/3.png" width="256" height="256" />
+				<h1>6/13</h1>
+				<table style="width:100%; font-size:16px;  margin-top:40px; margin-bottom:40px; margin-left:30px">
+					<tr><td>김승하의 기타교실 @ 저녁 6시</td></tr>
+					<tr><td><span class="badge badge-info">공연밴드 </span><a href="#">10cm</a></td></tr>
+					<tr><td><span class="badge badge-success">관객</span> 37명이 관람하였습니다</td></tr>
+				</table>
+				<hr/>
+				<p><button class="btn btn-success">공연 수정</button> <button class="btn btn-danger">공연 기록 삭제</button></p>
 			</li>
-			<li id="1977">
-				<img src="${pageContext.request.contextPath}/img/timeline/6.png" width="256" height="256" />
-				<h1>1977</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
-			<li id="1989">
-				<img src="${pageContext.request.contextPath}/img/timeline/7.png" width="256" height="256" />
-				<h1>1989</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
-			<li id="1999">
-				<img src="${pageContext.request.contextPath}/img/timeline/8.png" width="256" height="256" />
-				<h1>1999</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
-			<li id="2001">
-				<img src="${pageContext.request.contextPath}/img/timeline/9.png" width="256" height="256" />
-				<h1>2001</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
-			<li id="2011">
-				<img src="${pageContext.request.contextPath}/img/timeline/10.png" width="256" height="256" />
-				<h1>2011</h1>
-				<p>Donec semper quam scelerisque tortor dictum gravida. In hac habitasse platea dictumst. Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget molestie nec, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula.</p>
-			</li>
+			
 		</ul>
 		<div id="grad_top"></div>
 		<div id="grad_bottom"></div>
@@ -91,9 +66,9 @@ $(function(){
 	$().timelinr({
 		orientation: 	'vertical',
 		issuesSpeed: 	300,
-		datesSpeed: 	0,
+		datesSpeed: 	100,
 		arrowKeys: 		'true',
-		startAt:		3
+		startAt:		1
 	})
 });
 </script>
