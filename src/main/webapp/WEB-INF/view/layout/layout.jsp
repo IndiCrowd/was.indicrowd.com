@@ -48,9 +48,9 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" style ="width:182px; height:25px"/></a>
+					<a class="brand" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath }/img/indicrowd.png" style ="width:182px; height:25px"/><span class="badge badge-success" style="margin-left: 10px; font-style: italic;">beta</span></a>
 					
-					<div id="sns-share" class="pull-left" style="width: 150px; padding-top: 2px;">
+					<div id="sns-share" class="pull-left" style="width: 150px; padding-top: 4px;">
 						<!-- AddThis Button BEGIN -->
 						<div class="addthis_toolbox addthis_default_style "
 									addthis:url="http://www.indicrowd.com"
