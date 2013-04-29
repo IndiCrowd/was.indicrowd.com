@@ -126,6 +126,13 @@ public class ConcertController extends AbstractController {
 
 		return "concert/view";
 	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{concertId}/state") 
+	public void concertInfo(@PathVariable("concertId") Long concertId, Model model)
+	{
+		model.addAttribute("command", Concert.findConcert(concertId).getState());
+	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/admin", method = RequestMethod.GET)

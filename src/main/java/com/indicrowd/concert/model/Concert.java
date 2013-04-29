@@ -86,7 +86,8 @@ public class Concert {
 	
 	@Transient
 	private CommonsMultipartFile photo;
-	
+
+	public static final int START_BEFORE_REHEARSAL_MINUTES = 30;
 	public static final int START_BEFORE_MINUTES = 3;
 	public static final int ENDS_BEFORE_MINUTES =5;
 	
@@ -175,5 +176,42 @@ public class Concert {
 						" ORDER BY startDate,startHours,startMinutes",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setMaxResults(count)
 				.getResultList();
+	}
+	
+	public long getStartTimeInMillis () {
+		Calendar cal = Calendar.getInstance();
+		
+		cal.set(Calendar.YEAR, this.startDate/10000);
+		cal.set(Calendar.MONTH, (this.startDate%10000)/100 - 1);
+		cal.set(Calendar.DAY_OF_MONTH, this.startDate%100);
+		cal.set(Calendar.HOUR_OF_DAY, this.startHours);
+		cal.set(Calendar.MINUTE, this.startMinutes);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		
+		return cal.getTimeInMillis();
+	}
+	
+	public long getEndTimeInMillis() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(getStartTimeInMillis());
+		cal.add(Calendar.MINUTE, this.duration);
+		
+		return cal.getTimeInMillis();
+	}
+	
+	
+	public ConcertState getState() {
+		long now = Calendar.getInstance().getTimeInMillis();
+		
+		if (now < (getStartTimeInMillis() - START_BEFORE_REHEARSAL_MINUTES * 60000L )) {
+			return ConcertState.RESERVE;
+		} else if (now < getStartTimeInMillis()) {
+			return ConcertState.REHEARSAL;
+		} else if (now < getEndTimeInMillis()) {
+			return ConcertState.PLAYING;
+		} else {
+			return ConcertState.END;
+		}
 	}
 }
