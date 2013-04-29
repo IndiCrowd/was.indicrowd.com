@@ -20,7 +20,7 @@
 					</h2>
 				</div>
 				<div class="box-content">
-					<form:form cssClass="form-horizontal">
+					<form:form cssClass="form-horizontal" enctype="multipart/form-data">
 						<form:hidden path="hallId" value="1" />
 						<form:hidden path="bandId" value="5" />
 						<fieldset>

@@ -315,7 +315,7 @@
 							width: 50,
 							height: 50
 						},
-						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id
+						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + Math.random()
 					}).appendTo('#stage').hide().fadeIn();
 					
 				} else {
