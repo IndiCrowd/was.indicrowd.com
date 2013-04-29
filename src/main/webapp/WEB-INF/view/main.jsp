@@ -63,12 +63,12 @@
 		    -webkit-border-radius: 100%;
 		    -moz-border-radius: 100%;
 		    border-radius: 100%;
-		    width: 70px;
-		    height: 70px;
+		    width: 50px;
+		    height: 50px;
 		    left: 50%;
 		    top: 50%;
-		    margin-left: -35px;
-		    margin-top: -35px;
+		    margin-left: -25px;
+		    margin-top: -25px;
 		    position: absolute;
 		    -webkit-box-shadow: 0px 0px 5px 2px rgba(255,255,255,.5);
 		    -moz-box-shadow: 0px 0px 5px 2px rgba(255,255,255,.5);
