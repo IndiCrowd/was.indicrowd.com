@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ import com.indicrowd.util.DateUtil;
 
 @Service
 public class ConcertPlanManager {
+	
+	private static Logger logger = Logger.getLogger(ConcertPlanManager.class);
 
 	@Autowired
 	ConcertService concertService;
@@ -76,6 +79,7 @@ public class ConcertPlanManager {
 			//minute = 55;
 
 			try {
+				logger.info("Event Occur");
 				concertService.whenConcertStart(Concert.findStartConcertList(date, hour, minute));
 				concertService.manageConcertList(Concert.findNowConcertList(date, hour, minute));
 				concertService.whenConcertEnd(Concert.findEndConcertList(date,hour, minute));
