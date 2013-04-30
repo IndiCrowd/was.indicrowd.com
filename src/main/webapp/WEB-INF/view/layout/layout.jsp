@@ -189,24 +189,24 @@
 				<!-- end: Under Footer Logo -->
 
 				<!-- start: Under Footer Copyright -->
-				<div class="span4">
+				<div class="span3">
 					
 					<div id="under-footer-copyright">
-						&copy; 2013, <a href="${pageContext.request.contextPath}/about">IndiCrowd</a>. all right reserved.
+						&copy; 2013, <a href="${pageContext.request.contextPath}/about">IndiCrowd</a>. <span class="hidden-tablet">all right reserved.</span>
 					</div>
 					
 				</div>
 				<!-- end: Under Footer Copyright -->
 				
-				<div class="span7" id="under-footer-menu">
+				<div class="span8" id="under-footer-menu">
 					
 					<p class="pull-right">
-						<a href="https://www.facebook.com/IndiCrowd" target="_blank"><img src="${pageContext.request.contextPath}/img/facebook_favicon.png"></a>
 						<a href="${pageContext.request.contextPath}/about">IndiCrowd 소개</a>
-						<a href="${pageContext.request.contextPath}/help">도움말</a>
+						<%--<a href="${pageContext.request.contextPath}/help">도움말</a> --%>
 						<a href="${pageContext.request.contextPath}/terms">이용약관</a>
 						<a href="${pageContext.request.contextPath}/policy">개인정보 보호정책</a>
 						<a href="${pageContext.request.contextPath}/contact">제안/문의하기</a>
+						<a href="https://www.facebook.com/IndiCrowd" target="_blank"><img src="${pageContext.request.contextPath}/img/facebook_favicon.png"> IndiCrowd</a>
 					</p>
 					
 				</div>

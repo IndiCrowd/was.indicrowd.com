@@ -33,11 +33,13 @@
 							<h3>저희에게 제안, 문의사항을 보내주세요!</h3>
 							<p>
 								IndiCrowd 공식 페이스북 <a href="http://www.facebook.com/IndiCrowd" target="_blank">http://www.facebook.com/IndiCrowd</a> 또는 indicrowd@gmail.com 으로 제안, 문의사항을 주세요!<br>
-								아니면, 아래의 폼을 작성해 주셔도 됩니다! :)
+								<%--아니면, 아래의 폼을 작성해 주셔도 됩니다! :) --%>
 							</p>
+							<img src="${pageContext.request.contextPath}/img/g.jpg" style="width: 100%;" class="img-polaroid">
 							
 		
 							<!-- start: Contact Form -->
+							<%--
 							<div id="contact-form">
 		
 								<form method="post" action="">
@@ -69,6 +71,7 @@
 								</form>
 		
 							</div>
+							 --%>
 							<!-- end: Contact Form -->
 							
 							</div>
