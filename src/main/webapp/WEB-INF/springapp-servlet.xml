@@ -21,6 +21,10 @@
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/swf/" mapping="/swf/**" />
 	<mvc:default-servlet-handler />
+	
+	<mvc:interceptors>
+	    <bean class="com.indicrowd.WWWRedirectInterceptor" />
+	</mvc:interceptors>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"

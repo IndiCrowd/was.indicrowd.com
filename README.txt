@@ -56,15 +56,15 @@ insert into user (host, user, password) values('%', 'IndiCrowd', password('ekfrr
 insert into user (host, user, password) values('localhost', 'IndiCrowd', password('ekfrrhrl'));
 desc db;
 
-# 위 스크립트 row 수 -3개만큼 'Y'를 써준다. 예제는 22개
-insert into db values ('%','IndiCrowd','IndiCrowd','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
-insert into db values ('localhost','IndiCrowd','IndiCrowd','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
+# 위 스크립트 row 수 -3개만큼 'Y'를 써준다. 예제는 20개
+insert into db values ('%','IndiCrowd','IndiCrowd','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
+insert into db values ('localhost','IndiCrowd','IndiCrowd','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
 flush privileges;
 exit
 
 # 자바 설치
-wget --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F" "http://download.oracle.com/otn-pub/java/jdk/7u15-b03/jdk-7u15-linux-i586.tar.gz"
-tar xvzf jdk-7u15-linux-i586.tar.gz\?AuthParam\=1361870609_b7e5afefc89b1e0c71bbe3cc144f8812
+wget --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F" "http://download.oracle.com/otn-pub/java/jdk/7u15-b03/jdk-7u15-linux-i586.tar.gz"
+tar xvzf jdk (여기서 탭을 누른다.)
 export JAVA_HOME=/root/jdk1.7.0_15
 export PATH=$JAVA_HOME/bin:$PATH
 
@@ -73,16 +73,16 @@ $HOME/.bash_profile
 JAVA_HOME=/root/jdk1.7.0_15
 PATH=$JAVA_HOME/bin:$PATH
 
+# tomcat 설치
+wget http://apache.mirror.cdnetworks.com/tomcat/tomcat-7/v7.0.39/bin/apache-tomcat-7.0.39.tar.gz
+tar xvzf apache-tomcat-7.0.39.tar.gz
+
 # catalina.sh 수정
-vi apache-tomcat-7.0.37/bin/catalina.sh
+vi apache-tomcat-7.0.39/bin/catalina.sh
 JAVA_OPTS="$JAVA_OPTS -Xms512m -Xmx4096m -XX:MaxPermSize=512m"
 
-# tomcat 설치
-wget http://apache.mirror.cdnetworks.com/tomcat/tomcat-7/v7.0.37/bin/apache-tomcat-7.0.37.tar.gz
-tar xvzf apache-tomcat-7.0.37.tar.gz
-
 # 톰캣 프로젝트 설정 변경
-vi apache-tomcat-7.0.37/conf/server.xml
+vi apache-tomcat-7.0.39/conf/server.xml
 # 8080 포트를 80 포트로 변경, URIEncoding="UTF-8"
     <Connector executor="tomcatThreadPool"
                port="80" protocol="HTTP/1.1"
@@ -98,12 +98,6 @@ vi apache-tomcat-7.0.37/conf/server.xml
         <Context path="/IndiCrowd-userfiles" docBase="IndiCrowd-userfiles.war"/>
       </Host>
 
-# 프로젝트 등록 - apache-tomcat-7.0.37/webapps에 war파일 등록
-# ftp를 통해 /root/에 IndiCrowd.war와 IndiCrowd-userfiles.war를 올리고 아래 스크립트 실행
-mkdir apache-tomcat-7.0.37/webapps/run
-mv /root/IndiCrowd.war apache-tomcat-7.0.37/webapps/run/ROOT.war
-mv /root/IndiCrowd-userfiles.war apache-tomcat-7.0.37/webapps/run
-
 # iptables 설정
 vi /etc/sysconfig/iptables
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 21 -j ACCEPT
@@ -112,21 +106,27 @@ vi /etc/sysconfig/iptables
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
 /etc/init.d/iptables restart
 
+# 프로젝트 등록 - apache-tomcat-7.0.39/webapps에 war파일 등록
+# ftp를 통해 /root/에 IndiCrowd.war와 IndiCrowd-userfiles.war를 올리고 아래 스크립트 실행
+mkdir apache-tomcat-7.0.39/webapps/run
+mv /root/IndiCrowd.war apache-tomcat-7.0.39/webapps/run/ROOT.war
+mv /root/IndiCrowd-userfiles.war apache-tomcat-7.0.39/webapps/run
+
 # 톰캣 실행
-apache-tomcat-7.0.37/bin/catalina.sh start
+apache-tomcat-7.0.39/bin/catalina.sh start
 
 # 톰캣 실시간 로그 보기
-tail -60f apache-tomcat-7.0.37/logs/catalina.out
-vi apache-tomcat-7.0.37/logs/catalina.out
+tail -60f apache-tomcat-7.0.39/logs/catalina.out
+vi apache-tomcat-7.0.39/logs/catalina.out
 
 # 톰캣 종료
-apache-tomcat-7.0.37/bin/catalina.sh stop
+apache-tomcat-7.0.39/bin/catalina.sh stop
 
 # 프로젝트를 재등록할때는 ROOT폴더를 삭제해주고 IndiCrowd.war만 옮겨주면 됩니다. (IndiCrowd-userfiles는 사용자가 업로드할 파일들을 가지고 있습니다.)
-apache-tomcat-7.0.37/bin/catalina.sh stop
-rm -rf apache-tomcat-7.0.37/webapps/run/ROOT
-mv /root/IndiCrowd.war apache-tomcat-7.0.37/webapps/run/ROOT.war
+apache-tomcat-7.0.39/bin/catalina.sh stop
+rm -rf apache-tomcat-7.0.39/webapps/run/ROOT
+mv /root/IndiCrowd.war apache-tomcat-7.0.39/webapps/run/ROOT.war
 overwrite -> y
 
-apache-tomcat-7.0.37/bin/catalina.sh start
-tail -60f apache-tomcat-7.0.37/logs/catalina.out
+apache-tomcat-7.0.39/bin/catalina.sh start
+tail -60f apache-tomcat-7.0.39/logs/catalina.out
