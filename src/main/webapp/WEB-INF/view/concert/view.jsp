@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <sec:authentication property="principal" var="principal" />
 
@@ -58,10 +59,12 @@
 			
 
 			var openStreamUserPublisher = function() {
+				var imgSrc = '<c:if test="${principal.socialImageUrl == null}"><spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id} </c:if>';
+
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.clientPublishStr = '${principal.id}';
-				flashvars.clientDefaultImage = '<c:if test="${principal.socialImageUrl == null}"><img style="width:22px;height:22px" border="0" src="<spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}"> </c:if>';
+				flashvars.clientDefaultImage = imgSrc;
 		        
 		        var params = {};
 		        params.quality = 'high';
