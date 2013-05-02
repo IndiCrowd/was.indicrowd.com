@@ -178,29 +178,38 @@ $(function(){
 		var startDate = $("#modalStartDate").val();
 		var startHours = $("#modalHours").val();
 		var startMinutes = $("#modalMinutes").val();
+		$.get('${pageContext.request.contextPath}/concert/reserve/validateTime',
+				{startDate:startDate, startHours:startHours, startMinutes:startMinutes, duration:duration}, 
+				function(data){ 
+					if(data){
+						//insert
+						$("#duration").val(duration);
+						$("#startDate").val(startDate);
+						$("#startHours").val(startHours);
+						$("#startMinutes").val(startMinutes);
+						
+						var year = $("#modalStartDate").val()/10000;
+						var month = $("#modalStartDate").val()/100%100 -1;
+						var d = $("#modalStartDate").val()%100;
+						
+						var title = $("#title").val() == '' ? '새로운 예약' : $("#title").val();
+						$('#calendar').fullCalendar( 'removeEvents', 1);
+						$('#calendar').fullCalendar( 'renderEvent', { 
+							id: 1,
+							title: title,
+							start: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()),
+							end: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()*1+$("#modalDuration").val()*1),
+							allDay:false,
+							backgroundColor: '#f9a022',
+							borderColor : '#f9a022'
+						} );
+						$("#myModal").modal('hide');
+					}else{
+						alert('겹치는 공연시간이 있습니다. 예약 시간을 확인해주세요.');
+					}
+				}
+				);
 		
-		//insert
-		$("#duration").val(duration);
-		$("#startDate").val(startDate);
-		$("#startHours").val(startHours);
-		$("#startMinutes").val(startMinutes);
-		
-		var year = $("#modalStartDate").val()/10000;
-		var month = $("#modalStartDate").val()/100%100 -1;
-		var d = $("#modalStartDate").val()%100;
-		
-		var title = $("#title").val() == '' ? '새로운 예약' : $("#title").val();
-		$('#calendar').fullCalendar( 'removeEvents', 1);
-		$('#calendar').fullCalendar( 'renderEvent', { 
-			id: 1,
-			title: title,
-			start: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()),
-			end: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()*1+$("#modalDuration").val()*1),
-			allDay:false,
-			backgroundColor: '#f9a022',
-			borderColor : '#f9a022'
-		} );
-		$("#myModal").modal('hide');
 	});
 });
 

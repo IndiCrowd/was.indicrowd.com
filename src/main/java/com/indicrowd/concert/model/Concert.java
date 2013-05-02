@@ -203,15 +203,22 @@ public class Concert {
 				.getResultList();
 	}
 	
-	public static boolean isAvailableReserveTime(Integer startDate, Integer startHours, Integer startMinutes, long hallId){
+	public static boolean isAvailableReserveTime(Integer startDate, Integer startHours, Integer startMinutes, Integer duration, long hallId){
 		
-		Integer queryDayTime = startDate%100 * 10000 + startHours*100 + startMinutes;
+		Integer startDayTime = startDate%100 * 10000 + startHours*100 + startMinutes;
+		Calendar endCal = DateUtil.getCalendar(startDate/10000, startDate/100%100 -1, startDate%100, startHours, startMinutes+duration-1);
+		Integer endDate = endCal.get(Calendar.YEAR)*10000+(endCal.get(Calendar.MONTH)+1)*100+ endCal.get(Calendar.DAY_OF_MONTH);
+		
+		Integer endDayTime = endDate%100 *10000 + endCal.get(Calendar.HOUR_OF_DAY)*100 + endCal.get(Calendar.MINUTE);
+		
 		Long count = entityManager().createQuery("SELECT COUNT(o) FROM Concert o " +
-				"WHERE isValid=true AND o.hall.id = :hallId AND (startDate = :startDate or endDate = :startDate) " +
-				"AND :queryDayTime BETWEEN startDate%100 * 10000 + startHours *100 + startMinutes " +
-				"AND endDate%100 * 10000 + endHours *100 + endMinutes " +
-				"AND :queryDayTime != endDate%100 * 10000 + endHours *100 + endMinutes",Long.class)
-				.setParameter("startDate", startDate).setParameter("queryDayTime", queryDayTime).setParameter("hallId",hallId).getSingleResult();
+				"WHERE isValid=true AND o.hall.id = :hallId " +
+				"AND (startDate = :startDate or startDate = :endDate or endDate = :startDate or endDate=:endDate) " +
+				"AND (((startDate%100 * 10000 + startHours *100 + startMinutes < :startDayTime) " +
+				"AND (endDate%100 * 10000 + endHours *100 + endMinutes > :startDayTime)) " +
+				"OR (startDate%100 * 10000 + startHours *100 + startMinutes) BETWEEN :startDayTime AND :endDayTime)",Long.class)
+				.setParameter("startDate", startDate).setParameter("endDate",endDate)
+				.setParameter("startDayTime", startDayTime).setParameter("endDayTime", endDayTime).setParameter("hallId",hallId).getSingleResult();
 		if (count > 0) {
 			return false;
 		}else if (count == 0){

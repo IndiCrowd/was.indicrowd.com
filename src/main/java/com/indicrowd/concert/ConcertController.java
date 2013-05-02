@@ -74,10 +74,10 @@ public class ConcertController extends AbstractController {
 		
 	}
 	
-	@RequestMapping(value = "reserve/validateTime", method = RequestMethod.GET)
+	@RequestMapping(value = "/reserve/validateTime", method = RequestMethod.GET)
 	@ResponseBody
-	public boolean validateTime(Model model){
-		return Concert.isAvailableReserveTime(20130503, 2, 39, 1);
+	public boolean validateTime(Model model, @RequestParam Integer startDate, @RequestParam Integer startHours, @RequestParam Integer startMinutes, @RequestParam Integer duration){
+		return Concert.isAvailableReserveTime(startDate, startHours, startMinutes, duration, 1); // hall number 1
 	}
 	
 	@Secured("ROLE_USER")
@@ -102,10 +102,10 @@ public class ConcertController extends AbstractController {
 			event.setStartMinutes(concert.getStartMinutes());
 			
 			Calendar end = DateUtil.getCalendar();
-			end.set(concert.getStartDate()/10000, concert.getStartDate()/100%100, concert.getStartDate()%100, concert.getStartHours(), concert.getStartMinutes() + concert.getDuration());
+			end.set(concert.getStartDate()/10000, concert.getStartDate()/100%100 -1, concert.getStartDate()%100, concert.getStartHours(), concert.getStartMinutes() + concert.getDuration());
 			
 			event.setEndYear(end.get(Calendar.YEAR));
-			event.setEndMonth(end.get(Calendar.MONTH));
+			event.setEndMonth(end.get(Calendar.MONTH)+1);
 			event.setEndDay(end.get(Calendar.DAY_OF_MONTH));
 			event.setEndHours(end.get(Calendar.HOUR_OF_DAY));
 			event.setEndMinutes(end.get(Calendar.MINUTE));
@@ -123,9 +123,9 @@ public class ConcertController extends AbstractController {
 			return "concert/reserve";
 		} else {
 			
-			Calendar endCal = DateUtil.getCalendar(concert.getStartDate()/10000, concert.getStartDate()/100%100, concert.getStartDate()%100, concert.getStartHours(),concert.getStartMinutes()+concert.getDuration());
+			Calendar endCal = DateUtil.getCalendar(concert.getStartDate()/10000, concert.getStartDate()/100%100 -1, concert.getStartDate()%100, concert.getStartHours(),concert.getStartMinutes()+concert.getDuration());
 			
-			concert.setEndDate(endCal.get(Calendar.YEAR)*10000+endCal.get(Calendar.MONTH)*100+endCal.get(Calendar.DAY_OF_MONTH));
+			concert.setEndDate(endCal.get(Calendar.YEAR)*10000+(endCal.get(Calendar.MONTH)+1)*100+endCal.get(Calendar.DAY_OF_MONTH));
 			concert.setEndHours(endCal.get(Calendar.HOUR_OF_DAY));
 			concert.setEndMinutes(endCal.get(Calendar.MINUTE));
 			
