@@ -184,8 +184,9 @@
 				
 				<div class="span4 pull-right">
 					<div class="wrapper">
-						<div>
+						<div style="line-height: 3em;">
 							<a href="#"><button class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</button></a>
+							<a href="${pageContext.request.contextPath}/about"><button class="btn btn-success"><i class="icon-comment icon-white"></i> IndiCrowd 소개</button></a>
 						</div>
 						<div style="margin-top: 10px; text-align: center;">
 							<a href="https://www.facebook.com/IndiCrowd" target="_blank"><i class="fa-icon-facebook-sign"></i> 페이스북으로 피드백을 남겨주세요.</a>

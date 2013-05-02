@@ -87,7 +87,7 @@ public class Concert {
 	private boolean isValid = true;
 	
 	@Column(nullable = false)
-	private boolean hasBG = false;
+	private boolean hasBg = false;
 	
 	@Column(nullable = false)
 	private Integer totalAudienceCount = 0;
