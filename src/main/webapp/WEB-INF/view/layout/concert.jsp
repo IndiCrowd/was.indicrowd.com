@@ -233,23 +233,29 @@
 				left: 60px;
 				top: 500px;
 				z-index: 100;
+				padding-left: 5px;
 			}
 			#info {
 				padding-top: 3px;
-				padding-left: 20px;
 				backgroud: #000;
 				color: #fff;
 			}
-			#info label {
-				padding-left: 30px;
+			#info span {
 				padding-right: 10px;
+			}
+			#info label {
+				padding-right: 5px;
+				font-weight: bold;
+			}
+			#info a {
+				color: #fff;
 			}
 			#chat-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
 				width: 320px;
-				height: 418px;
+				height: 380px;
 				left: 620px;
 				top: 295px;
 			}
@@ -259,11 +265,14 @@
 			
 			#messages-wrapper {
 				color: #fff;
-				height: 345px;
+				height: 300px;
 				overflow-y: scroll;
 				margin-bottom: 10px;
 			}
 			#messages {
+				list-style: none;
+				margin: 0;
+				padding: 0;
 			}
 			.message {
 				margin-bottom: 5px;
@@ -297,6 +306,21 @@
 			}
 			#footer {
 				color: #fff;
+			}
+			#changeBGForm {
+				display:none;
+				background:#fff;
+				padding: 10px;
+				z-index: 10000;
+				background: rgba(255, 255, 255, .8);
+				border-radius: 10px;
+			}
+			#changeBGForm input{
+				border: 3px solid #999; border-radius: 5px; padding: 5px;
+				background: #fff;
+			}
+			#changeBGForm button{
+				border: 3px solid #999; background: orange; color:#fff; font-weight:bold; border-radius: 5px; padding: 5px; width: 100px;
 			}
 		</style>
 		
@@ -477,7 +501,7 @@
 			
 			RTW.addHandler('Concert', '${command.id}', 'changebg', function(b) {
 				
-				var bg = '<spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}';
+				var bg = '<spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}?' + Math.random();
 				
 				$('#background').fadeOut(1000, function() {
 
@@ -522,10 +546,17 @@
 				left: e.pageX,
 				top: e.pageY
 			});
+			e.stopPropagation();
 		}
 		
 		$(function() {
 			$('#changeBGForm').submit(function() {
+				$('#changeBGForm').hide();
+			});
+			$('#changeBGForm').click(function(e) {
+				e.stopPropagation();
+			});
+			$(window).click(function() {
 				$('#changeBGForm').hide();
 			});
 		});
@@ -556,16 +587,16 @@
 						<label>공연 이름</label> ${command.title}
 					</span>
 					<span>
-						<label>시작 시간</label> 12:20
+						<label>시작 시간</label> ${command.startHours}:${command.startMinutes} ~ ${command.endHours}:${command.endMinutes}
 					</span>
 					<span>
-						<label>종료 시간</label> 14:20
-					</span>
-					<span>
-						<label>밴드 정보</label> test
+						<label>밴드 정보</label> <a href="${pageContext.request.contextPath}/band/${command.bandInfo.id}" target="_blank">${command.bandInfo.name}</a>
 					</span>
 					<span>
 						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
+					</span>
+					<span>
+						<a href="${pageContext.request.contextPath}/concert/${command.id}/feed" target="_blank">피드백 모아보기</a>
 					</span>
 				</div>
 			</div>
@@ -584,8 +615,8 @@
 					</div>
 					<div id="form-wrapper">
 						<form>
-							<input id="message">
-							<input type="submit">
+							<input id="message" style="border: 3px solid #999; border-radius: 5px; padding: 5px; width: 200px;">
+							<input type="submit" style="border: 3px solid #999; background: orange; color:#fff; font-weight:bold; border-radius: 5px; padding: 5px; width: 60px;" value="전송">
 						</form>
 					</div>
 				</div>
@@ -601,7 +632,7 @@
 				&copy; IndiCrowd
 			</div>
 		</div>
-		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" style="display:none;background:#fff;" method="POST" enctype="multipart/form-data" target="changeBGFrame">
+		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" method="POST" enctype="multipart/form-data" target="changeBGFrame">
 			<input type="file" name="bg">
 			<button type="submit">배경 변경</button>
 		</form>
