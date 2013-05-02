@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,43 +15,99 @@
 			padding: 0;
 		}
 		body {
-			background-image: url('${pageContext.request.contextPath}/img/landingbg.jpg');
+			background-image: url('${pageContext.request.contextPath}/img/istock/bg<%= java.lang.Math.round(java.lang.Math.random() * 2) + 1 %>.jpg');
 			background-size: 100% 100%;
 		}
 		a.circle {
+			position: relative;
 			display: block;
 			width: 150px;
-			height: 50px;
-			border-radius: 75px;
-			padding-top: 100px;
+			height: 150px;
+			border-radius: 80px;
 			text-decoration: none;
 			color: #fff;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 		}
-		
-		a.circle:hover {
-			animation: myfirst 1s;
-			-webkit-animation: myfirst 1s infinite alternate; /* Safari and Chrome */
-		}
-		
-		@keyframes myfirst
-		{
-		to {transform: scale(1.2)}
-		}
-		
-		@-webkit-keyframes myfirst /* Safari and Chrome */
-		{
-		to {-webkit-transform: scale(1.2)}
+		a.circle span {
+			top: 100px;
+			width: 150px;
+			margin-left: -75px;
+			position: absolute;
+			font-size: 20px;
+			font-weight: bold;
+			text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 		}
 		</style>
+		
+		<script src="<c:url value="/js/jquery-1.9.1.min.js" />"></script>
+		<jsp:include page="script-import.jsp" />
+		
+		<script>
+		var $div, n = 1;
+		function a1() {
+			if ($div == undefined) {
+				$div = $DIV({
+					id : 'aa' + (n++),
+					cls : 'circle',
+					style: {
+						background: 'url(${pageContext.request.contextPath}/img/istock/micani.png)',
+						width: 150,
+						height: 150,
+						top: 0,
+						left: 0,
+						position: 'absolute',
+						borderRadius: 75
+					}
+				}).sprite({fps: 12, no_of_frames: 10, on_last_frame: function(obj) {
+		            obj.destroy();
+		        }}).prependTo('#a1');
+				
+				$div.mouseout(function() {
+					$div.remove();
+					$div = undefined;
+				});
+			}
+		}
+		
+		var $div2;
+		function a2() {
+			if ($div2 == undefined) {
+				$div2 = $DIV({
+					id : 'aa' + (n++),
+					cls : 'circle',
+					style: {
+						background: 'url(${pageContext.request.contextPath}/img/istock/manani.png)',
+						width: 150,
+						height: 150,
+						top: 0,
+						left: 0,
+						position: 'absolute',
+						borderRadius: 75
+					}
+				}).sprite({fps: 12, no_of_frames: 10}).prependTo('#a2');
+				
+				$div2.mouseout(function() {
+					$div2.remove();
+					$div2 = undefined;
+				});
+			}
+		}
+		</script>
+		
 		
 	</head>
 	<body>
 		
 		<table style="width: 100%; height: 100%;"><tr><td style="text-align: center;">
 			<img src="${pageContext.request.contextPath}/img/ment.png">
-			<div style="margin: 0 auto; width: 350px; padding-bottom: 10px;">
-				<a class="circle" style="float:left; background: #01DFA5;" href="${pageContext.request.contextPath}/main">입장하기</a>
-				<a class="circle" style="float:right; background: #A901DB;" href="${pageContext.request.contextPath}/user/join">회원가입</a>
+			<p style="color: #fff; font-size: 14px; font-weight: bold; text-shadow: 0px 0px 5px rgba(0, 0, 0, 1); line-height: 2em;">인디크라우드는 인디 문화의 퇴색이라는 사회적 문제를,<br>IT기술로 해결해보자는 목표를 가진 밴드 온라인 공연 시스템입니다.</p>
+			<div style="margin: 30px auto 0 auto; width: 350px; padding-bottom: 10px;">
+				<a id="a1" onmouseover="a1();" class="circle" style="float:left; background-color: #01DFA5; border: 5px solid #01DFA5; background-image: url(${pageContext.request.contextPath}/img/istock/micani0.png);" href="${pageContext.request.contextPath}/main">
+					<span>입장하기</span>
+				</a>
+				<a id="a2" onmouseover="a2();" class="circle" style="float:right; background-color: #A901DB; border: 5px solid #A901DB; background-image: url(${pageContext.request.contextPath}/img/istock/manani0.png);" href="${pageContext.request.contextPath}/user/join">
+					<span>회원가입</span>
+				</a>
 				<div style="clear:both;">
 			</div>
 		</td></tr></table>
