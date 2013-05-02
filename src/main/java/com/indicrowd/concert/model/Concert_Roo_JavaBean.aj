@@ -98,6 +98,30 @@ privileged aspect Concert_Roo_JavaBean {
         this.startMinutes = startMinutes;
     }
     
+    public Integer Concert.getEndDate() {
+        return this.endDate;
+    }
+    
+    public void Concert.setEndDate(Integer endDate) {
+        this.endDate = endDate;
+    }
+    
+    public Integer Concert.getEndHours() {
+        return this.endHours;
+    }
+    
+    public void Concert.setEndHours(Integer endHours) {
+        this.endHours = endHours;
+    }
+    
+    public Integer Concert.getEndMinutes() {
+        return this.endMinutes;
+    }
+    
+    public void Concert.setEndMinutes(Integer endMinutes) {
+        this.endMinutes = endMinutes;
+    }
+    
     public Integer Concert.getDuration() {
         return this.duration;
     }

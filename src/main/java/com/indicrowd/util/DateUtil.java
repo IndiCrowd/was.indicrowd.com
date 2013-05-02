@@ -84,6 +84,12 @@ public class DateUtil {
         return cal;
     }
 	
+	public static Calendar getCalendar(int year,int month,int day,int hour ,int minute)
+    {
+        Calendar cal = new GregorianCalendar(year,month,day,hour,minute);
+        return cal;
+    }
+	
 	/**
 	 * 오늘 날짜를 넘어온 dateForm에 따라 리턴 시켜줌 ex) getToday("YYYY년 MM월 DD일") -> "2011년 11월 28일" 리턴
 	 * @param dateForm

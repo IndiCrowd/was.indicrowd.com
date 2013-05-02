@@ -121,8 +121,15 @@ public class ConcertController extends AbstractController {
 			return "concert/reserve";
 		} else {
 			
+			Calendar endCal = DateUtil.getCalendar(concert.getStartDate()/10000, concert.getStartDate()/100%100, concert.getStartDate()%100, concert.getStartHours(),concert.getStartMinutes()+concert.getDuration());
+			
+			concert.setEndDate(endCal.get(Calendar.YEAR)*10000+endCal.get(Calendar.MONTH)*100+endCal.get(Calendar.DAY_OF_MONTH));
+			concert.setEndHours(endCal.get(Calendar.HOUR_OF_DAY));
+			concert.setEndMinutes(endCal.get(Calendar.MINUTE));
+			
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
+			
 			concert.persist();
 			
 			if (concert.getPhoto() != null && concert.getPhoto().getSize() > 0) {
