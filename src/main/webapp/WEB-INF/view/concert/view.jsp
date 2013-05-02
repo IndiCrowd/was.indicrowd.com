@@ -58,6 +58,17 @@
 			};
 			
 
+			RTW.addHandler('Concert', '${command.id}', 'concertState', function(concertState) {
+				
+				console.log(concertState);
+				
+				$('#StreamSubscriber').each(function(index) {
+					this.changeState(concertState);
+				});
+				
+				
+			});
+
 			var openStreamUserPublisher = function() {
 				var imgSrc = '<c:if test="${principal.socialImageUrl == null}"><spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id} </c:if>';
 
