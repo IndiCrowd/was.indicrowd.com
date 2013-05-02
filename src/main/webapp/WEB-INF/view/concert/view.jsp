@@ -104,7 +104,7 @@
 				$VIDEO({
 					width: '480',
 					height: '360',
-					src: 'http://infty123.iptime.org:1935/live/ngrp:${command.id}_all/playlist.m3u8',
+					src: 'http://indicrowd:1935/live/ngrp:${command.id}_all/playlist.m3u8',
 					controls: 'true'
 				}).appendTo('#StreamSubscriber');		
 			}
