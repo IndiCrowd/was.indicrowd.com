@@ -250,14 +250,38 @@
 			#info a {
 				color: #fff;
 			}
+			
+			#function-wrapper {
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				width: 320px;
+				height: 50px;
+				left: 620px;
+				top: 295px;
+			}
+			#function {
+				padding-left: 10px;
+				padding-top: 18px;
+			}
+			#function a {
+				border: 3px solid #999;
+				background: orange;
+				color:#fff;
+				font-weight:bold;
+				border-radius: 5px;
+				padding: 5px 10px;
+				text-decoration: none;
+			}
+			
 			#chat-wrapper {
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
 				width: 320px;
-				height: 380px;
+				height: 310px;
 				left: 620px;
-				top: 295px;
+				top: 360px;
 			}
 			#chat {
 				padding: 20px;
@@ -265,7 +289,7 @@
 			
 			#messages-wrapper {
 				color: #fff;
-				height: 300px;
+				height: 230px;
 				overflow-y: scroll;
 				margin-bottom: 10px;
 			}
@@ -320,7 +344,9 @@
 				background: #fff;
 			}
 			#changeBGForm button{
+				float: right;
 				border: 3px solid #999; background: orange; color:#fff; font-weight:bold; border-radius: 5px; padding: 5px; width: 100px;
+				margin-right: 5px;
 			}
 		</style>
 		
@@ -592,18 +618,23 @@
 					<span>
 						<label>밴드 정보</label> <a href="${pageContext.request.contextPath}/band/${command.bandInfo.id}" target="_blank">${command.bandInfo.name}</a>
 					</span>
-					<span>
-						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
-					</span>
-					<span>
-						<a href="${pageContext.request.contextPath}/concert/${command.id}/feed" target="_blank">피드백 모아보기</a>
-					</span>
 				</div>
 			</div>
 			
 			<div id="userface-wrapper">
 				<div id="userface-opti">
 					<img id="userface" src="${principal.socialImageUrl}" />
+				</div>
+			</div>
+			
+			<div id="function-wrapper">
+				<div id="function">
+					<span>
+						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
+					</span>
+					<span>
+						<a href="${pageContext.request.contextPath}/concert/${command.id}/feed" target="_blank">피드백 모아보기</a>
+					</span>
 				</div>
 			</div>
 			
@@ -634,6 +665,7 @@
 		</div>
 		<form id="changeBGForm" action="<c:url value="/concert/${command.id}/changeBG" />" method="POST" enctype="multipart/form-data" target="changeBGFrame">
 			<input type="file" name="bg">
+			<br>
 			<button type="submit">배경 변경</button>
 		</form>
 		<iframe name="changeBGFrame" style="display:none;"></iframe>
