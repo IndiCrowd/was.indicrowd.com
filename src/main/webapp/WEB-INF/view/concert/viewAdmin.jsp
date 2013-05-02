@@ -112,8 +112,37 @@
 			$('#StreamPublisher').height(height);
 		}
 		
+		$(function() {
+			var $iframe;
+			$('#userface-opti').append($iframe = $IFRAME({
+				id : 'aa',
+				style : {
+					background: '#fff',
+					border: 'none',
+					borderRadius: 5,
+					width: 275,
+					height: 150
+				},
+				src: '${pageContext.request.contextPath}/concert/${command.id}/feed'
+			}));
+			$('#userface-opti').append($A({
+				href: '${pageContext.request.contextPath}/concert/${command.id}/feed',
+				target : '_blank',
+				style: {
+					position:'absolute',
+					right: 25,
+					bottom: 2,
+					color: '#fff'
+				}
+			}, '크게보기'));
+			$iframe[0].onload = function() {
+				
+				var obj = document.getElementById("aa");
 
-		
+				var objDoc = obj .contentWindow || obj .contentDocument;
+				objDoc.changesmall();
+			};
+		});
 		</script>
 	</head>
 	

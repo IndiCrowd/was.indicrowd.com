@@ -11,8 +11,6 @@
 		
 		<style>
 		.marquee {
-			font-size: 60px;
-			height: 60px;
 		}
 		#footer-wrapper {
 			position: absolute;
@@ -24,12 +22,19 @@
 		<script src="<c:url value="/js/jquery.marquee.js" />"></script>
 		
 		<script>
+		
+		var isSmall = false;
+		
 		$(function() {
 			
 			RTW.join('Concert', '${command.id}');
 			
 			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				var $m = $DIV({
+					style: {
+						fontSize: isSmall ? 20 : 60,
+						height: isSmall ? 20 : 60,
+					},
 					cls:'marquee'
 				});
 				$m.text(message.content);
@@ -65,7 +70,7 @@
 						$DIV(
 							{
 								style: {
-									marginTop: 10,
+									marginTop: isSmall ? -30 : 10,
 									textAlign: 'center'
 								}
 							},
@@ -114,7 +119,7 @@
 						$DIV(
 							{
 								style: {
-									marginTop: 10,
+									marginTop: isSmall ? -30 : 10,
 									textAlign: 'center'
 								}
 							},
@@ -138,11 +143,15 @@
  
 		});
 		
+		function changesmall() {
+			isSmall = true;
+		}
+		
 		</script>
 	</head>
 	
 	<body>
-		'<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);" style="color: #000;"><b>${command.title}</b></a>' 공연의 채팅이나 피드백을 한번에 보여줍니다.
+		'<b>${command.title}</b>' 공연의 채팅이나 피드백을 한번에 보여줍니다.
 		<div id="footer-wrapper">
 			<div id="footer">
 				&copy; IndiCrowd
