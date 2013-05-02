@@ -60,6 +60,11 @@ public class ConcertController extends AbstractController {
 		
 	}
 	
+	@RequestMapping(value = "reserve/validateTime", method = RequestMethod.GET)
+	public void validateTime(Model model){
+		
+	}
+	
 	@Secured("ROLE_USER")
 	@RequestMapping(value ="/manage/{bandId}", method = RequestMethod.GET)
 	public String manage(Model model, @PathVariable long bandId){

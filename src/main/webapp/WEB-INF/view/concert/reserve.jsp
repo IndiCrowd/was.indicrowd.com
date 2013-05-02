@@ -173,10 +173,17 @@ function changeBand(id, imagePath, name){
 }
 $(function(){
 	$("#modalSubmit").click(function(){
-		$("#duration").val($("#modalDuration").val());
-		$("#startDate").val($("#modalStartDate").val());
-		$("#startHours").val($("#modalHours").val());
-		$("#startMinutes").val($("#modalMinutes").val());
+		//validate
+		var duration = $("#modalDuration").val();
+		var startDate = $("#modalStartDate").val();
+		var startHours = $("#modalHours").val();
+		var startMinutes = $("#modalMinutes").val();
+		
+		//insert
+		$("#duration").val(duration);
+		$("#startDate").val(startDate);
+		$("#startHours").val(startHours);
+		$("#startMinutes").val(startMinutes);
 		
 		var year = $("#modalStartDate").val()/10000;
 		var month = $("#modalStartDate").val()/100%100 -1;
