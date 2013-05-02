@@ -6,13 +6,18 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>공연 피드백 모아보기</title>
+		<title>${command.title} 공연 피드백 모아보기</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<style>
 		.marquee {
 			font-size: 60px;
 			height: 60px;
+		}
+		#footer-wrapper {
+			position: absolute;
+			right: 15px;
+			bottom: 10px;
 		}
 		</style>
 		
@@ -137,6 +142,11 @@
 	</head>
 	
 	<body>
-		공연의 채팅이나 피드백을 한번에 보여줍니다.
+		'<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);" style="color: #000;"><b>${command.title}</b></a>' 공연의 채팅이나 피드백을 한번에 보여줍니다.
+		<div id="footer-wrapper">
+			<div id="footer">
+				&copy; IndiCrowd
+			</div>
+		</div>
 	</body>
 </html>
