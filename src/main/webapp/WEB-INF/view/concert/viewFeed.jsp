@@ -1,29 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>공연 피드백 모아보기</title>
+		<title>${command.title} 공연 피드백 모아보기</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<style>
 		.marquee {
-			font-size: 60px;
-			height: 60px;
+		}
+		#footer-wrapper {
+			position: absolute;
+			right: 15px;
+			bottom: 10px;
 		}
 		</style>
 		
 		<script src="<c:url value="/js/jquery.marquee.js" />"></script>
 		
 		<script>
+		
+		var isSmall = false;
+		
 		$(function() {
 			
 			RTW.join('Concert', '${command.id}');
 			
 			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				var $m = $DIV({
+					style: {
+						fontSize: isSmall ? 20 : 60,
+						height: isSmall ? 20 : 60,
+					},
 					cls:'marquee'
 				});
 				$m.text(message.content);
@@ -39,7 +50,7 @@
 				var $ani;
 				var randomId = "x" + randomString(8);
 				
-				if (iconFeed.iconName === 'yj_hands') {
+				if (iconFeed.item.isRepeat === true) {
 				
 					var $div = $DIV(
 						{ style: {
@@ -51,15 +62,15 @@
 						$ani = $DIV({
 							id : randomId,
 							style: {
-								background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+								background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 								width: 150,
 								height: 150
 							}
-						}).sprite({fps: 12, no_of_frames: 3, rewind: true}),
+						}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount/*, rewind: iconFeed.item.isRewind*/}),
 						$DIV(
 							{
 								style: {
-									marginTop: 10,
+									marginTop: isSmall ? -30 : 10,
 									textAlign: 'center'
 								}
 							},
@@ -83,7 +94,7 @@
 					
 				}
 				
-				else if (iconFeed.iconName === 'balloons') {
+				else {
 					
 					var $div = $DIV(
 						{ style: {
@@ -95,11 +106,11 @@
 						$ani = $DIV({
 							id : randomId,
 							style: {
-								background: 'url(${pageContext.request.contextPath}/img/' + iconFeed.iconName + '.png)',
+								background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
 								width: 150,
 								height: 150
 							}
-						}).sprite({fps: 12, no_of_frames: 6, on_last_frame: function(obj) {
+						}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
 				            obj.destroy();
 				            $div.fadeOut(function() {
 								$div.remove();
@@ -108,7 +119,7 @@
 						$DIV(
 							{
 								style: {
-									marginTop: 10,
+									marginTop: isSmall ? -30 : 10,
 									textAlign: 'center'
 								}
 							},
@@ -132,9 +143,19 @@
  
 		});
 		
+		function changesmall() {
+			isSmall = true;
+		}
+		
 		</script>
 	</head>
 	
 	<body>
+		'<b>${command.title}</b>' 공연의 채팅이나 피드백을 한번에 보여줍니다.
+		<div id="footer-wrapper">
+			<div id="footer">
+				&copy; IndiCrowd
+			</div>
+		</div>
 	</body>
 </html>

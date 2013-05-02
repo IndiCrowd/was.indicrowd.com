@@ -136,7 +136,7 @@ public class ConcertController extends AbstractController {
 			
 			concert.persist();
 			
-			fileService.save(fileService.load("img/concertbg" + (java.lang.Math.round(java.lang.Math.random() * 2) + 1)), "concertbg/" + concert.getId().toString(), true);
+			fileService.save(fileService.load("img/concertbg" + (java.lang.Math.round(java.lang.Math.random() * 2) + 1) + ".jpg"), "concertbg/" + concert.getId().toString(), true);
 			
 			if (concert.getPhoto() != null && concert.getPhoto().getSize() > 0) {
 				fileService.save(concert.getPhoto(), "concertphoto/" + concert.getId().toString(), true);
