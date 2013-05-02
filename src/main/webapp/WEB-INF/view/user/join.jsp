@@ -74,7 +74,7 @@
 									<spring:bind path="nickname"><span class="text-error">${status.errorMessage}</span></spring:bind>
 								</label>
 							<h4>이용약관 <a href="${pageContext.request.contextPath}/terms" target="_blank" style="float: right;">크게 보기</a></h4>
-							<div id="terms" style="height: 130px; overflow: scroll; background: #fff; font-size: 12px; border: 1px solid #999; border-radius: 5px; padding: 5px; margin-bottom: 5px;">
+							<div id="terms" style="height: 130px; overflow-y: scroll; background: #fff; font-size: 12px; border: 1px solid #999; border-radius: 5px; padding: 5px; margin-bottom: 5px;">
 								제 1조 목적<br>
 								이 약관은 인디크라우드가 운영하는 인터넷사이트 IndiCrowd(이하 ‘사이트’)에서 제공하는 인터넷 관련 서비스(이하 ‘서비스’)를 이용함에 있어 인디크라우드와 이용자의 권리와 의무, 책임사항 및 이용자의 서비스이용절차에 관한 사항을 규정함을 목적으로 합니다.<br>
 								<br>

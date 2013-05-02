@@ -130,7 +130,11 @@ public class ConcertController extends AbstractController {
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			
+			concert.setHasBG(true);
+			
 			concert.persist();
+			
+			fileService.save(fileService.load("img/concertbg" + (java.lang.Math.round(java.lang.Math.random() * 2) + 1)), "concertbg/" + concert.getId().toString(), true);
 			
 			if (concert.getPhoto() != null && concert.getPhoto().getSize() > 0) {
 				fileService.save(concert.getPhoto(), "concertphoto/" + concert.getId().toString(), true);
@@ -182,12 +186,11 @@ public class ConcertController extends AbstractController {
 		Concert concert = Concert.findConcert(concertId);
 		
 		if (bg != null && bg.getSize() > 0) {
-			
-			System.out.println("TEST!");
 					
 			fileService.save(bg, "concertbg/" + concertId.toString(), true);
 			
 			concert.setHasBG(true);
+			concert.merge();
 			
 			rtwService.send("Concert", concert.getId(), "changebg", true);
 		}

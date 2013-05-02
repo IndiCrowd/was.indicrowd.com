@@ -116,7 +116,7 @@
 											<div class="concert-content" style="width: 59%;">
 												<h4>${concert.title} - ${concert.bandInfo.name}</h4>
 												<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
-												<div class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
+												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
 												    <div class="play_button"></div>
 												</div>
 												<div class="onbadge" style="background:red; font-size: 16px;">ON LIVE!</div>
@@ -132,7 +132,7 @@
 												<div class="concert-content">
 													<h4>${concert.title} - ${concert.bandInfo.name}</h4>
 													<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
-													<div class="play_border">
+													<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="play_border">
 													    <div class="play_button"></div>
 													</div>
 													<div class="onbadge" style="background: orange;">COMING UP!</div>
@@ -152,7 +152,7 @@
 												<div class="concert-content">
 													<h4>${concert.title} - ${concert.bandInfo.name}</h4>
 													<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
-													<div class="play_border">
+													<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="play_border">
 													    <div class="play_button"></div>
 													</div>
 													<div class="onbadge" style="background: #999;">PREVIOUS</div>

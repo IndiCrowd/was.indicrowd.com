@@ -334,7 +334,7 @@
 				return false;
 			});
 			
-			var bg = '<c:if test="${!command.hasBG}"><c:url value="/img/concert/concertbg.jpg" /></c:if><c:if test="${command.hasBG}"><spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}</c:if>';
+			var bg = '<c:if test="${!command.hasBG}"><c:url value="/img/istock/bg1.jpg" /></c:if><c:if test="${command.hasBG}"><spring:eval expression="@userfileConfig.baseUrl" />/concertbg/${command.id}</c:if>';
 			
 			$('#background').css({
 				background: 'url(' + bg + ')',
