@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.indicrowd.AbstractController;
@@ -74,8 +75,9 @@ public class ConcertController extends AbstractController {
 	}
 	
 	@RequestMapping(value = "reserve/validateTime", method = RequestMethod.GET)
-	public void validateTime(Model model){
-		
+	@ResponseBody
+	public boolean validateTime(Model model){
+		return Concert.isAvailableReserveTime(20130503, 2, 39, 1);
 	}
 	
 	@Secured("ROLE_USER")
@@ -130,7 +132,7 @@ public class ConcertController extends AbstractController {
 			concert.setHall(Hall.findHall(concert.getHallId()));
 			concert.setBandInfo(BandInfo.findBandInfo(concert.getBandId()));
 			
-			concert.setHasBG(true);
+			concert.setHasBg(true);
 			
 			concert.persist();
 			
@@ -189,7 +191,7 @@ public class ConcertController extends AbstractController {
 					
 			fileService.save(bg, "concertbg/" + concertId.toString(), true);
 			
-			concert.setHasBG(true);
+			concert.setHasBg(true);
 			concert.merge();
 			
 			rtwService.send("Concert", concert.getId(), "changebg", true);

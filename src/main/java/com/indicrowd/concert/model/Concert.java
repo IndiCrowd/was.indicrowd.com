@@ -87,7 +87,7 @@ public class Concert {
 	private boolean isValid = true;
 	
 	@Column(nullable = false)
-	private boolean hasBG = false;
+	private boolean hasBg = false;
 	
 	@Column(nullable = false)
 	private Integer totalAudienceCount = 0;
@@ -201,6 +201,24 @@ public class Concert {
 						" ORDER BY startDate,startHours,startMinutes",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setMaxResults(count)
 				.getResultList();
+	}
+	
+	public static boolean isAvailableReserveTime(Integer startDate, Integer startHours, Integer startMinutes, long hallId){
+		
+		Integer queryDayTime = startDate%100 * 10000 + startHours*100 + startMinutes;
+		Long count = entityManager().createQuery("SELECT COUNT(o) FROM Concert o " +
+				"WHERE isValid=true AND o.hall.id = :hallId AND (startDate = :startDate or endDate = :startDate) " +
+				"AND :queryDayTime BETWEEN startDate%100 * 10000 + startHours *100 + startMinutes " +
+				"AND endDate%100 * 10000 + endHours *100 + endMinutes " +
+				"AND :queryDayTime != endDate%100 * 10000 + endHours *100 + endMinutes",Long.class)
+				.setParameter("startDate", startDate).setParameter("queryDayTime", queryDayTime).setParameter("hallId",hallId).getSingleResult();
+		if (count > 0) {
+			return false;
+		}else if (count == 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	public long getStartTimeInMillis () {
