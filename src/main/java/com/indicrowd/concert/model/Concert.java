@@ -67,6 +67,11 @@ public class Concert {
 	@Column(nullable = false)
 	private Integer startMinutes;
 	
+	private Integer endDate;
+	
+	private Integer endHours;
+	
+	private Integer endMinutes;
 	
 	@Column(nullable = false)
 	private Integer duration;
