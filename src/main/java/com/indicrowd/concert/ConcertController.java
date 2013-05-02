@@ -44,13 +44,26 @@ public class ConcertController extends AbstractController {
 	public String main(Model model) {
 		
 		
-		Map<String, List<Concert>> concertList = new HashMap<String, List<Concert>>(); 
+		/*Map<String, List<Concert>> concertList = new HashMap<String, List<Concert>>(); 
 		List<Hall> validHalls = Hall.getValidConcertHalls();
 		for(int i=0; i<validHalls.size();i++){
 			Hall nowHall = validHalls.get(i);
 			concertList.put(nowHall.getName(), Concert.findConcertListByDateAndHall(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")), nowHall.getId()));
 		}
-		model.addAttribute("command", concertList);
+		model.addAttribute("command", concertList);*/
+		
+		ListInfo<Concert> listInfo = new ListInfo<Concert>();
+		List<Concert> list = Concert.findConcertListByDate(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")));
+
+		listInfo.setPage(1);
+		listInfo.setCountPerPage(-1);
+		listInfo.setCount((long) list.size());
+		
+		// 우선 전체 다 가져옴
+		listInfo.setList(list);
+
+		model.addAttribute("command", listInfo);
+		
 		return "concert/main";
 	}
 

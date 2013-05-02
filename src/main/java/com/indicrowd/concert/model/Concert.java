@@ -111,6 +111,14 @@ public class Concert {
 				.getResultList();
 	}
 	
+	public static List<Concert> findConcertListByDate(Integer date){
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Concert o WHERE o.startDate  = :date AND isValid=true",
+						Concert.class).setParameter("date", date)
+				.getResultList();
+	}
+	
 	public static List<Concert> findConcertListByDateRange(Integer startDate,Integer endDate){
 		Integer startDateForQuery = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(startDate), -2));
 		Integer endDateForQuery = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(endDate), 1));

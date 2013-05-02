@@ -438,7 +438,7 @@
 							left: left,
 							zIndex: 100000
 						}
-					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, rewind: iconFeed.item.isRewind}).appendTo('body');
+					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount/*, rewind: iconFeed.item.isRewind*/}).appendTo('body');
 					
 					setTimeout(function() {
 						$div.fadeOut(function() {
