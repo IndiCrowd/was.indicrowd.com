@@ -14,7 +14,7 @@
 <!--start: Wrapper-->
 <div id="wrapper" class="row">
 	<div class="row">
-		<a href="#generateBand" role="button" class="btn offset10" data-toggle="modal">밴드 생성</a>	
+		<a href="${pageContext.request.contextPath}/band/create" role="button" class="btn offset10" data-toggle="modal">밴드 생성</a>	
 	</div>
 	<div id="filters">
 		<ul class="option-set" data-option-key="filter">

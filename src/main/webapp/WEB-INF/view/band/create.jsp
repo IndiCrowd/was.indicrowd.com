@@ -7,7 +7,7 @@
 <!-- start: Page Title -->
 <div id="page-title">
 
-	<h2>밴드</h2>
+	<h2>밴드 생성</h2>
 
 </div>
 <!-- end: Page Title -->
@@ -16,7 +16,6 @@
 <div id="wrapper">
 	<div id="content">
 
-		<h1>콘서트 생성</h1>
 
 		<form:form>
 			<fieldset>

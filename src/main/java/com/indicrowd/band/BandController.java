@@ -181,7 +181,7 @@ public class BandController extends AbstractController{
 		} else {
 			UserInfo userInfo = authService.getUserInfo();
 			bandService.generateNewBand(userInfo, bandInfo);
-			return "band/create";
+			return "band/home";
 		}
 	}
 	
