@@ -214,4 +214,17 @@ public class Concert {
 			return ConcertState.END;
 		}
 	}
+	
+	public long remainTimeInMillis() {
+		long now = Calendar.getInstance().getTimeInMillis();
+		long startTime = getStartTimeInMillis();
+		long endTime = getEndTimeInMillis();
+		
+		if (now < startTime) {
+			return startTime - now;
+		} else if (now < endTime) {
+			return endTime - now;
+		}
+		return now - endTime;
+	}
 }
