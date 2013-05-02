@@ -138,6 +138,14 @@ privileged aspect Concert_Roo_JavaBean {
         this.hasBG = hasBG;
     }
     
+    public Integer Concert.getTotalAudienceCount() {
+        return this.totalAudienceCount;
+    }
+    
+    public void Concert.setTotalAudienceCount(Integer totalAudienceCount) {
+        this.totalAudienceCount = totalAudienceCount;
+    }
+    
     public CommonsMultipartFile Concert.getPhoto() {
         return this.photo;
     }

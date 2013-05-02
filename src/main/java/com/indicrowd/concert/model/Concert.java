@@ -84,12 +84,24 @@ public class Concert {
 	@Column(nullable = false)
 	private boolean hasBG = false;
 	
+	@Column(nullable = false)
+	private Integer totalAudienceCount = 0;
+	
 	@Transient
 	private CommonsMultipartFile photo;
 
 	public static final int START_BEFORE_REHEARSAL_MINUTES = 30;
 	public static final int START_BEFORE_MINUTES = 3;
 	public static final int ENDS_BEFORE_MINUTES =5;
+	
+	public static List<Concert> findConcertListByBand(long bandId){
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Concert o WHERE o.bandInfo.id = :bandId AND isValid=true" +
+						" ORDER BY startDate, startHours, startMinutes",
+						Concert.class).setParameter("bandId", bandId)
+				.getResultList();
+	}
 	
 	public static List<Concert> findConcertListByDateAndHall(Integer date,long hallId){
 		return entityManager()
@@ -104,7 +116,7 @@ public class Concert {
 		Integer endDateForQuery = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(endDate), 1));
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE (startDate > :startDate AND startHours > -1 AND startMinutes > -1) AND (startDate < :endDate ) AND isValid = true",
+						"SELECT o FROM Concert o WHERE isValid=true AND (startDate > :startDate AND startHours > -1 AND startMinutes > -1) AND (startDate < :endDate ) AND isValid = true",
 						Concert.class).setParameter("startDate", startDateForQuery).setParameter("endDate", endDateForQuery)
 				.getResultList();
 	}
@@ -114,7 +126,7 @@ public class Concert {
 		Integer nextDate = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(startDate), 1));
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE (startDate = :startDate AND ((startHours - :queryHours = 0 AND startMinutes - :queryMinutes = "+START_BEFORE_MINUTES+") OR (startHours - :queryHours = 1 AND startMinutes - :queryMinutes = "+(-1 * (60 - START_BEFORE_MINUTES))+" ))) " +
+						"SELECT o FROM Concert o WHERE isValid=true AND (startDate = :startDate AND ((startHours - :queryHours = 0 AND startMinutes - :queryMinutes = "+START_BEFORE_MINUTES+") OR (startHours - :queryHours = 1 AND startMinutes - :queryMinutes = "+(-1 * (60 - START_BEFORE_MINUTES))+" ))) " +
 						"OR (startDate = :nextDate AND ((startHours - :queryHours = -23 AND startMinutes - :queryMinutes = "+(-1 * (60 - START_BEFORE_MINUTES))+")))",
 					Concert.class).setParameter("startDate", startDate).setParameter("nextDate", nextDate).setParameter("queryHours",queryHours).setParameter("queryMinutes", queryMinutes)
 				.getResultList();
@@ -124,7 +136,7 @@ public class Concert {
 		
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE startDate = :startDate AND :queryHours*100+:queryMinutes BETWEEN startHours*100+ startMinutes AND FLOOR(startHours + (duration - :endTime -1 + startMinutes) / 60)*100+(startMinutes+duration-:endTime -1 )%60",
+						"SELECT o FROM Concert o WHERE isValid=true AND startDate = :startDate AND :queryHours*100+:queryMinutes BETWEEN startHours*100+ startMinutes AND FLOOR(startHours + (duration - :endTime -1 + startMinutes) / 60)*100+(startMinutes+duration-:endTime -1 )%60",
 					Concert.class).setParameter("startDate", startDate).setParameter("queryHours",queryHours).setParameter("queryMinutes", queryMinutes).setParameter("endTime", ENDS_BEFORE_MINUTES)
 				.getResultList();
 	}
@@ -133,7 +145,7 @@ public class Concert {
 		Integer nextDate = DateUtil.calendarToInteger(DateUtil.getNextDay(DateUtil.getCalendarWithInteger(startDate), 1));
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE (startDate = :startDate AND (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 0 AND (startMinutes+duration )%60 -:queryMinutes = "+ENDS_BEFORE_MINUTES+") OR (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 1 AND (startMinutes+duration )%60 - :queryMinutes = "+(-1 * (60 - ENDS_BEFORE_MINUTES))+")) " +
+						"SELECT o FROM Concert o WHERE isValid=true AND (startDate = :startDate AND (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 0 AND (startMinutes+duration )%60 -:queryMinutes = "+ENDS_BEFORE_MINUTES+") OR (FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = 1 AND (startMinutes+duration )%60 - :queryMinutes = "+(-1 * (60 - ENDS_BEFORE_MINUTES))+")) " +
 						"OR (startDate = :nextDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) - :queryHours = -23 AND FLOOR(startHours + (duration+startMinutes) / 60) - :queryMinutes = "+(-1 * (60 - ENDS_BEFORE_MINUTES))+")))",
 					Concert.class).setParameter("startDate", startDate).setParameter("nextDate", nextDate).setParameter("queryHours",queryHours).setParameter("queryMinutes", queryMinutes)
 				.getResultList();
@@ -146,7 +158,7 @@ public class Concert {
 		Integer startMinutes = cal.get(Calendar.MINUTE);
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate) AND o.bandInfo.id IN (SELECT bandInfo.id from BandMember b where b.userInfo.id=:userId AND b.bandRoleType.id=:bandRoleTypeId)" +
+						"SELECT o FROM Concert o WHERE isValid=true AND ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate) AND o.bandInfo.id IN (SELECT bandInfo.id from BandMember b where b.userInfo.id=:userId AND b.bandRoleType.id=:bandRoleTypeId)" +
 						" ORDER BY startDate,startHours,startMinutes",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setParameter("userId", userId).setParameter("bandRoleTypeId", BandRoleType.BAND_ADMIN)
 				.getResultList();
@@ -159,7 +171,7 @@ public class Concert {
 		Integer startMinutes = cal.get(Calendar.MINUTE);
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate)" +
+						"SELECT o FROM Concert o WHERE isValid=true AND ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 >= :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) > :startHours) ) ) OR startDate > :startDate)" +
 						" ORDER BY startDate,startHours,startMinutes",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setMaxResults(count)
 				.getResultList();
@@ -172,7 +184,7 @@ public class Concert {
 		Integer startMinutes = cal.get(Calendar.MINUTE);
 		return entityManager()
 				.createQuery(
-						"SELECT o FROM Concert o WHERE ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 < :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) < :startHours) ) ) OR startDate < :startDate)" +
+						"SELECT o FROM Concert o WHERE isValid=true AND ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 < :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) < :startHours) ) ) OR startDate < :startDate)" +
 						" ORDER BY startDate,startHours,startMinutes",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setMaxResults(count)
 				.getResultList();
