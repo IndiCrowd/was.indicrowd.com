@@ -126,7 +126,7 @@
 								       href="#" >
 								    <c:if test="${principal.socialImageUrl != null}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if><c:if test="${principal.socialImageUrl == null}"><img style="width:22px;height:22px" border="0" src="<spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}"> </c:if>${principal.nickname.length() > 6 ? principal.nickname.substring(0, 6).concat('...') : principal.nickname }<b class="caret"></b></a>
 								  	<ul class="dropdown-menu">
-								  	  <li class="active" style="border-bottom: 1px solid #ccc;"><a href="${pageContext.request.contextPath}/energy" style="color: #d86112 !important; font-weight: bold;"><img src="${pageContext.request.contextPath}/img/energy.png"> ${principal.energy} <span>energy</span></a></li>
+								  	  <!-- <li class="active" style="border-bottom: 1px solid #ccc;"><a href="${pageContext.request.contextPath}/energy" style="color: #d86112 !important; font-weight: bold;"><img src="${pageContext.request.contextPath}/img/energy.png"> ${principal.energy} <span>energy</span></a></li> -->
 								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl != null}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if><c:if test="${principal.socialImageUrl == null}"><img style="width:22px;height:22px" border="0" src="<spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}"> </c:if>${principal.nickname }</a></li>
 								      <c:forEach var="band" items="${principal.userBand }">
 								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->

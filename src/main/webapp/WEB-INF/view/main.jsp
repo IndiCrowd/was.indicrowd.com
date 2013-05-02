@@ -184,6 +184,15 @@
 				
 				<div class="span4 pull-right">
 					<div class="wrapper">
+						<div>
+							<a href="#"><button class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</button></a>
+						</div>
+						<div style="margin-top: 10px; text-align: center;">
+							<a href="https://www.facebook.com/IndiCrowd" target="_blank"><i class="fa-icon-facebook-sign"></i> 페이스북으로 피드백을 남겨주세요.</a>
+						</div>
+					</div>
+					
+					<div class="wrapper" style="margin-top: 15px;">
 						<div class="pull-left" style="padding-top: 4px; padding-right: 5px;">
 							<img src="${pageContext.request.contextPath}/img/001_15.png">
 						</div>

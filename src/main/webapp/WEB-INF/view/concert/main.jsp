@@ -21,6 +21,7 @@
 								공연 보기</a> <br></td>
 					</tr>
 				</c:forEach>
+				<a href="<c:url value="/concert/reserve" />"><button class="btn btn-primary offset10">예약하기</button></a>
 			</div>
 		</div>
 

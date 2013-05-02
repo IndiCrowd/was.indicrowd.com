@@ -18,25 +18,16 @@
 		<div id="wrapper" class="full">
 				
 				<p>
-					username : ${command.username}
+					회원님의 닉네임은 <b>${command.nickname}</b>입니다.
 				</p>
 				<p>
-					nickname : ${command.nickname}
+					회원님은 <b>${command.joinDate}</b>에 가입하셨습니다.
 				</p>
 				<p>
-					email : ${command.email}
+					회원님은 <b>${command.lastLoginDate}</b>에 마지막으로 로그인 하셨습니다.
 				</p>
 				<p>
-					joinDate : ${command.joinDate}
-				</p>
-				<p>
-					lastLoginDate : ${command.lastLoginDate}
-				</p>
-				<p>
-					loginCount : ${command.loginCount}
-				</p>
-				<p>
-					energy : ${command.energy}
+					회원님은 총 <b>${command.loginCount}</b>번 로그인 하셨습니다.
 				</p>
 				
 				<t:signed>
