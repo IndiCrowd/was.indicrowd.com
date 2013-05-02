@@ -61,9 +61,10 @@ public class ConcertController extends AbstractController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping(value ="/manage", method = RequestMethod.GET)
-	public void manage(Model model){
-		
+	@RequestMapping(value ="/manage/{bandId}", method = RequestMethod.GET)
+	public String manage(Model model, @PathVariable long bandId){
+		model.addAttribute("command", Concert.findConcertListByBand(bandId));
+		return "concert/manage";
 	}
 	
 	@RequestMapping(value = "/plan", method = RequestMethod.GET)
