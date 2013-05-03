@@ -66,6 +66,8 @@ public class ConcertController extends AbstractController {
 
 		model.addAttribute("command", listInfo);
 		
+		model.addAttribute("comingUpConcertList", Concert.findComingUpConcertList(3));
+		
 		return "concert/main";
 	}
 
