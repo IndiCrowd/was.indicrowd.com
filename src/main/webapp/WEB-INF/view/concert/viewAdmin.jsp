@@ -151,6 +151,9 @@
 	<body>
 		
 		<div id="StreamPublisher"></div>
+		<div style="position: absolute; bottom: 10px; color: #fff;">
+			<a style="color: #fff;" href="http://www.indicrowd.com/c/${command.id}" target="_blank">http://www.indicrowd.com/c/${command.id}</a> 를 친구들에게 공유해보세요!
+		</div>
 					
 	</body>
 </html>

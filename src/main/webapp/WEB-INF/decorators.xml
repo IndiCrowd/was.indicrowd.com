@@ -8,7 +8,6 @@
 		<pattern>/css/*</pattern>
 		<pattern>/img/*</pattern>
 		<pattern>/landing</pattern>
-		<pattern>/c/*</pattern>
 	</excludes>
 	
 	<decorator name="layout" page="layout.jsp">
@@ -25,6 +24,7 @@
 	<decorator name="base" page="base.jsp">
 		<pattern>/concert/*/feed</pattern>
 		<pattern>/concert/*/changeBG</pattern>
+		<pattern>/c/*</pattern>
 	</decorator>
 	
 </decorators>
