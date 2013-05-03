@@ -110,8 +110,8 @@
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li> --%>
 							<li class="active"><a href="#fundingReady" data-toggle="modal">크라우드 펀딩</a></li>
-							<%-- <li class="active"><a href="${pageContext.request.contextPath}/item/list">상점</a></li> --%>
-							<li class="active"><a href="#shopReady" data-toggle="modal">상점</a></li>
+							<%-- <li class="active"><a href="${pageContext.request.contextPath}/item/list">아이템</a></li> --%>
+							<li class="active"><a href="#shopReady" data-toggle="modal">아이템</a></li>
 							<sec:authorize access="isAnonymous()">
 								<li class="active"><a href="${pageContext.request.contextPath}/signin">로그인</a></li>
 							</sec:authorize>
@@ -254,8 +254,8 @@
 		    <h3>크라우드 펀딩</h3>
 		  </div>
 		  <div class="modal-body">
-		    <p>크라우드 펀딩과 상점은 현재 준비중입니다…</p>
-		    <p>이용에 불편을 드려 대단히 죄송합니다.</p>
+		    <p>크라우드 펀딩과 아이템 샵은 현재 준비중입니다…</p>
+		    <p>기대해주세요.</p>
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn btn-primary" data-dismiss="modal">열심히 준비하겠습니다! 화이팅!</button>
@@ -266,11 +266,11 @@
 		<div id="shopReady" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3>상점</h3>
+		    <h3>아이템 샵</h3>
 		  </div>
 		  <div class="modal-body">
-		    <p>크라우드 펀딩과 상점은 현재 준비중입니다…</p>
-		    <p>이용에 불편을 드려 대단히 죄송합니다.</p>
+		    <p>크라우드 펀딩과 아이템 샵은 현재 준비중입니다…</p>
+		    <p>기대해주세요.</p>
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn btn-success" data-dismiss="modal">열심히 준비하겠습니다! 화이팅!</button>
