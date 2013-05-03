@@ -128,5 +128,8 @@ rm -rf apache-tomcat-7.0.39/webapps/run/ROOT
 mv /root/IndiCrowd.war apache-tomcat-7.0.39/webapps/run/ROOT.war
 overwrite -> y
 
+JAVA_OPTS="$JAVA_OPTS -Xms512m -Xmx4096m -XX:MaxPermSize=512m"
+JAVA_HOME=/root/jdk1.7.0_15
+PATH=$JAVA_HOME/bin:$PATH
 apache-tomcat-7.0.39/bin/catalina.sh start
 tail -60f apache-tomcat-7.0.39/logs/catalina.out

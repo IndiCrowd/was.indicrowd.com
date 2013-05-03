@@ -28,7 +28,10 @@
 						<div class="img"><i class="fa-icon-facebook"></i></div>
 						<div class="text">페이스북으로 가입하기</div>
 					</a>
-					<a href="#" class="twitter_connect">
+					<!-- TWITTER login -->
+					<form id="twitter-login-form" action="${pageContext.request.contextPath}/signin/twitter" method="POST">
+					</form>
+					<a href="javascript:$('#twitter-login-form').submit();" class="twitter_connect">
 						<div class="img"><i class="fa-icon-twitter"></i></div>
 						<div class="text">트위터로 가입하기</div>
 					</a>
