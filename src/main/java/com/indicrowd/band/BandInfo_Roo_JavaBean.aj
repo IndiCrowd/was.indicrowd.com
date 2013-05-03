@@ -4,6 +4,7 @@
 package com.indicrowd.band;
 
 import com.indicrowd.band.BandInfo;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect BandInfo_Roo_JavaBean {
     
@@ -37,6 +38,14 @@ privileged aspect BandInfo_Roo_JavaBean {
     
     public void BandInfo.setImageFilePath(String imageFilePath) {
         this.imageFilePath = imageFilePath;
+    }
+    
+    public CommonsMultipartFile BandInfo.getProfilePhoto() {
+        return this.profilePhoto;
+    }
+    
+    public void BandInfo.setProfilePhoto(CommonsMultipartFile profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
     
     public Long BandInfo.getEnergy() {

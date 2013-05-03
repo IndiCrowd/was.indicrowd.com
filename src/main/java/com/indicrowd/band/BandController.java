@@ -174,14 +174,16 @@ public class BandController extends AbstractController{
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model){
-		
+	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model) throws IOException{
+		if (!bindingResult.hasFieldErrors("profilePhoto") && (bandInfo.getProfilePhoto() == null || bandInfo.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(bandInfo.getProfilePhoto()))) {
+			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
+		}
 		if (bindingResult.hasErrors()) {
 			return "band/create";
 		} else {
 			UserInfo userInfo = authService.getUserInfo();
 			bandService.generateNewBand(userInfo, bandInfo);
-			return "band/home";
+			return "redirect:/band/"+bandInfo.getId();
 		}
 	}
 	

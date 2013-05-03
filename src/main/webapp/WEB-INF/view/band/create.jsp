@@ -16,34 +16,69 @@
 <div id="wrapper">
 	<div id="content">
 
+		<div class="perfectum">
 
-		<form:form>
-			<fieldset>
-				<p>
-					<label> Name <form:input path="name" /> 
-					<spring:bind path="name">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<label> Description <form:textarea path="description" /> 
-					<spring:bind path="description">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<label> Category <form:input path="category" /> 
-					<spring:bind path="category">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<button type="submit">생성</button>
-				</p>
-			</fieldset>
-		</form:form>
+			<div>
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2>
+							<i class="icon-edit"></i><span class="break"></span>프로젝트 생성
+						</h2>
+					</div>
+					<div class="box-content">
+						<form:form enctype="multipart/form-data" cssClass="form-horizontal">
+							<fieldset>
+								<div class="control-group use-preview <spring:bind path="profilePhoto"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+									<label class="control-label" for="profilePhoto">밴드 프로필 사진</label>
+									<div class="controls">
+										<form:input type="file" path="profilePhoto" cssClass="input-file uniform_on" />
+										<form:errors path="profilePhoto" cssClass="help-inline" />
+										<p style="margin-top:10px;">
+											<c:if test="${command.id == null}">
+											<img class="img-polaroid" style="width:180px; height:180px;" src="<c:url value="/img/fund/project/blank.png" />">
+											</c:if>
+											<c:if test="${command.id != null}">
+											<img class="img-polaroid" style="width:180px; height:180px;" src="<spring:eval expression="@userfileConfig.baseUrl" />/projectthumb/${command.id}">
+											</c:if>
+										</p>
+									</div>
+								</div>
+								
+								<div class="control-group <spring:bind path="name"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+									<label class="control-label" for="name">밴드명</label>
+									<div class="controls">
+										<form:input path="name" cssClass="input-xlarge" />
+										<form:errors path="name" cssClass="help-inline" />
+									</div>
+								</div>
+								<div class="control-group <spring:bind path="description"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+									<label class="control-label" for="description">밴드 소개</label>
+									<div class="controls">
+										<form:input path="description" cssClass="input-xlarge" />
+										<form:errors path="description" cssClass="help-inline" />
+									</div>
+								</div>
+								<div class="control-group <spring:bind path="category"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+									<label class="control-label" for="category">장르</label>
+									<div class="controls">
+										<form:input path="category" cssClass="input-xlarge" />
+										<form:errors path="category" cssClass="help-inline" />
+										<br/>ex)"락, 발라드, 펑키" 처럼 입력해보세요!
+									</div>
+								</div>
+								<div class="form-actions">
+											<button type="submit" class="btn btn-primary">밴드 만들기!</button>
+											<button type="reset" class="btn">취소</button>
+										</div>
+							</fieldset>
+						</form:form>
+					</div>
+				</div>
+				<!--/span-->
+
+			</div>
+			<!--/row-->
+
+		</div>
 	</div>
 </div>
