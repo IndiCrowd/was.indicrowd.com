@@ -98,8 +98,8 @@ public class Concert implements Serializable {
 	private CommonsMultipartFile photo;
 
 	public static final int START_BEFORE_REHEARSAL_MINUTES = 30;
-	public static final int START_BEFORE_MINUTES = 3;
-	public static final int ENDS_BEFORE_MINUTES =5;
+	public static final int START_BEFORE_MINUTES = 0;
+	public static final int ENDS_BEFORE_MINUTES = 0;
 	
 	public static List<Concert> findConcertListByBand(long bandId){
 		return entityManager()
