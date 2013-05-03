@@ -191,7 +191,7 @@
 				<div class="span4 pull-right">
 					<div class="wrapper">
 						<div style="line-height: 3em;">
-							<a href="#" class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</a>
+							<a href="javascript:$('#tutorial').show();" class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</a>
 							<a href="${pageContext.request.contextPath}/about" class="btn btn-success"><i class="icon-comment icon-white"></i> IndiCrowd 소개</a>
 						</div>
 						<div style="margin-top: 10px; text-align: center;">
@@ -229,6 +229,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	<div id="tutorial" style="display: none; position: fixed; top: 0; left: 0; z-index: 100000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); text-align: center;">
+		<img src="${pageContext.request.contextPath}/img/tutorial.png">
+		<br>
+		<a href="javascript:$('#tutorial').hide();" class="btn btn-large btn-danger" style="margin-top: 50px;"><i class="icon-remove icon-white"></i> 튜토리얼 닫기</a>
 	</div>
 	
 	<%--
