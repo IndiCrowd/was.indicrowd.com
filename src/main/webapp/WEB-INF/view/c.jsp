@@ -7,6 +7,12 @@
 	
 		<title>${command.title} 공연 보기</title>
 		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<!--[if lt IE 8]>
+		<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+		<![endif]-->
+		
 	</head>
 	<body>
 		

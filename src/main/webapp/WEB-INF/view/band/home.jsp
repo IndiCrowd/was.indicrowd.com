@@ -16,7 +16,7 @@
 <!--start: Wrapper-->
 <div id="wrapper" class="row">
 	<div class="row">
-		<a href="${pageContext.request.contextPath}/band/create" role="button" class="btn offset10" data-toggle="modal">밴드 생성</a>	
+		<a href="${pageContext.request.contextPath}/band/create" role="button" class="btn btn-large btn-success offset9" style="margin-bottom: 15px;" data-toggle="modal"><i class="icon-music icon-white"></i> 밴드를 만들어보세요!</a>	
 	</div>
 	<div id="filters">
 		<ul class="option-set" data-option-key="filter">

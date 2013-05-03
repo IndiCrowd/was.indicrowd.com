@@ -7,6 +7,12 @@
 	
 		<title>IndiCrowd :: 세계최초 온라인 콘서트 서비스</title>
 		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<!--[if lt IE 8]>
+		<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+		<![endif]-->
+		
 		<style>
 		html, body {
 			width: 100%;
