@@ -1,5 +1,6 @@
 package com.indicrowd.band;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,16 @@ public class BandService {
 	@Transactional
 	public BandInfo generateNewBand(UserInfo userInfo, BandInfo bandInfo) throws IOException{
 		bandInfo.persist();
-		fileService.save(bandInfo.getProfilePhoto(), "bandphoto/" + bandInfo.getId().toString(), true);
-		fileService.save(imageService.generateThumb(bandInfo.getProfilePhoto()), "bandthumb/" + bandInfo.getId().toString(), true);
+		
+		if (bandInfo.getProfilePhoto() != null && bandInfo.getProfilePhoto().getSize() > 0) {
+			fileService.save(bandInfo.getProfilePhoto(), "bandphoto/" + bandInfo.getId().toString(), true);
+			fileService.save(imageService.generateThumb(bandInfo.getProfilePhoto()), "bandthumb/" + bandInfo.getId().toString(), true);
+		} else {
+			File file = fileService.load("img/blankconcert.jpg");
+			fileService.save(file, "bandphoto/" + bandInfo.getId().toString(), true);
+			fileService.save(imageService.generateThumb(file), "bandthumb/" + bandInfo.getId().toString(), true);
+		}
+		
 		BandMember bandMember = new BandMember();
 		bandMember.setUserInfo(userInfo);
 		bandMember.setBandInfo(bandInfo);
