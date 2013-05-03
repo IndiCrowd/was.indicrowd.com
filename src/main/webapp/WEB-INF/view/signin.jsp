@@ -9,7 +9,7 @@
 		
 		<!--start: Wrapper-->
 		<div class="row-fluid">
-		<div id="wrapper" class="lr-page full span4 offset4" style="">
+		<div id="wrapper" class="lr-page full span4 offset4" style="margin-top: 120px; margin-bottom: 60px;">
 			
 			<!-- start: Row -->
 			<div class="row-fluid">
