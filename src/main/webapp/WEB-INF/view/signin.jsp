@@ -8,8 +8,8 @@
 <title>로그인</title>
 		
 		<!--start: Wrapper-->
-		<div class="row-fluid">
-		<div id="wrapper" class="lr-page full span4 offset4" style="margin-top: 120px; margin-bottom: 60px;">
+		<div class="row-fluid" style="padding-top: 60px; padding-bottom: 60px;">
+		<div id="wrapper" class="lr-page full span4 offset4">
 			
 			<!-- start: Row -->
 			<div class="row-fluid">
@@ -57,7 +57,7 @@
 								
 								<p style="margin-bottom: 5px;">아직 회원이 아니세요?</p>
 								
-								<a href="${pageContext.request.contextPath}/user/join"><button type="button" class="btn span12" onClick="#">회원가입</button></a>
+								<a href="${pageContext.request.contextPath}/user/join" class="btn span12" onclick="">회원가입</a>
 							</div>
 					</form>
 					

@@ -37,7 +37,7 @@
 						<button type="submit" class="btn btn-danger span12" style="margin-bottom: 10px;">예, 탈퇴합니다.</button>
 						</form>
 						
-						<a href="${pageContext.request.contextPath}/"><button type="button" class="btn btn-primary span12">아니오, 메인으로 돌아갑니다.</button></a>
+						<a href="${pageContext.request.contextPath}/" class="btn btn-primary span12">아니오, 메인으로 돌아갑니다.</a>
 					</div>
 							
 				</div>

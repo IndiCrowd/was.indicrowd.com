@@ -144,8 +144,8 @@
 					
 				</div>
 				<div class="pull-right">
-					<a href="#"><button class="btn btn-info btn-large"><i class="icon-calendar icon-white"></i> 공연 일정표</button></a>
-					<a href="<c:url value="/concert/reserve" />"><button class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</button></a>
+					<a href="#" class="btn btn-info btn-large"><i class="icon-calendar icon-white"></i> 공연 일정표</a>
+					<a href="<c:url value="/concert/reserve" />" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a>
 				</div>
 			</div>
 			

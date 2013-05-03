@@ -63,7 +63,7 @@
 		</div>
 		<div class="row">
 			<p><a href="javascript:$('#bandCloseModal').modal({ keyboard: false, backdrop:false});$('#overlay').fadeIn(500)">Test</a></p>
-			<p><a href="<c:url value="/concert/reserve" />"><button class="btn btn-primary offset10">예약하기</button></a></p>
+			<p><a href="<c:url value="/concert/reserve" />" class="btn btn-primary offset10">예약하기</a></p>
 		
 		<div class="span12">
 		<c:set var="tableWidth" value="${1070/fn:length(command) }"/>
