@@ -629,7 +629,7 @@
 			
 			<div id="function-wrapper">
 				<div id="function">
-					<span>
+					<span id="changeBG" style="display: none;">
 						<a href="javascript:;" onclick="changeBG(event);">배경 바꾸기</a>
 					</span>
 					<span>

@@ -142,6 +142,8 @@
 				var objDoc = obj .contentWindow || obj .contentDocument;
 				objDoc.changesmall();
 			};
+			
+			$('#changeBG').show();
 		});
 		</script>
 	</head>
