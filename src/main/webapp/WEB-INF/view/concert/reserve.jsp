@@ -20,7 +20,7 @@
 					</h2>
 				</div>
 				<div class="box-content">
-					<form:form cssClass="form-horizontal" enctype="multipart/form-data">
+					<form:form id="reserveForm" cssClass="form-horizontal" enctype="multipart/form-data">
 						<form:hidden path="hallId" value="1" />
 						<form:hidden path="bandId" value="5" />
 						<fieldset>
@@ -97,7 +97,7 @@
 							
 							
 							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">공연 예약!</button>
+								<button type="button" id="reserveSubmit" class="btn btn-primary">공연 예약!</button>
 								<button type="reset" class="btn">취소</button>
 							</div>
 						</fieldset>
@@ -172,6 +172,24 @@ function changeBand(id, imagePath, name){
 	$("#bandName").html(name);
 }
 $(function(){
+	
+	if ($("#startDate")!=""){
+		insertNewEvent();
+	}
+	
+	$("#reserveSubmit").click(function(){
+		//validate
+		var duration = $("#duration").val();
+		var startDate = $("#startDate").val();
+		var startHours = $("#startHours").val();
+		var startMinutes= $("#startMinutes").val();
+		if(duration == "" || startDate =="" || startHours == "" || startMinutes ==""){
+			alert('달력에서 공연할 날짜와 시간을 선택해주세요!')
+		}else{
+			$("#reserveForm").submit();
+		}
+		
+	});
 	$("#modalSubmit").click(function(){
 		//validate
 		var duration = $("#modalDuration").val();
@@ -188,24 +206,10 @@ $(function(){
 						$("#startHours").val(startHours);
 						$("#startMinutes").val(startMinutes);
 						
-						var year = $("#modalStartDate").val()/10000;
-						var month = $("#modalStartDate").val()/100%100 -1;
-						var d = $("#modalStartDate").val()%100;
-						
-						var title = $("#title").val() == '' ? '새로운 예약' : $("#title").val();
-						$('#calendar').fullCalendar( 'removeEvents', 1);
-						$('#calendar').fullCalendar( 'renderEvent', { 
-							id: 1,
-							title: title,
-							start: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()),
-							end: new Date(year,month,d,$("#modalHours").val(),$("#modalMinutes").val()*1+$("#modalDuration").val()*1),
-							allDay:false,
-							backgroundColor: '#f9a022',
-							borderColor : '#f9a022'
-						} );
+						insertNewEvent();
 						$("#myModal").modal('hide');
 					}else{
-						alert('겹치는 공연시간이 있습니다. 예약 시간을 확인해주세요.');
+						alert('공연 시작 30분 이상 남아있거나, 다른공연과  겹치지 않아야 예약 가능합니다.');
 					}
 				}
 				);
@@ -213,6 +217,23 @@ $(function(){
 	});
 });
 
+function insertNewEvent(){
+	var year = $("#startDate").val()/10000;
+	var month = $("#startDate").val()/100%100 -1;
+	var d = $("#startDate").val()%100;
+	
+	var title = $("#title").val() == '' ? '새로운 예약' : $("#title").val();
+	$('#calendar').fullCalendar( 'removeEvents', 1);
+	$('#calendar').fullCalendar( 'renderEvent', { 
+		id: 1,
+		title: title,
+		start: new Date(year,month,d,$("#startHours").val(),$("#startMinutes").val()),
+		end: new Date(year,month,d,$("#startHours").val(),$("#startMinutes").val()*1+$("#duration").val()*1),
+		allDay:false,
+		backgroundColor: '#f9a022',
+		borderColor : '#f9a022'
+	} );
+}
 function objToEvent(obj){
 	return {
 		title: obj.title,

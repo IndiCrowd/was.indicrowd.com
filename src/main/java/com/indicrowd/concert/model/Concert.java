@@ -209,9 +209,19 @@ public class Concert implements Serializable {
 		
 		Integer startDayTime = startDate%100 * 10000 + startHours*100 + startMinutes;
 		Calendar endCal = DateUtil.getCalendar(startDate/10000, startDate/100%100 -1, startDate%100, startHours, startMinutes+duration-1);
-		Integer endDate = endCal.get(Calendar.YEAR)*10000+(endCal.get(Calendar.MONTH)+1)*100+ endCal.get(Calendar.DAY_OF_MONTH);
+		Integer endDate = DateUtil.calendarToInteger(endCal);
 		
 		Integer endDayTime = endDate%100 *10000 + endCal.get(Calendar.HOUR_OF_DAY)*100 + endCal.get(Calendar.MINUTE);
+		
+		Calendar nowCal = DateUtil.getNextMinutes(DateUtil.getCalendar(), 30);
+		Integer nowDate = DateUtil.calendarToInteger(nowCal);
+		
+		Integer nowDayTime = nowDate%100 *10000 + nowCal.get(Calendar.HOUR_OF_DAY)*100 + nowCal.get(Calendar.MINUTE);
+		if(nowDate > startDate){ // reserve at past
+			return false;
+		}else if(nowDayTime> startDayTime){
+			return false;
+		}
 		
 		Long count = entityManager().createQuery("SELECT COUNT(o) FROM Concert o " +
 				"WHERE isValid=true AND o.hall.id = :hallId " +
