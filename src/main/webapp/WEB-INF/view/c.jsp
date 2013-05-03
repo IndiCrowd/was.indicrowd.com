@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		
-		<a href="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);">${command.title} 공연 보기</a>
+		<a href="popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);">${command.title} 공연 보기</a>
 		
 	</body>
 </html>
