@@ -54,7 +54,8 @@ public class ConcertController extends AbstractController {
 		model.addAttribute("command", concertList);*/
 		
 		ListInfo<Concert> listInfo = new ListInfo<Concert>();
-		List<Concert> list = Concert.findConcertListByDate(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")));
+		//List<Concert> list = Concert.findConcertListByDate(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")));
+		List<Concert> list = Concert.findAllConcerts();
 
 		listInfo.setPage(1);
 		listInfo.setCountPerPage(-1);

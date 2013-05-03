@@ -101,7 +101,7 @@
 		<div class="container">
 			<div class="row gallery">
 				
-				<div class="perfectum span8 affix">
+				<div id="concertPanel" class="perfectum span8 affix" style="margin-bottom: 30px;">
 					<div id="panel" class="box wrapper" style="margin: 0;">
 						<div class="wrap">
 							<div class="box-header" style="height: 37px; padding:0 0 0 12px;">
@@ -175,6 +175,11 @@
 					$('#panel .box-content').css({
 						height: $(window).height() - 220
 					});
+					if ($(window).width() < 767) {
+						$('#concertPanel').removeClass('affix');
+					} else {
+						$('#concertPanel').addClass('affix');
+					}
 				};
 				f();
 				$(window).resize(f);
