@@ -53,7 +53,7 @@ public class SocialSignInAdapter implements SignInAdapter {
 			Twitter twitter = (Twitter) connection.getApi();
 			TwitterProfile tw = twitter.userOperations().getUserProfile();
 			
-			userInfo.setNickname(tw.getName());
+			userInfo.setNickname(tw.getScreenName());
 		}
 		
 		userInfo.setLastLoginDate(new Date());

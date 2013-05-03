@@ -6,6 +6,8 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
+import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.twitter.api.TwitterProfile;
 
 import com.indicrowd.user.model.UserInfo;
 
@@ -23,6 +25,13 @@ public final class SocialConnectionSignUp implements ConnectionSignUp {
 			
 			userInfo.setNickname(fp.getName());
 			userInfo.setEmail(fp.getEmail());
+		}
+		
+		if (connection.getApi() instanceof Twitter) {
+			Twitter twitter = (Twitter) connection.getApi();
+			TwitterProfile tw = twitter.userOperations().getUserProfile();
+			
+			userInfo.setNickname(tw.getScreenName());
 		}
 		
 		userInfo.setJoinDate(new Date());
