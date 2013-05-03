@@ -11,33 +11,36 @@
 <!--start: Wrapper-->
 <div id="wrapper">
 	<!--start: Row -->
-	<div class="row-fluid">
+	<div class="row-fluid perfectum">
 		<div class="posts span8">
 			<form:form method="PUT" commandName="postedit" action="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${postedit.id}">
 			<fieldset>
-				<p>
-					<label> Title <form:input path="title" /> 
-					<spring:bind path="title">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<label> Content <form:textarea path="content" /> 
-					<spring:bind path="content">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<label> src <form:input path="src" /> 
-					<spring:bind path="src">
-						<span class="error">${status.errorMessage}</span>
-					</spring:bind>
-					</label>
-				</p>
-				<p>
-					<label> Type <form:select path="type" >
+				<div class="control-group <spring:bind path="title"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+					<label class="control-label" for="title">글제목</label>
+					<div class="controls">
+						<form:input path="title" cssClass="input-xlarge" />
+						<form:errors path="title" cssClass="help-inline" />
+					</div>
+				</div>
+				<div class="control-group <spring:bind path="content"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+					<label class="control-label" for="content">글내용</label>
+					<div class="controls">
+						<form:textarea path="content" cssClass="input-xlarge" />
+						<form:errors path="content" cssClass="help-inline" />
+					</div>
+				</div>
+				<div style="display:none">
+				<div class="control-group <spring:bind path="src"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+					<label class="control-label" for="src">외부 이미지 url</label>
+					<div class="controls">
+						<form:textarea path="src" cssClass="input-xlarge" />
+						<form:errors path="src" cssClass="help-inline" />
+					</div>
+				</div>
+				<div class="control-group <spring:bind path="type"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+					<label class="control-label" for="type">Type</label>
+					<div class="controls">
+						<form:select path="type" >
 					<form:option value="img">이미지</form:option>
 					<form:option value="avi">동영상</form:option>
 					<form:option value="gal">갤러리</form:option>
@@ -45,12 +48,13 @@
 					<spring:bind path="type">
 						<span class="error">${status.errorMessage}</span>
 					</spring:bind>
-					</label>
-				</p>
-				<p>
+					</div>
+				</div>
+				</div>
+				<div class="form-actions">
 					<form:hidden path="id" />
-					<button type="submit">수정</button>
-				</p>
+					<button type="submit" class="btn btn-primary">수정</button>
+				</div>
 			</fieldset>
 			</form:form>
 		</div>

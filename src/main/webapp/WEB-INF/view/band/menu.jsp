@@ -12,7 +12,7 @@
 	<!-- start: Text Widget -->
 	<div class="widget first">
 		<img
-			src="${pageContext.request.contextPath }/img/band/${bandInfo.imageFilePath}" />
+			src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${bandInfo.id}" />
 		<h2>${bandInfo.name }</h2>
 		<p>${bandInfo.description }</p>
 	</div>

@@ -130,7 +130,7 @@
 								      <li class="active" ><a href="${pageContext.request.contextPath}/user/${principal.id}"><c:if test="${principal.socialImageUrl != null}"><img style="width:22px;height:22px" border="0" src="${principal.socialImageUrl }" /> </c:if><c:if test="${principal.socialImageUrl == null}"><img style="width:22px;height:22px" border="0" src="<spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}"> </c:if>${principal.nickname }</a></li>
 								      <c:forEach var="band" items="${principal.userBand }">
 								      <!-- img url 썸네일 변환 후 url로 수정해줘야함. -->
-								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><c:if test="${band.imageFilePath ne ''}"><img border="0" style="width:22px;height:22px" src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" /> </c:if>${band.name }</a></li>
+								      <li class="active" ><a href="${pageContext.request.contextPath}/band/${band.id}"><img border="0" style="width:22px;height:22px" src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id}" /> ${band.name }</a></li>
 								      </c:forEach>
 									  <li class="active" style="border-top: 1px solid #ccc;"><a href="${pageContext.request.contextPath}/signout">로그아웃</a></li>
 								    </ul>
