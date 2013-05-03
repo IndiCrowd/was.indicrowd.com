@@ -14,6 +14,8 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
+import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.twitter.api.TwitterProfile;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.NativeWebRequest;
 
@@ -45,6 +47,13 @@ public class SocialSignInAdapter implements SignInAdapter {
 			
 			userInfo.setNickname(fp.getName());
 			userInfo.setEmail(fp.getEmail());
+		}
+		
+		if (connection.getApi() instanceof Twitter) {
+			Twitter twitter = (Twitter) connection.getApi();
+			TwitterProfile tw = twitter.userOperations().getUserProfile();
+			
+			userInfo.setNickname(tw.getName());
 		}
 		
 		userInfo.setLastLoginDate(new Date());
