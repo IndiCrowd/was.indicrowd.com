@@ -23,7 +23,6 @@
 					
 					<form id="facebook-login-form" action="${pageContext.request.contextPath}/signin/facebook" method="POST">
 						<input type="hidden" name="scope" value="email" />
-						<input type="hidden" name="redirect_uri" value="/user/extra" />
 				    </form>
 					<a href="javascript:$('#facebook-login-form').submit();" class="facebook_connect">
 						<div class="img"><i class="fa-icon-facebook"></i></div>

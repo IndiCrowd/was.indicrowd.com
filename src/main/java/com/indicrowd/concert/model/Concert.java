@@ -1,5 +1,6 @@
 package com.indicrowd.concert.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -24,8 +25,9 @@ import com.indicrowd.util.DateUtil;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Concert {
-	
+public class Concert implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@NotEmpty
 	@Size(max = 500)
 	@Column(length = 500, nullable = false)
