@@ -1,6 +1,7 @@
 package com.indicrowd;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indicrowd.band.BandInfo;
@@ -61,6 +62,12 @@ public class Controller extends AbstractController {
 	
 	@RequestMapping("/energy")
 	public void energy() {
+	}
+	
+	@RequestMapping("/c/{concertId}")
+	public String c(@PathVariable("concertId") Long concertId, Model model) {
+		model.addAttribute("command", Concert.findConcert(concertId));
+		return "c";
 	}
 
 }
