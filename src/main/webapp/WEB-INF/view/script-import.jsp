@@ -8,6 +8,15 @@
 <script>
 	var USER_ID = '';
 	var USER_FILE_BASE_URL = '<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />';
+	
+	// ie에서 콘솔이 없을 때.
+	if (window.console === undefined || console.log === undefined || console.log.apply === undefined) {
+		window.console = {
+			log : function() {
+				
+			}
+		};
+	}
 </script>
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal" />
@@ -83,12 +92,17 @@ function goConcertAdmin(id){
 
 <script>
 	$('.datepicker').datepicker();
+	
+	try{
+		
 	$('.datetimepicker').datetimepicker();
 	$('.cleditor').cleditor({
 		width: 600,
 		height: 400
 	});
 	$("input:checkbox, input:radio, input:file").not('[data-no-uniform="true"],#uniform-is-ajax').uniform();
+	
+	} catch(e) {console.log(e);}
 </script>
 
 <script>

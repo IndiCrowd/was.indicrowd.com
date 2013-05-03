@@ -1,5 +1,6 @@
 package com.indicrowd.concert.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,8 @@ import com.indicrowd.band.BandInfo;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Hall {
+public class Hall implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@NotEmpty
 	@Size(max = 200)

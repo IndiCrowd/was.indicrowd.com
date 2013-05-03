@@ -30,6 +30,7 @@
 		}
 		a.circle span {
 			top: 100px;
+			left: 75px;
 			width: 150px;
 			margin-left: -75px;
 			position: absolute;
@@ -47,7 +48,7 @@
 		
 		</style>
 		
-		<script src="<c:url value="/js/jquery-1.9.1.min.js" />"></script>
+		<script src="<c:url value="/js/jquery-1.8.2.min.js" />"></script>
 		<jsp:include page="script-import.jsp" />
 		
 		<script>

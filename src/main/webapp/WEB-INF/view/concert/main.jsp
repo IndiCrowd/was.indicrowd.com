@@ -18,6 +18,7 @@
 			color: #fff;
 			width: 100%;
 			height: 100%;
+			cursor: pointer;
 		}
 		.concert-content h4 {
 			background-color: rgba(0, 0, 0, .5);
@@ -96,10 +97,10 @@
 											<div style="padding: 0;">
 											<c:forEach items="${comingUpConcertList}" var="concert" end="0">
 												<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
-												<div class="concert-content" style="width: 59%;">
+												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content" style="width: 59%;">
 													<h4>${concert.title} - ${concert.bandInfo.name}</h4>
 													<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
-													<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
+													<div class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
 													    <div class="play_button"></div>
 													</div>
 													<div class="onbadge" style="background:red; font-size: 16px;">ON LIVE!</div>
@@ -112,10 +113,10 @@
 												<c:forEach items="${comingUpConcertList}" var="concert" begin="1">
 												<div style="height: 50%; position: relative;">
 													<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
-													<div class="concert-content">
+													<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content">
 														<h4>${concert.title} - ${concert.bandInfo.name}</h4>
 														<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
-														<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="play_border">
+														<div class="play_border">
 														    <div class="play_button"></div>
 														</div>
 														<div class="onbadge" style="background: orange;">COMING UP!</div>

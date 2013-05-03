@@ -2032,6 +2032,7 @@ function growlLikeNotifications() {
 
 
 /* ---------- Additional functions for data table ---------- */
+try{
 $.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
 {
 	return {
@@ -2119,7 +2120,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
 		}
 	}
 });
-
+} catch(e) {console.log(e);}
 /* ---------- Page width functions ---------- */
 
 $(window).bind("resize", widthFunctions);

@@ -5,6 +5,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<title>개성있는 밴드들을 만나보세요!</title>
+
 <!-- start: Page Title -->
 <div id="page-title">
 	<h2>개성있는 밴드들을 만나보세요!</h2>

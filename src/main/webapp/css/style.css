@@ -609,6 +609,7 @@ header {
 	  background: -moz-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));
 	  background: -ms-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));
 	  background: -o-linear-gradient(left, rgba(0,0,0,0), #333, rgba(0,0,0,0));
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#000000', EndColorStr='#333333');
 }
 
 #page-title h2 {
