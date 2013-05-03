@@ -36,7 +36,7 @@
 		<div class="span3 item ${band.category }">
 			<div class="picture">
 				<a class="image" href="${pageContext.request.contextPath}/band/${band.id}" title="Title"><img
-					src="${pageContext.request.contextPath}/img/band/${band.imageFilePath}" alt="" /></a>
+					src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id}" alt="" /></a>
 				<h3>${band.name }</h3>
 				<div class="description">
 					<p>${band.description }</p>

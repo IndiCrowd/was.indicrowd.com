@@ -210,7 +210,7 @@
 					<div class="wrapper" style="margin-top: 15px;">
 						<div class="widget" style="width: 50%; float:left;">
 							<div class="flex-image">
-								<img src="${pageContext.request.contextPath}/img/band/${band.imageFilePath}" alt="" />
+								<img src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id}" alt="" />
 							</div>
 						</div>
 						<div style="width: 45%; float:right;">
