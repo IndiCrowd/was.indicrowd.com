@@ -105,8 +105,6 @@
 		
 	</head>
 	<body>
-	
-		<img src="${pageContext.request.contextPath}/img/indicrowd.png" style="width: 182px; margin: 15px;">
 		
 		<table style="width: 100%; height: 100%; position: absolute; top: 0;"><tr><td style="text-align: center;">
 			<img src="${pageContext.request.contextPath}/img/ment.png">
@@ -124,7 +122,7 @@
 		
 		<div id="footer-wrapper">
 			<div id="footer">
-				&copy; IndiCrowd
+				&copy; <img src="${pageContext.request.contextPath}/img/indicrowd.png" style="height: 12px;">
 			</div>
 		</div>
 		
