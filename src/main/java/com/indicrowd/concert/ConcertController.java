@@ -29,6 +29,7 @@ import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.concert.model.ConcertState;
 import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
 import com.indicrowd.concert.model.Message;
@@ -166,14 +167,32 @@ public class ConcertController extends AbstractController {
 	@RequestMapping(value = "/{concertId}/state") 
 	public void getConcertInfo(@PathVariable("concertId") Long concertId, Model model)
 	{
-		model.addAttribute("command", Concert.findConcert(concertId).getState());
+		Concert concert = Concert.findConcert(concertId);
+		
+		if (concert == null) 
+		{
+			model.addAttribute("command", ConcertState.FAILED);
+		}
+		else 
+		{
+			model.addAttribute("command", concert.getState());
+		}
 	}
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/remainTime") 
 	public void getRemainTime(@PathVariable("concertId") Long concertId, Model model)
 	{
-		model.addAttribute("command", Concert.findConcert(concertId).remainTimeInMillis());
+		Concert concert = Concert.findConcert(concertId);
+
+		if (concert == null) 
+		{
+			model.addAttribute("command", 0);
+		}
+		else 
+		{
+			model.addAttribute("command", concert.remainTimeInMillis());
+		}
 	}
 
 	@Secured("ROLE_USER")
