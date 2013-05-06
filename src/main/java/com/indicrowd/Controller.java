@@ -1,5 +1,8 @@
 package com.indicrowd;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,11 @@ public class Controller extends AbstractController {
 	
 	@RequestMapping("/main")
 	public void main1(Model model) {
-		model.addAttribute("bands", BandInfo.findAllBandInfoes());
+		
+		List<BandInfo> bandList = BandInfo.findAllBandInfoes();
+		Collections.reverse(bandList);
+		
+		model.addAttribute("bands", bandList);
 		model.addAttribute("comingUpConcertList", Concert.findComingUpConcertList(3));
 		model.addAttribute("previousConcertList", Concert.findPreviousConcertList(3));
 	}
