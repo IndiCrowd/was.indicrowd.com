@@ -98,6 +98,9 @@
 									<div style="height: 100%; position: relative;">
 										<div style="width: 59%; height: 100%; float: left;">
 											<div style="padding: 0;">
+											<c:if test="${comingUpConcertList.size() == 0}">
+												<iframe width="100%" height="100%" src="http://www.youtube.com/embed/7YJfqK6QmWs" frameborder="0" allowfullscreen></iframe>
+											</c:if>
 											<c:forEach items="${comingUpConcertList}" var="concert" end="0">
 												<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
 												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content" style="width: 59%;">
@@ -112,7 +115,12 @@
 											</div>
 										</div>
 										<div style="border-left:1px solid #ddd; width: 39%; height: 100%; float: right;">
-											<div style="padding: 0 10px; height: 100%;">
+											<div style="padding: 0 10px; height: 100%; position:relative;">
+												<c:if test="${comingUpConcertList.size() == 0}">
+													<p style="padding: 10px 10px 0 10px;">오늘 다가오는 공연이 없습니다.<br>공연을 예약해보세요!</p>
+													<center><a href="<c:if test="${principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0}"><c:url value="/concert/reserve" /></c:if><c:if test="${!(principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0)}">javascript:alert('현재 속해 있는 밴드가 없습니다.\n밴드 생성 페이지로 이동합니다.');location.href='<c:url value="/band/create" />';</c:if>" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a></center>
+													<img src="${pageContext.request.contextPath}/img/b.png" style="width: 94%; bottom:0; position:absolute;">
+												</c:if>
 												<c:forEach items="${comingUpConcertList}" var="concert" begin="1">
 												<div style="height: 50%; position: relative;">
 													<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
