@@ -53,7 +53,7 @@
 					<div id="sns-share" class="pull-left" style="width: 150px; padding-top: 4px;">
 						<!-- AddThis Button BEGIN -->
 						<div class="addthis_toolbox addthis_default_style "
-									addthis:url="http://www.indicrowd.com"
+									addthis:url="http://www.indicrowd.com/main"
 							        addthis:title="IndiCrowd :: 세계최초 온라인 콘서트 서비스"
 							        addthis:description="인디 문화 부흥을 위한 세계최초 온라인 콘서트 서비스">
 						<a class="addthis_button_preferred_1"></a>
