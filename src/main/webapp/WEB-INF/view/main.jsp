@@ -245,17 +245,19 @@
 					<div class="wrapper" style="margin-top: 15px;">
 						<div class="widget" style="width: 50%; float:left;">
 							<div class="flex-image">
-								<img src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id}" alt="" />
+								<a href="${pageContext.request.contextPath}/band/${band.id}"><img src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id}" alt="" /><a href="${pageContext.request.contextPath}/band/${band.id}">
 							</div>
 						</div>
 						<div style="width: 45%; float:right;">
 							<div class="team-name" style="text-align: left; padding: 0 0 10px 0;">
+								<a href="${pageContext.request.contextPath}/band/${band.id}">
 								${band.name}
 								<br>
 								<span>${band.category}</span>
+								</a>
 							</div>
 							<p class="text-info" style="margin: 0;">
-								<a href="#">${band.description.length() > 30 ? band.description.substring(0, 30).concat('...') : band.description}</a>
+								<a href="${pageContext.request.contextPath}/band/${band.id}">${band.description.length() > 30 ? band.description.substring(0, 30).concat('...') : band.description}</a>
 							</p>
 						</div>
 						<div style="clear:both;"></div>
