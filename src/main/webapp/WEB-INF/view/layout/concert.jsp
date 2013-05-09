@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -613,7 +614,7 @@
 						<label>공연 이름</label> ${command.title}
 					</span>
 					<span>
-						<label>시작 시간</label> ${command.startHours}:${command.startMinutes} ~ ${command.endHours}:${command.endMinutes}
+						<label>시작 시간</label> <fmt:formatNumber value="${command.startHours}" pattern="00" />:<fmt:formatNumber value="${command.startMinutes}" pattern="00" /> ~ <fmt:formatNumber value="${command.endHours}" pattern="00" />:<fmt:formatNumber value="${command.endMinutes}" pattern="00" />
 					</span>
 					<span>
 						<label>밴드 정보</label> <a href="${pageContext.request.contextPath}/band/${command.bandInfo.id}" target="_blank">${command.bandInfo.name}</a>
