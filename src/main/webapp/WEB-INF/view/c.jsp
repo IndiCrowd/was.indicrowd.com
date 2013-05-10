@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +45,21 @@
 		}
 		</style>
 		
+		<script>
+		$(function() {
+			var n = 0;
+			var f = function() {
+				var img = new Image();
+				img.src = '${liveThumbnailAddr}?' + (n++);
+				img.load = function() {
+					$('#thumb').attr('src', img.src);
+				};
+			};
+			f();
+			setInterval(f, 3000);
+		});
+		</script>
+		
 	</head>
 	<body>
 		
@@ -52,7 +68,7 @@
 			<div style="width: 480px; background: #fff; float: left; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
 				
 				<div>
-					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img style="width: 100%; border: 0;" src="${liveThumbnailAddr}"></a>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}"></a>
 				</div>
 			
 			</div>
