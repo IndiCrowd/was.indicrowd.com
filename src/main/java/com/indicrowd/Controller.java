@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.server.StreamingServerInfo;
 
 @org.springframework.stereotype.Controller
 public class Controller extends AbstractController {
@@ -73,7 +74,15 @@ public class Controller extends AbstractController {
 	
 	@RequestMapping("/c/{concertId}")
 	public String c(@PathVariable("concertId") Long concertId, Model model) {
+		StreamingServerInfo ssiInfo = StreamingServerInfo.findAllStreamingServerInfoes().get(0);
+		
+		String liveThumbnailAddr = String.format("http://%s:%d/transcoderthumbnail?application=live&streamname=%d&format=jpeg&size=480x360", 
+				ssiInfo.getHostname(),
+				ssiInfo.getHttpPort(),
+				concertId);
+		
 		model.addAttribute("command", Concert.findConcert(concertId));
+		model.addAttribute("liveThumbnailAddr", liveThumbnailAddr);
 		return "c";
 	}
 

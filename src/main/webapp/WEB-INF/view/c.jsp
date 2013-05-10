@@ -58,6 +58,8 @@
 				공연 소개 - ${command.description}
 			</div>
 			</c:if>
+			
+			<img src="${liveThumbnailAddr}" border="0" />
 		
 		</div>
 		
