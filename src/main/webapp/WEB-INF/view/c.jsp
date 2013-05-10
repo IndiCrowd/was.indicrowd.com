@@ -23,6 +23,7 @@
 		body {
 			background-image: url('${pageContext.request.contextPath}/img/istock/bg<%= java.lang.Math.round(java.lang.Math.random() * 2) + 1 %>.jpg');
 			background-size: 100% 100%;
+			padding: 100px 0 200px 0;
 		}
 		h1 {
 			background: #eee;
@@ -33,15 +34,21 @@
 			color: #333;
 			text-decoration: none;
 		}
+		#footer-wrapper {
+			position: fixed;
+			right: 15px;
+			bottom: 10px;
+			color: #fff;
+		}
 		</style>
 		
 	</head>
 	<body>
 		
-		<div style="width: 500px; background: #fff; margin: 100px auto; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
+		<div style="width: 480px; background: #fff; margin: 0 auto; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
 			
 			<div>
-				<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img style="width: 100%;" src="http://www.indicrowd.com/img/g.jpg"></a>
+				<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img style="width: 100%; border: 0;" src="${liveThumbnailAddr}"></a>
 			</div>
 		
 			<h1>
@@ -59,7 +66,22 @@
 			</div>
 			</c:if>
 			
-			<img src="${liveThumbnailAddr}" border="0" />
+			<div id="footer-wrapper">
+				<div id="footer">
+					<a href="http://www.indicrowd.com" style="color:#fff; text-decoration: none;">&copy; <img src="${pageContext.request.contextPath}/img/indicrowd.png" style="height: 12px; border: 0;"></a>
+				</div>
+			</div>
+			
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			  ga('create', 'UA-40115412-1', 'indicrowd.com');
+			  ga('send', 'pageview');
+			
+			</script>
 		
 		</div>
 		
