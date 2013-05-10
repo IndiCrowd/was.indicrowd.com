@@ -50,8 +50,8 @@
 			var n = 0;
 			var f = function() {
 				var img = new Image();
-				img.src = '${liveThumbnailAddr}?' + (n++);
-				img.load = function() {
+				img.src = '${liveThumbnailAddr}&' + (n++);
+				img.onload = function() {
 					$('#thumb').attr('src', img.src);
 				};
 			};
