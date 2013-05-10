@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -45,45 +47,80 @@
 	</head>
 	<body>
 		
-		<div style="width: 480px; background: #fff; margin: 0 auto; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
+		<div style="width: 773px; margin: 0 auto;">
 			
-			<div>
-				<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img style="width: 100%; border: 0;" src="${liveThumbnailAddr}"></a>
-			</div>
-		
-			<h1>
-				<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';">${command.title} 공연 보기</a>
-			</h1>
-			
-			<div style="padding: 10px;">
-				<a style="color: #000; text-decoration: none;" href="${pageContext.request.contextPath}/band/${command.bandInfo.id}"><h3>공연 밴드 - ${command.bandInfo.name} <span style="color: #999; font-weight: normal;">${band.category}</span></h3></a>
-				<p>${command.bandInfo.description}</p>
-			</div>
-			
-			<c:if test="${command.description != null}">
-			<div style="padding: 10px;">
-				공연 소개 - ${command.description}
-			</div>
-			</c:if>
-			
-			<div id="footer-wrapper">
-				<div id="footer">
-					<a href="http://www.indicrowd.com" style="color:#fff; text-decoration: none;">&copy; <img src="${pageContext.request.contextPath}/img/indicrowd.png" style="height: 12px; border: 0;"></a>
+			<div style="width: 480px; background: #fff; float: left; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
+				
+				<div>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img style="width: 100%; border: 0;" src="${liveThumbnailAddr}"></a>
 				</div>
+			
 			</div>
 			
-			<script>
-			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			<div style="width: 273px; background: #fff; float: right; border: 1px solid #333; border-radius:10px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
+				<sec:authorize access="isAnonymous()">
+				<div style="padding: 10px; font-size: 14px; text-align: center;">
+					<p style="margin: 0 0 10px 0;">공연을 보시려면 로그인이 필요합니다!</p>
+					
+					<!-- FACEBOOK login -->
+					<form style="padding:0; margin:0;" id="facebook-login-form" action="${pageContext.request.contextPath}/signin/facebook" method="POST">
+						<input type="hidden" name="scope" value="email" />
+						<input type="hidden" name="redirect_uri" value="/c/${command.id}">
+					</form>
+					<!-- TWITTER login -->
+					<form style="padding:0; margin:0;" id="twitter-login-form" action="${pageContext.request.contextPath}/signin/twitter" method="POST">
+					</form>
+					
+					<a href="javascript:$('#facebook-login-form').submit();" class="facebook_connect">
+						<img src="${pageContext.request.contextPath}/img/fb-login.png">
+					</a>
+					<a href="javascript:$('#twitter-login-form').submit();" class="twitter_connect">
+						<img src="${pageContext.request.contextPath}/img/tw-login.png">
+					</a>
+					<a href="${pageContext.request.contextPath}/signin" style="float: left; padding-top: 10px; color: #999;">IndiCrowd 로그인</a>
+					<a href="${pageContext.request.contextPath}/user/join" style="float: right; padding-top: 10px; color: #999;">회원가입</a>
+					<div style="clear:both;"></div>
+				</div>
+				</sec:authorize>
+				
+				<sec:authorize access="isAuthenticated()">
+				</sec:authorize>
 			
-			  ga('create', 'UA-40115412-1', 'indicrowd.com');
-			  ga('send', 'pageview');
-			
-			</script>
+				<h1>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';">${command.title}<br><span style="font-size:16px; color:#999;">공연 보기</span></a>
+				</h1>
+				
+				<div style="padding: 10px;">
+					<a style="color: #000; text-decoration: none;" href="${pageContext.request.contextPath}/band/${command.bandInfo.id}"><h3>공연 밴드 - ${command.bandInfo.name} <span style="color: #999; font-weight: normal;">${band.category}</span></h3></a>
+					<p>${command.bandInfo.description}</p>
+				</div>
+				
+				<c:if test="${command.description != null}">
+				<div style="padding: 10px;">
+					공연 소개 - ${command.description}
+				</div>
+				</c:if>
+					
+			</div>
 		
 		</div>
+				
+		<div id="footer-wrapper">
+			<div id="footer">
+				<a href="http://www.indicrowd.com" style="color:#fff; text-decoration: none;">&copy; <img src="${pageContext.request.contextPath}/img/indicrowd.png" style="height: 12px; border: 0;"></a>
+			</div>
+		</div>
+				
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-40115412-1', 'indicrowd.com');
+		  ga('send', 'pageview');
+		
+		</script>
 		
 	</body>
 </html>
