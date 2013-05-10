@@ -54,16 +54,19 @@
 								<div class="control-group <spring:bind path="description"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 									<label class="control-label" for="description">밴드 소개</label>
 									<div class="controls">
-										<form:input path="description" cssClass="input-xlarge" />
+										<form:textarea path="description" cssClass="input-xxlarge" rows="6" />
 										<form:errors path="description" cssClass="help-inline" />
 									</div>
 								</div>
 								<div class="control-group <spring:bind path="category"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
-									<label class="control-label" for="category">장르</label>
+									<label class="control-label" for="category">장르 태그</label>
 									<div class="controls">
-										<form:input path="category" cssClass="input-xlarge" />
+										<div class="input-prepend">
+											<span class="add-on"><i class="fa-icon-tags"></i></span>
+											<form:input path="category" cssClass="input-xlarge" />
+										</div>
 										<form:errors path="category" cssClass="help-inline" />
-										<br/>ex)"락, 발라드, 펑키" 처럼 입력해보세요!
+										<div class="help-block">ex)"락 발라드 펑키" 처럼 입력해보세요! 태그는 띄어쓰기로 구분합니다.</div>
 									</div>
 								</div>
 								<div class="form-actions">

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.indicrowd.AbstractController;
+import com.indicrowd.concert.model.Concert;
 import com.indicrowd.post.Comment;
 import com.indicrowd.post.Post;
 import com.indicrowd.tag.Tag;
@@ -40,6 +41,7 @@ public class BandController extends AbstractController{
 		List<Tag> tagList = Tag.findAllTags();
 		model.addAttribute("bandInfoList", bandInfoList);
 		model.addAttribute("tagList", tagList);
+		
 		return "band/home";
 	}
 	
@@ -50,11 +52,11 @@ public class BandController extends AbstractController{
 			
 		}else{
 			String category = bandInfo.getCategory();
-			
+			List<Concert> concertList = Concert.findConcertListByBand(bandInfo.getId());
 			String[] tags = category.split(" ");
-			model.addAttribute("tags",tags);
 			List<Post> recentPostList = Post.findPostsByBandId(bandId, 1, 5);
-			
+			model.addAttribute("tags",tags);
+			model.addAttribute("concertList", concertList);
 			model.addAttribute("recentPostList",recentPostList);
 		}
 		model.addAttribute("bandInfo", bandInfo);

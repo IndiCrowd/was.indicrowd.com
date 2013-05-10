@@ -220,7 +220,7 @@
 					</ul>
 					</div>
 					<div class="field span7">
-						<form:textarea id="content" path="content" class="span12" />
+						<form:textarea id="content" path="content"  cssStyle="min-height:100px" class= "span12" rows="1"/>
 					</div>
 
 					<div class="field span3">
