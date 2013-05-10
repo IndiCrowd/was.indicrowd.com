@@ -238,7 +238,7 @@
 						<div class="pull-left" style="padding-top: 4px; padding-right: 5px;">
 							<img src="${pageContext.request.contextPath}/img/001_15.png">
 						</div>
-						<h3 class="pull-left">Hot Bands for This Week!</h3>
+						<h3 class="pull-left">Best Hot Bands! (${bands.size()})</h3>
 						<div style="clear:both;"></div>
 					</div>
 					<c:forEach items="${bands}" var="band">

@@ -108,10 +108,11 @@
 							</sec:authorize>
 	              			<li class="active"><a href="${pageContext.request.contextPath}/concert">공연</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/band/home">밴드</a></li>
-							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">크라우드 펀딩</a></li> --%>
-							<li class="active"><a href="#fundingReady" data-toggle="modal">크라우드 펀딩</a></li>
+							<%-- <li class="active"><a href="${pageContext.request.contextPath}/fund/project/list">펀딩</a></li> --%>
+							<li class="active"><a href="#fundingReady" data-toggle="modal">펀딩</a></li>
 							<%-- <li class="active"><a href="${pageContext.request.contextPath}/item/list">아이템</a></li> --%>
 							<li class="active"><a href="#shopReady" data-toggle="modal">아이템</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}/board/list">커뮤니티</a></li>
 							<sec:authorize access="isAnonymous()">
 								<li class="active"><a href="${pageContext.request.contextPath}/signin">로그인</a></li>
 							</sec:authorize>
