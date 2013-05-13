@@ -101,6 +101,7 @@
 					</table>
 					
 					<h3>${bandInfo.name }'s 비디오 <sec:accesscontrollist domainObject="${bandInfo.id}" hasPermission="isBand"><a href="#addVideoModal" role="button" data-toggle="modal" class="btn btn-success">+</a></sec:accesscontrollist></h3>
+					<p style="text-align:right">총 <a href="#"><b>${fn:length(videoList) }</b></a>개의 비디오</p>
 					<ul>
 						<c:forEach items="${videoList }" var="video">
 							<c:if test="${video.type eq 0}">
