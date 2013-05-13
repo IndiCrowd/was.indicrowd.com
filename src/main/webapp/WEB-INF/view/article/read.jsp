@@ -46,7 +46,7 @@
 					</div><!--/row-->
 					
 					<div class="form-actions">
-						<a href="javascript:history.back(); void(0)" class="btn btn-primary">뒤로</a>
+						<a href="javascript:history.back(); void(0)" class="btn">뒤로</a>
 						<t:signed>
 						<c:if test="${command.writer.id == principal.id}">
 						<a href="${pageContext.request.contextPath}/article/${command.id}/update" class="btn btn-primary">수정</a>

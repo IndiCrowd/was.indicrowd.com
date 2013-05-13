@@ -53,7 +53,7 @@
 								  <thead>
 									  <tr>
 										  <th>글번호</th>
-										  <th style="width: 60%;">제목</th>
+										  <th style="width: 50%;">제목</th>
 										  <th>작성자</th>
 										  <th>작성일</th>
 										  <th>조회수</th>                                          
