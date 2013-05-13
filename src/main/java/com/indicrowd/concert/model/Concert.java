@@ -101,11 +101,19 @@ public class Concert implements Serializable {
 	public static final int START_BEFORE_MINUTES = 0;
 	public static final int ENDS_BEFORE_MINUTES = 0;
 	
+	public String getDayName(){
+		return DateUtil.getDayName(String.valueOf(startDate));
+	}
+	
+	public String getDateString(){
+		return startDate%10000/100+"."+startDate%100;
+	}
+	
 	public static List<Concert> findConcertListByBand(long bandId){
 		return entityManager()
 				.createQuery(
 						"SELECT o FROM Concert o WHERE o.bandInfo.id = :bandId AND isValid=true" +
-						" ORDER BY startDate, startHours, startMinutes",
+						" ORDER BY startDate desc, startHours desc, startMinutes desc",
 						Concert.class).setParameter("bandId", bandId)
 				.getResultList();
 	}
