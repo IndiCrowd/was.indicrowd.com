@@ -2,7 +2,6 @@ package com.indicrowd.band;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,6 +26,7 @@ import com.indicrowd.post.Comment;
 import com.indicrowd.post.Post;
 import com.indicrowd.tag.Tag;
 import com.indicrowd.user.model.UserInfo;
+import com.indicrowd.video.model.Video;
 
 @Controller
 @RequestMapping("/band")
@@ -58,9 +58,11 @@ public class BandController extends AbstractController{
 			List<Concert> concertList = Concert.findConcertListByBand(bandInfo.getId());
 			String[] tags = category.split(" ");
 			List<Post> recentPostList = Post.findPostsByBandId(bandId, 1, 5);
+			List<Video> videoList = Video.findVideoByBandId(bandId);
 			model.addAttribute("tags",tags);
 			model.addAttribute("concertList", concertList);
 			model.addAttribute("recentPostList",recentPostList);
+			model.addAttribute("videoList", videoList);
 		}
 		model.addAttribute("bandInfo", bandInfo);
 		return "band/blog";
@@ -100,11 +102,20 @@ public class BandController extends AbstractController{
 		return "band/addPost";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#bandId, 'isBand')")
+	@RequestMapping(value ="/{bandId}/addYoutubeVideo", method = RequestMethod.POST)
+	public void addYoutubeVideo(@ModelAttribute("command") Video video, @PathVariable("bandId") Long bandId,Model model){
+		System.out.println("video:"+video+",bandId:"+bandId);
+		video.setBandInfo(BandInfo.findBandInfo(bandId));
+		video.setType(Video.YOUTUBE_VIDEO);
+		video.merge();
+		model.addAttribute("command",video);
+	}
+	
 
 	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#bandId, 'isBand')")
 	@RequestMapping(value ="/{bandId}/post", method = RequestMethod.POST)
 	public String addPost(@ModelAttribute("command") Post post, @PathVariable("bandId") Long bandId){
-		System.out.println(post);
 		UserInfo userInfo = authService.getUserInfo();
 		post.setDate(Calendar.getInstance());
 		post.setBandInfo(BandInfo.findBandInfo(bandId));
@@ -130,7 +141,6 @@ public class BandController extends AbstractController{
 		Post post = Post.findPost(postId);
 		model.addAttribute("postedit", post);
 		model.addAttribute("bandInfo", bandInfo);
-		System.out.println(post);
 		
 		if(bandInfo == null){
 			
@@ -146,7 +156,6 @@ public class BandController extends AbstractController{
 	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#postId, 'isBandPost')")
 	@RequestMapping(value ="/{bandId}/post/{postId}", method = RequestMethod.PUT)
 	public String updatePost(@ModelAttribute("postedit") Post post, @PathVariable("bandId") Long bandId, @PathVariable("postId") Long postId, SessionStatus sessionStatus){
-		System.out.println(post);
 		sessionStatus.setComplete();
 		
 		if(post.getContent() !=null){

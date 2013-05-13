@@ -9,6 +9,7 @@
 		<style>
 			.video-li { float:left; margin: 5px 8px 8px 0}
 			.video-size {width:150px; height:122px;}
+			.play-video-modal { width: 700px;}
 		</style>
 		<script>
 		function delPost(postId) {
@@ -41,7 +42,26 @@
 			}
 		}
 		function submitVideoUrl(url){
-			alert(parseYoutubeUrl(url));
+			var urlKey = parseYoutubeUrl(url);
+			if(urlKey == null) alert('유효하지 않은 YouTube 주소 입니다. 주소를 확인해주세요.')
+			else{
+				alert(urlKey);
+				POST('${pageContext.request.contextPath}/band/${bandInfo.id}/addYoutubeVideo.json',{
+					urlKey : urlKey
+				},function(object) {
+					if(object!=null){
+						window.location.reload();
+					}
+				});
+			}
+		}
+		function playVideo(urlKey){
+			
+			$("#youtubePlayIframe").attr('src',"http://www.youtube.com/embed/"+urlKey+"?rel=0&amp;autoplay=1");
+			$('#playVideoModal').modal('show');
+		}
+		function closeVideo(){
+			$("#youtubePlayIframe").attr('src',"");
 		}
 		</script>
 				
@@ -80,10 +100,13 @@
 						</c:forEach> 
 					</table>
 					
-					<h3>${bandInfo.name }'s 비디오 <a href="#addVideoModal" role="button" data-toggle="modal" class="btn btn-success">+</a></h3>
+					<h3>${bandInfo.name }'s 비디오 <sec:accesscontrollist domainObject="${bandInfo.id}" hasPermission="isBand"><a href="#addVideoModal" role="button" data-toggle="modal" class="btn btn-success">+</a></sec:accesscontrollist></h3>
 					<ul>
-						<li class="video-li"><div style="position:absolute" class="video-size"><div class="play_border"><div class="play_button"></div></div></div><img src="http://img.youtube.com/vi/EfsGboXeMec/default.jpg" class="video-size"/></li>
-						<li class="video-li"><div style="position:absolute" class="video-size"><div class="play_border"><div class="play_button"></div></div></div><img src="http://img.youtube.com/vi/EfsGboXeMec/default.jpg" class="video-size"/></li>
+						<c:forEach items="${videoList }" var="video">
+							<c:if test="${video.type eq 0}">
+							<li class="video-li"><a href="javascript:playVideo('${video.urlKey }')"><div style="position:absolute" class="video-size"><div class="play_border"><div class="play_button"></div></div></div><img src="http://img.youtube.com/vi/${video.urlKey }/default.jpg" class="video-size"/></a></li>
+							</c:if>
+						</c:forEach>
 					</ul>
 				
 					<c:forEach items="${recentPostList }" var="post">
@@ -157,7 +180,7 @@
 		</div>
 		<!-- end: Wrapper  -->
 		
-<!-- Modal -->
+<!-- add Video Modal -->
 <div id="addVideoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addVideoLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -168,5 +191,15 @@
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" onClick="submitVideoUrl($('#videoUrl').val())">추가</button>
+  </div>
+</div>
+
+<!-- Play Video Modal -->
+<div id="playVideoModal" class="play-video-modal modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="closeVideo()">×</button>
+  </div>
+  <div class="modal-body">
+    <iframe id="youtubePlayIframe" width="640" height="360" src="" frameborder="0" allowfullscreen="true"></iframe>
   </div>
 </div>

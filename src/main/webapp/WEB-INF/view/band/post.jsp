@@ -18,7 +18,6 @@
 			url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
 			type : 'DELETE',
 			success : function(object) {
-				console.log(object);
 				alert('삭제되었습니다.');
 				history.back();
 			},
@@ -32,7 +31,6 @@
 		POST('${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}/reply.json',{
 			content : content
 		},function(object) {
-			console.log(object);
 			var comment = object;
 			if(comment == null){
 				alert('로그인이 필요합니다.');
@@ -74,7 +72,6 @@
 					data : {
 					},
 					success : function(object) {
-						console.log(object);
 						var comment = object.command;
 						if(comment == null){
 					
