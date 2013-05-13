@@ -23,8 +23,9 @@ public class ArticleController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void write(@ModelAttribute("command") Article article, Model model) {
+	public String write(@ModelAttribute("command") Article article, Model model) {
 		model.addAttribute("boards", Board.findAllBoards());
+		return "article/form";
 	}
 
 	@Secured("ROLE_USER")
@@ -33,7 +34,7 @@ public class ArticleController extends AbstractController {
 		
 		if (bindingResult.hasErrors() || (article.getBoardId() <= 1 && !authService.checkRole("ROLE_ADMIN"))) {
 			model.addAttribute("boards", Board.findAllBoards());
-			return "article/write";
+			return "article/form";
 		} else {
 			Board board = Board.findBoard(article.getBoardId());
 
@@ -69,8 +70,12 @@ public class ArticleController extends AbstractController {
 	@RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
 	public String update(@PathVariable Long id, Model model) {
 		model.addAttribute("boards", Board.findAllBoards());
-		model.addAttribute("command", Article.findArticle(id));
-		return "article/update";
+		
+		Article article = Article.findArticle(id);
+		article.setBoardId(article.getBoard().getId());
+		
+		model.addAttribute("command", article);
+		return "article/form";
 	}
 
 	@Secured("ROLE_USER")
@@ -81,7 +86,7 @@ public class ArticleController extends AbstractController {
 		
 		if (bindingResult.hasErrors() || (article.getBoardId() <= 1 && !authService.checkRole("ROLE_ADMIN")) || originArticle.getWriter().getId() != authService.getUserId()) {
 			model.addAttribute("boards", Board.findAllBoards());
-			return "article/update";
+			return "article/form";
 		} else {
 			
 			if (originArticle.getBoard() != null) {
@@ -124,7 +129,8 @@ public class ArticleController extends AbstractController {
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public String deleteForm(@PathVariable Long id) {
+	public String deleteForm(@PathVariable Long id, Model model) {
+		model.addAttribute("command", Article.findArticle(id));
 		return "article/delete";
 	}
 
@@ -133,18 +139,18 @@ public class ArticleController extends AbstractController {
 	public String delete(@PathVariable Long id) {
 		
 		Article article = Article.findArticle(id);
-		Board board = Board.findBoard(article.getBoardId());	
 		
 		if (article.getWriter().getId() == authService.getUserId()) {
 			article.setEnabled(false);
 			article.merge();
 		}
 		
-		return "redirect:/board/" + board.getId();
+		return "redirect:/board/" + article.getBoard().getId();
 	}
 	
 	@RequestMapping("/{id}")
-	public String read(@PathVariable Long id) {
+	public String read(@PathVariable Long id, Model model) {
+		model.addAttribute("command", Article.findArticle(id));
 		return "article/read";
 	}
 
