@@ -22,7 +22,7 @@
 				<div class="box-content">
 					<form:form id="reserveForm" cssClass="form-horizontal" enctype="multipart/form-data">
 						<form:hidden path="hallId" value="1" />
-						<form:hidden path="bandId" value="5" />
+						<form:hidden path="bandId" value="${principal.userBand[0].id}" />
 						<fieldset>
 							<div class="control-group">
 								<div class="controls">

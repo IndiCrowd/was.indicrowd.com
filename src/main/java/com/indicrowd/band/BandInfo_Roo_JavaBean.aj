@@ -40,6 +40,14 @@ privileged aspect BandInfo_Roo_JavaBean {
         this.imageFilePath = imageFilePath;
     }
     
+    public String BandInfo.getBandMember() {
+        return this.bandMember;
+    }
+    
+    public void BandInfo.setBandMember(String bandMember) {
+        this.bandMember = bandMember;
+    }
+    
     public CommonsMultipartFile BandInfo.getProfilePhoto() {
         return this.profilePhoto;
     }

@@ -15,6 +15,7 @@
 			src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${bandInfo.id}" />
 		<h2>${bandInfo.name }</h2>
 		<p>${bandInfo.description }</p>
+		<p><span class="label label-info">멤버</span> ${bandInfo.bandMember }</p>
 	</div>
 	<!-- end: Text Widget -->
 

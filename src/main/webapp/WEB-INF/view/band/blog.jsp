@@ -42,9 +42,20 @@
 						<tr>
 							<td style="text-align: center">
 								<a href="#">예정된 공연이 없습니다.<br/></a>
-								<a href="<c:if test="${principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0}"><c:url value="/concert/reserve" /></c:if><c:if test="${!(principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0)}">javascript:alert('현재 속해 있는 밴드가 없습니다.\n밴드 생성 페이지로 이동합니다.');location.href='<c:url value="/band/create" />';</c:if>" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a>							
+								<a href="<c:if test="${principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0}"><c:url value="/concert/reserve" /></c:if><c:if test="${!(principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0)}">javascript:alert('현재 속해 있는 밴드가 없습니다.\n밴드 생성 페이지로 이동합니다.');location.href='<c:url value="/band/create" />';</c:if>" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a>
 							</td>
 						</tr>
+						<tr>
+							<td>
+								<div class="row-fluid">
+									<div class="span1">5.12<br/>월</div>
+									<div class="span2"><img src="" style="width:100px;height:100px;"/></div>
+									<div class="span9">
+										<p><b>저녁 8:00</b></p>
+									</div>
+								</div>
+							</td>
+						</tr> 
 					</table>
 					<p style="text-align:right">총 <b>3</b>회 공연, <a href="#">전체보기</a></p>
 				

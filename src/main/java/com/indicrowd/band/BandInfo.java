@@ -25,6 +25,7 @@ public class BandInfo implements Serializable, EnergyEntity {
 	String description;
 	String category;
 	String imageFilePath;
+	String bandMember;
 	
 	@Transient
 	private CommonsMultipartFile profilePhoto;
