@@ -55,7 +55,7 @@
 													</c:if><span id="bandName">${principal.userBand[0].name }</span><b class="caret"></b></a>
 												<ul class="dropdown-menu">
 													<c:forEach var="band" items="${principal.userBand }">
-														<li class="active"><a href="javascript:changeBand('${band.id }','${band.imageFilePath }','${band.name }')">
+														<li class="active"><a href="javascript:changeBand('${band.id }','${band.imageFilePath }','${band.name }'); void(0)">
 																<c:if test="${band.imageFilePath ne ''}">
 																	<img border="0" style="width:22px ;height:22px"
 																		src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" />

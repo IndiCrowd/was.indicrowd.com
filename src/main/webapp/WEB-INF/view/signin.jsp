@@ -25,14 +25,14 @@
 					<form id="facebook-login-form" action="${pageContext.request.contextPath}/signin/facebook" method="POST">
 						<input type="hidden" name="scope" value="email" />
 					</form>
-					<a href="javascript:$('#facebook-login-form').submit();" class="facebook_connect">
+					<a href="javascript:$('#facebook-login-form').submit(); void(0)" class="facebook_connect">
 						<div class="img"><i class="fa-icon-facebook"></i></div>
 						<div class="text">페이스북으로 로그인</div>
 					</a>
 					<!-- TWITTER login -->
 					<form id="twitter-login-form" action="${pageContext.request.contextPath}/signin/twitter" method="POST">
 					</form>
-					<a href="javascript:$('#twitter-login-form').submit();" class="twitter_connect">
+					<a href="javascript:$('#twitter-login-form').submit(); void(0)" class="twitter_connect">
 						<div class="img"><i class="fa-icon-twitter"></i></div>
 						<div class="text">트위터로 로그인</div>
 					</a>

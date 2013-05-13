@@ -210,11 +210,11 @@
 					<form style="padding:0; margin:0;" id="twitter-login-form" action="${pageContext.request.contextPath}/signin/twitter" method="POST">
 					</form>
 					
-					<a href="javascript:$('#facebook-login-form').submit();" class="facebook_connect" style="width: 48%; float: left; font-size: 14px;">
+					<a href="javascript:$('#facebook-login-form').submit(); void(0)" class="facebook_connect" style="width: 48%; float: left; font-size: 14px;">
 						<div class="img"><i class="fa-icon-facebook"></i></div>
 						<div class="text">페이스북 로그인</div>
 					</a>
-					<a href="javascript:$('#twitter-login-form').submit();" class="twitter_connect" style="width: 48%; float: right; font-size: 14px;">
+					<a href="javascript:$('#twitter-login-form').submit(); void(0)" class="twitter_connect" style="width: 48%; float: right; font-size: 14px;">
 						<div class="img"><i class="fa-icon-twitter"></i></div>
 						<div class="text">트위터 로그인</div>
 					</a>
@@ -226,7 +226,7 @@
 					
 					<div class="wrapper">
 						<div style="line-height: 3em;">
-							<a href="javascript:$('#tutorial').show();" class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</a>
+							<a href="javascript:$('#tutorial').show(); void(0)" class="btn btn-info"><i class="icon-question-sign icon-white"></i> 튜토리얼</a>
 							<a href="${pageContext.request.contextPath}/about" class="btn btn-success"><i class="icon-comment icon-white"></i> IndiCrowd 소개</a>
 						</div>
 						<div style="margin-top: 10px; text-align: center;">
@@ -286,7 +286,7 @@
 	<div id="tutorial" style="display: none; position: fixed; top: 0; left: 0; z-index: 100000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); text-align: center;">
 		<img src="${pageContext.request.contextPath}/img/tutorial.png">
 		<br>
-		<a href="javascript:$('#tutorial').hide();" class="btn btn-large btn-danger" style="margin-top: 50px;"><i class="icon-remove icon-white"></i> 튜토리얼 닫기</a>
+		<a href="javascript:$('#tutorial').hide(); void(0)" class="btn btn-large btn-danger" style="margin-top: 50px;"><i class="icon-remove icon-white"></i> 튜토리얼 닫기</a>
 	</div>
 	
 	<%--

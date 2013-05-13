@@ -68,7 +68,7 @@
 			<div style="width: 480px; background: #fff; float: left; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
 				
 				<div>
-					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}"></a>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}'; void(0)"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}"></a>
 				</div>
 			
 			</div>
@@ -87,10 +87,10 @@
 					<form style="padding:0; margin:0;" id="twitter-login-form" action="${pageContext.request.contextPath}/signin/twitter" method="POST">
 					</form>
 					
-					<a href="javascript:$('#facebook-login-form').submit();" class="facebook_connect">
+					<a href="javascript:$('#facebook-login-form').submit(); void(0)" class="facebook_connect">
 						<img src="${pageContext.request.contextPath}/img/fb-login.png">
 					</a>
-					<a href="javascript:$('#twitter-login-form').submit();" class="twitter_connect">
+					<a href="javascript:$('#twitter-login-form').submit(); void(0)" class="twitter_connect">
 						<img src="${pageContext.request.contextPath}/img/tw-login.png">
 					</a>
 					<a href="${pageContext.request.contextPath}/signin" style="float: left; padding-top: 10px; color: #999;">IndiCrowd 로그인</a>
@@ -103,7 +103,7 @@
 				</sec:authorize>
 			
 				<h1>
-					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';">${command.title}<br><span style="font-size:16px; color:#999;">공연 보기</span></a>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}'; void(0)">${command.title}<br><span style="font-size:16px; color:#999;">공연 보기</span></a>
 				</h1>
 				
 				<div style="padding: 10px;">

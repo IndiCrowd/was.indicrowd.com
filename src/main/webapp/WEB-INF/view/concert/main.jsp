@@ -155,7 +155,7 @@
 					
 				</div>
 				<div class="pull-right">
-					<a href="javascript:alert('일정표는 아직 준비중입니다!');" class="btn btn-info btn-large"><i class="icon-calendar icon-white"></i> 공연 일정표</a>
+					<a href="javascript:alert('일정표는 아직 준비중입니다!'); void(0)" class="btn btn-info btn-large"><i class="icon-calendar icon-white"></i> 공연 일정표</a>
 					<a href="<c:if test="${principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0}"><c:url value="/concert/reserve" /></c:if><c:if test="${!(principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0)}">javascript:alert('현재 속해 있는 밴드가 없습니다.\n밴드 생성 페이지로 이동합니다.');location.href='<c:url value="/band/create" />';</c:if>" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a>
 				</div>
 			</div>
@@ -221,7 +221,7 @@
 				<c:forEach items="${command.list}" var="one">
 				<div class="span3 item m-${one.startDate.toString().substring(0, 6)} d-${one.startDate.toString()}">
 					<div class="picture">
-						<a class="image" href="javascript:popup('<c:url value="/concert/${one.id}" />', 'Concert', 1000, 700);" title="Title"><img
+						<a class="image" href="javascript:popup('<c:url value="/concert/${one.id}" />', 'Concert', 1000, 700); void(0)" title="Title"><img
 							src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${one.id}" alt="" /></a>
 						<h3>${one.title}</h3>
 						<div class="description">

@@ -45,14 +45,15 @@
 		
 					</div><!--/row-->
 					
-					<t:signed>
-					<c:if test="${command.writer.id == principal.id}">
 					<div class="form-actions">
+						<a href="javascript:history.back(); void(0)" class="btn btn-primary">뒤로</a>
+						<t:signed>
+						<c:if test="${command.writer.id == principal.id}">
 						<a href="${pageContext.request.contextPath}/article/${command.id}/update" class="btn btn-primary">수정</a>
 						<a href="${pageContext.request.contextPath}/article/${command.id}/delete" class="btn btn-danger">삭제</a>
+						</c:if>
+						</t:signed>
 					</div>
-					</c:if>
-					</t:signed>
 				
 				</div>
 			

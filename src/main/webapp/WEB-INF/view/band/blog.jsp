@@ -56,7 +56,7 @@
 									<div class="span1">${concert.dateString }<br/>${concert.dayName }</div>
 									<div class="span2"><img src="/IndiCrowd-userfiles/concertthumb/${concert.id}" style="width:100px;height:100px;"/></div>
 									<div class="span9">
-										<p><a href="javascript:popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);"><b>${concert.title }, 저녁 ${concert.startHours }:<c:if test="${concert.startMinutes lt 10}">0</c:if>${concert.startMinutes }</b></a></p>
+										<p><a href="javascript:popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700); void(0)"><b>${concert.title }, 저녁 ${concert.startHours }:<c:if test="${concert.startMinutes lt 10}">0</c:if>${concert.startMinutes }</b></a></p>
 										<p><span class="label label-success">관객</span> ${concert.totalAudienceCount }명이 관람하였습니다.</p>
 									</div>
 								</div>
@@ -93,7 +93,7 @@
 								<span><i class="fa-icon-comments-alt"></i>With <a href="${postUrl }">${post.commentCount }개의 댓글</a></span>
 								<sec:accesscontrollist domainObject="${post.id}" hasPermission="isBandPost">
 									<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
-									<span><a href="javascript:delPost(${post.id});">삭제</a></span>
+									<span><a href="javascript:delPost(${post.id}); void(0)">삭제</a></span>
 								</sec:accesscontrollist>
 								
 							</div>

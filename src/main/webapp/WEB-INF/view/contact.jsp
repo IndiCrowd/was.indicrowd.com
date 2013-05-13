@@ -98,7 +98,7 @@
 								<!-- start: Social Sites -->
 								<div class="social_profiles">
 									<a href="http://www.facebook.com/IndiCrowd" target="_blank" class="social-facebook"></a>
-									<a href="javascript:alert('트위터는 준비중입니다.');" class="social-twitter"></a>
+									<a href="javascript:alert('트위터는 준비중입니다.'); void(0)" class="social-twitter"></a>
 								</div>
 								<!-- end: Social Sites -->
 		

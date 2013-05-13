@@ -100,7 +100,7 @@
 					'<strong>'+comment.userInfo.nickname +'</strong><span '+
 						'class="reply"><span style="color: #aaa">/ </span>'+
 						'</span> <span class="date">'+comment.monthString +'</span>'+	
-						'<span><a href="javascript:delReply('+comment.id+');">삭제</a></span>'+
+						'<span><a href="javascript:delReply('+comment.id+'); void(0)">삭제</a></span>'+
 				'</div>'+
 				'<p>'+comment.content +'</p>'+
 			'</div>'+
@@ -149,7 +149,7 @@
 							href="#"><span class="commentCount">${post.commentCount }</span>개의 댓글</a></span>
 						<sec:accesscontrollist domainObject="${post.id}" hasPermission="isBandPost">
 							<span><a href="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}/form">수정</a></span>
-							<span><a href="javascript:delPost(${post.id});">삭제</a></span>
+							<span><a href="javascript:delPost(${post.id}); void(0)">삭제</a></span>
 						</sec:accesscontrollist>
 					</div>
 					<div class="post-description">
@@ -177,7 +177,7 @@
 								<strong>${comment.author }</strong><span
 									class="reply"><span style="color: #aaa">/ </span></span> <span class="date">${comment.monthString }</span>
 								<sec:accesscontrollist domainObject="${comment.id}" hasPermission="isBandComment">
-									<span><a href="javascript:delReply('${comment.id}');">삭제</a></span>
+									<span><a href="javascript:delReply('${comment.id}'); void(0)">삭제</a></span>
 								</sec:accesscontrollist>
 							</div>
 							<p class="comment-content">${comment.content }</p>

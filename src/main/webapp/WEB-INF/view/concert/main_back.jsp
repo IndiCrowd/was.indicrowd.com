@@ -62,7 +62,7 @@
 
 		</div>
 		<div class="row">
-			<p><a href="javascript:$('#bandCloseModal').modal({ keyboard: false, backdrop:false});$('#overlay').fadeIn(500)">Test</a></p>
+			<p><a href="javascript:$('#bandCloseModal').modal({ keyboard: false, backdrop:false});$('#overlay').fadeIn(500); void(0)">Test</a></p>
 			<p><a href="<c:url value="/concert/reserve" />" class="btn btn-primary offset10">예약하기</a></p>
 		
 		<div class="span12">
@@ -112,7 +112,7 @@
 			<c:forEach items="${command.list}" var="command">
 				<tr>
 					<td><a
-						href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);">${command.title}
+						href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700); void(0)">${command.title}
 							공연 보기</a> <br></td>
 				</tr>
 			</c:forEach>

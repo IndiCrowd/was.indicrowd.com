@@ -53,6 +53,7 @@ public class ArticleController extends AbstractController {
 			if (board != null) {
 			
 				board.increaseArticleCount();
+				board.setLastWriteDate(new Date());
 				board.merge();
 			
 			}
@@ -114,6 +115,7 @@ public class ArticleController extends AbstractController {
 			if (board != null) {
 			
 				board.increaseArticleCount();
+				board.setLastWriteDate(new Date());
 				board.merge();
 			
 			}
@@ -150,7 +152,12 @@ public class ArticleController extends AbstractController {
 	
 	@RequestMapping("/{id}")
 	public String read(@PathVariable Long id, Model model) {
-		model.addAttribute("command", Article.findArticle(id));
+		
+		Article article = Article.findArticle(id);
+		article.increaseViewCount();
+		article.merge();
+		
+		model.addAttribute("command", article);
 		return "article/read";
 	}
 
