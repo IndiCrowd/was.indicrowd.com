@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -253,14 +254,48 @@ public class ConcertController extends AbstractController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping("/{concertId}/userState")
+	@RequestMapping(value = "/{concertId}/userState", method = RequestMethod.POST)
 	public void updateUserState(@PathVariable("concertId") Long concertId,@Valid @ModelAttribute("command")UserState userState , BindingResult bindingResult, Model model) {
 		Concert concert = Concert.findConcert(concertId);
 
 		if (concert != null) {
 			userState.setUserInfo(UserInfo.findUserInfo(userState.getUserID()));
+
+			if (userState.getCameraState()) {
+				keyValueListCacheService.addSetElement(getUserCamStateKey(concertId), userState.getUserID().toString());
+			} else {
+				keyValueListCacheService.removeSetElement(getUserCamStateKey(concertId), userState.getUserID().toString());
+			}
+			
 			rtwService.send("Concert", concert.getId(), "userState", userState);
 		}
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{concertId}/userCamStates", method = RequestMethod.GET)
+	public void getUserCamStates(@PathVariable("concertId") Long concertId,@Valid @ModelAttribute("command")UserState userState , BindingResult bindingResult, Model model) {
+		Concert concert = Concert.findConcert(concertId);
+
+		if (concert != null) {
+			Object[] userIds = keyValueListCacheService.getSetByKey(getUserCamStateKey(concertId)).toArray();
+			
+			StringBuilder jsonStr = new StringBuilder(1000);
+			
+			jsonStr.append("{\"command\": {\"list\": [");
+			for (int i = 0; i<userIds.length ; i++ ) {
+				jsonStr.append(userIds[i]);
+				if (i != userIds.length - 1) {
+					jsonStr.append(",");
+				}
+			}
+			jsonStr.append("]}}");
+
+			model.addAttribute("json", jsonStr.toString());
+		}
+	}
+	
+	private String getUserCamStateKey(Long targetConcertId) {
+		return "IndiCrowd:concert:" + targetConcertId + ":usercamstate";
 	}
 	
 	private String getChatIndexKey(Long targetConcertId) {
