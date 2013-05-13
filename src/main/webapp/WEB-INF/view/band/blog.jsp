@@ -4,6 +4,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal" var="principal" />
 
 		<script>
@@ -38,27 +39,31 @@
 				<div class="posts span8">
 				
 					<h3>${bandInfo.name }'s 공연 일정</h3>
+					<p style="text-align:right">총 <a href="#"><b>${fn:length(concertList) }</b></a>회 공연, <a href="#">전체보기</a></p>
 					<table class="table table-bordered perfectum" >
 						<tr>
 							<td style="text-align: center">
-								<a href="#">예정된 공연이 없습니다.<br/></a>
+								<a href="#">새로운 공연을 예약해보세요!<br/></a>
 								<a href="<c:if test="${principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0}"><c:url value="/concert/reserve" /></c:if><c:if test="${!(principal != 'anonymousUser' && principal.userBand != null && principal.userBand.size() > 0)}">javascript:alert('현재 속해 있는 밴드가 없습니다.\n밴드 생성 페이지로 이동합니다.');location.href='<c:url value="/band/create" />';</c:if>" class="btn btn-primary btn-large"><i class="icon-download-alt icon-white"></i> 공연을 예약하세요!</a>
 							</td>
 						</tr>
+						
+						<c:forEach items="${concertList }" var="concert" begin="0" end="4" >
 						<tr>
 							<td>
 								<div class="row-fluid">
-									<div class="span1">5.12<br/>월</div>
-									<div class="span2"><img src="" style="width:100px;height:100px;"/></div>
+									<div class="span1">${concert.dateString }<br/>${concert.dayName }</div>
+									<div class="span2"><img src="${pageContext.request.contextPath }/concertthumb/${concert.id}" style="width:100px;height:100px;"/></div>
 									<div class="span9">
-										<p><b>올나잇 공연, 저녁 8:00</b></p>
-										<p><span class="label label-success">관객</span> 14명이 관람하였습니다.</p>
+										<p><a href="javascript:popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);"><b>${concert.title }, 저녁 8:00</b></a></p>
+										<p><span class="label label-success">관객</span> ${concert.totalAudienceCount }명이 관람하였습니다.</p>
 									</div>
 								</div>
 							</td>
-						</tr> 
+						</tr>
+						</c:forEach> 
 					</table>
-					<p style="text-align:right">총 <b>3</b>회 공연, <a href="#">전체보기</a></p>
+					
 				
 					<c:forEach items="${recentPostList }" var="post">
 					<c:set value="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}" var="postUrl"/>
