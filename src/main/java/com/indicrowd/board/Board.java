@@ -1,6 +1,7 @@
 package com.indicrowd.board;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -47,5 +48,13 @@ public class Board {
 	}
 
 	private boolean enabled = true;
+	
+	public static List<Board> findAllBoards() {
+        return entityManager().createQuery("SELECT o FROM Board o WHERE o.enabled = true", Board.class).getResultList();
+    }
+    
+    public static List<Board> findBoardEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Board o WHERE o.enabled = true", Board.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 
 }

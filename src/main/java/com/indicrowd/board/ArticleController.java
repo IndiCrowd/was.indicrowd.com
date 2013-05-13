@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -60,37 +61,91 @@ public class ArticleController extends AbstractController {
 				fileService.save(article.getFile(), "articlefile/" + article.getId().toString(), true);
 			}
 			
-			return "redirect:/board/" + article.getBoard().getId();
+			return "redirect:/board/" + board.getId();
 		}
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping("/update")
-	public void update(@ModelAttribute("command") Board board) {
-		// just view
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
+	public String update(@PathVariable Long id, Model model) {
+		model.addAttribute("boards", Board.findAllBoards());
+		model.addAttribute("command", Article.findArticle(id));
+		return "article/update";
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String update() {
-		return null;
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+	public String update(@PathVariable Long id, @Valid @ModelAttribute("command") Article article, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
+		
+		Article originArticle = Article.findArticle(id);
+		
+		if (bindingResult.hasErrors() || (article.getBoardId() <= 1 && !authService.checkRole("ROLE_ADMIN")) || originArticle.getWriter().getId() != authService.getUserId()) {
+			model.addAttribute("boards", Board.findAllBoards());
+			return "article/update";
+		} else {
+			
+			if (originArticle.getBoard() != null) {
+			
+				originArticle.getBoard().decreaseArticleCount();
+				originArticle.getBoard().merge();
+			
+			}
+			
+			Board board = Board.findBoard(article.getBoardId());
+
+			originArticle.setTitle(article.getTitle());
+			originArticle.setContent(article.getContent());
+			originArticle.setLastUpdateDate(new Date());
+			originArticle.setIp(request.getRemoteAddr());
+			originArticle.setBoard(board);
+
+			if (article.getFile() != null && article.getFile().getSize() > 0) {
+				originArticle.setHasFile(true);
+				originArticle.setFilename(article.getFile().getOriginalFilename());
+			}
+			
+			originArticle.merge();
+			
+			if (board != null) {
+			
+				board.increaseArticleCount();
+				board.merge();
+			
+			}
+
+			// 파일 저장
+			if (article.getFile() != null && article.getFile().getSize() > 0) {
+				fileService.save(article.getFile(), "articlefile/" + originArticle.getId().toString(), true);
+			}
+			
+			return "redirect:/article/" + originArticle.getId();
+		}
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping("/delete")
-	public void delete(@ModelAttribute("command") Board board) {
-		// just view
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	public String deleteForm(@PathVariable Long id) {
+		return "article/delete";
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete() {
-		return null;
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+	public String delete(@PathVariable Long id) {
+		
+		Article article = Article.findArticle(id);
+		Board board = Board.findBoard(article.getBoardId());	
+		
+		if (article.getWriter().getId() == authService.getUserId()) {
+			article.setEnabled(false);
+			article.merge();
+		}
+		
+		return "redirect:/board/" + board.getId();
 	}
 	
 	@RequestMapping("/{id}")
-	public String read() {
-		return null;
+	public String read(@PathVariable Long id) {
+		return "article/read";
 	}
 
 }

@@ -4,7 +4,6 @@
 package com.indicrowd.board;
 
 import com.indicrowd.board.Board;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,17 +23,9 @@ privileged aspect Board_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Board o", Long.class).getSingleResult();
     }
     
-    public static List<Board> Board.findAllBoards() {
-        return entityManager().createQuery("SELECT o FROM Board o", Board.class).getResultList();
-    }
-    
     public static Board Board.findBoard(Long id) {
         if (id == null) return null;
         return entityManager().find(Board.class, id);
-    }
-    
-    public static List<Board> Board.findBoardEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Board o", Board.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

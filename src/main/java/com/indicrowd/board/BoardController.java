@@ -1,7 +1,9 @@
 package com.indicrowd.board;
 
+import java.io.IOException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.security.access.annotation.Secured;
@@ -48,26 +50,26 @@ public class BoardController extends AbstractController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@RequestMapping("/update")
-	public void update(@ModelAttribute("command") Board board) {
-		// just view
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
+	public String update(@PathVariable Long id) {
+		return "board/update";
 	}
 
 	@Secured("ROLE_ADMIN")
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String update() {
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+	public String update(@PathVariable Long id, @Valid @ModelAttribute("command") Board board, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
 		return null;
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@RequestMapping("/delete")
-	public void delete(@ModelAttribute("command") Board board) {
-		// just view
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	public String deleteForm(@PathVariable Long id) {
+		return "board/delete";
 	}
 
 	@Secured("ROLE_ADMIN")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete() {
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+	public String delete(@PathVariable Long id) {
 		return null;
 	}
 	
