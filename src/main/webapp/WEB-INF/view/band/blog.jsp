@@ -6,7 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal" var="principal" />
-
+		<style>
+			.video-li { float:left; margin: 5px 8px 8px 0}
+			.video-size {width:150px; height:122px;}
+		</style>
 		<script>
 		function delPost(postId) {
 			var answer = confirm("정말 삭제하시겠습니까?")
@@ -27,6 +30,18 @@
 				}
 			});
 			
+		}
+		function parseYoutubeUrl(url){
+			var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			var match = url.match(regExp);
+			if (match&&match[2].length==11){
+			    return match[2];
+			}else{
+			    return null;
+			}
+		}
+		function submitVideoUrl(url){
+			alert(parseYoutubeUrl(url));
 		}
 		</script>
 				
@@ -65,6 +80,11 @@
 						</c:forEach> 
 					</table>
 					
+					<h3>${bandInfo.name }'s 비디오 <a href="#addVideoModal" role="button" data-toggle="modal" class="btn btn-success">+</a></h3>
+					<ul>
+						<li class="video-li"><div style="position:absolute" class="video-size"><div class="play_border"><div class="play_button"></div></div></div><img src="http://img.youtube.com/vi/EfsGboXeMec/default.jpg" class="video-size"/></li>
+						<li class="video-li"><div style="position:absolute" class="video-size"><div class="play_border"><div class="play_button"></div></div></div><img src="http://img.youtube.com/vi/EfsGboXeMec/default.jpg" class="video-size"/></li>
+					</ul>
 				
 					<c:forEach items="${recentPostList }" var="post">
 					<c:set value="${pageContext.request.contextPath }/band/${bandInfo.id}/post/${post.id}" var="postUrl"/>
@@ -136,3 +156,17 @@
 	
 		</div>
 		<!-- end: Wrapper  -->
+		
+<!-- Modal -->
+<div id="addVideoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addVideoLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="addVideoLabel">밴드 공연 Youtube주소를 입력해주세요!</h3>
+  </div>
+  <div class="modal-body">
+    <p><input id="videoUrl" type="text" class="input-block-level" placeholder="비디오 URL"></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" onClick="submitVideoUrl($('#videoUrl').val())">추가</button>
+  </div>
+</div>
