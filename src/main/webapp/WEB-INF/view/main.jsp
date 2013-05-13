@@ -235,6 +235,21 @@
 					</div>
 					
 					<div class="wrapper" style="margin-top: 15px;">
+						<div class="perfectum">
+							<div class="title"><h3>공지사항</h3></div>
+							<table class="table table-striped">
+								  <tbody>
+									<c:forEach items="${notices}" var="article">
+										<tr>
+											<td><a href="${pageContext.request.contextPath}/article/${article.id}">${article.title}</a></td>                              
+										</tr>         
+									</c:forEach>                   
+								  </tbody>
+							 </table>
+						</div>
+					</div>
+					
+					<div class="wrapper" style="margin-top: 15px;">
 						<div class="pull-left" style="padding-top: 4px; padding-right: 5px;">
 							<img src="${pageContext.request.contextPath}/img/001_15.png">
 						</div>

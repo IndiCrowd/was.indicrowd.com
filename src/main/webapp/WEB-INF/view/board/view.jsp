@@ -63,8 +63,8 @@
 									<c:forEach items="${articleListInfo.list}" var="article">
 										<tr>
 											<td class="center">${article.id}</td>
-											<td>${article.title}</td>
-											<td class="center">${article.writer.nickname}</td>
+											<td><a href="${pageContext.request.contextPath}/article/${article.id}">${article.title}</a></td>
+											<td class="center"><a href="${pageContext.request.contextPath}/user/${article.writer.id}">${article.writer.nickname}</a></td>
 											<td class="center">${article.writeDate}</td>
 											<td class="center">${article.viewCount}</td>                                       
 										</tr>         
@@ -74,11 +74,11 @@
 								
 								<div class="pagination pagination-centered">
 								  <ul>
-									<li class="${articleListInfo.list.page <= 1 ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${articleListInfo.list.page - 1}">Prev</a></li>
-									<c:forEach begin="${articleListInfo.list.page - 2}" end="${articleListInfo.list.page + 2}" var="i">
-										<li class="${articleListInfo.list.page == i ? 'active' : ''}"><a href="${pageContext.request.contextPath}/board/${i}">${i}</a></li>
+									<li class="${articleListInfo.page <= 1 ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${command.id}/${articleListInfo.page - (articleListInfo.page <= 1 ? 0 : 1)}">Prev</a></li>
+									<c:forEach begin="${articleListInfo.page < 3 ? 1 : articleListInfo.page - 2}" end="${(articleListInfo.page < 3 ? 5 : articleListInfo.page + 2) > articleListInfo.lastPage ? articleListInfo.lastPage : (articleListInfo.page < 3 ? 5 : articleListInfo.page + 2)}" var="i">
+										<li class="${articleListInfo.page == i ? 'active' : ''}"><a href="${pageContext.request.contextPath}/board/${command.id}/${i}">${i}</a></li>
 									</c:forEach>
-									<li class="${articleListInfo.list.page >= articleListInfo.list.lastPage ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${articleListInfo.list.page + 1}">Next</a></li>
+									<li class="${articleListInfo.page >= articleListInfo.lastPage ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${command.id}/${articleListInfo.page + (articleListInfo.page >= articleListInfo.lastPage ? 0 : 1)}">Next</a></li>
 								  </ul>
 								</div>
 		

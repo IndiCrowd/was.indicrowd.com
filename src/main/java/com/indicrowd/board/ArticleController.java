@@ -30,7 +30,7 @@ public class ArticleController extends AbstractController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@Valid @ModelAttribute("command") Article article, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
 		
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors() || (article.getBoardId() <= 1 && !authService.checkRole("ROLE_ADMIN"))) {
 			model.addAttribute("boards", Board.findAllBoards());
 			return "article/write";
 		} else {

@@ -87,7 +87,7 @@ public class Article {
 	}
 	
 	public static List<Article> findArticleEntriesByBoardId(Long boardId, int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Article o WHERE o.enabled = true AND o.board.id = :boardId", Article.class).setParameter("boardId", boardId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+        return entityManager().createQuery("SELECT o FROM Article o WHERE o.enabled = true AND o.board.id = :boardId ORDER BY o.id DESC", Article.class).setParameter("boardId", boardId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indicrowd.band.BandInfo;
+import com.indicrowd.board.Article;
 import com.indicrowd.concert.model.Concert;
 import com.indicrowd.server.StreamingServerInfo;
 
@@ -37,6 +38,7 @@ public class Controller extends AbstractController {
 		model.addAttribute("bands", bandList);
 		model.addAttribute("comingUpConcertList", Concert.findComingUpConcertList(3));
 		model.addAttribute("previousConcertList", Concert.findPreviousConcertList(3));
+		model.addAttribute("notices", Article.findArticleEntriesByBoardId(1l, 0, 5));
 	}
 	
 	@RequestMapping("/landing")
