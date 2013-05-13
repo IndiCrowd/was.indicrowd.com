@@ -74,14 +74,11 @@
 								
 								<div class="pagination pagination-centered">
 								  <ul>
-									<li><a href="#">Prev</a></li>
-									<li class="active">
-									  <a href="#">1</a>
-									</li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">Next</a></li>
+									<li class="${articleListInfo.list.page <= 1 ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${articleListInfo.list.page - 1}">Prev</a></li>
+									<c:forEach begin="${articleListInfo.list.page - 2}" end="${articleListInfo.list.page + 2}" var="i">
+										<li class="${articleListInfo.list.page == i ? 'active' : ''}"><a href="${pageContext.request.contextPath}/board/${i}">${i}</a></li>
+									</c:forEach>
+									<li class="${articleListInfo.list.page >= articleListInfo.list.lastPage ? 'disabled' : ''}"><a href="${pageContext.request.contextPath}/board/${articleListInfo.list.page + 1}">Next</a></li>
 								  </ul>
 								</div>
 		
