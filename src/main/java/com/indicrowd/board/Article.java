@@ -1,11 +1,13 @@
 package com.indicrowd.board;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -26,6 +28,7 @@ public class Article {
 	@JoinColumn(name = "boardId", nullable = false)
 	private Board board;
 
+	@NotNull
 	@Transient
 	private Long boardId;
 
@@ -46,7 +49,7 @@ public class Article {
 	@Column(nullable = false)
 	private Date writeDate;
 
-	@Column(nullable = false)
+	@Column
 	private Date lastUpdateDate;
 
 	@Column(nullable = false)
@@ -58,7 +61,7 @@ public class Article {
 
 	private boolean hasFile;
 
-	@Column(nullable = false)
+	@Column
 	private String filename;
 
 	private int commentCount;
@@ -78,5 +81,13 @@ public class Article {
 	};
 
 	private boolean enabled = true;
+	
+	public static long countArticlesByBoardId(Long boardId) {
+		return entityManager().createQuery("SELECT COUNT(o) FROM Article o WHERE o.enabled = true AND o.board.id = :boardId", Long.class).setParameter("boardId", boardId).getSingleResult();
+	}
+	
+	public static List<Article> findArticleEntriesByBoardId(Long boardId, int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Article o WHERE o.enabled = true AND o.board.id = :boardId", Article.class).setParameter("boardId", boardId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 
 }

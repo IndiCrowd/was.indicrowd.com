@@ -2,6 +2,8 @@ package com.indicrowd.band;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -9,7 +11,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +39,8 @@ public class BandController extends AbstractController{
 	@RequestMapping("/home")
 	public String bandHome(Model model) {
 		List<BandInfo> bandInfoList = BandInfo.findAllBandInfoes();
+		Collections.reverse(bandInfoList);
+		
 		List<Tag> tagList = Tag.findAllTags();
 		model.addAttribute("bandInfoList", bandInfoList);
 		model.addAttribute("tagList", tagList);

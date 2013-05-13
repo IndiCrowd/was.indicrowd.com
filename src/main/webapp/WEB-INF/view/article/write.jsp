@@ -29,6 +29,17 @@
 							<div class="box-content">
 								<form:form enctype="multipart/form-data" cssClass="form-horizontal">
 									<fieldset>
+									
+										<div class="control-group <spring:bind path="boardId"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+											<label class="control-label" for="boardId">게시판 선택</label>
+											<div class="controls">
+												<form:select path="boardId" cssClass="input-xlarge">
+													<form:option value="">게시판을 선택하지 않았습니다.</form:option>
+													<form:options items="${boards}" itemLabel="name" itemValue="id" />
+												</form:select>
+												<form:errors path="boardId" cssClass="help-inline" />
+											</div>
+										</div>
 										
 										<div class="control-group <spring:bind path="title"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 											<label class="control-label" for="title">제목</label>
