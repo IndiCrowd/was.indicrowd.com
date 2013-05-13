@@ -39,7 +39,7 @@ public class DateUtil {
 		return new DateFormatSymbols().getMonths()[calendar.get(Calendar.MONTH)];
 	}
 	
-	public static String[] dayNames={"일","월","화","수","목","금","토"}; 
+	public static String[] dayNames={"sun","mon","tue","wed","thu","fri","sat"}; 
 	static String zone="Asia/Seoul";
 	
 	/**
