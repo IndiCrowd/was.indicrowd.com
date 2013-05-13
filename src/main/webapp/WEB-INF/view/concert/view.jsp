@@ -70,8 +70,9 @@
 			});
 
 			var openStreamUserPublisher = function() {
-				var imgSrc = '<c:if test="${principal.socialImageUrl == null}"><spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id} </c:if>';
-
+				var imgSrc = '<c:if test="${principal.socialImageUrl == null}"><spring:eval expression="@userfileConfig.baseUrl" />/profilethumb/${principal.id}</c:if>';
+				<c:if test="${principal.socialImageUrl != null}">imgSrc = '${principal.socialImageUrl}';</c:if>
+				
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.clientPublishStr = '${principal.id}';
@@ -124,27 +125,6 @@
 				cameraState: state
 			});
 		}
-		
-		$(function() {
-			var $span = $SPAN({
-				cls : 'ui-tooltip',
-				style : {
-					position : 'absolute',
-					zIndex: 999999
-				}
-			}, '다른 사람들에게 본인의 모습을 보여주고 싶다면 클릭!').appendTo('body');
-			$span.css({
-				display : 'none',
-				top: $('#userface-wrapper').offset().top - 20,
-				left: $('#userface-wrapper').offset().left - 55
-			});
-			$span.fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
-			setTimeout(function() {
-				$span.fadeOut(function() {
-					$(this).remove();
-				});
-			}, 20000);
-		});
 		
 		</script>
 	</head>
