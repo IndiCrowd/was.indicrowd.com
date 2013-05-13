@@ -158,8 +158,11 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}", method = RequestMethod.GET)
 	public String view(@PathVariable("concertId") Long concertId, Model model) {
-		model.addAttribute("command", Concert.findConcert(concertId));
-
+		Concert concert = Concert.findConcert(concertId);
+		model.addAttribute("command", concert);
+		concert.setTotalAudienceCount(concert.getTotalAudienceCount()+1);
+		System.out.println("+1: "+concert.getTotalAudienceCount());
+		concert.merge(); // increase total audienceCount
 		return "concert/view";
 	}
 	
