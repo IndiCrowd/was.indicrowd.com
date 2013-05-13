@@ -29,8 +29,11 @@ public class Board {
 	@ManyToOne
 	@JoinColumn(name = "creatorId", nullable = false)
 	private UserInfo creator;
-
+	
 	@Column(nullable = false)
+	private Date createDate;
+
+	@Column
 	private Date lastWriteDate;
 
 	private int articleCount;

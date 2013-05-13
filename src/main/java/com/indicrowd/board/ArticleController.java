@@ -1,5 +1,9 @@
 package com.indicrowd.board;
 
+import java.io.IOException;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.security.access.annotation.Secured;
@@ -10,25 +14,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.indicrowd.AbstractController;
+
 @Controller
 @RequestMapping("article")
-public class ArticleController {
+public class ArticleController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void write(@ModelAttribute("command") Article article) {
-		// just view
+	public void write(@ModelAttribute("command") Article article, Model model) {
+		model.addAttribute("boards", Board.findAllBoards());
 	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(@Valid @ModelAttribute("command") Article article, BindingResult bindingResult, Model model) {
+	public String write(@Valid @ModelAttribute("command") Article article, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
 		
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors() || (article.getBoardId() <= 1 && !authService.checkRole("ROLE_ADMIN"))) {
+			model.addAttribute("boards", Board.findAllBoards());
 			return "article/write";
 		} else {
-			return null;
-			/*
 			Board board = Board.findBoard(article.getBoardId());
 
 			article.setWriter(authService.getUserInfo());
@@ -36,89 +41,26 @@ public class ArticleController {
 			article.setIp(request.getRemoteAddr());
 			article.setBoard(board);
 
-			// 장르
-			article.setMainGenre(tagService.inputTag(article.getMainGenreStr()));
-
-			// 장르 태그
-			Set<Tag> genreTags = tagService.inputTags(article.getGenresStr());
-
-			Set<ArticleGenre> genres = new HashSet<ArticleGenre>();
-			for (Tag genreTag : genreTags) {
-				ArticleGenre genre = new ArticleGenre();
-				genre.setTag(genreTag);
-				genre.setArticle(article);
-				genres.add(genre);
-			}
-			article.setGenres(genres);
-
-			// 참가자
-			Set<UserInfo> participantUserInfos = userService.loadUserByNicknameStr(article.getParticipantsStr());
-
-			Set<ArticleParticipant> participants = new HashSet<ArticleParticipant>();
-			for (UserInfo participantUserInfo : participantUserInfos) {
-				ArticleParticipant participant = new ArticleParticipant();
-				participant.setUserInfo(participantUserInfo);
-				participant.setArticle(article);
-				participants.add(participant);
-			}
-			article.setParticipants(participants);
-
-			if (article.getFile() != null && article.getFile().getSize() > 0 && audioService.isMp3File(article.getFile())) {
+			if (article.getFile() != null && article.getFile().getSize() > 0) {
 				article.setHasFile(true);
+				article.setFilename(article.getFile().getOriginalFilename());
 			}
 			
-			if (board != null && board.getGroupInfo() != null) {
-				// 그룹 글이면 일단 광장에서는 보이지 않는다.
-				article.setShowSquare(false);
-			}
-
 			article.persist();
-			
-			UserInfo userInfo = UserInfo.findUserInfo(authService.getUserId());
-			userInfo.increaseWriteCount();
-			userInfo.merge();
 			
 			if (board != null) {
 			
 				board.increaseArticleCount();
-	
-				if (board.getGroupInfo() != null) {
-					GroupInfo groupInfo = GroupInfo.findGroupInfo(board.getGroupInfo().getId());
-					groupInfo.setLastUpdateDate(new Date());
-					groupInfo.merge();
-				}
-				
 				board.merge();
 			
 			}
 
 			// 파일 저장
-			if (article.getFile() != null && article.getFile().getSize() > 0 && audioService.isMp3File(article.getFile())) {
-				fileService.save(article.getFile(), "article/" + article.getId().toString(), true);
-				// if (imageService.isImageFile(article.getFile())) {
-				// fileService.save(imageService.generateThumb(article.getFile()),
-				// "articlethumb/" + article.getId().toString(), true);
-				// }
+			if (article.getFile() != null && article.getFile().getSize() > 0) {
+				fileService.save(article.getFile(), "articlefile/" + article.getId().toString(), true);
 			}
 			
-			if (board == null || board.getGroupInfo() == null) {
-				rtwService.send("Board", "all", "newArticle", article);
-			}
-			
-			Log log = new Log();
-			log.setKind("article");
-			log.setTitle(article.getTitle() == null ? "글 " : article.getTitle() + "를 업로드 했습니다.");
-			log.setUrl("/bbs/article/" + article.getId());
-			log.setUserInfo(userInfo);
-			log.setLogDate(new Date());
-			log.persist();
-
-			if (article.getBoard() == null) {
-				return "redirect:/bbs/article/list";
-			} else {
-				rtwService.send("Board", article.getBoardId(), "newArticle", article);
-				return "redirect:/bbs/article/list?boardId=" + article.getBoard().getId();
-			}*/
+			return "redirect:/board/" + article.getBoard().getId();
 		}
 	}
 	

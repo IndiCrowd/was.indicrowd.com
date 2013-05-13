@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,20 @@
 							<div class="box-content">
 								<form:form enctype="multipart/form-data" cssClass="form-horizontal">
 									<fieldset>
+									
+										<div class="control-group <spring:bind path="boardId"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+											<label class="control-label" for="boardId">게시판 선택</label>
+											<div class="controls">
+												<form:select path="boardId" cssClass="input-xlarge">
+													<form:option value="">게시판을 선택하지 않았습니다.</form:option>
+													<sec:authorize access="!hasRole('ROLE_ADMIN')">
+													${boards.remove(0)}
+													</sec:authorize>
+													<form:options items="${boards}" itemLabel="name" itemValue="id" />
+												</form:select>
+												<form:errors path="boardId" cssClass="help-inline" />
+											</div>
+										</div>
 										
 										<div class="control-group <spring:bind path="title"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 											<label class="control-label" for="title">제목</label>

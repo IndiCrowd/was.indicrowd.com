@@ -33,6 +33,14 @@ privileged aspect Board_Roo_JavaBean {
         this.creator = creator;
     }
     
+    public Date Board.getCreateDate() {
+        return this.createDate;
+    }
+    
+    public void Board.setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+    
     public Date Board.getLastWriteDate() {
         return this.lastWriteDate;
     }
