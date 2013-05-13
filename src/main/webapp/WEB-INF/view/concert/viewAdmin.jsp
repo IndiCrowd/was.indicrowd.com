@@ -36,10 +36,25 @@
 				
 			});
 			
+			RTW.addConnectHandler('Concert', '${command.id}', function(userInfos) {
+				
+				<%-- 순서 중요 함. 먼저 자료 읽고 사용자 상태정보 받아서 화면에 뿌릴  --%> 
+				GET('<c:url value="/concert/${command.id}/userCamStates.json" />', function(command) {
+					for (var i in command.list) {
+						console.log('a' +  $(this).prop('src'));
+						$('img[id=user-' + command.list[i] + ']').each(function(index) {
+							openStreamUser(command.list[i], $(this).attr('src'));
+						});
+						
+					}
+				});
+			});
+			
 			var openStreamUser = function(userId, userImg)
 			{			
 				// open the flash Stream User
-				var replaceId = 'user-' + userId;
+				var originId = 'user-' + userId;
+				var replaceId = 'user-' + userId + "-child";
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 				flashvars.clientStreamStr = userId;
@@ -54,13 +69,25 @@
 		        attributes.id = replaceId;
 		        attributes.align = 'middle';
 		        
+		        <%-- 호환성을 위하여 자식 노드를 생성 함  --%>
+		        $('#' + originId).replaceWith($DIV({
+					id : 'user-' + userId,
+					style : {
+						width: 50,
+						height: 50
+					}
+		        }));
+		        $('#' + originId).append($DIV({
+		        	id : replaceId
+		        }));
+		        
 		        var res = swfobject.embedSWF(
 		            '<c:url value="/swf/StreamUser.swf" />', replaceId, 
 		            '50', '50', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
 		        
-		        return $('#'+replaceId);
+		        return $('#'+originId);
 			};
 			
 			

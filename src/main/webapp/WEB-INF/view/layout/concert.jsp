@@ -323,6 +323,12 @@
 				margin: 4px;
 				float: left;
 			}
+			#stage div {
+				background: rgba(255, 255, 255, .5);
+				padding: 5px;
+				margin: 4px;
+				float: left;
+			}
 			
 			#footer-wrapper {
 				position: absolute;
