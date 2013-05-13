@@ -51,7 +51,8 @@
 									<div class="span1">5.12<br/>월</div>
 									<div class="span2"><img src="" style="width:100px;height:100px;"/></div>
 									<div class="span9">
-										<p><b>저녁 8:00</b></p>
+										<p><b>올나잇 공연, 저녁 8:00</b></p>
+										<p><span class="label label-success">관객</span> 14명이 관람하였습니다.</p>
 									</div>
 								</div>
 							</td>

@@ -200,7 +200,7 @@ public class Concert implements Serializable {
 		return entityManager()
 				.createQuery(
 						"SELECT o FROM Concert o WHERE isValid=true AND ((startDate = :startDate AND ((FLOOR(startHours + (duration+startMinutes) / 60) = :startHours AND (start_minutes + duration)%60 < :startMinutes) OR  (FLOOR(startHours + (duration+startMinutes) / 60) < :startHours) ) ) OR startDate < :startDate)" +
-						" ORDER BY startDate,startHours,startMinutes",
+						" ORDER BY startDate DESC,startHours DESC,startMinutes DESC",
 					Concert.class).setParameter("startDate", startDate).setParameter("startHours", startHours).setParameter("startMinutes",startMinutes).setMaxResults(count)
 				.getResultList();
 	}
