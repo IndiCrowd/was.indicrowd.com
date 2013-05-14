@@ -66,6 +66,14 @@
 									</div>
 								</div>
 							</c:if>
+							
+							<div class="control-group <spring:bind path="description"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+								<label class="control-label" for="description">공연 소개</label>
+								<div class="controls">
+									<form:textarea path="description" cssClass="input-xxlarge" rows="6" />
+									<form:errors path="description" cssClass="help-inline" />
+								</div>
+							</div>
 							<form:hidden path="startDate"  />
 							<form:hidden path="startHours"  />
 							<form:hidden path="startMinutes"  />

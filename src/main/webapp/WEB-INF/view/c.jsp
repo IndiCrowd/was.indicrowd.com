@@ -68,7 +68,7 @@
 			<div style="width: 480px; background: #fff; float: left; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
 				
 				<div>
-					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}'; void(0)"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}"></a>
+					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}'; void(0)"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${command.id}"></a>
 				</div>
 			
 			</div>
