@@ -17,7 +17,6 @@ public class BandPermission implements Permission {
 			Object targetDomainObject) {
 		boolean hasPermission = false;
 
-		System.out.println(hasPermission);
 		if (isAuthenticated(authentication) && isBandId(targetDomainObject)) {
 			if (authService.isAuthorizedUserOfBand((Long)targetDomainObject)) {
 				hasPermission = true;

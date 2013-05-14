@@ -162,7 +162,6 @@ public class ConcertController extends AbstractController {
 		Concert concert = Concert.findConcert(concertId);
 		model.addAttribute("command", concert);
 		concert.setTotalAudienceCount(concert.getTotalAudienceCount()+1);
-		System.out.println("+1: "+concert.getTotalAudienceCount());
 		concert.merge(); // increase total audienceCount
 		return "concert/view";
 	}
