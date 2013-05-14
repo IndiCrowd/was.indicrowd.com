@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.indicrowd.file.FileService;
 import com.indicrowd.file.ImageService;
+import com.indicrowd.tag.TagService;
 import com.indicrowd.user.model.UserInfo;
 
 @Service
@@ -21,10 +22,19 @@ public class BandService {
 
 	@Autowired
 	protected ImageService imageService;
+	@Autowired
+	protected TagService tagService;
 	
 	@Transactional
 	public BandInfo generateNewBand(UserInfo userInfo, BandInfo bandInfo) throws IOException{
 		bandInfo.persist();
+		
+		String category = bandInfo.getCategory();
+		category = category.replaceAll(",", "");
+		String[] tags = bandInfo.category.split(" ");
+		for(int i=0; i<tags.length; i++){
+			tagService.inputTag(tags[i]);
+		}
 		
 		if (bandInfo.getProfilePhoto() != null && bandInfo.getProfilePhoto().getSize() > 0) {
 			fileService.save(bandInfo.getProfilePhoto(), "bandphoto/" + bandInfo.getId().toString(), true);

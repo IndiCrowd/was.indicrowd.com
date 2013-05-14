@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -20,10 +21,20 @@ public class BandInfo implements Serializable, EnergyEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@NotEmpty
+	@Size(max = 300)
+	@Column(length = 300, nullable = false)
 	String name;
+	
 	@NotEmpty
+	@Size(max = 500)
+	@Column(length = 500, nullable = false)
 	String description;
+	
+	@NotEmpty
+	@Size(max = 500)
+	@Column(length = 500, nullable = false)
 	String category;
+	
 	String imageFilePath;
 	String bandMember;
 	

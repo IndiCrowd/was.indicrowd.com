@@ -89,7 +89,7 @@
 							<td>
 								<div class="row-fluid">
 									<div class="span1">${concert.dateString }<br/>${concert.dayName }</div>
-									<div class="span2"><img src="/IndiCrowd-userfiles/concertthumb/${concert.id}" style="width:100px;height:100px;"/></div>
+									<div class="span2"><img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width:100px;height:100px;"/></div>
 									<div class="span9">
 										<p><a href="javascript:popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700); void(0)"><b>${concert.title }, 저녁 ${concert.startHours }:<c:if test="${concert.startMinutes lt 10}">0</c:if>${concert.startMinutes }</b></a></p>
 										<p><span class="label label-success">관객</span> ${concert.totalAudienceCount }명이 관람하였습니다.</p>

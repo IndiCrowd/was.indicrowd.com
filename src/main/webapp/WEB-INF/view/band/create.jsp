@@ -51,6 +51,14 @@
 										<form:errors path="name" cssClass="help-inline" />
 									</div>
 								</div>
+								<div class="control-group <spring:bind path="bandMember"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
+									<label class="control-label" for="name">밴드 멤버</label>
+									<div class="controls">
+										<form:input path="bandMember" cssClass="input-xlarge" />
+										<form:errors path="bandMember" cssClass="help-inline" />
+										<div class="help-block">밴드 구성원을 적어보세요! 예)김철수(기타), 김영희(보컬)</div>
+									</div>
+								</div>
 								<div class="control-group <spring:bind path="description"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 									<label class="control-label" for="description">밴드 소개</label>
 									<div class="controls">

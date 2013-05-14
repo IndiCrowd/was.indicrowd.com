@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -188,7 +190,7 @@ public class BandController extends AbstractController{
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model) throws IOException{
+	public String create(@Valid @ModelAttribute("command") BandInfo bandInfo,BindingResult bindingResult, Model model) throws IOException{
 		if (!bindingResult.hasFieldErrors("profilePhoto") && (bandInfo.getProfilePhoto() == null || bandInfo.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(bandInfo.getProfilePhoto()))) {
 			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
 		}

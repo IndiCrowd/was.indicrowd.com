@@ -51,14 +51,14 @@
 												data-toggle="dropdown" href="#">
 													<c:if test="${principal.userBand[0].imageFilePath ne ''}">
 														<img id="bandImage" border="0" style="width:22px ;height:22px"
-															src="${pageContext.request.contextPath}/img/band/${principal.userBand[0].imageFilePath }" />
+															src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${principal.userBand[0].id }" />
 													</c:if><span id="bandName">${principal.userBand[0].name }</span><b class="caret"></b></a>
 												<ul class="dropdown-menu">
 													<c:forEach var="band" items="${principal.userBand }">
 														<li class="active"><a href="javascript:changeBand('${band.id }','${band.imageFilePath }','${band.name }'); void(0)">
 																<c:if test="${band.imageFilePath ne ''}">
 																	<img border="0" style="width:22px ;height:22px"
-																		src="${pageContext.request.contextPath}/img/band/${band.imageFilePath }" />
+																		src="<spring:eval expression="@userfileConfig.baseUrl" />/bandthumb/${band.id }" />
 																</c:if>${band.name }</a></li>
 													</c:forEach>
 												</ul></li>
