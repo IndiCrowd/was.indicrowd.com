@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -307,10 +306,8 @@ public class ConcertController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
-	public String chat(@Valid @ModelAttribute("command") Message message, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			return "concert/chat";
-		} else {
+	public void chat(@Valid @ModelAttribute("command") Message message, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
 
@@ -325,7 +322,6 @@ public class ConcertController extends AbstractController {
 
 				rtwService.send("Concert", message.getConcert().getId(), "newMessage", message);
 			}
-			return "redirect:/concert/" + concert.getId();
 		}
 	}
 
