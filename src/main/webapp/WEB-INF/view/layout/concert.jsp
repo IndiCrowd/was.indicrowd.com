@@ -630,7 +630,7 @@
 			
 			<div id="userface-wrapper">
 				<div id="userface-opti">
-					<img id="userface" src="${principal.socialImageUrl}" />
+					<div id="userface" />
 				</div>
 			</div>
 			
