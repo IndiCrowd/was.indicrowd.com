@@ -12,6 +12,18 @@
 
 	<head>
 		<title>${command.title}</title>
+		<script>
+			$(function() {
+				$('#commentForm').submit(function() {
+					
+					var data = form2js(this);
+					
+					console.log(data);
+					
+					return false;
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -53,6 +65,21 @@
 						<a href="${pageContext.request.contextPath}/article/${command.id}/delete" class="btn btn-danger">삭제</a>
 						</c:if>
 						</t:signed>
+					</div>
+					
+					<div style="margin-top: 20px;">
+						<div class="box span12">
+							<div class="box-content">
+								댓글
+							</div>
+						</div><!--/span-->
+					</div>
+					
+					<div class="form-actions">
+						<form id="commentForm" class="form-horizontal">
+							<input type="text" name="content" class="input-xxlarge" style="margin-top: 10px;" />
+							<button type="submit" class="btn btn-primary" style="margin-top: 10px;">등록</button>
+						</form>
 					</div>
 				
 				</div>

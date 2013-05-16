@@ -52,7 +52,7 @@ public class Article {
 	@Column
 	private Date lastUpdateDate;
 
-	@Column(nullable = false)
+	@Column
 	private String ip;
 
 	@XStreamOmitField

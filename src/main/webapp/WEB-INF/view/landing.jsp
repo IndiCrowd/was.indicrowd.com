@@ -13,6 +13,8 @@
 		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
 		
+		<link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>">
+		
 		<style>
 		html, body {
 			width: 100%;
