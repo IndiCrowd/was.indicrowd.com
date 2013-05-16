@@ -21,11 +21,11 @@ privileged aspect Comment_Roo_Jpa_ActiveRecord {
     }
     
     public static long Comment.countComments() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Comment o", Long.class).getSingleResult();
+        return entityManager().createQuery("SELECT COUNT(o) FROM ArticleComment o", Long.class).getSingleResult();
     }
     
     public static List<Comment> Comment.findAllComments() {
-        return entityManager().createQuery("SELECT o FROM Comment o", Comment.class).getResultList();
+        return entityManager().createQuery("SELECT o FROM ArticleComment o", Comment.class).getResultList();
     }
     
     public static Comment Comment.findComment(Long id) {
@@ -34,7 +34,7 @@ privileged aspect Comment_Roo_Jpa_ActiveRecord {
     }
     
     public static List<Comment> Comment.findCommentEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Comment o", Comment.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+        return entityManager().createQuery("SELECT o FROM ArticleComment o", Comment.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

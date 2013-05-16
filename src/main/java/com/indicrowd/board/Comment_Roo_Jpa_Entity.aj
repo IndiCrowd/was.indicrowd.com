@@ -13,7 +13,7 @@ import javax.persistence.Version;
 
 privileged aspect Comment_Roo_Jpa_Entity {
     
-    declare @type: Comment: @Entity;
+    declare @type: Comment: @Entity(name = "ArticleComment");
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

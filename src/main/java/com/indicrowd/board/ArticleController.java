@@ -2,6 +2,7 @@ package com.indicrowd.board;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
+import com.indicrowd.ListInfo;
 
 @Controller
 @RequestMapping("article")
@@ -157,7 +159,18 @@ public class ArticleController extends AbstractController {
 		article.increaseViewCount();
 		article.merge();
 		
+		ListInfo<Comment> listInfo = new ListInfo<Comment>();
+		
+		List<Comment> commentList = Comment.findAllCommentEntriesByArticleId(id);
+		
+		listInfo.setPage(1);
+		listInfo.setCountPerPage(-1);
+		listInfo.setCount((long) commentList.size());
+		listInfo.setList(commentList);
+		
 		model.addAttribute("command", article);
+		model.addAttribute("commentListInfo", listInfo);
+		
 		return "article/read";
 	}
 

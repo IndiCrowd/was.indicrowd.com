@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,13 +19,14 @@ import com.indicrowd.user.model.UserInfo;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(entityName = "ArticleComment")
 public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "articleId", nullable = false)
 	private Article article;
 	
+	@NotNull
 	@Transient
 	private Long articleId;
 	
@@ -46,7 +48,7 @@ public class Comment {
 	private boolean enabled = true;
 
 	public static List<Comment> findAllCommentEntriesByArticleId(Long articleId) {
-		return entityManager().createQuery("SELECT o FROM Comment o WHERE o.enabled = true AND o.article.id = :articleId ORDER BY o.id ASC", Comment.class).setParameter("articleId", articleId).getResultList();
+		return entityManager().createQuery("SELECT o FROM ArticleComment o WHERE o.enabled = true AND o.article.id = :articleId ORDER BY o.id ASC", Comment.class).setParameter("articleId", articleId).getResultList();
 	}
 
 }

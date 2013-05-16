@@ -14,15 +14,54 @@
 		<title>${command.title}</title>
 		<script>
 			$(function() {
+				
+				RTW.join('Comment', 'article-${command.id}');
+				
+				RTW.addHandler('Comment', 'article-${command.id}', 'new', function(comment) {
+					var tr = $TR({
+						id : 'comment-' + comment.id
+					}, $TD({
+						cls : 'center'
+					}, $A({href: '${pageContext.request.contextPath}/user/' + comment.writer.id}, comment.writer.nickname)), $TD({
+						cls : 'center'
+					}, comment.content<t:signed> + ' ', comment.writer.id == ${principal.id} ? $A({href: 'javascript:deleteComment(' + comment.id + '); void(0)'}, '[삭제]') : ''</t:signed>), $TD({
+						cls : 'center'
+					}, comment.writeDate)).appendTo('#comment-list');
+					
+					tr.hide();
+					tr.fadeIn();
+				});
+				
+				RTW.addHandler('Comment', 'article-${command.id}', 'remove', function(comment) {
+					$('#comment-' + comment.id).fadeOut(function() {
+						$(this).remove();
+					});
+				});
+				
 				$('#commentForm').submit(function() {
 					
 					var data = form2js(this);
+					var contentInput = $('#commentForm input[name="content"]');
 					
-					console.log(data);
+					contentInput.attr('disabled', 'disabled');
+					contentInput.val('댓글 등록 중입니다...');
+					
+					POST('${pageContext.request.contextPath}/comment/write', data, function() {
+						contentInput.val('');
+						contentInput.removeAttr('disabled');
+						contentInput.focus();
+						contentInput.select();
+					});
 					
 					return false;
 				});
 			});
+			
+			function deleteComment(id) {
+				if (confirm('정말 삭제 하시겠습니까?')) {
+					DEL('${pageContext.request.contextPath}/comment/' + id);
+				}
+			}
 		</script>
 	</head>
 
@@ -70,16 +109,36 @@
 					<div style="margin-top: 20px;">
 						<div class="box span12">
 							<div class="box-content">
-								댓글
+								<table class="table table-striped">
+								  <thead>
+									  <tr>
+									      <th>작성자</th>
+										  <th style="width: 70%;">댓글</th>
+										  <th>작성일</th>
+									  </tr>
+								  </thead>   
+								  <tbody id="comment-list">
+									<c:forEach items="${commentListInfo.list}" var="comment">
+										<tr id="comment-${comment.id}">
+											<td class="center"><a href="${pageContext.request.contextPath}/user/${comment.writer.id}">${comment.writer.nickname}</a></td>
+											<td class="center">${comment.content}<t:signed><c:if test="${comment.writer.id == principal.id}"> <a href="javascript:deleteComment(${comment.id}); void(0)">[삭제]</a></c:if></t:signed></td>
+											<td class="center">${comment.writeDate}</td>                 
+										</tr>
+									</c:forEach>                   
+								  </tbody>
+							 </table>  
 							</div>
 						</div><!--/span-->
 					</div>
 					
 					<div class="form-actions">
+					<sec:authorize access="isAuthenticated()">
 						<form id="commentForm" class="form-horizontal">
+							<input type="hidden" name="articleId" value="${command.id}" />
 							<input type="text" name="content" class="input-xxlarge" style="margin-top: 10px;" />
 							<button type="submit" class="btn btn-primary" style="margin-top: 10px;">등록</button>
 						</form>
+					</sec:authorize>
 					</div>
 				
 				</div>
