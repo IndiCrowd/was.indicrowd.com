@@ -104,7 +104,7 @@
 											<c:forEach items="${comingUpConcertList}" var="concert" end="0">
 												<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
 												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content" style="width: 59%;">
-													<h4>${concert.title} - ${concert.bandInfo.name}</h4>
+													<h4 style="line-height: 1.4em;">${concert.title} - ${concert.bandInfo.name}</h4>
 													<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
 													<div class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
 													    <div class="play_button"></div>
@@ -125,7 +125,7 @@
 												<div style="height: 50%; position: relative;">
 													<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
 													<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content">
-														<h4>${concert.title} - ${concert.bandInfo.name}</h4>
+														<h4 style="line-height: 1.4em;">${concert.title} - ${concert.bandInfo.name}</h4>
 														<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
 														<div class="play_border">
 														    <div class="play_button"></div>
