@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,7 @@ public class ConcertController extends AbstractController {
 		ListInfo<Concert> listInfo = new ListInfo<Concert>();
 		//List<Concert> list = Concert.findConcertListByDate(Integer.valueOf(DateUtil.getDateString(DateUtil.getCalendar(), "YYYYMMDD")));
 		List<Concert> list = Concert.findAllConcerts();
+		Collections.reverse(list);
 
 		listInfo.setPage(1);
 		listInfo.setCountPerPage(-1);

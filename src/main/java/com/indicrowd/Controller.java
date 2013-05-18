@@ -35,9 +35,12 @@ public class Controller extends AbstractController {
 		List<BandInfo> bandList = BandInfo.findAllBandInfoes();
 		Collections.reverse(bandList);
 		
+		List<Concert> previousConcertList = Concert.findPreviousConcertList(3);
+		Collections.reverse(previousConcertList);
+		
 		model.addAttribute("bands", bandList);
 		model.addAttribute("comingUpConcertList", Concert.findComingUpConcertList(3));
-		model.addAttribute("previousConcertList", Concert.findPreviousConcertList(3));
+		model.addAttribute("previousConcertList", previousConcertList);
 		model.addAttribute("notices", Article.findArticleEntriesByBoardId(1l, 0, 5));
 	}
 	
