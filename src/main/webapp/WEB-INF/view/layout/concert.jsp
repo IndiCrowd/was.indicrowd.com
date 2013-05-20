@@ -359,6 +359,7 @@
 		
 		<script>
 		$(function() {
+			var key = Math.random();
 			var userImgs = {};
 			var addImg = function(connectId, userInfo) {
 				console.log(userImgs[userInfo.id]);
@@ -372,7 +373,7 @@
 							width: 50,
 							height: 50
 						},
-						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + Math.random()
+						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + key
 					}).appendTo('#stage').hide().fadeIn();
 					
 				} else {
@@ -426,11 +427,19 @@
 				$('#messages-wrapper').scrollTop(100000000000);
 				var t2 = $('#messages-wrapper').scrollTop();
 				
-				$('#messages').append($LI({cls: 'message'}, $SPAN({
-					style : {
-						fontWeight: 'bold'
-					}
-				}, message.sender.nickname), ': ' + message.content));
+				var $img;
+				
+				$('#messages').append($LI({cls: 'message'}, 
+					$img = $IMG({style: {flt:'left', width:20, height:20, marginRight: 5}, src: message.sender.socialImageUrl ? message.sender.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + message.sender.id + '?' + key}),
+					$DIV({
+						style : {
+							flt:'left',
+							wordBreak: 'break-all',
+							width: 220
+						}
+					}, $SPAN({style: {fontWeight: 'bold'}}, message.sender.nickname), $BR(), message.content), 
+					$DIV({style:{clear:'both'}}))
+				);
 				
 				// 스크롤이 맨 아래일때만 자동으로 아래로 내려줌, 아닐경우 스크롤 유지.
 				if (t < t2) {
@@ -438,6 +447,10 @@
 				} else {
 					$('#messages-wrapper').scrollTop(100000000000);
 				}
+				
+				$img.load(function() {
+					$('#messages-wrapper').scrollTop(100000000000);
+				});
 				
 			};
 			

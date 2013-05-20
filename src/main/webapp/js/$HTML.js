@@ -1,5 +1,5 @@
 var $HTML = {
-	tags : ['div', 'p', 'span', 'a', 'img', 'br', 'hr', 'em', 'strong', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'form', 'fieldset', 'input', 'textarea', 'label', 'select', 'option', 'iframe', 'button', 'video', 'i']
+	tags : ['div', 'p', 'span', 'a', 'img', 'br', 'hr', 'em', 'strong', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'form', 'fieldset', 'input', 'textarea', 'label', 'select', 'option', 'iframe', 'button', 'script']
 };
 
 for (var i in $HTML.tags) {
@@ -19,12 +19,22 @@ for (var i in $HTML.tags) {
 					a.push(o);
 				} else if (i == 0 && typeof o === 'object') {
 					for (var attr in o) {
-						var name = attr === 'cls' ? 'class' : attr;
+						var name;
+						if (attr === 'cls') {
+							name = 'class';
+						} else if (attr === 'forward') {
+							name = 'for';
+						} else {
+							name = attr;
+						}
 						var cont;
 						if (name === 'style' && typeof o[attr] !== 'string' && typeof o[attr] === 'object') {
 							cont = '';
 							for (var sn in o[attr]) {
 								var st = o[attr][sn];
+								if (sn === 'flt') {
+									sn = 'float';
+								}
 								st = typeof st === 'number' && sn !== 'zIndex' ? st + 'px' : st;
 								cont += sn.replace(/([A-Z])/g, '-$1').toLowerCase() + ': ' + st + ';';
 							}
