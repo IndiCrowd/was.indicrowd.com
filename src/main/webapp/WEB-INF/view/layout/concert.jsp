@@ -290,7 +290,7 @@
 			
 			#messages-wrapper {
 				color: #fff;
-				height: 230px;
+				height: 231px;
 				overflow-y: scroll;
 				margin-bottom: 10px;
 			}
@@ -437,7 +437,7 @@
 							wordBreak: 'break-all',
 							width: 220
 						}
-					}, $SPAN({style: {fontWeight: 'bold'}}, message.sender.nickname), $BR(), message.content), 
+					}, $SPAN({style: {fontWeight: 'bold', color:'orange'}}, message.sender.nickname), $BR(), message.content), 
 					$DIV({style:{clear:'both'}}))
 				);
 				
