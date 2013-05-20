@@ -19,11 +19,20 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
+		
 		<title>IndiCrowd :: <decorator:title /></title>
 		
 		<jsp:include page="../base-import.jsp" />
 		
 		<decorator:head />
+		
+		<!--[if lte IE 9]>
+		<script>
+		$(function() {
+			$('#using-chrome').show();
+		});
+		</script>
+		<![endif]-->
 		
 	</head>
 	
@@ -35,6 +44,10 @@
 		</div>
 		<!--start: Header -->
 	<header>
+	
+		<div id="using-chrome" style="display: none; color: #fff; font-size: 10px; background-color: #42A9C7; text-align: center; border-bottom: 1px solid #666;">
+			인디크라우드는 구글 크롬 브라우저에 최적화되어있습니다.
+		</div>
 		
 		<!--start: Container -->
 		<div style="filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c3c3c', endColorstr='#272727',GradientType=0 ); /* IE6-8 */">
