@@ -36,6 +36,7 @@
 			cursor: pointer;
 		}
 		.concert-content h4 {
+			background-color: #333;
 			background-color: rgba(0, 0, 0, .5);
 			padding: 15px 20px;
 			margin: 0;
@@ -75,7 +76,7 @@
 							<div class="box-content" style="padding: 0; height: 100%;">
 								<div style="height: 60%; position: relative;">
 									<div style="width: 59%; height: 100%; float: left;">
-										<div style="padding: 0;">
+										<div style="padding: 0; height: 100%;">
 										<c:if test="${comingUpConcertList.size() == 0}">
 											<iframe width="100%" height="100%" src="http://www.youtube.com/embed/7YJfqK6QmWs" frameborder="0" allowfullscreen></iframe>
 										</c:if>
@@ -117,10 +118,10 @@
 									<div style="clear:both;"></div>
 								</div>
 								<div style="border-top:1px solid #ddd; height: 40%;">
-									<div style="padding: 0;">
+									<div style="padding: 0; height: 100%;">
 										
 										<c:forEach items="${previousConcertList}" var="concert">
-											<div style="width: 33%; float: left; position: relative;">
+											<div style="width: 33%; height: 100%; float: left; position: relative;">
 												<img src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id}" style="width: 100%; height: 100%;">
 												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" class="concert-content">
 													<h4 style="line-height: 1.4em;">${concert.title} - ${concert.bandInfo.name}</h4>

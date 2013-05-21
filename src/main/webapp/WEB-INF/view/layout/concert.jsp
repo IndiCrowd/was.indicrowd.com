@@ -73,6 +73,7 @@
 			  padding: 1px;
 			  font-family: 'Raleway';
 			  position: relative;
+			  background: #333;
 			  background: rgba(0, 0, 0, .5);
 			}
 			h1:before {
@@ -203,6 +204,7 @@
 			}
 			
 			#concert-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -217,6 +219,7 @@
 				line-height: 0;
 			}
 			#userface-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -234,6 +237,7 @@
 				color: #fff;
 			}
 			#info-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -261,6 +265,7 @@
 			}
 			
 			#function-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -284,6 +289,7 @@
 			}
 			
 			#chat-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -314,6 +320,7 @@
 			}
 			
 			#stage-wrapper {
+				background: #333;
 				background: rgba(0, 0, 0, .5);
 				border-radius: 5px;
 				position: absolute;
@@ -326,12 +333,14 @@
 				overflow: auto;
 			}
 			#stage img {
+				background: #fff;
 				background: rgba(255, 255, 255, .5);
 				padding: 5px;
 				margin: 4px;
 				float: left;
 			}
 			#stage div {
+				background: #fff;
 				background: rgba(255, 255, 255, .5);
 				padding: 5px;
 				margin: 4px;

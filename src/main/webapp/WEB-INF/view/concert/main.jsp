@@ -24,6 +24,7 @@
 			cursor: pointer;
 		}
 		.concert-content h4 {
+			background-color: #333;
 			background-color: rgba(0, 0, 0, .5);
 			padding: 15px 20px;
 			margin: 0;
@@ -97,7 +98,7 @@
 								<div class="box-content" style="padding: 0; height: 100%;">
 									<div style="height: 100%; position: relative;">
 										<div style="width: 59%; height: 100%; float: left;">
-											<div style="padding: 0;">
+											<div style="padding: 0; height: 100%;">
 											<c:if test="${comingUpConcertList.size() == 0}">
 												<iframe width="100%" height="100%" src="http://www.youtube.com/embed/7YJfqK6QmWs" frameborder="0" allowfullscreen></iframe>
 											</c:if>
