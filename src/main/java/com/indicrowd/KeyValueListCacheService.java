@@ -1,15 +1,24 @@
 package com.indicrowd;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.persistence.PostLoad;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -22,37 +31,19 @@ import com.thoughtworks.xstream.XStream;
  */
 @Service
 public class KeyValueListCacheService {
+	private static Logger logger = Logger.getLogger(KeyValueListCacheService.class);
 
-	private Jedis jedis;
-	
-	private String redisHost;
-	private String redisAuth;
-	
-	private void initJedis() {
-		jedis = new Jedis(redisHost);
-		jedis.auth(redisAuth);
-		//jedis.flushDB();
-	}
-	
-	public void publish(String channel,String line){
-		jedis.publish(channel, line);
-	}
-	
+	private JedisPool jedisPool;
+
 	@Value("#{storeConfig.redisHost}")
-	public void setRedisHost(String redisHost) {
-		this.redisHost = redisHost;
-		if (this.redisHost != null && this.redisAuth != null) {
-			initJedis();
-		}
-	}
-	
+	private String redisHost;
+	@Value("#{storeConfig.redisPort}")
+	private int redisPort;
 	@Value("#{storeConfig.redisAuth}")
-	public void setRedisAuth(String redisAuth) {
-		this.redisAuth = redisAuth;
-		if (this.redisHost != null && this.redisAuth != null) {
-			initJedis();
-		}
-	}
+	private String redisAuth;
+
+	@Inject
+	private JedisPoolConfig jedisPoolConfig;
 
 	// private final static int COMMON_EXPIRE_SECOND = 60; // 테스트용 1분
 	private final static int COMMON_EXPIRE_SECOND = 7 * 24 * 60 * 60; // 1주일 정도 캐시에 저장해둔다.
@@ -62,118 +53,212 @@ public class KeyValueListCacheService {
 
 	private XStream xstreamDropRoot = XStreamJsonSingleton.getDropRootInstance();
 
+	@PostConstruct
+	public void initJedis() {
+		//logger.info(String.format("Log Info : %s %s %d %s", jedisPoolConfig, redisHost, redisPort, redisAuth));
+		jedisPool = new JedisPool(jedisPoolConfig, redisHost, redisPort, 2000, redisAuth);
+		//jedis.flushDB();
+	}
+	
 	public void set(String key, Object object) {
 
 		// 깔끔하게 캐시에 저장!!
 		// System.out.println(xstream.toXML(object));
 		// 저장하는 순간 expire 시간 재생성
-		jedis.setex(key, COMMON_EXPIRE_SECOND, xstreamDropRoot.toXML(object));
+		Jedis jedis = jedisPool.getResource();
+		try {
+			jedis.setex(key, COMMON_EXPIRE_SECOND, xstreamDropRoot.toXML(object));
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
+	}
 
+
+	public void publish(String channel,String line){
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.publish(channel, line);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public Set<String> getSetByKey(String key) {
-		return jedis.smembers(key);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			return jedis.smembers(key);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public void addSetElement(String key, String targetKey) {
 		//System.out.println("sadd:" + key + "," + targetKey);
-		jedis.sadd(key, targetKey);
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.sadd(key, targetKey);
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public void removeSetElement(String key, String targetKey) {
 		//System.out.println("srem:" + key + "," + targetKey);
-		jedis.srem(key, targetKey);
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.srem(key, targetKey);
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public void removeOrderedSetElement(String key, String targetKey) {
 		//System.out.println("zrem:" + key + "," + targetKey);
-		jedis.zrem(key, targetKey);
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.zrem(key, targetKey);
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public void addIndex(String key, Long score, String targetKey) {
 		// 읽어오는 순간 expire 시간 재생성
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
-		jedis.zadd(key, score, targetKey);
-		long count = jedis.zcard(key);
-		if (count > MAX_LIST_SIZE) { // 갯수가 최대값보다 크면
-			// 마지막 값을 삭제
-			jedis.zremrangeByRank(targetKey, 0, 0);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+			jedis.zadd(key, score, targetKey);
+			long count = jedis.zcard(key);
+			if (count > MAX_LIST_SIZE) { // 갯수가 최대값보다 크면
+				// 마지막 값을 삭제
+				jedis.zremrangeByRank(targetKey, 0, 0);
+			}
+		} finally {
+			jedisPool.returnResource(jedis);
 		}
 	}
 
 	public void removeIndex(String key, String targetKey) {
-		jedis.zrem(key, targetKey);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.zrem(key, targetKey);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	public Set<String> getIndexes(String key) {
 
-		// 읽어오는 순간 expire 시간 재생성
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
 
-		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
-		return jedis.zrange(key, 0, -1);
+		try {
+			// 읽어오는 순간 expire 시간 재생성
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+
+			// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
+			return jedis.zrange(key, 0, -1);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	// JSON 반환
 	public List<String> list(String key, Long beforeScore, int count, Map<String, Integer> emptyValueIndexMap) {
 
-		// 읽어오는 순간 expire 시간 재생성
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
 
-		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
-		Set<String> keySet = jedis.zrangeByScore(key, "(" + Long.toString(beforeScore), "+inf", 0, count);
+		try {
+			// 읽어오는 순간 expire 시간 재생성
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
 
-		if (keySet.size() > 0) {
-			String[] keySets = keySet.toArray(new String[] {});
-			List<String> jsonList = jedis.mget(keySets);
+			// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
+			Set<String> keySet = jedis.zrangeByScore(key, "(" + Long.toString(beforeScore), "+inf", 0, count);
 
-			// 순서 반대로.
-			Collections.reverse(jsonList);
-			return jsonList;
+			if (keySet.size() > 0) {
+				String[] keySets = keySet.toArray(new String[] {});
+				List<String> jsonList = jedis.mget(keySets);
+
+				// 순서 반대로.
+				Collections.reverse(jsonList);
+				return jsonList;
+			}
+			return new ArrayList<String>();
+		} finally {
+			jedisPool.returnResource(jedis);
 		}
-		return new ArrayList<String>();
 	}
-	
+
 	// JSON 반환
 	public List<String> listDesc(String key, Long beforeScore, int count, Map<String, Integer> emptyValueIndexMap) {
 
-		// 읽어오는 순간 expire 시간 재생성
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
+		Jedis jedis = jedisPool.getResource();
 
-		// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
-		Set<String> keySet = jedis.zrevrangeByScore(key, "+inf", "(" + Long.toString(beforeScore), 0, count);
+		try {
+			// 읽어오는 순간 expire 시간 재생성
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
 
-		return getCachedList(keySet, emptyValueIndexMap);
+			// class java.util.LinkedHashSet 이기 때문에 순서대로 가져온다.
+			Set<String> keySet = jedis.zrevrangeByScore(key, "+inf", "(" + Long.toString(beforeScore), 0, count);
+
+			return getCachedList(keySet, emptyValueIndexMap);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 	// JSON 반환
 	public List<String> getCachedList(Set<String> keySet, Map<String, Integer> emptyValueIndexMap) {
-		if (keySet.size() > 0) {
-			String[] keySets = keySet.toArray(new String[] {});
-			List<String> jsonList = jedis.mget(keySets);
+		Jedis jedis = jedisPool.getResource();
 
-			// 순서 반대로.
-			Collections.reverse(jsonList);
-			return jsonList;
+		try {
+			if (keySet.size() > 0) {
+				String[] keySets = keySet.toArray(new String[] {});
+				List<String> jsonList = jedis.mget(keySets);
+
+				// 순서 반대로.
+				Collections.reverse(jsonList);
+				return jsonList;
+			}
+			return new ArrayList<String>();
+		} finally {
+			jedisPool.returnResource(jedis);
 		}
-		return new ArrayList<String>();
 	}
 
 	// JSON 반환
 	public String get(String key) {
-		if (key == null) {
-			return null;
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			if (key == null) {
+				return null;
+			}
+			// 읽어오는 순간 expire 시간 재생성
+			jedis.expire(key, COMMON_EXPIRE_SECOND);
+			return jedis.get(key);
+		} finally {
+			jedisPool.returnResource(jedis);
 		}
-		// 읽어오는 순간 expire 시간 재생성
-		jedis.expire(key, COMMON_EXPIRE_SECOND);
-		return jedis.get(key);
 	}
 
 	public void delete(String key) {
-		jedis.del(key);
+		Jedis jedis = jedisPool.getResource();
+
+		try {
+			jedis.del(key);
+		} finally {
+			jedisPool.returnResource(jedis);
+		}
 	}
 
 }
