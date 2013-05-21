@@ -35,6 +35,14 @@
             // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
             var xiSwfUrlStr = '<c:url value="/swf/playerProductInstall.swf" />';
         </script>
+        
+        <!--[if lte IE 9]>
+		<script>
+		$(function() {
+			$('#using-chrome').show();
+		});
+		</script>
+		<![endif]-->
 		
 		
 		<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet'>
@@ -613,6 +621,10 @@
 	</head>
 	
 	<body>
+	
+		<div id="using-chrome" style="display: none; padding: 4px; position:absolute; top:0; z-index: 999999; width: 100%; color: #fff; font-size: 10px; background-color: #42A9C7; text-align: center; border-bottom: 1px solid #666;">
+			인디크라우드는 구글 크롬 브라우저에 최적화되어있습니다.
+		</div>
 	
 		<div id="background"></div>
 	
