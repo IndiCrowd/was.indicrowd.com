@@ -33,7 +33,7 @@ import com.thoughtworks.xstream.XStream;
 public class KeyValueListCacheService {
 	private static Logger logger = Logger.getLogger(KeyValueListCacheService.class);
 
-	private JedisPool jedisPool;
+	private JedisPool jedisPool = null;
 
 	@Value("#{storeConfig.redisHost}")
 	private String redisHost;
@@ -55,8 +55,10 @@ public class KeyValueListCacheService {
 
 	@PostConstruct
 	public void initJedis() {
-		//logger.info(String.format("Log Info : %s %s %d %s", jedisPoolConfig, redisHost, redisPort, redisAuth));
-		jedisPool = new JedisPool(jedisPoolConfig, redisHost, redisPort, 2000, redisAuth);
+		logger.info(String.format("Log Info : %s %s %d %s", jedisPoolConfig, redisHost, redisPort, redisAuth));
+		
+		if (jedisPool == null)
+			jedisPool = new JedisPool(jedisPoolConfig, redisHost, redisPort, 2000, redisAuth);
 		//jedis.flushDB();
 	}
 	
