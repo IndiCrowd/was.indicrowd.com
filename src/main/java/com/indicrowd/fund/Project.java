@@ -81,6 +81,18 @@ public class Project {
 	@Size(max = 320)
 	@Column(length = 320, nullable = false)
 	private String contact;
+
+	@NotEmpty
+	@Column(nullable = true)
+	private String bankName;
+	
+	@NotEmpty
+	@Column(nullable = true)
+	private String accountNumber;
+	
+	@NotEmpty
+	@Column(nullable = true)
+	private String accountName;
 	
 	@Column(nullable = false)
 	private boolean opened = false;

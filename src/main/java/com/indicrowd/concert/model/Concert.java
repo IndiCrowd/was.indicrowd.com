@@ -94,12 +94,6 @@ public class Concert implements Serializable {
 	@Column(nullable = false)
 	private Integer totalAudienceCount = 0;
 	
-	@Column(nullable = true)
-	private String bankName;
-	
-	@Column(nullable = true)
-	private String accountNumber;
-	
 	@Transient
 	private CommonsMultipartFile photo;
 

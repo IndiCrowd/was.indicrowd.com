@@ -116,6 +116,30 @@ privileged aspect Project_Roo_JavaBean {
         this.contact = contact;
     }
     
+    public String Project.getBankName() {
+        return this.bankName;
+    }
+    
+    public void Project.setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+    
+    public String Project.getAccountNumber() {
+        return this.accountNumber;
+    }
+    
+    public void Project.setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    
+    public String Project.getAccountName() {
+        return this.accountName;
+    }
+    
+    public void Project.setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    
     public boolean Project.isOpened() {
         return this.opened;
     }

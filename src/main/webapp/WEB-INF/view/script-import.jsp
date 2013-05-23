@@ -85,6 +85,7 @@ function goConcertAdmin(id){
 <script src="<c:url value="/js/jquery.flot.pie.min.js" />"></script>
 <script src="<c:url value="/js/jquery.flot.stack.js" />"></script>
 <script src="<c:url value="/js/jquery.flot.resize.min.js" />"></script>
+<script src="<c:url value="/js/jquery-ui-timepicker-addon.js" />"></script>
 
 <script defer="defer" src="<c:url value="/js/modernizr.js" />"></script>
 <script defer="defer" src="<c:url value="/js/retina.js" />"></script>
