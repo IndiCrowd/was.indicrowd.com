@@ -170,6 +170,22 @@ privileged aspect Concert_Roo_JavaBean {
         this.totalAudienceCount = totalAudienceCount;
     }
     
+    public String Concert.getBankName() {
+        return this.bankName;
+    }
+    
+    public void Concert.setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+    
+    public String Concert.getAccountNumber() {
+        return this.accountNumber;
+    }
+    
+    public void Concert.setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    
     public CommonsMultipartFile Concert.getPhoto() {
         return this.photo;
     }

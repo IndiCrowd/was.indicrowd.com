@@ -83,7 +83,7 @@
 										</div>
 										
 										<div class="control-group <spring:bind path="startDate"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
-											<label class="control-label" for="startDate">펀딩 시작 시간</label>
+											<label class="control-label" for="startDate">후원 시작 시간</label>
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon-time"></i></span>
@@ -94,7 +94,7 @@
 										</div>
 										
 										<div class="control-group <spring:bind path="endDate"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
-											<label class="control-label" for="endDate">펀딩 종료 시간</label>
+											<label class="control-label" for="endDate">후원 종료 시간</label>
 											<div class="controls">
 												<div class="input-prepend">
 													<span class="add-on"><i class="icon-time"></i></span>
@@ -125,6 +125,60 @@
 												<form:errors path="contact" cssClass="help-inline" />
 											</div>
 										</div>
+										
+<option>우리은행</option>
+<option>경남은행</option>
+<option>광주은행</option>
+<option>국민(주택)은행</option>
+<option>기업은행</option>
+<option>농협</option>
+<option>대구은행</option>
+<option>도이치은행</option>
+<option>부산은행</option>
+<option>비엔피파리바은행</option>
+<option>산림조합</option>
+<option>산업은행</option>
+<option>상호저축은행</option>
+<option>새마을금고</option>
+<option>수출입은행</option>
+<option>수협중앙회</option>
+<option>신용협동조합</option>
+<option>신한(조흥)은행</option>
+<option>외환은행</option>
+<option>우체국</option>
+<option>전북은행</option>
+<option>제주은행</option>
+<option>하나(서울)은행</option>
+<option>한국씨티은행(한미)</option>
+<option>BOA(뱅크오브아메리카)</option>
+<option>HSBC은행</option>
+<option>JP모간체이스은행</option>
+<option>SC은행(SC제일)</option>
+<option>우리투자증권</option>
+<option>교보증권</option>
+<option>대신증권</option>
+<option>대우증권</option>
+<option>동부증권</option>
+<option>동양증권</option>
+<option>메리츠증권</option>
+<option>미래에셋증권</option>
+<option>부국증권</option>
+<option>삼성증권</option>
+<option>신영증권</option>
+<option>신한금융투자</option>
+<option>아이엠투자증권</option>
+<option>유진투자증권</option>
+<option>이트레이드증권</option>
+<option>키움증권</option>
+<option>하나대투증권</option>
+<option>하이투자증권</option>
+<option>한국투자증권</option>
+<option>한화증권</option>
+<option>현대증권</option>
+<option>HMC투자증권</option>
+<option>LIG투자증권</option>
+<option>NH농협증권</option>
+<option>SK증권</option>
 										
 										<div class="control-group <spring:bind path="content"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 											<label class="control-label" for="content">프로젝트 상세 내용</label>

@@ -9,20 +9,20 @@
 <html>
 
 	<head>
-		<title>크라우드 펀딩</title>
+		<title>크라우드 후훤</title>
 	</head>
 	<body>
 
 		<!-- start: Page Title -->
 		<div id="page-title">
-			<h2>펀딩을 기다리는 다양한 프로젝트를 만나보세요!</h2>
+			<h2>후훤을 기다리는 다양한 프로젝트를 만나보세요!</h2>
 		</div>
 		<!-- end: Page Title -->
 		
 		<!--start: Wrapper-->
 		<div id="wrapper">
 			<div class="row">
-				<a href="<c:url value="/fund/project/create" />" role="button" class="btn offset10" data-toggle="modal">프로젝트 생성</a>	
+				<a href="${pageContext.request.contextPath}/fund/project/create" role="button" class="btn btn-large btn-primary offset9" style="margin-bottom: 15px;" data-toggle="modal"><i class="icon-music icon-white"></i> 내 프로젝트 후훤 받기!</a>	
 			</div>
 			<div id="filters">
 				<ul class="option-set" data-option-key="filter">
