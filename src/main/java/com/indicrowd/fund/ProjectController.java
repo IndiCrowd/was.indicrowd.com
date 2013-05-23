@@ -63,6 +63,10 @@ public class ProjectController extends AbstractController {
 
 			project.setCreator(authService.getUserInfo());
 			project.setCreateDate(new Date());
+			
+			// open!!!!
+			project.setOpened(true);
+			
 			project.persist();
 
 			//if (project.getProfilePhoto().getSize() > 0) {
@@ -70,7 +74,8 @@ public class ProjectController extends AbstractController {
 				fileService.save(imageService.generateThumb(project.getProfilePhoto()), "projectthumb/" + project.getId().toString(), true);
 			//}
 
-			return "redirect:/fund/project/" + project.getId() + "/rewards";
+			//return "redirect:/fund/project/" + project.getId() + "/rewards";
+			return "redirect:/fund/project/" + project.getId();
 		}
 	}
 

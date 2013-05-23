@@ -111,8 +111,6 @@
 				<c:forEach items="${rewards}" var="reward">
 				${reward.description}
 				</c:forEach>
-				
-				<a href="<c:url value="/fund/project/${command.id}/invest" />">후원하기</a>
 			</div>
 		</div>
 
