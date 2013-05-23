@@ -16,15 +16,22 @@
 		<script>
 		$(function() {
 			
-			var hasFlash = function() {
-				var ret = false;
-				try {
-				  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
-				  if(fo) ret = true;
-				}catch(e){
-				  if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined) ret = true;
+			var isMobile = function() {
+				
+				if (navigator.userAgent.match(/iPhone|iPod|iPad/i) != null) {
+					return 'ios';
 				}
-				return ret;
+				
+				if (navigator.userAgent.match(/Android/i) != null) {
+					return 'android';
+				}
+				
+				if (navigator.userAgent.match(/Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null) {
+					return 'mobile';
+				}
+					
+				
+				return null;
 			};
 			
 			
@@ -98,16 +105,27 @@
 			};
 			
 
-			if (hasFlash()) {
+			
+			var mobile = isMobile();
+			if (mobile == null) {
 				openStreamSubscriber();
 				openStreamUserPublisher();
-			} else {
+			} else if ( mobile == 'ios') {
 				$VIDEO({
 					width: '480',
 					height: '360',
-					src: 'http://indicrowd.com:1935/live/ngrp:${command.id}_all/playlist.m3u8',
+					src: 'http://indicrowd.com:1935/live/ngrp:${command.id}_mobile/playlist.m3u8',
 					controls: 'true'
 				}).appendTo('#StreamSubscriber');		
+			} else if ( mobile == 'android') {
+				$VIDEO({
+					width: '480',
+					height: '360',
+					src: 'rtsp://indicrowd.com:1935/ngrp:${command.id}_mobile',
+					controls: 'true'
+				}).appendTo('#StreamSubscriber');
+			} else {
+				alert.show('지원하지 않는 웹 브라우져입니다.');
 			}
  
 		});
