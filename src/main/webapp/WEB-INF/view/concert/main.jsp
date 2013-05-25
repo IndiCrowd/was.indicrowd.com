@@ -22,6 +22,7 @@
 			width: 100%;
 			height: 100%;
 			cursor: pointer;
+			overflow: hidden;
 		}
 		.concert-content h4 {
 			background-color: #333;

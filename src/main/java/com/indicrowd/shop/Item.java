@@ -53,6 +53,9 @@ public class Item {
 	@Column(nullable = false)
 	private boolean isRewind = false;
 	
+	@Column(nullable = false)
+	private boolean isBaseItem = false;
+	
 	@Transient
 	private CommonsMultipartFile profilePhoto;
 	

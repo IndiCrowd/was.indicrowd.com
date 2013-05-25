@@ -45,6 +45,42 @@
 			bottom: 10px;
 			color: #fff;
 		}
+		.play_border {
+			background-color: rgba(0, 0, 0, .3);
+		    border: 2px solid rgba(255,255,255,.7);
+		    -webkit-border-radius: 100%;
+		    -moz-border-radius: 100%;
+		    border-radius: 100%;
+		    width: 50px;
+		    height: 50px;
+		    left: 50%;
+		    top: 50%;
+		    margin-left: -25px;
+		    margin-top: -25px;
+		    position: absolute;
+		    -webkit-box-shadow: 0px 0px 5px 2px rgba(255,255,255,.5);
+		    -moz-box-shadow: 0px 0px 5px 2px rgba(255,255,255,.5);
+		    box-shadow: 0px 0px 5px 2px rgba(255,255,255,.5);
+		    cursor: pointer;
+		}
+		.play_border:hover{
+			background-color: rgba(0,0,0,0.1);
+		}
+		.play_border:active,.play_border:focus{
+			background-color: rgba(0,0,0,0);
+		}
+		.play_button {
+		    position:relative;
+		    top: 50%;
+		    left: 50%;
+		    margin-left: -8px;
+		    margin-top: -16px;
+		    width: 0;
+		    height: 0;
+		    border-top: 16px solid transparent;
+		    border-bottom: 16px solid transparent;
+		    border-left: 16px solid rgba(255,255,255,.8);
+		} 
 		</style>
 		
 		<script>
@@ -68,9 +104,15 @@
 		<div style="width: 773px; margin: 0 auto;">
 			
 			<div style="width: 480px; background: #fff; float: left; border: 1px solid #333; border-radius:10px; padding: 10px 0; box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);">
-				
-				<div>
-					<a href="javascript:popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}'; void(0)"><img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${command.id}"></a>
+				<p style="padding: 0 10px;">
+					아래 이미지는 실시간 공연 캡쳐 영상입니다.<br>
+					공연을 보시려면 로그인 해 주시기 바랍니다.
+				</p>
+				<div style="position:relative; cursor:pointer;" onclick="popup('<c:url value="/concert/${command.id}" />', 'Concert', 1000, 700);location.href='${pageContext.request.contextPath}/band/${command.bandInfo.id}';">
+					<img id="thumb" style="width: 100%; border: 0;" src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${command.id}">
+					<div class="play_border" style="width: 100px; height: 100px; margin-left: -50px; margin-top: -50px;">
+					    <div class="play_button"></div>
+					</div>
 				</div>
 			
 			</div>

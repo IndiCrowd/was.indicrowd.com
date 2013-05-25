@@ -83,6 +83,14 @@ privileged aspect Item_Roo_JavaBean {
         this.isRewind = isRewind;
     }
     
+    public boolean Item.isIsBaseItem() {
+        return this.isBaseItem;
+    }
+    
+    public void Item.setIsBaseItem(boolean isBaseItem) {
+        this.isBaseItem = isBaseItem;
+    }
+    
     public CommonsMultipartFile Item.getProfilePhoto() {
         return this.profilePhoto;
     }
