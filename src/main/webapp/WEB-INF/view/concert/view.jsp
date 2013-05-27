@@ -121,7 +121,7 @@
 				$VIDEO({
 					width: '480',
 					height: '360',
-					src: 'rtsp://indicrowd.com:1935/ngrp:${command.id}_mobile',
+					src: 'rtsp://indicrowd.com:1935/live/${command.id}_360p',
 					controls: 'true'
 				}).appendTo('#StreamSubscriber');
 			} else {
