@@ -170,7 +170,8 @@ public class ConcertController extends AbstractController {
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{concertId}/startSign")
-	public void startSign(@PathVariable("concertId") Long concertId, Model model){
+	@ResponseBody
+	public boolean startSign(@PathVariable("concertId") Long concertId, Model model){
 		UserInfo userInfo = authService.getUserInfo();
 		Concert concert = Concert.findConcert(concertId);
 		List<BandInfo> userBandList = userInfo.getUserBand();
@@ -187,7 +188,9 @@ public class ConcertController extends AbstractController {
 			startSign.setConcert(concert);
 			startSign.setStartDate(new Date());
 			startSign.merge();
+			return true;
 		}
+		return false;
 	}
 	
 	@Secured("ROLE_USER")
