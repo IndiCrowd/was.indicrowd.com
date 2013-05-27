@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -20,6 +21,8 @@ public class ConcertStartSign {
 	@JoinColumn(name = "concertId", nullable = false)
 	private Concert concert;
 	
+	@Transient	
+	private long concertId;
 	@NotNull
 	@Column(nullable = false)
 	private Date startDate;

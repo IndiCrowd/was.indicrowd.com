@@ -17,6 +17,14 @@ privileged aspect ConcertStartSign_Roo_JavaBean {
         this.concert = concert;
     }
     
+    public long ConcertStartSign.getConcertId() {
+        return this.concertId;
+    }
+    
+    public void ConcertStartSign.setConcertId(long concertId) {
+        this.concertId = concertId;
+    }
+    
     public Date ConcertStartSign.getStartDate() {
         return this.startDate;
     }

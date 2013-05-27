@@ -35,10 +35,15 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
       google.load("swfobject", "2.1");
-      var playList=['7YJfqK6QmWs','EfsGboXeMec','jvOXl9vThwA'];
+      var concertStartSigns = ${concertStartSignListJson};
+      var playList=[];
+      for(var i=0; i<concertStartSigns.length;i++){
+    	  playList[playList.length] = concertStartSigns[i].youtubeToken;
+      }
       var nowPlay=0;
       var messageJson = [];
       var feedJson = [];
+      var nowStatus = -1;
     </script>    
     <script type="text/javascript">
       /*
@@ -58,24 +63,46 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       // This function is called when the player changes state
       function onPlayerStateChange(newState) {
         updateHTML("playerState", newState);
+        nowStatus = newState;
         if(newState == 0){ // if player End
         	if(playList.length > nowPlay + 1){
         		loadVideo(nowPlay + 1);
         	}
         }
       }
-      
+      function dayToString(day){
+    	  if(day<10){
+    		  return "0"+day;
+    	  }else{
+    		  return day;
+    	  }
+      }
       // Display information about the current state of the player
       function updatePlayerInfo() {
         // Also check that at least one function exists since when IE unloads the
         // page, it will destroy the SWF before clearing the interval.
-        if(ytplayer && ytplayer.getDuration) {
+        if(ytplayer && ytplayer.getDuration &&  nowStatus== 1) {
+     	  var currentSecond = parseInt(ytplayer.getCurrentTime());
+          var date = new Date();
+          date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
+          
+          
+          //print chat, feed
+          console.log(messageJson[dateToKey(date)]);
+          
           updateHTML("videoDuration", ytplayer.getDuration());
-          updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
+          updateHTML("videoCurrentTime", dateToKey(date));
           updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
           updateHTML("startBytes", ytplayer.getVideoStartBytes());
           updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
+          
+          
         }
+      }
+
+      
+      function dateToKey(date){
+    	 return date.getFullYear()+dayToString(date.getMonth()+1)+dayToString(date.getDate())+dayToString(date.getHours())+dayToString(date.getMinutes())+dayToString(date.getSeconds())
       }
       
       // This function is automatically called by the player once it loads
@@ -126,15 +153,12 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <td><div id="videoDiv">Loading...</div></td>
     <td valign="top">
     	<table>
-    		<tr id="playList0" class="playListTr">	
-    			<td><a href="javascript:loadVideo(0);void(0)">1. 00:00 ~ 12:32</a></td>
+    		
+    		<c:forEach items="${concertStartSignList }" var="startSign" varStatus="i">
+    		<tr id="playList${i.index }" class="playListTr">
+    			<td><a href="javascript:loadVideo(${i.index });void(0)">${i.index+1 }. ${startSign.startDate } ~</a></td>
     		</tr>
-    		<tr id="playList1" class="playListTr">
-    			<td><a href="javascript:loadVideo(1);void(0)">2. 12:32 ~ 20:50</a></td>
-    		</tr>
-    		<tr id="playList2" class="playListTr">
-    			<td><a href="javascript:loadVideo(2);void(0)">3. 20:50 ~ 30:00</a></td>
-    		</tr>
+    		</c:forEach>
     	</table>
     </td>
     </tr>

@@ -176,7 +176,11 @@ public class ConcertController extends AbstractController {
 		List<Message> messages = Message.findMessageByConcertId(concertId);
 		List<IconFeed> iconFeeds = IconFeed.findIconFeedByConcertId(concertId);
 		
-		
+		for(int i=0; i<concertStartSign.size();i++){
+			ConcertStartSign c = concertStartSign.get(i);
+			c.setConcertId(c.getConcert().getId());
+			c.setConcert(null);
+		}
 		
 		HashMap<String,List<Message>> messageHash = new HashMap<String,List<Message>>();
 		for(int j=0; j<messages.size();j++){
@@ -230,6 +234,7 @@ public class ConcertController extends AbstractController {
 		System.out.println(feedHash.keySet());
 		ObjectMapper objectMapper = new ObjectMapper();
 		model.addAttribute("concertStartSignList" , concertStartSign);
+		model.addAttribute("concertStartSignListJson" , objectMapper.writeValueAsString(concertStartSign));
 		model.addAttribute("messageHash",objectMapper.writeValueAsString(messageHash));
 		model.addAttribute("feedHash",objectMapper.writeValueAsString(feedHash));
 		
