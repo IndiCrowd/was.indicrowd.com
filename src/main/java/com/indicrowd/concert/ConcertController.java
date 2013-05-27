@@ -30,6 +30,7 @@ import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
 import com.indicrowd.band.BandInfo;
 import com.indicrowd.concert.model.Concert;
+import com.indicrowd.concert.model.ConcertStartSign;
 import com.indicrowd.concert.model.ConcertState;
 import com.indicrowd.concert.model.Hall;
 import com.indicrowd.concert.model.IconFeed;
@@ -165,6 +166,28 @@ public class ConcertController extends AbstractController {
 		concert.setTotalAudienceCount(concert.getTotalAudienceCount()+1);
 		concert.merge(); // increase total audienceCount
 		return "concert/view";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{concertId}/startSign")
+	public void startSign(@PathVariable("concertId") Long concertId, Model model){
+		UserInfo userInfo = authService.getUserInfo();
+		Concert concert = Concert.findConcert(concertId);
+		List<BandInfo> userBandList = userInfo.getUserBand();
+		boolean hasAuthForConcert = false;
+		for(int i=0;i<userBandList.size();i++){
+			BandInfo bandInfo = userBandList.get(i);
+			if(concert.getBandId() == bandInfo.getId()){
+				hasAuthForConcert = true;
+			}
+		}
+		
+		if(hasAuthForConcert){
+			ConcertStartSign startSign = new ConcertStartSign();	
+			startSign.setConcert(concert);
+			startSign.setStartDate(new Date());
+			startSign.merge();
+		}
 	}
 	
 	@Secured("ROLE_USER")
