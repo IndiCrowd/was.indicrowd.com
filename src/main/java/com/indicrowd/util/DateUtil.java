@@ -1,16 +1,21 @@
 package com.indicrowd.util;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.TimeZone;
 
 public class DateUtil {
 	public static void main(String[] args){
-		Calendar cal = getCalendarWithInteger(20130412);
-		cal = getNextMinutes(cal, 80);
-		System.out.println(cal.get(Calendar.HOUR_OF_DAY) +"," + cal.get(Calendar.MINUTE));
-		System.out.println(calendarToInteger(cal));
+		System.out.println(getDateString(getCalendar(),"YYYYMMDDHHMI"));
+		HashMap<String,List> a = new HashMap<String,List>();
+		List b = new ArrayList();
+		a.put("asdf",b);
+		b.add("1234");
+		System.out.println(a);
 	}
 	
 	public static Integer calendarToInteger(Calendar cal){
@@ -148,14 +153,18 @@ public class DateUtil {
 	public static String getDateString(Calendar calendar,String dateForm){
 		String date=dateForm;
         Calendar cal = calendar;
-        String year=dayIntToString(cal.get(1));
-        String month=dayIntToString(cal.get(2)+1);
-        String day=dayIntToString(cal.get(5));
-        String hour=dayIntToString(cal.get(11));
+        String year=dayIntToString(cal.get(Calendar.YEAR));
+        String month=dayIntToString(cal.get(Calendar.MONTH)+1);
+        String day=dayIntToString(cal.get(Calendar.DAY_OF_MONTH));
+        String hour=dayIntToString(cal.get(Calendar.HOUR_OF_DAY));
+        String minute=dayIntToString(cal.get(Calendar.MINUTE));
+        String second = dayIntToString(cal.get(Calendar.SECOND));
         date=date.replaceAll("YYYY", year);
         date=date.replaceAll("MM", month);
         date=date.replaceAll("DD", day);
         date=date.replaceAll("HH", hour);
+        date=date.replaceAll("MI", minute);
+        date=date.replaceAll("SS", second);
         return date;
 	}
 	

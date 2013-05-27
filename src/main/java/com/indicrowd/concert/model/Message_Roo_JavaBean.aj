@@ -50,4 +50,12 @@ privileged aspect Message_Roo_JavaBean {
         this.sendDate = sendDate;
     }
     
+    public String Message.getSenderName() {
+        return this.senderName;
+    }
+    
+    public void Message.setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+    
 }

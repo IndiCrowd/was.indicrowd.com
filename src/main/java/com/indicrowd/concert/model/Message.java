@@ -43,6 +43,9 @@ public class Message {
 	@Column(nullable = false)
 	private Date sendDate;
 	
+	@Transient
+	private String senderName;
+	
 	public static List<Message> findMessageEntriesByConcertId(Long concertId, int firstResult, int maxResults) {
 		List<Message> list = entityManager().createQuery("SELECT o FROM Message o WHERE o.concert.id = :concertId ORDER BY o.id DESC", Message.class).setParameter("concertId", concertId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
 		Collections.reverse(list);
@@ -51,6 +54,11 @@ public class Message {
 
 	public static Long countMessageByConcertId(Long concertId) {
 		return entityManager().createQuery("SELECT COUNT(o) FROM Message o WHERE o.concert.id = :concertId", Long.class).setParameter("concertId", concertId).getSingleResult();
+	}
+	
+	public static List<Message> findMessageByConcertId(Long concertId) {
+		List<Message> list = entityManager().createQuery("SELECT o FROM Message o WHERE o.concert.id = :concertId", Message.class).setParameter("concertId", concertId).getResultList();
+		return list;
 	}
 
 }

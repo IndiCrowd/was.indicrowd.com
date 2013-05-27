@@ -1,6 +1,7 @@
 package com.indicrowd.concert.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -34,5 +35,16 @@ public class IconFeed {
 	
 	@Column(nullable = false)
 	private Date sendDate;
+	
+	@Transient
+	private String senderName;
+	
+	@Transient
+	private long itemId;
+	
+	public static List<IconFeed> findIconFeedByConcertId(Long concertId) {
+		List<IconFeed> list = entityManager().createQuery("SELECT o FROM IconFeed o WHERE o.concert.id = :concertId", IconFeed.class).setParameter("concertId", concertId).getResultList();
+		return list;
+	}
 
 }

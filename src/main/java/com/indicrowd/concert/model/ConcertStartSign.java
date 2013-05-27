@@ -1,6 +1,7 @@
 package com.indicrowd.concert.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -25,4 +26,13 @@ public class ConcertStartSign {
 	
 	private boolean youtubeAvailable = false;
 	private String youtubeToken;
+	
+	public static List<ConcertStartSign> findConcertStartSignListByConcertId(long concertId){
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM ConcertStartSign o WHERE o.concert.id = :concertId" +
+						" ORDER BY startDate",
+						ConcertStartSign.class).setParameter("concertId", concertId)
+				.getResultList();
+	}
 }

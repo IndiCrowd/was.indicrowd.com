@@ -25,6 +25,7 @@
 		<pattern>/concert/*/feed</pattern>
 		<pattern>/concert/*/changeBG</pattern>
 		<pattern>/c/*</pattern>
+		<pattern>/concert/*/replay</pattern>
 	</decorator>
 	
 </decorators>

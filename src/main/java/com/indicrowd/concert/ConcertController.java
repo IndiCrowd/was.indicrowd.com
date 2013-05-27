@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -166,6 +167,73 @@ public class ConcertController extends AbstractController {
 		concert.setTotalAudienceCount(concert.getTotalAudienceCount()+1);
 		concert.merge(); // increase total audienceCount
 		return "concert/view";
+	}
+	
+	@RequestMapping(value= "/{concertId}/replay")
+	public String replay(@PathVariable("concertId") Long concertId, Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		List<ConcertStartSign> concertStartSign = ConcertStartSign.findConcertStartSignListByConcertId(concertId);
+		List<Message> messages = Message.findMessageByConcertId(concertId);
+		List<IconFeed> iconFeeds = IconFeed.findIconFeedByConcertId(concertId);
+		
+		
+		
+		HashMap<String,List<Message>> messageHash = new HashMap<String,List<Message>>();
+		for(int j=0; j<messages.size();j++){
+			Message m = messages.get(j);
+			m.setConcert(null);
+			m.setSenderName(m.getSender().getNickname());
+			m.setSender(null);
+			
+			Date date = m.getSendDate();
+			Calendar cal = DateUtil.getCalendar();
+			
+			cal.setTime(date);
+			String timeString = DateUtil.getDateString(cal,"YYYYMMDDHHMISS");
+			
+			List<Message> messageList = messageHash.get(timeString);
+			if(messageList == null){
+				messageList = new ArrayList<Message>();
+				messageList.add(m);
+				messageHash.put(timeString, messageList);
+			}else{
+				messageList.add(m);
+			}
+		}
+		
+		HashMap<String,List<IconFeed>> feedHash = new HashMap<String,List<IconFeed>>();
+		for(int j=0; j<iconFeeds.size();j++){
+			IconFeed feed = iconFeeds.get(j);
+			feed.setConcert(null);
+			feed.setSenderName(feed.getSender().getNickname());
+			feed.setSender(null);
+			feed.setItemId(feed.getItem().getId());
+			feed.setItem(null);
+			Date date = feed.getSendDate();
+			Calendar cal = DateUtil.getCalendar();
+			
+			cal.setTime(date);
+			String timeString = DateUtil.getDateString(cal,"YYYYMMDDHHMISS");
+			
+			List<IconFeed> feedList = feedHash.get(timeString);
+			if(feedList == null){
+				feedList = new ArrayList<IconFeed>();
+				feedList.add(feed);
+				feedHash.put(timeString, feedList);
+			}else{
+				feedList.add(feed);
+			}
+		}
+		
+		
+		System.out.println(messageHash.keySet());
+		System.out.println(feedHash.keySet());
+		ObjectMapper objectMapper = new ObjectMapper();
+		model.addAttribute("concertStartSignList" , concertStartSign);
+		model.addAttribute("messageHash",objectMapper.writeValueAsString(messageHash));
+		model.addAttribute("feedHash",objectMapper.writeValueAsString(feedHash));
+		
+		return "concert/replay";
 	}
 	
 	@Secured("ROLE_USER")

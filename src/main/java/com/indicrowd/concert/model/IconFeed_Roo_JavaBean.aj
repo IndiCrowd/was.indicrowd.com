@@ -43,4 +43,20 @@ privileged aspect IconFeed_Roo_JavaBean {
         this.sendDate = sendDate;
     }
     
+    public String IconFeed.getSenderName() {
+        return this.senderName;
+    }
+    
+    public void IconFeed.setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+    
+    public long IconFeed.getItemId() {
+        return this.itemId;
+    }
+    
+    public void IconFeed.setItemId(long itemId) {
+        this.itemId = itemId;
+    }
+    
 }
