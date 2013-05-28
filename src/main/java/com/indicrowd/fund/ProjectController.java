@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.security.access.annotation.Secured;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
+import com.indicrowd.board.Article;
 import com.indicrowd.tag.Tag;
 
 @Controller
@@ -30,13 +32,13 @@ public class ProjectController extends AbstractController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public void create(@ModelAttribute("command") Project project, Model model) {
-		// just view
+	public String create(@ModelAttribute("command") Project project, Model model) {
+		return "fund/project/form";
 	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("command") Project project, BindingResult bindingResult, Model model) throws IOException {
+	public String create(@Valid @ModelAttribute("command") Project project, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
 
 		if (!bindingResult.hasFieldErrors("profilePhoto") && (project.getProfilePhoto() == null || project.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(project.getProfilePhoto()))) {
 			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
@@ -46,7 +48,7 @@ public class ProjectController extends AbstractController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			return "fund/project/create";
+			return "fund/project/form";
 		} else {
 
 			// 장르 태그
@@ -63,6 +65,7 @@ public class ProjectController extends AbstractController {
 
 			project.setCreator(authService.getUserInfo());
 			project.setCreateDate(new Date());
+			project.setIp(request.getRemoteAddr());
 			
 			// open!!!!
 			project.setOpened(true);
@@ -77,6 +80,101 @@ public class ProjectController extends AbstractController {
 			//return "redirect:/fund/project/" + project.getId() + "/rewards";
 			return "redirect:/fund/project/" + project.getId();
 		}
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
+	public String update(@PathVariable Long id, Model model) {
+		
+		Project project = Project.findProject(id);
+		
+		String genresStr = null;
+		for (ProjectGenre projectGenre : project.getGenres()) {
+			if (genresStr == null) {
+				genresStr = projectGenre.getTag().getRepTagInput().getTagInputStr();
+			} else {
+				genresStr += ", " + projectGenre.getTag().getRepTagInput().getTagInputStr();
+			}
+		}
+		project.setGenresStr(genresStr);
+		
+		model.addAttribute("command", project);
+
+		return "fund/project/form";
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+	public String update(@PathVariable Long id, @Valid @ModelAttribute("command") Project project, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
+		
+		Project originProject = Project.findProject(id);
+		
+		if (project.getProfilePhoto() != null && !bindingResult.hasFieldErrors("profilePhoto") && (project.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(project.getProfilePhoto()))) {
+			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
+		}
+		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && project.getEndDate().getTime() < project.getStartDate().getTime()) {
+			bindingResult.rejectValue("startDate", "Over.startDate");
+		}
+		
+		if (bindingResult.hasErrors() || originProject.getCreator().getId() != authService.getUserId()) {
+			return "article/form";
+		} else {
+			
+			// 장르 태그
+			Set<Tag> genreTags = tagService.inputTags(project.getGenresStr());
+
+			Set<ProjectGenre> genres = new HashSet<ProjectGenre>();
+			for (Tag genreTag : genreTags) {
+				ProjectGenre genre = new ProjectGenre();
+				genre.setTag(genreTag);
+				genre.setProject(project);
+				genres.add(genre);
+			}
+			originProject.setGenres(genres);
+
+			originProject.setTitle(project.getTitle());
+			originProject.setSummary(project.getSummary());
+			originProject.setContent(project.getContent());
+			originProject.setStartDate(project.getStartDate());
+			originProject.setEndDate(project.getEndDate());
+			originProject.setTargetFigure(project.getTargetFigure());
+			originProject.setBankName(project.getBankName());
+			originProject.setAccountNumber(project.getAccountNumber());
+			originProject.setAccountName(project.getAccountName());
+			originProject.setLastUpdateDate(new Date());
+			originProject.setIp(request.getRemoteAddr());
+			
+			if (project.getProfilePhoto().getSize() > 0) {
+				fileService.save(project.getProfilePhoto(), "projectphoto/" + originProject.getId().toString(), true);
+				fileService.save(imageService.generateThumb(project.getProfilePhoto()), "projectthumb/" + originProject.getId().toString(), true);
+			}
+			
+			originProject.merge();
+
+			//return "redirect:/fund/project/" + project.getId() + "/rewards";
+			return "redirect:/fund/project/" + project.getId();
+		}
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	public String deleteForm(@PathVariable Long id, Model model) {
+		model.addAttribute("command", Article.findArticle(id));
+		return "article/delete";
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+	public String delete(@PathVariable Long id) {
+		
+		Article article = Article.findArticle(id);
+		
+		if (article.getWriter().getId() == authService.getUserId()) {
+			article.setEnabled(false);
+			article.merge();
+		}
+		
+		return "redirect:/board/" + article.getBoard().getId();
 	}
 
 	@Secured("ROLE_USER")

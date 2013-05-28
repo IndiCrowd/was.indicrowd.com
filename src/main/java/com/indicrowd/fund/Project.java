@@ -97,6 +97,12 @@ public class Project {
 	@Column(nullable = false)
 	private boolean opened = false;
 	
+	@Column
+	private Date lastUpdateDate;
+
+	@Column
+	private String ip;
+	
 	public static List<Project> findAllProjects() {
         return entityManager().createQuery("SELECT o FROM Project o WHERE o.enabled = true ORDER BY id DESC", Project.class).getResultList();
     }
