@@ -36,7 +36,6 @@
 									${command.content}
 								</p>
 							</div>
-							<a class="post-entry" href="#">더보기...</a>
 						</div>
 					</div>
 					<!-- end: Post -->
@@ -113,6 +112,8 @@
 				</c:forEach>
 			</div>
 		</div>
+		
+		<a href="<c:url value="/fund/project/${command.id}/update" />">펀드 수정</a>
 
 	</body>
 </html>

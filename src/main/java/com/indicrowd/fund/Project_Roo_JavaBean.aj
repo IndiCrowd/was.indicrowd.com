@@ -148,4 +148,20 @@ privileged aspect Project_Roo_JavaBean {
         this.opened = opened;
     }
     
+    public Date Project.getLastUpdateDate() {
+        return this.lastUpdateDate;
+    }
+    
+    public void Project.setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+    
+    public String Project.getIp() {
+        return this.ip;
+    }
+    
+    public void Project.setIp(String ip) {
+        this.ip = ip;
+    }
+    
 }
