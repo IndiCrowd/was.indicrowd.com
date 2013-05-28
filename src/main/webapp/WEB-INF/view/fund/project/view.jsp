@@ -112,6 +112,8 @@
 				</c:forEach>
 			</div>
 		</div>
+		
+		<a href="<c:url value="/fund/project/${command.id}/update" />">펀드 수정</a>
 
 	</body>
 </html>

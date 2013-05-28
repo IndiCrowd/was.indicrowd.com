@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
-import com.indicrowd.board.Article;
 import com.indicrowd.tag.Tag;
 
 @Controller
@@ -109,15 +108,17 @@ public class ProjectController extends AbstractController {
 		
 		Project originProject = Project.findProject(id);
 		
-		if (project.getProfilePhoto() != null && !bindingResult.hasFieldErrors("profilePhoto") && (project.getProfilePhoto().getSize() == 0 || !imageService.isImageFile(project.getProfilePhoto()))) {
+		if (project.getProfilePhoto() != null && project.getProfilePhoto().getSize() > 0 && !bindingResult.hasFieldErrors("profilePhoto") && (!imageService.isImageFile(project.getProfilePhoto()))) {
 			bindingResult.rejectValue("profilePhoto", "NotImage.profilePhoto");
+		} else {
+			project.setProfilePhoto(null);
 		}
 		if (!bindingResult.hasFieldErrors("startDate") && !bindingResult.hasFieldErrors("endDate") && project.getEndDate().getTime() < project.getStartDate().getTime()) {
 			bindingResult.rejectValue("startDate", "Over.startDate");
 		}
 		
 		if (bindingResult.hasErrors() || originProject.getCreator().getId() != authService.getUserId()) {
-			return "article/form";
+			return "fund/project/form";
 		} else {
 			
 			// 장르 태그
@@ -127,7 +128,7 @@ public class ProjectController extends AbstractController {
 			for (Tag genreTag : genreTags) {
 				ProjectGenre genre = new ProjectGenre();
 				genre.setTag(genreTag);
-				genre.setProject(project);
+				genre.setProject(originProject);
 				genres.add(genre);
 			}
 			originProject.setGenres(genres);
@@ -144,7 +145,7 @@ public class ProjectController extends AbstractController {
 			originProject.setLastUpdateDate(new Date());
 			originProject.setIp(request.getRemoteAddr());
 			
-			if (project.getProfilePhoto().getSize() > 0) {
+			if (project.getProfilePhoto() != null && project.getProfilePhoto().getSize() > 0) {
 				fileService.save(project.getProfilePhoto(), "projectphoto/" + originProject.getId().toString(), true);
 				fileService.save(imageService.generateThumb(project.getProfilePhoto()), "projectthumb/" + originProject.getId().toString(), true);
 			}
@@ -159,22 +160,22 @@ public class ProjectController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String deleteForm(@PathVariable Long id, Model model) {
-		model.addAttribute("command", Article.findArticle(id));
-		return "article/delete";
+		model.addAttribute("command", Project.findProject(id));
+		return "fund/project/delete";
 	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
 	public String delete(@PathVariable Long id) {
 		
-		Article article = Article.findArticle(id);
+		Project project = Project.findProject(id);
 		
-		if (article.getWriter().getId() == authService.getUserId()) {
-			article.setEnabled(false);
-			article.merge();
+		if (project.getCreator().getId() == authService.getUserId()) {
+			project.setEnabled(false);
+			project.merge();
 		}
 		
-		return "redirect:/board/" + article.getBoard().getId();
+		return "redirect:/fund/project/" + project.getId();
 	}
 
 	@Secured("ROLE_USER")
