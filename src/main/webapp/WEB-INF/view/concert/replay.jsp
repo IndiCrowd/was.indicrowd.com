@@ -88,7 +88,22 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           
           
           //print chat, feed
-          console.log(messageJson[dateToKey(date)]);
+          var messages = messageJson[dateToKey(date)];
+          if(messages!=null){
+	          for(var i=0;i<messages.length;i++){
+	        	  var message = messages[i];
+	        	  
+	        	  $("#messages").append("<li>"+message.senderName+":"+message.content+"</li>");
+	          }
+          }
+          var feeds = feedJson[dateToKey(date)];
+          if(feeds!=null){
+	          for(var i=0;i<feeds.length;i++){
+	        	  var feed = feeds[i];
+	        	  
+	        	  $("#feeds").append("<li>"+feed.senderName+":item["+feed.itemId+"]</li>");
+	          }
+          }
           
           updateHTML("videoDuration", ytplayer.getDuration());
           updateHTML("videoCurrentTime", dateToKey(date));
@@ -135,6 +150,8 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           ytplayer.loadVideoById(playList[index]);
           nowPlay = index;
           managePlayCss(index);
+          $("#messages").html("");
+          $("#feeds").html("");
         }
       }
       function _run() {
@@ -171,9 +188,14 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       </div>
     </td></tr>
     </table>
-   ${messageHash }
-   <hr/>
-   ${feedHash }
+    <div id="chatFlow">
+    	<ul id="messages">
+    	</ul>
+    </div>
+    <div id="feedFlow">
+    	<ul id="feeds">
+    	</ul>
+    </div>
    <script>
    	messageJson= ${messageHash}
    	feedJson = ${feedHash}
