@@ -36,7 +36,6 @@
 									${command.content}
 								</p>
 							</div>
-							<a class="post-entry" href="#">더보기...</a>
 						</div>
 					</div>
 					<!-- end: Post -->
