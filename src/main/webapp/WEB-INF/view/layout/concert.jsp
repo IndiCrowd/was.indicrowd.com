@@ -375,28 +375,133 @@
 		</style>
 		
 		<script>
-		$(function() {
-			var key = Math.random();
-			var userImgs = {};
-			var addImg = function(connectId, userInfo) {
-				console.log(userImgs[userInfo.id]);
-				if (userImgs[userInfo.id] === undefined) {
-					userImgs[userInfo.id] = 1;
-					
-					$IMG({
-						//id : 'connect-' + connectId,
-						id : 'user-' + userInfo.id,
-						style : {
-							width: 50,
-							height: 50
-						},
-						src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + key
-					}).appendTo('#stage').hide().fadeIn();
-					
-				} else {
-					userImgs[userInfo.id]++;
+		var key = Math.random();
+		var addMessage = function(message,key) {
+			if ($('#messages').find('.message').size() > 100) {
+				// 100개가 넘으면 맨 위에 것을 지워줌
+				$('#messages').find('.message:first').remove();
+			}
+			
+			var t = $('#messages-wrapper').scrollTop();
+			$('#messages-wrapper').scrollTop(100000000000);
+			var t2 = $('#messages-wrapper').scrollTop();
+			
+			var $img;
+			if(key == null) key = 0;
+			$('#messages').append($DIV({cls:'message'+key},$LI({cls: 'message'}, 
+				$img = $IMG({style: {flt:'left', width:20, height:20, marginRight: 5}, src: message.sender.socialImageUrl ? message.sender.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + message.sender.id + '?' + key}),
+				$DIV({
+					style : {
+						flt:'left',
+						wordBreak: 'break-all',
+						width: 220
+					}
+				}, $SPAN({style: {fontWeight: 'bold', color:'orange'}}, message.sender.nickname), $BR(), message.content), 
+				$DIV({style:{clear:'both'}})))
+			);
+			
+			// 스크롤이 맨 아래일때만 자동으로 아래로 내려줌, 아닐경우 스크롤 유지.
+			if (t < t2) {
+				$('#messages-wrapper').scrollTop(t);
+			} else {
+				$('#messages-wrapper').scrollTop(100000000000);
+			}
+			
+			$img.load(function() {
+				$('#messages-wrapper').scrollTop(100000000000);
+			});
+			
+		};
+		var userImgs = {};
+		var addImg = function(connectId, userInfo) {
+			
+			if (userImgs[userInfo.id] === undefined) {
+				userImgs[userInfo.id] = 1;
+				
+				$IMG({
+					//id : 'connect-' + connectId,
+					id : 'user-' + userInfo.id,
+					style : {
+						width: 50,
+						height: 50
+					},
+					src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + key
+				}).appendTo('#stage').hide().fadeIn();
+				
+			} else {
+				userImgs[userInfo.id]++;
+			}
+		};
+		var removeImg = function (userInfo){
+			userImgs[userInfo.id]--;
+			if (userImgs[userInfo.id] === 0) {
+				delete userImgs[userInfo.id];
+				$('#user-' + userInfo.id).remove();
+			}
+		}
+		var iconFeedFunction = function(iconFeed) {
+			
+			var randomId = "x" + randomString(8);
+			
+			var top = $('#user-' + iconFeed.sender.id).offset().top + $('#user-' + iconFeed.sender.id).height() - 140;
+			var left = $('#user-' + iconFeed.sender.id).offset().left;
+			
+			if (iconFeed.item.isRepeat === true) {
+
+				var $div = $DIV({
+					id : randomId,
+					style: {
+						background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
+						width: 150,
+						height: 150,
+						position: 'absolute',
+						top: top,
+						left: left,
+						zIndex: 100000
+					}
+				});
+				
+				if($div!=null){
+					$div.sprite({fps: 12, no_of_frames: iconFeed.item.frameCount/*, rewind: iconFeed.item.isRewind*/}).appendTo('body');
 				}
-			};
+				
+				setTimeout(function() {
+					$div.fadeOut(function() {
+						$div.destroy();
+						$div.remove();
+					});
+				}, 2000);
+			
+			}
+			
+			else {
+
+				var $div = $DIV({
+					id : randomId,
+					style: {
+						background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
+						width: 150,
+						height: 150,
+						position: 'absolute',
+						top: top,
+						left: left,
+						zIndex: 100000
+					}
+				}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
+		            obj.destroy();
+		            $div.fadeOut(function() {
+						$div.remove();
+					});
+		        }}).appendTo('body');
+				
+				$div.hide();
+				$div.fadeIn();
+			
+			}
+		};
+		$(function() {
+			
+			
 			
 			$('#chat form').submit(function() {
 				POST('${pageContext.request.contextPath}/concert/chat', {
@@ -434,42 +539,7 @@
 				}
 			});
 			
-			var addMessage = function(message) {
-				if ($('#messages').find('.message').size() > 100) {
-					// 100개가 넘으면 맨 위에 것을 지워줌
-					$('#messages').find('.message:first').remove();
-				}
-				
-				var t = $('#messages-wrapper').scrollTop();
-				$('#messages-wrapper').scrollTop(100000000000);
-				var t2 = $('#messages-wrapper').scrollTop();
-				
-				var $img;
-				
-				$('#messages').append($LI({cls: 'message'}, 
-					$img = $IMG({style: {flt:'left', width:20, height:20, marginRight: 5}, src: message.sender.socialImageUrl ? message.sender.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + message.sender.id + '?' + key}),
-					$DIV({
-						style : {
-							flt:'left',
-							wordBreak: 'break-all',
-							width: 220
-						}
-					}, $SPAN({style: {fontWeight: 'bold', color:'orange'}}, message.sender.nickname), $BR(), message.content), 
-					$DIV({style:{clear:'both'}}))
-				);
-				
-				// 스크롤이 맨 아래일때만 자동으로 아래로 내려줌, 아닐경우 스크롤 유지.
-				if (t < t2) {
-					$('#messages-wrapper').scrollTop(t);
-				} else {
-					$('#messages-wrapper').scrollTop(100000000000);
-				}
-				
-				$img.load(function() {
-					$('#messages-wrapper').scrollTop(100000000000);
-				});
-				
-			};
+			
 			
 			GET('<c:url value="/concert/${command.id}/chat/cachedList" />', function(command) {
 				for (var i in command.list) {
@@ -505,62 +575,7 @@
 				});
 			});
 			
-			RTW.addHandler('Concert', '${command.id}', 'iconFeed', function(iconFeed) {
-				
-				var randomId = "x" + randomString(8);
-				
-				var top = $('#user-' + iconFeed.sender.id).offset().top + $('#user-' + iconFeed.sender.id).height() - 140;
-				var left = $('#user-' + iconFeed.sender.id).offset().left;
-				
-				if (iconFeed.item.isRepeat === true) {
-
-					var $div = $DIV({
-						id : randomId,
-						style: {
-							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
-							width: 150,
-							height: 150,
-							position: 'absolute',
-							top: top,
-							left: left,
-							zIndex: 100000
-						}
-					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount/*, rewind: iconFeed.item.isRewind*/}).appendTo('body');
-					
-					setTimeout(function() {
-						$div.fadeOut(function() {
-							$div.destroy();
-							$div.remove();
-						});
-					}, 2000);
-				
-				}
-				
-				else {
-
-					var $div = $DIV({
-						id : randomId,
-						style: {
-							background: 'url(<spring:eval expression="@userfileConfig.baseUrl" />/itemimage/' + iconFeed.item.id + ')',
-							width: 150,
-							height: 150,
-							position: 'absolute',
-							top: top,
-							left: left,
-							zIndex: 100000
-						}
-					}).sprite({fps: 12, no_of_frames: iconFeed.item.frameCount, on_last_frame: function(obj) {
-			            obj.destroy();
-			            $div.fadeOut(function() {
-							$div.remove();
-						});
-			        }}).appendTo('body');
-					
-					$div.hide();
-					$div.fadeIn();
-				
-				}
-			});
+			RTW.addHandler('Concert', '${command.id}', 'iconFeed', iconFeedFunction);
 			
 			RTW.addHandler('Concert', '${command.id}', 'changebg', function(b) {
 				

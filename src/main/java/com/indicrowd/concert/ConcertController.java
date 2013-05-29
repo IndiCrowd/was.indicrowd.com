@@ -186,8 +186,12 @@ public class ConcertController extends AbstractController {
 		for(int j=0; j<messages.size();j++){
 			Message m = messages.get(j);
 			m.setConcert(null);
-			m.setSenderName(m.getSender().getNickname());
-			m.setSender(null);
+			UserInfo userInfo = new UserInfo();
+			UserInfo sender = m.getSender();
+			userInfo.setSocialImageUrl(sender.getSocialImageUrl());
+			userInfo.setId(sender.getId());
+			userInfo.setNickname(sender.getNickname());
+			m.setSender(userInfo);
 			
 			Date date = m.getSendDate();
 			Calendar cal = DateUtil.getCalendar();
@@ -209,10 +213,18 @@ public class ConcertController extends AbstractController {
 		for(int j=0; j<iconFeeds.size();j++){
 			IconFeed feed = iconFeeds.get(j);
 			feed.setConcert(null);
-			feed.setSenderName(feed.getSender().getNickname());
-			feed.setSender(null);
-			feed.setItemId(feed.getItem().getId());
-			feed.setItem(null);
+			UserInfo userInfo = new UserInfo();
+			UserInfo sender = feed.getSender();
+			userInfo.setSocialImageUrl(sender.getSocialImageUrl());
+			userInfo.setId(sender.getId());
+			userInfo.setNickname(sender.getNickname());
+			feed.setSender(userInfo);
+			Item tempItem = new Item();
+			Item item = feed.getItem();
+			tempItem.setIsRepeat(item.isIsRepeat());
+			tempItem.setFrameCount(item.getFrameCount());
+			tempItem.setId(item.getId());
+			feed.setItem(tempItem);
 			Date date = feed.getSendDate();
 			Calendar cal = DateUtil.getCalendar();
 			

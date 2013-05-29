@@ -84,51 +84,63 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
         // page, it will destroy the SWF before clearing the interval.
         if(ytplayer && ytplayer.getDuration &&  nowStatus== 1) {
      	  var currentSecond = parseInt(ytplayer.getCurrentTime());
-     	  
-     	  if(currentSecond - nowSecond > 1){
-     		 var finishDate = new Date();
-	          finishDate.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
-     	  }else if(currentSecond - nowSecond < 0){
-     		  
+     	  var date = new Date();
+          date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
+     	  if(currentSecond - nowSecond > 1){ //forward
+     		 console.log('forward');
+     		 date.setTime(concertStartSigns[nowPlay].startDate+ nowSecond*1000);
+     		 for(var i=0 ;i < currentSecond -nowSecond; i++){
+     			date.setTime(date.getTime()+1000);
+     			showFeedbackByDate(date);
+     		 }
+     	  }else if(currentSecond - nowSecond < 0){ //rewind
+     		  console.log('rewind');
+     		  for(var i=0;i<nowSecond-currentSecond;i++){
+     			 date.setTime(date.getTime()+1000);
+     			 removeFeed(dateToKey(date));
+     		  }
      	  }else{
-     	  
-	          var date = new Date();
-	          date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
-	          
-	          
-	          
-	          //print chat, feed
-	          var messages = messageJson[dateToKey(date)];
-	          if(messages!=null){
-		          for(var i=0;i<messages.length;i++){
-		        	  var message = messages[i];
-		        	  
-		        	  $("#messages").append("<li>"+message.senderName+":"+message.content+"</li>");
-		          }
-	          }
-	          var feeds = feedJson[dateToKey(date)];
-	          if(feeds!=null){
-		          for(var i=0;i<feeds.length;i++){
-		        	  var feed = feeds[i];
-		        	  
-		        	  $("#feeds").append("<li>"+feed.senderName+":item["+feed.itemId+"]</li>");
-		          }
-	          }
+     		 showFeedbackByDate(date);
      	  }
           
           nowSecond = currentSecond;
           
-          updateHTML("videoDuration", ytplayer.getDuration());
+          /*updateHTML("videoDuration", ytplayer.getDuration());
           updateHTML("videoCurrentTime", dateToKey(date));
           updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
           updateHTML("startBytes", ytplayer.getVideoStartBytes());
-          updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
+          updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());*/
           
           
         }
       }
 
-      
+      function showFeedbackByDate(date){
+    	//print chat, feed
+    	  var key=dateToKey(date);
+          var messages = messageJson[key];
+          if(messages!=null){
+	          for(var i=0;i<messages.length;i++){
+	        	  var message = messages[i];
+	        	  addMessage(message,key);
+	        	  //$("#messages").append("<li class='message"+key+"'>"+message.senderName+":"+message.content+"</li>");
+	          }
+          }
+          var feeds = feedJson[key];
+          if(feeds!=null){
+	          for(var i=0;i<feeds.length;i++){
+	        	  var feed = feeds[i];
+	        	  console.log(feed);
+	        	  addImg(null,feed.sender);
+	        	  iconFeedFunction(feed);
+	        	 // $("#feeds").append("<li class='feed"+key+"''>"+feed.senderName+":item["+feed.itemId+"]</li>");
+	          }
+          }
+      }
+      function removeFeed(key){
+    	  $(".message"+key).remove();
+    	  //$(".feed"+key).remove();
+      }
       function dateToKey(date){
     	 return date.getFullYear()+dayToString(date.getMonth()+1)+dayToString(date.getDate())+dayToString(date.getHours())+dayToString(date.getMinutes())+dayToString(date.getSeconds())
       }
@@ -182,7 +194,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <tr>
     <td><div id="videoDiv">Loading...</div></td>
     <td valign="top">
-    	<table>
+    	<table id="videoList">
     		
     		<c:forEach items="${concertStartSignList }" var="startSign" varStatus="i">
     		<tr id="playList${i.index }" class="playListTr">
@@ -202,16 +214,20 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     </td></tr>
     </table>
     <div id="chatFlow">
-    	<ul id="messages">
-    	</ul>
+    	<!-- ul id="messages">
+    	</ul-->
     </div>
     <div id="feedFlow">
     	<ul id="feeds">
     	</ul>
     </div>
    <script>
+   	$(function(){
+   		$("#userface-wrapper").append($("#videoList"));
+   	})
    	messageJson= ${messageHash}
    	feedJson = ${feedHash}
+   	
    </script>
   </body>
   
