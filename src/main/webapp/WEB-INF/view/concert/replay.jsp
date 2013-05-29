@@ -17,7 +17,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>YouTube Player API Sample</title>
+    <title>공연 리플레이</title>
     <style type="text/css">
       #videoDiv { 
         margin-right: 3px;
@@ -41,6 +41,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     	  playList[playList.length] = concertStartSigns[i].youtubeToken;
       }
       var nowPlay=0;
+      var nowSecond=0;
       var messageJson = [];
       var feedJson = [];
       var nowStatus = -1;
@@ -83,27 +84,39 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
         // page, it will destroy the SWF before clearing the interval.
         if(ytplayer && ytplayer.getDuration &&  nowStatus== 1) {
      	  var currentSecond = parseInt(ytplayer.getCurrentTime());
-          var date = new Date();
-          date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
-          
-          
-          //print chat, feed
-          var messages = messageJson[dateToKey(date)];
-          if(messages!=null){
-	          for(var i=0;i<messages.length;i++){
-	        	  var message = messages[i];
-	        	  
-	        	  $("#messages").append("<li>"+message.senderName+":"+message.content+"</li>");
+     	  
+     	  if(currentSecond - nowSecond > 1){
+     		 var finishDate = new Date();
+	          finishDate.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
+     	  }else if(currentSecond - nowSecond < 0){
+     		  
+     	  }else{
+     	  
+	          var date = new Date();
+	          date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
+	          
+	          
+	          
+	          //print chat, feed
+	          var messages = messageJson[dateToKey(date)];
+	          if(messages!=null){
+		          for(var i=0;i<messages.length;i++){
+		        	  var message = messages[i];
+		        	  
+		        	  $("#messages").append("<li>"+message.senderName+":"+message.content+"</li>");
+		          }
 	          }
-          }
-          var feeds = feedJson[dateToKey(date)];
-          if(feeds!=null){
-	          for(var i=0;i<feeds.length;i++){
-	        	  var feed = feeds[i];
-	        	  
-	        	  $("#feeds").append("<li>"+feed.senderName+":item["+feed.itemId+"]</li>");
+	          var feeds = feedJson[dateToKey(date)];
+	          if(feeds!=null){
+		          for(var i=0;i<feeds.length;i++){
+		        	  var feed = feeds[i];
+		        	  
+		        	  $("#feeds").append("<li>"+feed.senderName+":item["+feed.itemId+"]</li>");
+		          }
 	          }
-          }
+     	  }
+          
+          nowSecond = currentSecond;
           
           updateHTML("videoDuration", ytplayer.getDuration());
           updateHTML("videoCurrentTime", dateToKey(date));

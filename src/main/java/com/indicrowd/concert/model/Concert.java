@@ -215,6 +215,7 @@ public class Concert implements Serializable {
 	
 	public static boolean isAvailableReserveTime(Integer startDate, Integer startHours, Integer startMinutes, Integer duration, long hallId){
 		
+		
 		Integer startDayTime = startDate%100 * 10000 + startHours*100 + startMinutes;
 		Calendar endCal = DateUtil.getCalendar(startDate/10000, startDate/100%100 -1, startDate%100, startHours, startMinutes+duration-1);
 		Integer endDate = DateUtil.calendarToInteger(endCal);
@@ -225,9 +226,10 @@ public class Concert implements Serializable {
 		Integer nowDate = DateUtil.calendarToInteger(nowCal);
 		
 		Integer nowDayTime = nowDate%100 *10000 + nowCal.get(Calendar.HOUR_OF_DAY)*100 + nowCal.get(Calendar.MINUTE);
+		
 		if(nowDate > startDate){ // reserve at past
 			return false;
-		}else if(nowDayTime> startDayTime){
+		}else if(nowDayTime> startDayTime&&(nowCal.get(Calendar.YEAR)==startDate/10000) &&(nowCal.get(Calendar.MONTH)+1==startDate/100%100) &&(nowCal.get(Calendar.DAY_OF_MONTH)==startDate%100)){
 			return false;
 		}
 		
@@ -239,6 +241,7 @@ public class Concert implements Serializable {
 				"OR (startDate%100 * 10000 + startHours *100 + startMinutes) BETWEEN :startDayTime AND :endDayTime)",Long.class)
 				.setParameter("startDate", startDate).setParameter("endDate",endDate)
 				.setParameter("startDayTime", startDayTime).setParameter("endDayTime", endDayTime).setParameter("hallId",hallId).getSingleResult();
+		
 		if (count > 0) {
 			return false;
 		}else if (count == 0){
