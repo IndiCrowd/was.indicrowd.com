@@ -27,6 +27,7 @@ public class ImageService {
 		String contentType = file.getContentType();
 		switch (contentType) {
 		case "image/jpeg":
+		case "image/pjpeg":
 		case "image/jpg":
 		case "image/gif":
 		case "image/png":
