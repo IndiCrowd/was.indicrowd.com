@@ -3,8 +3,6 @@ package com.indicrowd.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 
-import com.indicrowd.post.Comment;
-import com.indicrowd.post.Post;
 import com.indicrowd.user.model.UserInfo;
 
 public class BandPermission implements Permission {

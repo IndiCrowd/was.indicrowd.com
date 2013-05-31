@@ -620,6 +620,10 @@
 			});	
 		};
 		
+		if (('ondevicemotion' in window)) {
+		    window.addEventListener('devicemotion', useItem(1), false);
+		}
+		
 		function changeBG(e) {
 			$('#changeBGForm').show();
 			$('#changeBGForm').css({

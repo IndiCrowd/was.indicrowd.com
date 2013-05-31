@@ -11,8 +11,8 @@ import java.util.TimeZone;
 public class DateUtil {
 	public static void main(String[] args){
 		System.out.println(getDateString(getCalendar(),"YYYYMMDDHHMI"));
-		HashMap<String,List> a = new HashMap<String,List>();
-		List b = new ArrayList();
+		HashMap<String, List<String>> a = new HashMap<String, List<String>>();
+		List<String> b = new ArrayList<String>();
 		a.put("asdf",b);
 		b.add("1234");
 		System.out.println(a);

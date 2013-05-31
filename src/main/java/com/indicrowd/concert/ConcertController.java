@@ -79,7 +79,7 @@ public class ConcertController extends AbstractController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/reserve", method = RequestMethod.GET)
 	public void reserve(@ModelAttribute("command") Concert concert, Model model) {
-		
+		concert.setAudienceLimit(50);
 	}
 	
 	@RequestMapping(value = "/reserve/validateTime", method = RequestMethod.GET)
