@@ -68,6 +68,7 @@ public class JSCompressFilter implements Filter {
 			jsMap.put(request.getServletPath(), sw.toString());
 		}
 
+		response.setContentType("application/javascript; charset=UTF-8");
 		response.getWriter().write(jsMap.get(request.getServletPath()));
 	}
 

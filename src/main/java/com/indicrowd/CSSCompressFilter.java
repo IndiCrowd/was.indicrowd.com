@@ -46,6 +46,7 @@ public class CSSCompressFilter implements Filter {
 			cssMap.put(request.getServletPath(), sw.toString());
 		}
 
+		response.setContentType("text/css; charset=UTF-8");
 		response.getWriter().write(cssMap.get(request.getServletPath()));
 	}
 
