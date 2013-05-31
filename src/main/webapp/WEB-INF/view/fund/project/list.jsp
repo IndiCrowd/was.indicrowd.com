@@ -21,9 +21,11 @@
 		
 		<!--start: Wrapper-->
 		<div id="wrapper">
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<div class="row">
 				<a href="${pageContext.request.contextPath}/fund/project/create" role="button" class="btn btn-large btn-primary offset9" style="margin-bottom: 15px;" data-toggle="modal"><i class="icon-music icon-white"></i> 내 프로젝트 펀딩 받기!</a>	
 			</div>
+			</sec:authorize>
 			<div id="filters">
 				<ul class="option-set" data-option-key="filter">
 					<li><a href="#filter" class="selected" data-option-value="*">All</a></li>
