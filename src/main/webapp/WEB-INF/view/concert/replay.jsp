@@ -87,14 +87,12 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
      	  var date = new Date();
           date.setTime(concertStartSigns[nowPlay].startDate+ currentSecond*1000);
      	  if(currentSecond - nowSecond > 1){ //forward
-     		 console.log('forward');
      		 date.setTime(concertStartSigns[nowPlay].startDate+ nowSecond*1000);
      		 for(var i=0 ;i < currentSecond -nowSecond; i++){
      			date.setTime(date.getTime()+1000);
      			showFeedbackByDate(date);
      		 }
      	  }else if(currentSecond - nowSecond < 0){ //rewind
-     		  console.log('rewind');
      		  for(var i=0;i<nowSecond-currentSecond;i++){
      			 date.setTime(date.getTime()+1000);
      			 removeFeed(dateToKey(date));
@@ -123,6 +121,8 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 	          for(var i=0;i<messages.length;i++){
 	        	  var message = messages[i];
 	        	  addMessage(message,key);
+	        	  addImg(null,message.sender);
+	        	  displayMessageOnUser(message);
 	        	  //$("#messages").append("<li class='message"+key+"'>"+message.senderName+":"+message.content+"</li>");
 	          }
           }
