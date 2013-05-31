@@ -21,10 +21,12 @@
 		
 		<!--start: Wrapper-->
 		<div id="wrapper">
+			<sec:authorize access="!hasRole('ROLE_ADMIN')">
 			<div class="row">
 				<a href="<c:url value="/shop/create" />" role="button" class="btn offset10" data-toggle="modal">상점 생성</a>
 				<a href="<c:url value="/item/create" />" role="button" class="btn offset10" data-toggle="modal">아이템 생성</a>	
 			</div>
+			</sec:authorize>
 			<div id="filters">
 				<ul class="option-set" data-option-key="filter">
 					<li><a href="#filter" class="selected" data-option-value="*">All</a></li>

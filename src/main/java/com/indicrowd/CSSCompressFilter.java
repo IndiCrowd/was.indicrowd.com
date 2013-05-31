@@ -3,7 +3,6 @@ package com.indicrowd;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.Filter;
@@ -19,12 +18,13 @@ import com.yahoo.platform.yui.compressor.CssCompressor;
 
 public class CSSCompressFilter implements Filter {
 
-	private long lastDate = new Date().getTime();
 	private HashMap<String, String> cssMap = new HashMap<String, String>();
+
+	private FilterConfig filterConfig;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// not use.
+		this.filterConfig = filterConfig;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class CSSCompressFilter implements Filter {
 
 		if (cssMap.get(request.getServletPath()) == null) {
 
-			FileReader fileReader = new FileReader(request.getRealPath(request.getServletPath()));
+			FileReader fileReader = new FileReader(filterConfig.getServletContext().getRealPath(request.getServletPath()));
 
 			CssCompressor comp = new CssCompressor(fileReader);
 
@@ -46,12 +46,7 @@ public class CSSCompressFilter implements Filter {
 			cssMap.put(request.getServletPath(), sw.toString());
 		}
 
-		if (request.getDateHeader("if-none-match") == lastDate) {
-			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
-		} else {
-			response.setDateHeader("ETag", lastDate);
-			response.getWriter().write(cssMap.get(request.getServletPath()));
-		}
+		response.getWriter().write(cssMap.get(request.getServletPath()));
 	}
 
 	@Override
