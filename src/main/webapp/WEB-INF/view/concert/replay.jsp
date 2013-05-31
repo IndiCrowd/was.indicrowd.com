@@ -224,6 +224,9 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
    <script>
    	$(function(){
    		$("#userface-wrapper").append($("#videoList"));
+   		$("#function-wrapper").remove();
+   		$("#form-wrapper").remove();
+
    	})
    	messageJson= ${messageHash}
    	feedJson = ${feedHash}
