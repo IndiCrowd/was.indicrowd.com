@@ -29,13 +29,13 @@ public class ProjectController extends AbstractController {
 	private static final int NORMAL_COUNT_PER_PAGE = 10;
 	private static final int MAX_COUNT_PER_PAGE = 50;
 
-	@Secured("ROLE_USER")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create(@ModelAttribute("command") Project project, Model model) {
 		return "fund/project/form";
 	}
 
-	@Secured("ROLE_USER")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute("command") Project project, BindingResult bindingResult, Model model, HttpServletRequest request) throws IOException {
 
@@ -76,8 +76,8 @@ public class ProjectController extends AbstractController {
 				fileService.save(imageService.generateThumb(project.getProfilePhoto()), "projectthumb/" + project.getId().toString(), true);
 			//}
 
-			//return "redirect:/fund/project/" + project.getId() + "/rewards";
-			return "redirect:/fund/project/" + project.getId();
+			return "redirect:/fund/project/" + project.getId() + "/rewards";
+			//return "redirect:/fund/project/" + project.getId();
 		}
 	}
 	
@@ -152,8 +152,8 @@ public class ProjectController extends AbstractController {
 			
 			originProject.merge();
 
-			//return "redirect:/fund/project/" + project.getId() + "/rewards";
-			return "redirect:/fund/project/" + project.getId();
+			return "redirect:/fund/project/" + project.getId() + "/rewards";
+			//return "redirect:/fund/project/" + project.getId();
 		}
 	}
 	

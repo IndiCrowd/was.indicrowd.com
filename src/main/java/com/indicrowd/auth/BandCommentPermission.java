@@ -3,7 +3,6 @@ package com.indicrowd.auth;
 import org.springframework.security.core.Authentication;
 
 import com.indicrowd.post.Comment;
-import com.indicrowd.post.Post;
 import com.indicrowd.user.model.UserInfo;
 
 public class BandCommentPermission implements Permission {
