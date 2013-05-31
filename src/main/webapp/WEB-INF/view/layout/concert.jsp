@@ -499,6 +499,30 @@
 			
 			}
 		};
+		function displayMessageOnUser(message){
+			$('#user-' + message.sender.id).each(function() {
+				var $img = $(this);
+				var $span = $SPAN({
+					cls : 'ui-tooltip',
+					style : {
+						position : 'absolute',
+						top : $img.offset().top,
+						left : $img.offset().left
+					}
+				}, message.content).appendTo('body');
+				$span.css({
+					display : 'none',
+					left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
+					top : '-=' + $span.outerHeight() + 'px'
+				});
+				$span.fadeIn(100);
+				setTimeout(function() {
+					$span.fadeOut(function() {
+						$(this).remove();
+					});
+				}, 2000);
+			});
+		}
 		$(function() {
 			
 			
@@ -551,28 +575,7 @@
 			RTW.addHandler('Concert', '${command.id}', 'newMessage', function(message) {
 				addMessage(message);
 				
-				$('#user-' + message.sender.id).each(function() {
-					var $img = $(this);
-					var $span = $SPAN({
-						cls : 'ui-tooltip',
-						style : {
-							position : 'absolute',
-							top : $img.offset().top,
-							left : $img.offset().left
-						}
-					}, message.content).appendTo('body');
-					$span.css({
-						display : 'none',
-						left : '-=' + (($span.outerWidth() - $img.outerWidth()) / 2) + 'px',
-						top : '-=' + $span.outerHeight() + 'px'
-					});
-					$span.fadeIn(100);
-					setTimeout(function() {
-						$span.fadeOut(function() {
-							$(this).remove();
-						});
-					}, 2000);
-				});
+				displayMessageOnUser(message);
 			});
 			
 			RTW.addHandler('Concert', '${command.id}', 'iconFeed', iconFeedFunction);
