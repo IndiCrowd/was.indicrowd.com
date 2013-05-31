@@ -617,9 +617,13 @@
 			});	
 		};
 		
-		if (('ondevicemotion' in window)) {
-		    window.addEventListener('devicemotion', useItem(1), false);
-		}
+		$(document).ready(function() {
+			
+			$(this).gShake(function() {
+				useItem(1);
+			});
+			
+		});
 		
 		function changeBG(e) {
 			$('#changeBGForm').show();
