@@ -225,7 +225,7 @@
 				<c:forEach items="${command.list}" var="one">
 				<div class="span3 item m-${one.startDate.toString().substring(0, 6)} d-${one.startDate.toString()}">
 					<div class="picture">
-						<a class="image" href="javascript:popup('<c:url value="/concert/${one.id}" />', 'Concert', 1000, 700); void(0)" title="Title"><img
+						<a class="image" href="javascript:popup('<c:url value="/concert/${one.id}/replay" />', 'Concert', 1000, 700); void(0)" title="Title"><img
 							src="<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${one.id}" alt="" /></a>
 						<h3>${one.title}</h3>
 						<div class="description">

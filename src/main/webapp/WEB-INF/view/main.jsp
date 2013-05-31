@@ -125,7 +125,7 @@
 										
 										<c:forEach items="${previousConcertList}" var="concert">
 											<div style="width: 33%; height: 100%; float: left; position: relative;">
-												<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" style="background-image: url(<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id})" class="concert-content">
+												<div onclick="popup('<c:url value="/concert/${concert.id}/replay" />', 'Concert', 1000, 700);" style="background-image: url(<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id})" class="concert-content">
 													<h4 style="line-height: 1.4em;">${concert.title} - ${concert.bandInfo.name}</h4>
 													<span class="time">${concert.startHours}시 ${concert.startMinutes}분 부터, ${concert.duration}분 동안!</span>
 													<div class="play_border">
