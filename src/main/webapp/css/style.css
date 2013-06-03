@@ -5532,4 +5532,10 @@ a.buy:hover {
     border-top: 16px solid transparent;
     border-bottom: 16px solid transparent;
     border-left: 16px solid rgba(255,255,255,.8);
-} 
+}
+.transparent {
+    filter: alpha(opacity=50); /* internet explorer */
+    -khtml-opacity: 0.5;      /* khtml, old safari */
+    -moz-opacity: 0.5;       /* mozilla, netscape */
+    opacity: 0.5;           /* fx, safari, opera */
+}

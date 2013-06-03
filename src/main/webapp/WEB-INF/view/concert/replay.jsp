@@ -19,19 +19,66 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>공연 리플레이</title>
     <style type="text/css">
+      #concert-wrapper{
+      	height:500px;
+      }
+      #info-wrapper{
+      	top:600px;
+      }
+      #stage-wrapper{
+      	top:630px;
+      }
       #videoDiv { 
         margin-right: 3px;
+      }
+      #userface-wrapper{
+      	overflow-y :scroll;
+      }
+      #videoList{
+      	width:100%;
       }
       #videoInfo {
         margin-left: 3px;
       }
+      a {
+		  color: #0088cc;
+		  text-decoration: none;
+		}
+		
+		a:hover {
+		  color: #005580;
+		  text-decoration: underline;
+		}
+      a:focus {
+		  outline:none;
+		  outline-offset: -2px;
+		}
+		
+		a:hover,
+		a:active {
+		  outline: none;
+		}
       .playListTr{
-      	background-color: #999999
+      	cursor:pointer;
+      	color:#FFFFFF;
+      	font-size: 18px;
+      }
+      .playListTr:hover{
+      	background-color: #dee0ea;
+      	color:#111111
       }
       .playing{
       	background-color : #AA0000;
       }
+      .transparent {
+		    filter: alpha(opacity=50); /* internet explorer */
+		    -khtml-opacity: 0.5;      /* khtml, old safari */
+		    -moz-opacity: 0.5;       /* mozilla, netscape */
+		    opacity: 0.5;           /* fx, safari, opera */
+		}
     </style>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
       google.load("swfobject", "2.1");
@@ -51,10 +98,6 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
        * Polling the player for information
        */
       
-      // Update a particular HTML element with a new value
-      function updateHTML(elmId, value) {
-        document.getElementById(elmId).innerHTML = value;
-      }
       
       // This function is called when an error is thrown by the player
       function onPlayerError(errorCode) {
@@ -63,7 +106,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       
       // This function is called when the player changes state
       function onPlayerStateChange(newState) {
-        updateHTML("playerState", newState);
+        
         nowStatus = newState;
         if(newState == 0){ // if player End
         	if(playList.length > nowPlay + 1){
@@ -103,11 +146,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           
           nowSecond = currentSecond;
           
-          /*updateHTML("videoDuration", ytplayer.getDuration());
-          updateHTML("videoCurrentTime", dateToKey(date));
-          updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
-          updateHTML("startBytes", ytplayer.getVideoStartBytes());
-          updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());*/
+          
           
           
         }
@@ -194,24 +233,25 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <tr>
     <td><div id="videoDiv">Loading...</div></td>
     <td valign="top">
+    	<div id="videoListDiv">
     	<table id="videoList">
     		
     		<c:forEach items="${concertStartSignList }" var="startSign" varStatus="i">
-    		<tr id="playList${i.index }" class="playListTr">
-    			<td><a href="javascript:loadVideo(${i.index });void(0)">${i.index+1 }. ${startSign.startDate } ~</a></td>
+    		<tr id="playList${i.index }" class="playListTr" onClick="javascript:loadVideo(${i.index });">
+    			<td>${i.index+1 }. ${startSign.startDate } ~</td>
     		</tr>
     		</c:forEach>
+    		
     	</table>
+    	</div>
     </td>
     </tr>
     <tr>
-    <td  colspan="2" valign="top">
-      <div id="videoInfo">
-        <p>Player state: <span id="playerState">--</span></p>
-        <p>Current Time: <span id="videoCurrentTime">--:--</span> | Duration: <span id="videoDuration">--:--</span></p>
-        <p>Bytes Total: <span id="bytesTotal">--</span> | Start Bytes: <span id="startBytes">--</span> | Bytes Loaded: <span id="bytesLoaded">--</span></p>
-      </div>
-    </td></tr>
+    	<td colspan="">
+    		<div id="container" style="min-width: 400px; height: 180px; margin: 0 auto"></div>
+    	</td>
+    </tr>
+    
     </table>
     <div id="chatFlow">
     	<!-- ul id="messages">
@@ -226,7 +266,76 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
    		$("#userface-wrapper").append($("#videoList"));
    		$("#function-wrapper").remove();
    		$("#form-wrapper").remove();
-
+		$("#userface-opti").remove();
+		
+		
+		//highchart init
+		$('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },title :'',
+            xAxis: {
+                type: 'datetime'
+            },
+            legend: {
+                enabled:false
+            },
+            yAxis: {
+                title: {
+                    text: 'Wind speed (m/s)'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null,
+                plotBands: [{ // Light air
+                    from: 0.3,
+                    to: 1.5,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: 'Light air',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }]
+            },
+            tooltip: {
+                valueSuffix: ' m/s'
+            },
+            plotOptions: {
+                spline: {
+                    lineWidth: 4,
+                    states: {
+                        hover: {
+                            lineWidth: 5
+                        }
+                    },
+                    marker: {
+                        enabled: false
+                    },
+                    pointInterval: 3600000, // one hour
+                    pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
+                }
+            },
+            series: [{
+                name: 'Hestavollane',
+                data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
+                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
+                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
+                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
+                    3.0, 3.0]
+    
+            }]
+            ,
+            navigation: {
+                menuItemStyle: {
+                    fontSize: '10px'
+                }
+            },credits: {
+                enabled: false
+            }
+        });
    	})
    	messageJson= ${messageHash}
    	feedJson = ${feedHash}
