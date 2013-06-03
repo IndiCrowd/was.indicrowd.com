@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.util.HtmlUtils;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
@@ -424,6 +425,10 @@ public class ConcertController extends AbstractController {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
 
+				String msg = message.getContent();
+				msg = HtmlUtils.htmlEscape(msg);
+				message.setContent(msg);
+				
 				message.setConcert(concert);
 				message.setSender(authService.getUserInfo());
 				message.setSendDate(new Date());
