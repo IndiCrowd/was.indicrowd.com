@@ -45,7 +45,6 @@
 			var urlKey = parseYoutubeUrl(url);
 			if(urlKey == null) alert('유효하지 않은 YouTube 주소 입니다. 주소를 확인해주세요.')
 			else{
-				alert(urlKey);
 				POST('${pageContext.request.contextPath}/band/${bandInfo.id}/addYoutubeVideo.json',{
 					urlKey : urlKey
 				},function(object) {

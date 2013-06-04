@@ -25,7 +25,7 @@
 				<div class="control-group <spring:bind path="content"><c:if test="${not empty status.errorMessage}">error</c:if></spring:bind>">
 					<label class="control-label" for="content">글내용</label>
 					<div class="controls">
-						<form:textarea path="content" cssClass="input-xlarge" />
+						<form:textarea path="content" cssClass="cleditor input-xxlarge" rows="6"/>
 						<form:errors path="content" cssClass="help-inline" />
 					</div>
 				</div>
