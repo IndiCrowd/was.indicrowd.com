@@ -417,6 +417,7 @@ public class ConcertController extends AbstractController {
 	public String getChatKey(Long id) {
 		return "IndiCrowd:chat:" + id;
 	}
+	
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
@@ -424,10 +425,12 @@ public class ConcertController extends AbstractController {
 		if (!bindingResult.hasErrors()) {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
-
-				String msg = message.getContent();
-				msg = HtmlUtils.htmlEscape(msg);
-				message.setContent(msg);
+				
+				boolean createBand = authService.isAuthorizedUserOfBand(concert.getBandInfo().getId());
+				if (!message.processMessageContent(message, createBand))
+				{
+					return ;
+				}
 				
 				message.setConcert(concert);
 				message.setSender(authService.getUserInfo());
