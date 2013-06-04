@@ -42,7 +42,7 @@
 				<c:forEach items="${command.list}" var="one">
 				<div class="span2 item shop-${one.shop.id}">
 					<div class="picture">
-						<a class="image" href="${pageContext.request.contextPath}/item/${one.id}" title="Title"><img
+						<a class="image" title="Title"><img
 							src="<spring:eval expression="@userfileConfig.getProperty('baseUrl')" />/itemthumb/${one.id}" alt="" /></a>
 						<h3>${one.name}</h3>
 						<div class="description">

@@ -251,6 +251,10 @@ public class Concert implements Serializable {
 		}
 	}
 	
+	public static List<Concert> findAllConcerts() {
+        return entityManager().createQuery("SELECT o FROM Concert o AND isValid=true", Concert.class).getResultList();
+    }
+	
 	public long getStartTimeInMillis () {
 		Calendar cal = Calendar.getInstance();
 		

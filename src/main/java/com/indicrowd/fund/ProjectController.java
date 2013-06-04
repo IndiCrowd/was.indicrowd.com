@@ -199,8 +199,8 @@ public class ProjectController extends AbstractController {
 	}
 
 	@RequestMapping("/list")
-	public void list(Integer countPerPage, Model model) {
-		list(1, countPerPage, model);
+	public String list(Integer countPerPage, Model model) {
+		return list(1, countPerPage, model);
 	}
 
 	@RequestMapping("/list/{page}")
@@ -230,6 +230,10 @@ public class ProjectController extends AbstractController {
 		
 		List<Tag> tagList = Tag.findAllTags();
 		model.addAttribute("tagList", tagList);
+		
+		if (listInfo.getList().size() == 1) {
+			return "redirect:/fund/project/" + listInfo.getList().get(0).getId(); 
+		}
 
 		return "fund/project/list";
 	}
