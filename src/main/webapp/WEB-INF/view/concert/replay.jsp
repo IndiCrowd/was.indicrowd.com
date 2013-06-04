@@ -22,6 +22,9 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       #concert-wrapper{
       	height:500px;
       }
+      #chat-wrapper{
+      	top:300px;
+      }
       #info-wrapper{
       	top:600px;
       }
@@ -81,6 +84,11 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 	<script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
+    Highcharts.setOptions({
+    	global: {
+    		useUTC: true
+    	}
+    });
       google.load("swfobject", "2.1");
       var concertStartSigns = ${concertStartSignListJson};
       var playList=[];
@@ -248,7 +256,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     </tr>
     <tr>
     	<td colspan="">
-    		<div id="container" style="min-width: 400px; height: 180px; margin: 0 auto"></div>
+    		<div id="container" style="min-width: 480px; width:100%; height: 180px; margin: 0 auto"></div>
     	</td>
     </tr>
     
@@ -262,6 +270,8 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     	</ul>
     </div>
    <script>
+   var startDate = new Date();
+   startDate.setTime(concertStartSigns[0].startDate);
    	$(function(){
    		$("#userface-wrapper").append($("#videoList"));
    		$("#function-wrapper").remove();
@@ -282,26 +292,15 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
             },
             yAxis: {
                 title: {
-                    text: 'Wind speed (m/s)'
+                    text: '관객 호응'
                 },
                 min: 0,
                 minorGridLineWidth: 0,
                 gridLineWidth: 0,
-                alternateGridColor: null,
-                plotBands: [{ // Light air
-                    from: 0.3,
-                    to: 1.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Light air',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }]
+                alternateGridColor: null
             },
             tooltip: {
-                valueSuffix: ' m/s'
+                valueSuffix: ''
             },
             plotOptions: {
                 spline: {
@@ -314,27 +313,44 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
                     marker: {
                         enabled: false
                     },
-                    pointInterval: 3600000, // one hour
-                    pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
+                    pointInterval: 10000, // one hour
+                    pointStart: startDate.getTime()
+                },
+                series: {
+                    
+                	point: {
+                        events: {
+                            click: function() {
+                                alert ('Category: '+ this.category +', value: '+ this.x);
+                            }
+                        }
+                    }
                 }
             },
             series: [{
-                name: 'Hestavollane',
+                name: '관객 호응',
                 data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
+                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
+                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
+                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
+                    3.0, 3.0,4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
                     7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
                     8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
                     7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
                     3.0, 3.0]
     
             }]
-            ,
-            navigation: {
+            ,navigation: {
                 menuItemStyle: {
                     fontSize: '10px'
                 }
             },credits: {
                 enabled: false
+            },exporting:{
+            	enabled: false
             }
+            
+
         });
    	})
    	messageJson= ${messageHash}
