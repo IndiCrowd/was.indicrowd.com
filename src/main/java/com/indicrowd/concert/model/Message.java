@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.web.util.HtmlUtils;
 
 import com.indicrowd.user.model.UserInfo;
 
@@ -46,6 +47,10 @@ public class Message {
 	@Transient
 	private String senderName;
 	
+	@Size(max = 10)
+	@Column(length = 10, nullable = true)
+	private String type;
+	
 	public static List<Message> findMessageEntriesByConcertId(Long concertId, int firstResult, int maxResults) {
 		List<Message> list = entityManager().createQuery("SELECT o FROM Message o WHERE o.concert.id = :concertId ORDER BY o.id DESC", Message.class).setParameter("concertId", concertId).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
 		Collections.reverse(list);
@@ -61,4 +66,21 @@ public class Message {
 		return list;
 	}
 
+	public boolean processMessageContent(Message message, boolean createBand) {
+		String type = message.getType();
+		
+		if (!createBand && (type != null && type.length() > 0)) {
+			return false;
+		}
+		
+		String msg = HtmlUtils.htmlEscape(message.getContent());
+		
+		if (type != null && type.equals("notice")) {
+			msg = String.format("<font style=\"font-weight:bold;color:#aa0000;\">%s</font>", msg);
+		}	
+		
+		message.setContent(msg);
+	
+		return true;
+	}
 }

@@ -531,6 +531,7 @@
 				POST('${pageContext.request.contextPath}/concert/chat', {
 					concertId: '${command.id}'
 					, content: $('#message').val()
+					, type: ''
 				}, function(data) {
 					console.log(data);
 				});

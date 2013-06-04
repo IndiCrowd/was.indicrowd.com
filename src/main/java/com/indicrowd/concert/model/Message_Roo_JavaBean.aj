@@ -58,4 +58,12 @@ privileged aspect Message_Roo_JavaBean {
         this.senderName = senderName;
     }
     
+    public String Message.getType() {
+        return this.type;
+    }
+    
+    public void Message.setType(String type) {
+        this.type = type;
+    }
+    
 }

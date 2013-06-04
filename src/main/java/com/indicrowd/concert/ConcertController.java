@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.util.HtmlUtils;
 
 import com.indicrowd.AbstractController;
 import com.indicrowd.ListInfo;
@@ -416,6 +417,7 @@ public class ConcertController extends AbstractController {
 	public String getChatKey(Long id) {
 		return "IndiCrowd:chat:" + id;
 	}
+	
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/chat", method = RequestMethod.POST)
@@ -423,7 +425,13 @@ public class ConcertController extends AbstractController {
 		if (!bindingResult.hasErrors()) {
 			Concert concert = Concert.findConcert(message.getConcertId());
 			if (concert != null) {
-
+				
+				boolean createBand = authService.isAuthorizedUserOfBand(concert.getBandInfo().getId());
+				if (!message.processMessageContent(message, createBand))
+				{
+					return ;
+				}
+				
 				message.setConcert(concert);
 				message.setSender(authService.getUserInfo());
 				message.setSendDate(new Date());
