@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.zip.GZIPOutputStream;
 
@@ -25,6 +26,8 @@ import org.mozilla.javascript.EvaluatorException;
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 public class JSCompressFilter implements Filter {
+	
+	private long lastDate = new Date().getTime();
 
 	private HashMap<String, String> jsMap = new HashMap<String, String>();
 
@@ -72,12 +75,8 @@ public class JSCompressFilter implements Filter {
 
 			jsMap.put(request.getServletPath(), sw.toString());
 		}
-
-		response.setContentType("application/javascript; charset=UTF-8");
-		response.getWriter().write(jsMap.get(request.getServletPath()));
 		
 		
-		//System.out.println("TEST!!!");
 		// Create a gzip stream
         final ByteArrayOutputStream compressed = new ByteArrayOutputStream();
         final GZIPOutputStream gzout = new GZIPOutputStream(compressed);
@@ -85,7 +84,10 @@ public class JSCompressFilter implements Filter {
         // Handle the request
         final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
         wrapper.setDisableFlushBuffer(true);
-        chain.doFilter(request, wrapper);
+
+        wrapper.setContentType("application/javascript; charset=UTF-8");
+        wrapper.getWriter().write(jsMap.get(request.getServletPath()));
+		
         wrapper.flush();
 
         gzout.close();
@@ -121,11 +123,19 @@ public class JSCompressFilter implements Filter {
         // Write the zipped body
         ResponseUtil.addGzipHeader(response);
 
-        response.setContentLength(compressedBytes.length);
-        
-        System.out.println(compressedBytes.length);
-
-        response.getOutputStream().write(compressedBytes);
+        try {
+			if (request.getDateHeader("if-none-match") == lastDate) {
+				response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+			} else {
+				response.setDateHeader("ETag", lastDate);
+		        response.setContentLength(compressedBytes.length);
+		        response.getOutputStream().write(compressedBytes);
+			}
+		} catch (Exception e) {
+			response.setDateHeader("ETag", lastDate);
+	        response.setContentLength(compressedBytes.length);
+	        response.getOutputStream().write(compressedBytes);
+		}
 	}
 
 	@Override

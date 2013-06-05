@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.zip.GZIPOutputStream;
 
@@ -23,6 +24,8 @@ import com.yahoo.platform.yui.compressor.CssCompressor;
 
 public class CSSCompressFilter implements Filter {
 
+	private long lastDate = new Date().getTime();
+	
 	private HashMap<String, String> cssMap = new HashMap<String, String>();
 
 	private FilterConfig filterConfig;
@@ -50,9 +53,6 @@ public class CSSCompressFilter implements Filter {
 
 			cssMap.put(request.getServletPath(), sw.toString());
 		}
-
-		response.setContentType("text/css; charset=UTF-8");
-		response.getWriter().write(cssMap.get(request.getServletPath()));
 		
 		
 		
@@ -63,7 +63,10 @@ public class CSSCompressFilter implements Filter {
         // Handle the request
         final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
         wrapper.setDisableFlushBuffer(true);
-        chain.doFilter(request, wrapper);
+
+        wrapper.setContentType("text/css; charset=UTF-8");
+        wrapper.getWriter().write(cssMap.get(request.getServletPath()));
+		
         wrapper.flush();
 
         gzout.close();
@@ -99,9 +102,19 @@ public class CSSCompressFilter implements Filter {
         // Write the zipped body
         ResponseUtil.addGzipHeader(response);
 
-        response.setContentLength(compressedBytes.length);
-
-        response.getOutputStream().write(compressedBytes);
+        try {
+			if (request.getDateHeader("if-none-match") == lastDate) {
+				response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+			} else {
+				response.setDateHeader("ETag", lastDate);
+		        response.setContentLength(compressedBytes.length);
+		        response.getOutputStream().write(compressedBytes);
+			}
+		} catch (Exception e) {
+			response.setDateHeader("ETag", lastDate);
+	        response.setContentLength(compressedBytes.length);
+	        response.getOutputStream().write(compressedBytes);
+		}
 	}
 
 	@Override
