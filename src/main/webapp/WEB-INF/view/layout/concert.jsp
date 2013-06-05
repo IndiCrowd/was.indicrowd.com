@@ -543,7 +543,7 @@
 							padding: '5px 10px',
 							margin: 0
 						}
-					}, $A('유저 정보 보기')),
+					}, $A({style: {color:'#000', textDecoration: 'none'}, href:'${pageContext.request.contextPath}/user/' + userInfo.id, target:'_blank'},'유저 정보 보기')),
 					userInfo.socialImageUrl ? $LI({
 						style: {
 							border: '1px solid #000',
@@ -552,7 +552,7 @@
 							margin: 0,
 							marginTop: -1
 						}
-					}, $A(userInfo.socialProviderId)) : ''
+					}, $A({style: {color:'#000', textDecoration: 'none'}, href:userInfo.socialProfileUrl, target:'_blank'}, userInfo.socialProviderId)) : ''
 					).appendTo('body').hide().fadeIn();
 					
 					setTimeout(function() {
