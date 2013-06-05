@@ -105,6 +105,7 @@
 							
 							
 							<div class="form-actions">
+								<p>* 공연이 끝난 이후, 리플레이 기능을 위해 유튜브에 영상이 등록될 수 있습니다.</p> 
 								<button type="button" id="reserveSubmit" class="btn btn-primary">공연 예약!</button>
 								<button type="reset" class="btn">취소</button>
 							</div>
