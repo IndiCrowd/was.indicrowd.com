@@ -42,6 +42,7 @@
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.serverSubscribeStr = '${command.id}';
+		        flashvars.ver = '1';
 		        
 		        var params = {};
 		        params.quality = 'high';
@@ -84,6 +85,7 @@
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.clientPublishStr = '${principal.id}';
 				flashvars.clientDefaultImage = imgSrc;
+		        flashvars.ver = '1';
 		        
 		        var params = {};
 		        params.quality = 'high';
