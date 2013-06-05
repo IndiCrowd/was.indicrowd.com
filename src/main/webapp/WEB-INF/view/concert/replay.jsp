@@ -233,6 +233,29 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     	  $(".playListTr").removeClass("playing");
           $("#playList"+index).addClass("playing");
       }
+      function setPlayerWithTime(time){
+    	  console.log('nowTime: '+(time-32400000));
+    	  var nowTime = time- 32400000;
+    	  var nowIndex = 0;
+    	  var nowStartTime = 0;
+    	  for(var i=0; i<concertStartSigns.length;i++){
+    		  var startTime = concertStartSigns[i].startDate;
+        	  
+        	  if(nowTime> startTime){
+        		  nowIndex = i;
+        		  nowStartTime = startTime;
+        	  }
+          }
+    	  console.log("nowTime:"+ nowTime);
+    	  console.log("nowIndex:"+nowIndex);
+    	  console.log("nowStartTime:"+nowStartTime);
+    	  console.log("playTime:"+ (nowTime- nowStartTime)/1000);
+    	  var playTime = (nowTime- nowStartTime)/1000;
+    	  if(ytplayer){
+    		  loadVideo(nowIndex);
+    		  ytplayer.seekTo(playTime);
+    	  }
+      }
       google.setOnLoadCallback(_run);
     </script>
   </head>
@@ -271,7 +294,10 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     </div>
    <script>
    var startDate = new Date();
-   startDate.setTime(concertStartSigns[0].startDate);
+   var concertStartTime = ${concertStartTime};
+   startDate.setTime(concertStartTime);
+   startDate.setHours(startDate.getHours()+9); // toUTC
+   var feedCountList;
    	$(function(){
    		$("#userface-wrapper").append($("#videoList"));
    		$("#function-wrapper").remove();
@@ -313,7 +339,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
                     marker: {
                         enabled: false
                     },
-                    pointInterval: 10000, // one hour
+                    pointInterval: 30000, // 30 second
                     pointStart: startDate.getTime()
                 },
                 series: {
@@ -321,7 +347,8 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
                 	point: {
                         events: {
                             click: function() {
-                                alert ('Category: '+ this.category +', value: '+ this.x);
+                               // alert ('Category: '+ this.category +', value: '+ this.x);
+                                setPlayerWithTime(this.x);
                             }
                         }
                     }
@@ -329,15 +356,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
             },
             series: [{
                 name: '관객 호응',
-                data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
-                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
-                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
-                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
-                    3.0, 3.0,4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
-                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
-                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
-                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
-                    3.0, 3.0]
+                data: feedCountList
     
             }]
             ,navigation: {
@@ -355,7 +374,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
    	})
    	messageJson= ${messageHash}
    	feedJson = ${feedHash}
-   	
+   	feedCountList = ${feedCountListJson}
    </script>
   </body>
   
