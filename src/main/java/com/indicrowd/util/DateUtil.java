@@ -11,10 +11,9 @@ import java.util.TimeZone;
 public class DateUtil {
 	public static void main(String[] args){
 		Calendar a =getCalendar();
-		Calendar b = getCalendarWithInteger(20130303);
-		long c= a.getTimeInMillis();
-		long d= b.getTimeInMillis();
-		System.out.println(c>d);
+		System.out.println(DateUtil.getDateString(a,"YYYYMMDDHHMISS"));
+		a.setTimeInMillis(a.getTimeInMillis()+1000);
+		System.out.println(DateUtil.getDateString(a,"YYYYMMDDHHMISS"));
 	}
 	
 	public static Integer calendarToInteger(Calendar cal){

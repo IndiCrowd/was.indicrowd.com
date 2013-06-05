@@ -176,7 +176,7 @@ public class ConcertController extends AbstractController {
 		List<ConcertStartSign> concertStartSign = ConcertStartSign.findConcertStartSignListByConcertId(concertId);
 		List<Message> messages = Message.findMessageByConcertId(concertId);
 		List<IconFeed> iconFeeds = IconFeed.findIconFeedByConcertId(concertId);
-		
+		Concert concert = Concert.findConcert(concertId);
 		for(int i=0; i<concertStartSign.size();i++){
 			ConcertStartSign c = concertStartSign.get(i);
 			c.setConcertId(c.getConcert().getId());
@@ -241,15 +241,36 @@ public class ConcertController extends AbstractController {
 				feedList.add(feed);
 			}
 		}
+		List<Integer> feedCountList = new ArrayList<Integer>();
+		Integer startDate = concert.getStartDate();
+		Calendar cal = DateUtil.getCalendar(startDate/10000, startDate/100%100 - 1, startDate%100, concert.getStartHours(),concert.getStartMinutes());	
+		long concertStartTime = cal.getTimeInMillis();
+		for(int i=0; i<concert.getDuration()*2; i++){
+			Integer feedCount = 0;
+			for(int j=0;j<30;j++){
+				cal.setTimeInMillis(cal.getTimeInMillis()+1000);
+				String feedKey = DateUtil.getDateString(cal,"YYYYMMDDHHMISS");
+				List<Message> messageFeed = messageHash.get(feedKey);
+				List<IconFeed> iconFeed = feedHash.get(feedKey);
+				feedCount += messageFeed == null? 0 : messageFeed.size();
+				feedCount += iconFeed == null? 0 : iconFeed.size();
+			}
+			
+			
+			
+			feedCountList.add(feedCount);
+		}
 		
 		
-		System.out.println(messageHash.keySet());
-		System.out.println(feedHash.keySet());
+		
 		ObjectMapper objectMapper = new ObjectMapper();
+		model.addAttribute("command", concert);
+		model.addAttribute("concertStartTime",concertStartTime);
 		model.addAttribute("concertStartSignList" , concertStartSign);
 		model.addAttribute("concertStartSignListJson" , objectMapper.writeValueAsString(concertStartSign));
 		model.addAttribute("messageHash",objectMapper.writeValueAsString(messageHash));
 		model.addAttribute("feedHash",objectMapper.writeValueAsString(feedHash));
+		model.addAttribute("feedCountListJson",objectMapper.writeValueAsString(feedCountList));
 		
 		return "concert/replay";
 	}
