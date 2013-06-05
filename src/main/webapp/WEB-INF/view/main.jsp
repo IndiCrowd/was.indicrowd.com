@@ -64,11 +64,20 @@
 			border-top-right-radius: 10px;
 		}
 		
+		#wrapper {
+			padding-bottom: 50px;
+		}
+		@media (max-width: 767px)
+		{
+			#wrapper {
+				padding-bottom: 80px;
+			}
+		}
 		</style>
 	</head>
 	<body>
 	
-	<div id="wrapper" style="padding-bottom:50px;">
+	<div id="wrapper">
 		<div class="container">
 			<div class="row gallery">
 				

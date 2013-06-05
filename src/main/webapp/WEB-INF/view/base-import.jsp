@@ -36,3 +36,40 @@
 <style>
 	@import url(<c:url value="/css/init.css" />);
 </style>
+
+<style>
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers)
+====================================================================== */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	body {
+		padding: 0px;
+	}
+	
+	#under-footer-copyright {
+		width: 300px;
+	}
+	
+	#under-footer-menu {
+		display: none !important;
+	}
+	
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
+=================================================================== */
+@media only screen and (max-width: 479px) {
+	
+	body {
+		padding: 0px;
+	}
+	#sns-share {
+		display: none !important;
+	}
+	
+	#under-footer-menu {
+		display: none !important;
+	}
+	
+}
+</style>

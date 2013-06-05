@@ -2,6 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +22,7 @@
 	
 		<!--start: Wrapper-->
 		<div id="wrapper">
+		
 						
 			<!--start: Row -->
 			<div class="row-fluid">
@@ -53,14 +56,28 @@
 						<p>${command.summary}</p>
 					</div>
 					<!-- end: Text Widget -->
+					
+					<div class="widget">
+						<p>
+							펀딩 시작 시간 : ${command.startDate}
+						</p>
+						<p>
+							펀딩 종료 시간 : ${command.endDate}
+						</p>
+						<p>
+							<img src="<c:url value="/img/energy.png" />">
+							목표 기금액 : ${command.targetFigure}
+						</p>
+					</div>
 				
 					<!-- start: Sidebar Menu -->
+					<c:forEach items="${rewards}" var="reward">
 					<div class="widget">
 						<ul class="links-list-alt">
-							<li>test</li>
-							<li>test</li>
+							<li>${reward.description}</li>
 						</ul>
 					</div>
+					</c:forEach>
 					<!-- end: Sidebar Menu -->
 					<!-- start: Tags -->
 					<div class="widget last">
@@ -86,34 +103,12 @@
 		<!-- end: Wrapper  -->
 	
 		<div id="wrapper">
-			<div id="content">
-				<p>
-					createDate : ${command.createDate}
-				</p>
-				<p>
-					startDate : ${command.startDate}
-				</p>
-				<p>
-					endDate : ${command.endDate}
-				</p>
-				<p>
-					<img src="<c:url value="/img/energy.png" />">
-					targetFigure : ${command.targetFigure}
-				</p>
-				<p>
-					contact : ${command.contact}
-				</p>
-				<p>
-					opened : ${command.opened}
-				</p>
-				
-				<c:forEach items="${rewards}" var="reward">
-				${reward.description}
-				</c:forEach>
-			</div>
+			
 		</div>
 		
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<a href="<c:url value="/fund/project/${command.id}/update" />">펀드 수정</a>
+		</sec:authorize>
 
 	</body>
 </html>

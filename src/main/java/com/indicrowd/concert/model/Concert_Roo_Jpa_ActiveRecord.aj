@@ -24,10 +24,6 @@ privileged aspect Concert_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Concert o", Long.class).getSingleResult();
     }
     
-    public static List<Concert> Concert.findAllConcerts() {
-        return entityManager().createQuery("SELECT o FROM Concert o", Concert.class).getResultList();
-    }
-    
     public static Concert Concert.findConcert(Long id) {
         if (id == null) return null;
         return entityManager().find(Concert.class, id);

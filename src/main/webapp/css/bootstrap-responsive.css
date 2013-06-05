@@ -2056,9 +2056,7 @@
   }
   /* line 10, ../../app/assets/stylesheets/bootstrap-responsive.min.css.scss */
   .perfectum [class*="span"], .perfectum .uneditable-input[class*="span"], .perfectum .row-fluid [class*="span"] {
-    display: block;
     float: none;
-    width: 100%;
     margin-left: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
