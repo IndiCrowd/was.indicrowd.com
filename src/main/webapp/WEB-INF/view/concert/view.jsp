@@ -56,7 +56,7 @@
 		        
 		        swfobject.embedSWF(
 		            '<c:url value="/swf/StreamSubscriber.swf" />', 'StreamSubscriber', 
-		            '480', '360', 
+		            '100%', '100%', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
 		        
@@ -112,17 +112,19 @@
 				openStreamUserPublisher();
 			} else if ( mobile == 'ios') {
 				$VIDEO({
-					width: '480',
-					height: '360',
+					width: '100%',
+					height: '100%',
 					src: 'http://indicrowd.com:1935/live/ngrp:${command.id}_mobile/playlist.m3u8',
-					controls: 'true'
+					controls: 'true',
+					webkitPlaysinline : 'webkit-playsinline'
 				}).appendTo('#StreamSubscriber');		
 			} else if ( mobile == 'android') {
 				$VIDEO({
-					width: '480',
-					height: '360',
+					width: '100%',
+					height: '100%',
 					src: 'rtsp://indicrowd.com:1935/live/${command.id}_360p',
-					controls: 'true'
+					controls: 'true',
+					webkitPlaysinline : 'webkit-playsinline'
 				}).appendTo('#StreamSubscriber');
 			} else {
 				alert.show('지원하지 않는 웹 브라우져입니다.');

@@ -217,6 +217,8 @@
 			#concert {
 				padding: 20px;
 				line-height: 0;
+				height: 360px;
+				width: 480px;
 			}
 			#userface-wrapper {
 				background: #333;
@@ -238,14 +240,6 @@
 			}
 			
 			#smartphone-wrapper {
-				background: #333;
-				background: rgba(0, 0, 0, .5);
-				border-radius: 5px;
-				position: absolute;
-				width: 320px;
-				height: 190px;
-				left: 620px;
-				top: 90px;
 				display: none;
 			}
 			
@@ -385,6 +379,81 @@
 				border: 3px solid #999; background: orange; color:#fff; font-weight:bold; border-radius: 5px; padding: 5px; width: 100px;
 				margin-right: 5px;
 			}
+			
+			@media (max-width: 900px)
+			{
+				html, body {
+					height: 500px;
+				}
+				#wrapper {
+					background: rgba(0, 0, 0, .5);
+					height: 500px;
+				}
+				#background {
+					width: 100%;
+					height: 500px;
+				}
+				
+				h1 {
+					font-size: 12px;
+					background: none;
+				}
+				
+				#concert-wrapper {
+					left: 0;
+					top: 70px;
+					width: 100%;
+					height: 200px;
+					background: none;
+				}
+				
+				#concert {
+					padding: 0;
+					width: 100%;
+					height: 200px;
+				}
+				
+				#info-wrapper, #userface-wrapper, #function-wrapper, #footer-wrapper {
+					display: none;
+				}
+				
+				#stage-wrapper {
+					left: 0;
+					top: 295px;
+					width: 100%;
+					background: none;
+				}
+				
+				#stage {
+					padding:0;
+					overflow: hidden;
+				}
+				
+				#chat-wrapper {
+					left: 0;
+					top: 368px;
+					width: 100%;
+					height: 120px;
+					background: none;
+				}
+				
+				#chat {
+					padding:0;
+				}
+				
+				
+				#messages-wrapper {
+					height: 70px;
+				}
+				
+				#smartphone-wrapper {
+					position: absolute;
+					left: 5px;
+					top: 275px;
+					color: #fff;
+					display: block;
+				}
+			}
 		</style>
 		
 		<script>
@@ -426,12 +495,19 @@
 			
 		};
 		var userImgs = {};
+		
+		$(window).click(function() {
+			$('.userImgMenu').fadeOut(function() {
+				$(this).remove();
+			});
+		});
+		
 		var addImg = function(connectId, userInfo) {
 			
 			if (userImgs[userInfo.id] === undefined) {
 				userImgs[userInfo.id] = 1;
 				
-				$IMG({
+				var $img = $IMG({
 					//id : 'connect-' + connectId,
 					id : 'user-' + userInfo.id,
 					style : {
@@ -440,6 +516,53 @@
 					},
 					src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + key
 				}).appendTo('#stage').hide().fadeIn();
+				
+				console.log(userInfo);
+				
+				$img.click(function(e) {
+					$('.userImgMenu').fadeOut(function() {
+						$(this).remove();
+					});
+					var $ul = $UL({
+						cls: 'userImgMenu',
+						style: {
+							position:'absolute',
+							top: e.pageY,
+							left: e.pageX,
+							background: '#fff',
+							listStyle : 'none',
+							padding: 0,
+							margin: 0,
+							textAlign: 'center'
+						}
+					},
+					$LI({
+						style: {
+							border: '1px solid #000',
+							listStyle : 'none',
+							padding: '5px 10px',
+							margin: 0
+						}
+					}, $A('유저 정보 보기')),
+					userInfo.socialImageUrl ? $LI({
+						style: {
+							border: '1px solid #000',
+							listStyle : 'none',
+							padding: '5px 10px',
+							margin: 0,
+							marginTop: -1
+						}
+					}, $A(userInfo.socialProviderId)) : ''
+					).appendTo('body').hide().fadeIn();
+					
+					setTimeout(function() {
+						$ul.fadeOut(function() {
+							$ul.remove();
+						});
+					}, 5000);
+					
+					e.stopPropagation();
+				});
 				
 			} else {
 				userImgs[userInfo.id]++;
@@ -709,7 +832,7 @@
 			</div>
 			
 			<div id="smartphone-wrapper">
-				스마트폰에서는 핸드폰을 흔들면 박수가 나갑니다.
+				스마트폰에서는 기기를 흔들면 박수가 나갑니다.
 			</div>
 			
 			<div id="function-wrapper">

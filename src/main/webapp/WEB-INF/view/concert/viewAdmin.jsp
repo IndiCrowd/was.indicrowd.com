@@ -108,7 +108,7 @@
 
 		        swfobject.embedSWF(
 		            '<c:url value="/swf/StreamPublisher.swf" />', 'StreamPublisher', 
-		            '480', '360', 
+		            '100%', '100%', 
 		            swfVersionStr, xiSwfUrlStr, 
 		            flashvars, params, attributes);
 		        
