@@ -24,7 +24,7 @@ import com.yahoo.platform.yui.compressor.CssCompressor;
 
 public class CSSCompressFilter implements Filter {
 
-	private long lastDate = new Date().getTime();
+	private String etag = Long.toString(new Date().getTime());
 	
 	private HashMap<String, String> cssMap = new HashMap<String, String>();
 
@@ -101,17 +101,11 @@ public class CSSCompressFilter implements Filter {
 
         // Write the zipped body
         ResponseUtil.addGzipHeader(response);
-
-        try {
-			if (request.getDateHeader("if-none-match") == lastDate) {
-				response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
-			} else {
-				response.setDateHeader("ETag", lastDate);
-		        response.setContentLength(compressedBytes.length);
-		        response.getOutputStream().write(compressedBytes);
-			}
-		} catch (Exception e) {
-			response.setDateHeader("ETag", lastDate);
+        
+        if (request.getHeader("if-none-match") != null && request.getHeader("if-none-match").equals(etag)) {
+			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+		} else {
+			response.setHeader("ETag", etag);
 	        response.setContentLength(compressedBytes.length);
 	        response.getOutputStream().write(compressedBytes);
 		}
