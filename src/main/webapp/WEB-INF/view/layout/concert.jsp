@@ -236,6 +236,19 @@
 			#userface {
 				color: #fff;
 			}
+			
+			#smartphone-wrapper {
+				background: #333;
+				background: rgba(0, 0, 0, .5);
+				border-radius: 5px;
+				position: absolute;
+				width: 320px;
+				height: 190px;
+				left: 620px;
+				top: 90px;
+				display: none;
+			}
+			
 			#info-wrapper {
 				background: #333;
 				background: rgba(0, 0, 0, .5);
@@ -693,6 +706,10 @@
 				<div id="userface-opti">
 					<img id="userface" style="width:0px;height:0px;" />
 				</div>
+			</div>
+			
+			<div id="smartphone-wrapper">
+				스마트폰에서는 핸드폰을 흔들면 박수가 나갑니다.
 			</div>
 			
 			<div id="function-wrapper">
