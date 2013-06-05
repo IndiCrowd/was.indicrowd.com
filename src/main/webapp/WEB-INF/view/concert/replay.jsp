@@ -20,16 +20,16 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <title>공연 리플레이</title>
     <style type="text/css">
       #concert-wrapper{
-      	height:500px;
+      	height:420px;
       }
       #chat-wrapper{
       	top:300px;
       }
       #info-wrapper{
-      	top:600px;
+      	top:520px;
       }
       #stage-wrapper{
-      	top:630px;
+      	top:550px;
       }
       #videoDiv { 
         margin-right: 3px;
@@ -279,7 +279,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     </tr>
     <tr>
     	<td colspan="">
-    		<div id="container" style="min-width: 480px; width:100%; height: 180px; margin: 0 auto"></div>
+    		<div id="container" style="min-width: 480px; width:100%; height: 100px; margin: 0 auto"></div>
     	</td>
     </tr>
     
