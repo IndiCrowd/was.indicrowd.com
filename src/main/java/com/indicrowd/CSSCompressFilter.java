@@ -43,71 +43,80 @@ public class CSSCompressFilter implements Filter {
 
 		if (cssMap.get(request.getServletPath()) == null) {
 			
-			FileReader fileReader = new FileReader(filterConfig.getServletContext().getRealPath(request.getServletPath()));
-
-			CssCompressor comp = new CssCompressor(fileReader);
-
-			StringWriter sw = new StringWriter();
-
-			comp.compress(sw, 0);
-
-			cssMap.put(request.getServletPath(), sw.toString());
+			try {
+				FileReader fileReader = new FileReader(filterConfig.getServletContext().getRealPath(request.getServletPath()));
+	
+				CssCompressor comp = new CssCompressor(fileReader);
+	
+				StringWriter sw = new StringWriter();
+	
+				comp.compress(sw, 0);
+	
+				cssMap.put(request.getServletPath(), sw.toString());
+				
+			} catch(Exception e) {
+			}
 		}
 		
+		String content = cssMap.get(request.getServletPath());
 		
-		
-		// Create a gzip stream
-        final ByteArrayOutputStream compressed = new ByteArrayOutputStream();
-        final GZIPOutputStream gzout = new GZIPOutputStream(compressed);
-
-        // Handle the request
-        final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
-        wrapper.setDisableFlushBuffer(true);
-
-        wrapper.setContentType("text/css; charset=UTF-8");
-        wrapper.getWriter().write(cssMap.get(request.getServletPath()));
-		
-        wrapper.flush();
-
-        gzout.close();
-
-        // double check one more time before writing out
-        // repsonse might have been committed due to error
-        if (response.isCommitted()) {
-            return;
-        }
-        
-        // return on these special cases when content is empty or unchanged
-        switch (wrapper.getStatus()) {
-        case HttpServletResponse.SC_NO_CONTENT:
-        case HttpServletResponse.SC_RESET_CONTENT:
-        case HttpServletResponse.SC_NOT_MODIFIED:
-            return;
-        default:
-        }
-
-
-
-        // Saneness checks
-        byte[] compressedBytes = compressed.toByteArray();
-        boolean shouldGzippedBodyBeZero = ResponseUtil.shouldGzippedBodyBeZero(compressedBytes, request);
-        boolean shouldBodyBeZero = ResponseUtil.shouldBodyBeZero(request, wrapper.getStatus());
-        if (shouldGzippedBodyBeZero || shouldBodyBeZero) {
-            // No reason to add GZIP headers or write body if no content was written or status code specifies no
-            // content
-            response.setContentLength(0);
-            return;
-        }
-
-        // Write the zipped body
-        ResponseUtil.addGzipHeader(response);
-        
-        if (request.getHeader("if-none-match") != null && request.getHeader("if-none-match").equals(etag)) {
-			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+		if (content == null) {
+			chain.doFilter(request, response);
 		} else {
-			response.setHeader("ETag", etag);
-	        response.setContentLength(compressedBytes.length);
-	        response.getOutputStream().write(compressedBytes);
+			
+			// Create a gzip stream
+	        final ByteArrayOutputStream compressed = new ByteArrayOutputStream();
+	        final GZIPOutputStream gzout = new GZIPOutputStream(compressed);
+	
+	        // Handle the request
+	        final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
+	        wrapper.setDisableFlushBuffer(true);
+	
+	        wrapper.setContentType("text/css; charset=UTF-8");
+	        wrapper.getWriter().write(content);
+			
+	        wrapper.flush();
+	
+	        gzout.close();
+	
+	        // double check one more time before writing out
+	        // repsonse might have been committed due to error
+	        if (response.isCommitted()) {
+	            return;
+	        }
+	        
+	        // return on these special cases when content is empty or unchanged
+	        switch (wrapper.getStatus()) {
+	        case HttpServletResponse.SC_NO_CONTENT:
+	        case HttpServletResponse.SC_RESET_CONTENT:
+	        case HttpServletResponse.SC_NOT_MODIFIED:
+	            return;
+	        default:
+	        }
+	
+	
+	
+	        // Saneness checks
+	        byte[] compressedBytes = compressed.toByteArray();
+	        boolean shouldGzippedBodyBeZero = ResponseUtil.shouldGzippedBodyBeZero(compressedBytes, request);
+	        boolean shouldBodyBeZero = ResponseUtil.shouldBodyBeZero(request, wrapper.getStatus());
+	        if (shouldGzippedBodyBeZero || shouldBodyBeZero) {
+	            // No reason to add GZIP headers or write body if no content was written or status code specifies no
+	            // content
+	            response.setContentLength(0);
+	            return;
+	        }
+	
+	        // Write the zipped body
+	        ResponseUtil.addGzipHeader(response);
+	        
+	        if (request.getHeader("if-none-match") != null && request.getHeader("if-none-match").equals(etag)) {
+				response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+			} else {
+				response.setHeader("ETag", etag);
+		        response.setContentLength(compressedBytes.length);
+		        response.getOutputStream().write(compressedBytes);
+			}
 		}
 	}
 

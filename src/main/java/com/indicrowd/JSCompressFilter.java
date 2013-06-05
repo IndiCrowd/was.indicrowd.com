@@ -46,89 +46,99 @@ public class JSCompressFilter implements Filter {
 
 		if (jsMap.get(request.getServletPath()) == null) {
 
-			FileReader fileReader = new FileReader(filterConfig.getServletContext().getRealPath(request.getServletPath()));
-
-			JavaScriptCompressor comp = new JavaScriptCompressor(fileReader, new ErrorReporter() {
-
-				@Override
-				public void warning(String arg0, String arg1, int arg2, String arg3, int arg4) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public EvaluatorException runtimeError(String arg0, String arg1, int arg2, String arg3, int arg4) {
-					// TODO Auto-generated method stub
-					return null;
-				}
-
-				@Override
-				public void error(String arg0, String arg1, int arg2, String arg3, int arg4) {
-					// TODO Auto-generated method stub
-
-				}
-			});
-
-			StringWriter sw = new StringWriter();
-
-			comp.compress(sw, 0, true, true, true, true);
-
-			jsMap.put(request.getServletPath(), sw.toString());
+			try {
+				FileReader fileReader = new FileReader(filterConfig.getServletContext().getRealPath(request.getServletPath()));
+	
+				JavaScriptCompressor comp = new JavaScriptCompressor(fileReader, new ErrorReporter() {
+	
+					@Override
+					public void warning(String arg0, String arg1, int arg2, String arg3, int arg4) {
+						// TODO Auto-generated method stub
+	
+					}
+	
+					@Override
+					public EvaluatorException runtimeError(String arg0, String arg1, int arg2, String arg3, int arg4) {
+						// TODO Auto-generated method stub
+						return null;
+					}
+	
+					@Override
+					public void error(String arg0, String arg1, int arg2, String arg3, int arg4) {
+						// TODO Auto-generated method stub
+	
+					}
+				});
+	
+				StringWriter sw = new StringWriter();
+	
+				comp.compress(sw, 0, true, true, true, true);
+	
+				jsMap.put(request.getServletPath(), sw.toString());
+				
+			} catch(Exception e) {
+			}
 		}
 		
+		String content = jsMap.get(request.getServletPath());
 		
-		// Create a gzip stream
-        final ByteArrayOutputStream compressed = new ByteArrayOutputStream();
-        final GZIPOutputStream gzout = new GZIPOutputStream(compressed);
-
-        // Handle the request
-        final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
-        wrapper.setDisableFlushBuffer(true);
-
-        wrapper.setContentType("application/javascript; charset=UTF-8");
-        wrapper.getWriter().write(jsMap.get(request.getServletPath()));
-		
-        wrapper.flush();
-
-        gzout.close();
-
-        // double check one more time before writing out
-        // repsonse might have been committed due to error
-        if (response.isCommitted()) {
-            return;
-        }
-        
-        // return on these special cases when content is empty or unchanged
-        switch (wrapper.getStatus()) {
-        case HttpServletResponse.SC_NO_CONTENT:
-        case HttpServletResponse.SC_RESET_CONTENT:
-        case HttpServletResponse.SC_NOT_MODIFIED:
-            return;
-        default:
-        }
-
-
-
-        // Saneness checks
-        byte[] compressedBytes = compressed.toByteArray();
-        boolean shouldGzippedBodyBeZero = ResponseUtil.shouldGzippedBodyBeZero(compressedBytes, request);
-        boolean shouldBodyBeZero = ResponseUtil.shouldBodyBeZero(request, wrapper.getStatus());
-        if (shouldGzippedBodyBeZero || shouldBodyBeZero) {
-            // No reason to add GZIP headers or write body if no content was written or status code specifies no
-            // content
-            response.setContentLength(0);
-            return;
-        }
-
-        // Write the zipped body
-        ResponseUtil.addGzipHeader(response);
-
-        if (request.getHeader("if-none-match") != null && request.getHeader("if-none-match").equals(etag)) {
-			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+		if (content == null) {
+			chain.doFilter(request, response);
 		} else {
-			response.setHeader("ETag", etag);
-	        response.setContentLength(compressedBytes.length);
-	        response.getOutputStream().write(compressedBytes);
+		
+			// Create a gzip stream
+	        final ByteArrayOutputStream compressed = new ByteArrayOutputStream();
+	        final GZIPOutputStream gzout = new GZIPOutputStream(compressed);
+	
+	        // Handle the request
+	        final GenericResponseWrapper wrapper = new GenericResponseWrapper(response, gzout);
+	        wrapper.setDisableFlushBuffer(true);
+	
+	        wrapper.setContentType("application/javascript; charset=UTF-8");
+	        wrapper.getWriter().write(content);
+			
+	        wrapper.flush();
+	
+	        gzout.close();
+	
+	        // double check one more time before writing out
+	        // repsonse might have been committed due to error
+	        if (response.isCommitted()) {
+	            return;
+	        }
+	        
+	        // return on these special cases when content is empty or unchanged
+	        switch (wrapper.getStatus()) {
+	        case HttpServletResponse.SC_NO_CONTENT:
+	        case HttpServletResponse.SC_RESET_CONTENT:
+	        case HttpServletResponse.SC_NOT_MODIFIED:
+	            return;
+	        default:
+	        }
+	
+	
+	
+	        // Saneness checks
+	        byte[] compressedBytes = compressed.toByteArray();
+	        boolean shouldGzippedBodyBeZero = ResponseUtil.shouldGzippedBodyBeZero(compressedBytes, request);
+	        boolean shouldBodyBeZero = ResponseUtil.shouldBodyBeZero(request, wrapper.getStatus());
+	        if (shouldGzippedBodyBeZero || shouldBodyBeZero) {
+	            // No reason to add GZIP headers or write body if no content was written or status code specifies no
+	            // content
+	            response.setContentLength(0);
+	            return;
+	        }
+	
+	        // Write the zipped body
+	        ResponseUtil.addGzipHeader(response);
+	
+	        if (request.getHeader("if-none-match") != null && request.getHeader("if-none-match").equals(etag)) {
+				response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+			} else {
+				response.setHeader("ETag", etag);
+		        response.setContentLength(compressedBytes.length);
+		        response.getOutputStream().write(compressedBytes);
+			}
 		}
 	}
 
