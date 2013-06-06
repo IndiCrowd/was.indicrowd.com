@@ -457,8 +457,15 @@
 		</style>
 		
 		<script>
+		function removeArrElement(arr,idx){
+			return (idx<0 || idx>arr.length) ? arr : arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));
+		}
+		var userImgs = {};
+		var userQueue = [];
+		var queueSize = 2;
 		var key = Math.random();
 		var addMessage = function(message,key) {
+			addUserIntoQueue(message.sender.id);
 			if ($('#messages').find('.message').size() > 100) {
 				// 100개가 넘으면 맨 위에 것을 지워줌
 				$('#messages').find('.message:first').remove();
@@ -493,32 +500,96 @@
 				$('#messages-wrapper').scrollTop(100000000000);
 			});
 			
+			
+			
+			
 		};
-		var userImgs = {};
-		
 		$(window).click(function() {
 			$('.userImgMenu').fadeOut(function() {
 				$(this).remove();
 			});
 		});
+		function getUserImgsListCount(){
+			var count = 0;
+			for ( property in userImgs ) count++;
+			return count;
+		}
+		function removeUserFromAudience(userId){
+			console.log('removeUserFromAudience'+userId);
+			//var shiftedUser = userQueue.shift();
+			console.log('beforeLength:'+userQueue.length);
+			var removeIndex= -1;
+			for(var i=0; i<userQueue.length;i++){
+				if(userQueue[i] == userId) {
+					removeIndex = i;
+					console.log('remove '+i+"!!!!")
+				}
+			}
+			
+			if(removeIndex > -1){
+				userQueue=removeArrElement(userQueue,removeIndex);
+
+				console.log('afterLength:'+userQueue.length);
+				return true;
+			}else{
+				$('#user-' + userId).fadeOut();
+				return false;
+			}
+			
+		}
+		function shiftUserFromAudience(){
+			var shiftedUser = userQueue.shift();
+			console.log('shiftedUser:'+shiftedUser);
+			$('#user-' + shiftedUser).fadeOut();
+		}
+		function addUserIntoAudience(userId){
+			console.log('addUserIntoAudience:'+userId)
+			$('#user-' + userId).fadeIn();
+			userQueue.push(userId);
+			
+			
+		}
+		function addUserIntoQueue(userId){
+			if(userImgs[userId] != undefined){
+				console.log(userQueue.length+','+queueSize)
+				if(userQueue.length == queueSize){
+					if(removeUserFromAudience(userId)==false){
+						shiftUserFromAudience();
+					}
+					addUserIntoAudience(userId);
+				}else if(userQueue.length > queueSize){
+					console.log("Exception!!!!");
+				}else{
+					addUserIntoAudience(userId);
+				}
+			}
+			
+		}
+		function addUserWhenQueueIsNotFull(userId){
+			console.log(userQueue.length+',,'+queueSize);
+			if(userQueue.length < queueSize){
+				addUserIntoAudience(userId);
+			}
+		}
 		
 		var addImg = function(connectId, userInfo) {
 			
 			if (userImgs[userInfo.id] === undefined) {
-				userImgs[userInfo.id] = 1;
+				
 				
 				var $img = $IMG({
 					//id : 'connect-' + connectId,
 					id : 'user-' + userInfo.id,
 					style : {
 						width: 50,
-						height: 50
+						height: 50,
+						display: 'none'
 					},
 					src: userInfo.socialImageUrl ? userInfo.socialImageUrl : '<spring:eval expression="@userfileConfig.baseUrl" />/profilephoto/' + userInfo.id + '?' + key
-				}).appendTo('#stage').hide().fadeIn();
+				}).appendTo('#stage');
 				
-				console.log(userInfo);
-				
+				addUserWhenQueueIsNotFull(userInfo.id);
+				userImgs[userInfo.id] = 1;
 				$img.click(function(e) {
 					$('.userImgMenu').fadeOut(function() {
 						$(this).remove();
@@ -567,16 +638,21 @@
 			} else {
 				userImgs[userInfo.id]++;
 			}
+			
 		};
 		var removeImg = function (userInfo){
+			removeUserFromAudience(userInfo.id);
+			console.log('removeImg:'+userInfo.id);
 			userImgs[userInfo.id]--;
 			if (userImgs[userInfo.id] === 0) {
+				
 				delete userImgs[userInfo.id];
 				$('#user-' + userInfo.id).remove();
 			}
+			
 		}
 		var iconFeedFunction = function(iconFeed) {
-			
+			addUserIntoQueue(iconFeed.sender.id);
 			var randomId = "x" + randomString(8);
 			
 			var top = $('#user-' + iconFeed.sender.id).offset().top + $('#user-' + iconFeed.sender.id).height() - 140;
@@ -634,6 +710,7 @@
 				$div.fadeIn();
 			
 			}
+			
 		};
 		function displayMessageOnUser(message){
 			$('#user-' + message.sender.id).each(function() {
@@ -693,11 +770,7 @@
 			RTW.join('Concert', '${command.id}', function(data) {
 				addImg(data.connectId, data.userInfo);
 			}, function(data) {
-				userImgs[data.userInfo.id]--;
-				if (userImgs[data.userInfo.id] === 0) {
-					delete userImgs[data.userInfo.id];
-					$('#user-' + data.userInfo.id).remove();
-				}
+				removeImg(data.userInfo);
 			});
 			
 			
@@ -745,11 +818,7 @@
 				el.src = img2;
 			}
 		}
-		
-		</script>
-		
-		
-		<script>
+
 		function useItem(itemId)
 		{
 			POST('<c:url value="/concert/${command.id}/iconFeed.json" />', {
