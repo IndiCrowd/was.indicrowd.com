@@ -59,7 +59,7 @@
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 				flashvars.clientStreamStr = userId;
 				flashvars.clientDefaultImage = userImg;
-		        flashvars.ver = '1';
+		        flashvars.ver = '2';
 				
 		        var params = {};
 		        params.quality = 'high';
@@ -95,7 +95,7 @@
 		        var flashvars = {};
 		        flashvars.urlPrefix = '${pageContext.request.contextPath }';
 		        flashvars.pubStreamStr = '${command.id}';
-		        flashvars.ver = '1';
+		        flashvars.ver = '2';
 		        
 		        var params = {};
 		        params.quality = 'high';
