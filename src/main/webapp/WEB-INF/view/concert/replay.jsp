@@ -39,6 +39,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       }
       #videoList{
       	width:100%;
+      	display: none;
       }
       #videoInfo {
         margin-left: 3px;
@@ -246,14 +247,11 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
         		  nowStartTime = startTime;
         	  }
           }
-    	  console.log("nowTime:"+ nowTime);
-    	  console.log("nowIndex:"+nowIndex);
-    	  console.log("nowStartTime:"+nowStartTime);
-    	  console.log("playTime:"+ (nowTime- nowStartTime)/1000);
     	  var playTime = (nowTime- nowStartTime)/1000;
     	  if(ytplayer){
     		  loadVideo(nowIndex);
-    		  ytplayer.seekTo(playTime);
+    		  setTimeout(function(){ytplayer.seekTo(playTime);}, 1000);
+    		  
     	  }
       }
       google.setOnLoadCallback(_run);
@@ -300,6 +298,8 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
    var feedCountList;
    	$(function(){
    		$("#userface-wrapper").append($("#videoList"));
+   		$("#videoList").show();
+   		$("#audience-info").hide();
    		$("#function-wrapper").remove();
    		$("#form-wrapper").remove();
 		$("#userface-opti").remove();
@@ -326,7 +326,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
                 alternateGridColor: null
             },
             tooltip: {
-                valueSuffix: ''
+                valueSuffix: '건'
             },
             plotOptions: {
                 spline: {

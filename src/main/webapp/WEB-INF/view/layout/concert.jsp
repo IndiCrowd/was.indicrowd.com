@@ -460,6 +460,18 @@
 		function removeArrElement(arr,idx){
 			return (idx<0 || idx>arr.length) ? arr : arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));
 		}
+		function addNowAudienceCount(){
+			nowAudienceCount++;
+			updateNowAudienceCount();
+		}
+		function subNowAudienceCount(){
+			nowAudienceCount--;
+			updateNowAudienceCount();
+		}
+		function updateNowAudienceCount(){
+			$("#audience-count-info").html(nowAudienceCount);
+		}
+		var nowAudienceCount =0;
 		var userImgs = {};
 		var userQueue = [];
 		var queueSize = 16;
@@ -470,6 +482,7 @@
 
 		var key = Math.random();
 		var addMessage = function(message,key) {
+			
 			addUserIntoQueue(message.sender.id);
 			if ($('#messages').find('.message').size() > 100) {
 				// 100개가 넘으면 맨 위에 것을 지워줌
@@ -520,21 +533,16 @@
 			return count;
 		}
 		function removeUserFromAudience(userId){
-			console.log('removeUserFromAudience'+userId);
-			//var shiftedUser = userQueue.shift();
-			console.log('beforeLength:'+userQueue.length);
 			var removeIndex= -1;
 			for(var i=0; i<userQueue.length;i++){
 				if(userQueue[i] == userId) {
 					removeIndex = i;
-					console.log('remove '+i+"!!!!")
 				}
 			}
 			
 			if(removeIndex > -1){
 				userQueue=removeArrElement(userQueue,removeIndex);
 
-				console.log('afterLength:'+userQueue.length);
 				return true;
 			}else{
 				$('#user-' + userId).fadeOut();
@@ -544,11 +552,9 @@
 		}
 		function shiftUserFromAudience(){
 			var shiftedUser = userQueue.shift();
-			console.log('shiftedUser:'+shiftedUser);
 			$('#user-' + shiftedUser).fadeOut();
 		}
 		function addUserIntoAudience(userId){
-			console.log('addUserIntoAudience:'+userId)
 			$('#user-' + userId).fadeIn();
 			userQueue.push(userId);
 			
@@ -556,7 +562,6 @@
 		}
 		function addUserIntoQueue(userId){
 			if(userImgs[userId] != undefined){
-				console.log(userQueue.length+','+queueSize)
 				if(userQueue.length == queueSize){
 					if(removeUserFromAudience(userId)==false){
 						shiftUserFromAudience();
@@ -571,14 +576,13 @@
 			
 		}
 		function addUserWhenQueueIsNotFull(userId){
-			console.log(userQueue.length+',,'+queueSize);
 			if(userQueue.length < queueSize){
 				addUserIntoAudience(userId);
 			}
 		}
 		
 		var addImg = function(connectId, userInfo) {
-			
+			addNowAudienceCount();
 			if (userImgs[userInfo.id] === undefined) {
 				
 				
@@ -646,8 +650,8 @@
 			
 		};
 		var removeImg = function (userInfo){
+			subNowAudienceCount();
 			removeUserFromAudience(userInfo.id);
-			console.log('removeImg:'+userInfo.id);
 			userImgs[userInfo.id]--;
 			if (userImgs[userInfo.id] === 0) {
 				
@@ -896,6 +900,10 @@
 					<span>
 						<label>밴드 정보</label> <a href="${pageContext.request.contextPath}/band/${command.bandInfo.id}" target="_blank">${command.bandInfo.name}</a>
 					</span>
+					<span id="audience-info">
+						<label>시청 수</label> <span id="audience-count-info" ></span>/ ${command.totalAudienceCount }
+					</span>
+					
 				</div>
 			</div>
 			
