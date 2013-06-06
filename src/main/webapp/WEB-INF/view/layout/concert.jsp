@@ -474,7 +474,7 @@
 		var nowAudienceCount =0;
 		var userImgs = {};
 		var userQueue = [];
-		var queueSize = 16;
+		var queueSize = 14;
 		 
 		if ($(window).width() < 450) {
 		    queueSize=4;
