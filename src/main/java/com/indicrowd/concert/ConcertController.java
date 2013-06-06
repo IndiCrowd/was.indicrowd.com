@@ -285,7 +285,7 @@ public class ConcertController extends AbstractController {
 		boolean hasAuthForConcert = false;
 		for(int i=0;i<userBandList.size();i++){
 			BandInfo bandInfo = userBandList.get(i);
-			if(concert.getBandId() == bandInfo.getId()){
+			if(concert.getBandInfo().getId() == bandInfo.getId()){
 				hasAuthForConcert = true;
 			}
 		}
