@@ -462,7 +462,14 @@
 		}
 		var userImgs = {};
 		var userQueue = [];
-		var queueSize = 2;
+		var queueSize = 16;
+		var filter = "win16|win32|win64|mac";
+		 
+	    if( navigator.platform  ){
+	        if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+	            queueSize=4;
+	        }
+	    }
 		var key = Math.random();
 		var addMessage = function(message,key) {
 			addUserIntoQueue(message.sender.id);
