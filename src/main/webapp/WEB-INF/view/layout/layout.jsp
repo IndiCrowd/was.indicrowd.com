@@ -20,7 +20,7 @@
 		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
 		
-		<title>IndiCrowd :: <decorator:title /></title>
+		<title>인디크라우드 :: <decorator:title /></title>
 		
 		<jsp:include page="../base-import.jsp" />
 		
