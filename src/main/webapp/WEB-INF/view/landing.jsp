@@ -5,7 +5,7 @@
 <html>
 	<head>
 	
-		<title>IndiCrowd :: 세계최초 온라인 콘서트 서비스</title>
+		<title>인디크라우드 :: 세계최초 온라인 콘서트 서비스</title>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 		<!--[if lt IE 8]>
