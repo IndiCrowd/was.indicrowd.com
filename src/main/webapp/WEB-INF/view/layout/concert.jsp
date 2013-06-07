@@ -542,7 +542,6 @@
 			
 			if(removeIndex > -1){
 				userQueue=removeArrElement(userQueue,removeIndex);
-
 				return true;
 			}else{
 				$('#user-' + userId).fadeOut();
@@ -570,6 +569,7 @@
 				}else if(userQueue.length > queueSize){
 					console.log("Exception!!!!");
 				}else{
+					removeUserFromAudience(userId);
 					addUserIntoAudience(userId);
 				}
 			}
