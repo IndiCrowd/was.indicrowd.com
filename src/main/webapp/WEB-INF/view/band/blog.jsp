@@ -22,7 +22,7 @@
 				url : '${pageContext.request.contextPath}/band/${bandInfo.id}/post/${post.id}.json',
 				type : 'DELETE',
 				success : function(object) {
-					console.log(object);
+					//console.log(object);
 					alert('삭제되었습니다.');
 					window.location.reload();
 				},

@@ -568,7 +568,7 @@
 					}
 					addUserIntoAudience(userId);
 				}else if(userQueue.length > queueSize){
-					console.log("Exception!!!!");
+					//console.log("Exception!!!!");
 				}else{
 					addUserIntoAudience(userId);
 				}
@@ -755,7 +755,7 @@
 					, content: $('#message').val()
 					, type: ''
 				}, function(data) {
-					console.log(data);
+					//console.log(data);
 				});
 				$('#message').val('');
 				return false;

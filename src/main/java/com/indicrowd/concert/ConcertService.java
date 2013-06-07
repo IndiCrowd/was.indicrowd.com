@@ -66,7 +66,7 @@ public class ConcertService {
 			String ip = streamingServer.get(0).getHostname();
 			String port = String.valueOf(streamingServer.get(0).getHttpPort());
 			String request = "http://"+ip+":"+port+"/manager/?concertId=1&eventType=0";
-			System.out.println("Send Request to "+request);
+			//System.out.println("Send Request to "+request);
 		    URL url = new URL(request); 
 		    HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
 		    connection.setDoOutput(true); 
