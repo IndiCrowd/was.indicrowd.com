@@ -107,7 +107,7 @@ public class BandController extends AbstractController{
 	@PreAuthorize("hasRole('ROLE_USER') and hasPermission(#bandId, 'isBand')")
 	@RequestMapping(value ="/{bandId}/addYoutubeVideo", method = RequestMethod.POST)
 	public void addYoutubeVideo(@ModelAttribute("command") Video video, @PathVariable("bandId") Long bandId,Model model){
-		System.out.println("video:"+video+",bandId:"+bandId);
+		//System.out.println("video:"+video+",bandId:"+bandId);
 		video.setBandInfo(BandInfo.findBandInfo(bandId));
 		video.setType(Video.YOUTUBE_VIDEO);
 		video.merge();

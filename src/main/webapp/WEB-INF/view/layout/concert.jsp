@@ -19,7 +19,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 		<script type="text/javascript">window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
-		<title>IndiCrowd :: <decorator:title /></title>
+		<title>인디크라우드 :: <decorator:title /></title>
 		
 		<style>
 			@import url(<c:url value="/css/init.css" />);
@@ -567,7 +567,7 @@
 					}
 					addUserIntoAudience(userId);
 				}else if(userQueue.length > queueSize){
-					console.log("Exception!!!!");
+					//console.log("Exception!!!!");
 				}else{
 					removeUserFromAudience(userId);
 					addUserIntoAudience(userId);
@@ -755,7 +755,7 @@
 					, content: $('#message').val()
 					, type: ''
 				}, function(data) {
-					console.log(data);
+					//console.log(data);
 				});
 				$('#message').val('');
 				return false;

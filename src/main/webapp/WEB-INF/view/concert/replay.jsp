@@ -178,7 +178,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           if(feeds!=null){
 	          for(var i=0;i<feeds.length;i++){
 	        	  var feed = feeds[i];
-	        	  console.log(feed);
+	        	  //console.log(feed);
 	        	  addImg(null,feed.sender);
 	        	  iconFeedFunction(feed);
 	        	 // $("#feeds").append("<li class='feed"+key+"''>"+feed.senderName+":item["+feed.itemId+"]</li>");
@@ -235,7 +235,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
           $("#playList"+index).addClass("playing");
       }
       function setPlayerWithTime(time){
-    	  console.log('nowTime: '+(time-32400000));
+    	  //console.log('nowTime: '+(time-32400000));
     	  var nowTime = time- 32400000;
     	  var nowIndex = 0;
     	  var nowStartTime = 0;

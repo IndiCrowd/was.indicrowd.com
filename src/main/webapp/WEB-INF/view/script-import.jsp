@@ -37,9 +37,9 @@
 	$(function() {
 		RTW.init(new SockJS('http://${pageContext.request.serverName}:9190/r'));
 		RTW.join('IndiCrowd', 'init', function(data) {
-			console.log('connect:', data);
+			//console.log('connect:', data);
 		}, function(data) {
-			console.log('disconnect:', data);
+			//console.log('disconnect:', data);
 		});
 	});
 </script>

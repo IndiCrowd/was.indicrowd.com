@@ -41,7 +41,7 @@
 				<%-- 순서 중요 함. 먼저 자료 읽고 사용자 상태정보 받아서 화면에 뿌릴  --%> 
 				GET('<c:url value="/concert/${command.id}/userCamStates.json" />', function(command) {
 					for (var i in command.list) {
-						console.log('a' +  $(this).prop('src'));
+						//console.log('a' +  $(this).prop('src'));
 						$('img[id=user-' + command.list[i] + ']').each(function(index) {
 							openStreamUser(command.list[i], $(this).attr('src'));
 						});
@@ -120,7 +120,7 @@
 
 			RTW.addHandler('Concert', '${command.id}', 'concertState', function(concertState) {
 				
-				console.log(concertState);
+				//console.log(concertState);
 				
 				$('#StreamPublisher').each(function(index) {
 					this.changeState(concertState);
