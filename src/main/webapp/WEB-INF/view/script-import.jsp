@@ -53,10 +53,10 @@ function popup(url, title, w, h) {
 			.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
 }
 function goConcert(id){
-	popup('<c:url value="/concert" />/'+id, 'Concert', 1000, 700);
+	popup('${pageContext.request.contextPath}/concert/'+id, 'Concert', 1000, 700);
 }
 function goConcertAdmin(id){
-	popup('<c:url value="/concert" />/'+id+"/admin", 'Concert', 1000, 700);
+	popup('${pageContext.request.contextPath}/concert/'+id+"/admin", 'Concert', 1000, 700);
 }
 </script>
 
