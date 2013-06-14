@@ -142,7 +142,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
      		 date.setTime(concertStartSigns[nowPlay].startDate+ nowSecond*1000);
      		 for(var i=0 ;i < currentSecond -nowSecond; i++){
      			date.setTime(date.getTime()+1000);
-     			showFeedbackByDate(date);
+     			showMessageByDate(date);
      		 }
      	  }else if(currentSecond - nowSecond < 0){ //rewind
      		  for(var i=0;i<nowSecond-currentSecond;i++){
@@ -185,6 +185,18 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 	          }
           }
       }
+function showMessageByDate(date){
+	var key=dateToKey(date);
+	var messages= messageJson[key];
+	if(messages!=null){
+		for(var i=0;i<messages.length;i++){
+			var message = messages[i];
+			addMessage(message,key);
+			addImg(null,message.sender);
+			//displayMessageOnUser(message);
+		}
+	}
+}
       function removeFeed(key){
     	  $(".message"+key).remove();
     	  //$(".feed"+key).remove();
@@ -207,7 +219,7 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
       // The "main method" of this sample. Called when someone clicks "Run".
       function init(videoID) {
         // Lets Flash from another domain call JavaScript
-        var params = { allowScriptAccess: "always", allowfullscreen: "true" };
+        var params = { allowScriptAccess: "always",allowFullScreen: "true" };
         // The element id of the Flash embed
         var atts = { id: "ytPlayer" };
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
