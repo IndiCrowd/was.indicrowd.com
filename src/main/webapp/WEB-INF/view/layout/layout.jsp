@@ -64,17 +64,15 @@
 					<a class="brand" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath }/img/indicrowd.png" style ="width:182px; height:25px"/></a>
 					
 					<div id="sns-share" class="pull-left" style="width: 150px; padding-top: 4px;">
-						<!-- AddThis Button BEGIN -->
-						<div class="addthis_toolbox addthis_default_style "
-									addthis:url="http://www.indicrowd.com/main"
-							        addthis:title="IndiCrowd :: 세계최초 온라인 콘서트 서비스"
-							        addthis:description="인디 문화 부흥을 위한 세계최초 온라인 콘서트 서비스">
-						<a class="addthis_button_preferred_1"></a>
-						<a class="addthis_button_preferred_2"></a>
-						<a class="addthis_counter addthis_bubble_style"></a>
-						</div>
-						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51616d3b39a084e5"></script>
-						<!-- AddThis Button END -->
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+						fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+						<div class="fb-like" data-href="http://www.facebook.com/IndiCrowd" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 					</div>
 
 	          		<div class="nav-collapse collapse pull-right">
