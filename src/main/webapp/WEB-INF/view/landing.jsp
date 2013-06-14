@@ -117,7 +117,7 @@
 		
 		<table style="width: 100%; height: 100%; position: absolute; top: 0;"><tr><td style="text-align: center;">
 			<img src="${pageContext.request.contextPath}/img/ment.png">
-			<p style="color: #fff; font-size: 14px; font-weight: bold; text-shadow: 0px 0px 5px rgba(0, 0, 0, 1); line-height: 2em;">인디크라우드는 인디 문화의 퇴색이라는 사회적 문제를,<br>IT기술로 해결해보자는 목표를 가진 밴드 온라인 공연 시스템입니다.</p>
+			<p style="color: #fff; font-size: 14px; font-weight: bold; text-shadow: 0px 0px 5px rgba(0, 0, 0, 1); line-height: 2em;">인디 밴드의 생생한 공연을 집에서도 보자!<br/>세계 최초 온라인 공연 서비스 인디크라우드!</p>
 			<div style="margin: 30px auto 0 auto; width: 350px; padding-bottom: 10px;">
 				<a id="a1" onmouseover="a1();" class="circle" style="float:left; background-color: #01DFA5; border: 5px solid #01DFA5; background-image: url(${pageContext.request.contextPath}/img/istock/micani0.png);" href="${pageContext.request.contextPath}/main">
 					<span>입장하기</span>
