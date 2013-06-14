@@ -68,7 +68,7 @@
 
 			RTW.addHandler('Concert', '${command.id}', 'concertState', function(concertState) {
 				
-				console.log(concertState);
+				//console.log(concertState);
 				
 				$('#StreamSubscriber').each(function(index) {
 					this.changeState(concertState);

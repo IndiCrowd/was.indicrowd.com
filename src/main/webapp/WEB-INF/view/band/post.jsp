@@ -44,7 +44,7 @@
 						content : content
 					},
 					success : function(object) {
-						console.log(object);
+						//console.log(object);
 						var comment = object.command;
 						if(comment == null){
 							alert('로그인이 필요합니다.');

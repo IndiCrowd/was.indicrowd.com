@@ -304,7 +304,7 @@ function getEvent(startDate, endDate){
 		url : '${pageContext.request.contextPath}/concert/plan.json?startDate='+startDate+'&endDate='+endDate,
 		dataType :'json',
 		success :function(data){
-			console.log(data.list);
+			//console.log(data.list);
 			for(var i=0;i<data.list.length;i++){
 				$('#calendar').fullCalendar( 'renderEvent', objToEvent(data.list[i]) );
 			}

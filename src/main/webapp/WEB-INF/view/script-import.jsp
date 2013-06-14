@@ -37,9 +37,9 @@
 	$(function() {
 		RTW.init(new SockJS('http://${pageContext.request.serverName}:9190/r'));
 		RTW.join('IndiCrowd', 'init', function(data) {
-			console.log('connect:', data);
+			//console.log('connect:', data);
 		}, function(data) {
-			console.log('disconnect:', data);
+			//console.log('disconnect:', data);
 		});
 	});
 </script>
@@ -53,10 +53,10 @@ function popup(url, title, w, h) {
 			.open(url,title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+ w+ ', height='+ h+ ', top='+ top+ ', left=' + left);
 }
 function goConcert(id){
-	popup('<c:url value="/concert" />/'+id, 'Concert', 1000, 700);
+	popup('${pageContext.request.contextPath}/concert/'+id, 'Concert', 1000, 700);
 }
 function goConcertAdmin(id){
-	popup('<c:url value="/concert" />/'+id+"/admin", 'Concert', 1000, 700);
+	popup('${pageContext.request.contextPath}/concert/'+id+"/admin", 'Concert', 1000, 700);
 }
 </script>
 

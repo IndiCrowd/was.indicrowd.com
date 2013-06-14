@@ -31,7 +31,7 @@
 			padding: 0;
 			margin: 0;
 			color: #fff;
-			width: 100%;
+			width: 95%;
 			height: 100%;
 			cursor: pointer;
 			overflow: hidden;
