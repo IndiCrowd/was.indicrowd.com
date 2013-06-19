@@ -70,7 +70,7 @@ public class UserInfo implements UserDetails, EnergyEntity {
 	 */
 	@NotEmpty
 	@Size(min = 2, max = 20)
-	@Column(length = 20, unique = true)
+	@Column(length = 20)
 	private String nickname;
 
 	/**
