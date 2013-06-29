@@ -109,6 +109,7 @@
 
 			
 			var mobile = isMobile();
+			var mobileMsg = '3G/LTE(셀룰러)망 이용시 이동통신사로부터 데이터요금이 부과될 수 있습니다.';
 			if (mobile == null) {
 				openStreamSubscriber();
 				openStreamUserPublisher();
@@ -120,6 +121,7 @@
 					controls: 'true',
 					webkitPlaysinline : 'webkit-playsinline'
 				}).appendTo('#StreamSubscriber');		
+				alert(mobileMsg);
 			} else if ( mobile == 'android') {
 				$VIDEO({
 					width: '100%',
@@ -128,8 +130,9 @@
 					controls: 'true',
 					webkitPlaysinline : 'webkit-playsinline'
 				}).appendTo('#StreamSubscriber');
+				alert(mobileMsg);
 			} else {
-				alert.show('지원하지 않는 웹 브라우져입니다.');
+				alert('지원하지 않는 웹 브라우져입니다.');
 			}
  
 		});
