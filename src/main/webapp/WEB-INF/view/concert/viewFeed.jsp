@@ -49,6 +49,15 @@
 
 				var $ani;
 				var randomId = "x" + randomString(8);
+				$AUDIO(
+					{
+						id: 'audio_' + randomId,
+						src: '<spring:eval expression="@userfileConfig.baseUrl" />/itemsound/' + iconFeed.item.id + '',
+						autoplay: 'autoplay', 
+						onerror: '$(this).remove();', 
+						onended: '$(this).remove();'
+					}
+				).appendTo('body');
 				
 				if (iconFeed.item.isRepeat === true) {
 				
@@ -136,7 +145,7 @@
 					
 					$div.hide();
 					$div.fadeIn();
-				
+
 				}
 				
 			});
