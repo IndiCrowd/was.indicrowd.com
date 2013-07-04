@@ -230,6 +230,7 @@
 							<img src="${pageContext.request.contextPath}/img/001_15.png">
 						</div>
 						<h3 class="pull-left">Best Hot Bands! (${bands.size()})</h3>
+						<a style="float: right;" href="${pageContext.request.contextPath}/band/create" class="btn btn-success"><i class="icon-music icon-white"></i> 밴드 생성</a>
 						<div style="clear:both;"></div>
 					</div>
 					<c:forEach items="${bands}" var="band">
