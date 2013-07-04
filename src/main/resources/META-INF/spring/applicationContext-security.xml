@@ -15,11 +15,12 @@
         <!-- Configure these elements to secure URIs in your application -->
         <intercept-url pattern="/signin" access="permitAll" requires-channel="https"/>
         <intercept-url pattern="/signout" access="permitAll" requires-channel="https"/>
+        <intercept-url pattern="/signin/**" access="permitAll" requires-channel="https"/>
         <intercept-url pattern="/user/**" access="permitAll" requires-channel="https"/>
-        <intercept-url pattern="/js/**" access="permitAll" requires-channel="any"/>
-        <intercept-url pattern="/css/**" access="permitAll" requires-channel="any"/>
-        <intercept-url pattern="/img/**" access="permitAll" requires-channel="any"/>
-        <intercept-url pattern="/**" access="permitAll" requires-channel="http"/>
+        <intercept-url pattern="/js/**" access="permitAll" requires-channel="https"/>
+        <intercept-url pattern="/css/**" access="permitAll" requires-channel="https"/>
+        <intercept-url pattern="/img/**" access="permitAll" requires-channel="https"/>
+        <intercept-url pattern="/**" access="permitAll" requires-channel="https"/>
     
     	<expression-handler ref="webExpressionHandler"/>
     </http>

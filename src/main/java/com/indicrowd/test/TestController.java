@@ -34,6 +34,8 @@ public class TestController extends AbstractController {
 		hand.setRequestName("yj_hands");
 		
 		items.add(hand);
+		
+		System.out.println(items);
 			
 		model.addAttribute("command", items);
 		
