@@ -190,10 +190,12 @@
 						<div class="img"><i class="fa-icon-facebook"></i></div>
 						<div class="text">페이스북 로그인</div>
 					</a>
+					<!-- 
 					<a href="javascript:$('#twitter-login-form').submit(); void(0)" class="twitter_connect" style="width: 48%; float: right; font-size: 14px;">
 						<div class="img"><i class="fa-icon-twitter"></i></div>
 						<div class="text">트위터 로그인</div>
 					</a>
+					 -->
 					<div style="clear:both;"></div>
 					
 					</div>
