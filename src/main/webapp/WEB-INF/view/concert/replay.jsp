@@ -81,9 +81,9 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 		    opacity: 0.5;           /* fx, safari, opera */
 		}
     </style>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="<c:url value="/js/highcharts.js" />"></script>
+	<script src="<c:url value="/js/exporting.js" />"></script>
+    <script src="<c:url value="/js/jsapi.js" />" type="text/javascript"></script>
     <script type="text/javascript">
     Highcharts.setOptions({
     	global: {
@@ -223,7 +223,7 @@ function showMessageByDate(date){
         // The element id of the Flash embed
         var atts = { id: "ytPlayer" };
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
-        swfobject.embedSWF("http://www.youtube.com/v/" + videoID + 
+        swfobject.embedSWF("https://www.youtube.com/v/" + videoID + 
                            "?version=3&enablejsapi=1&playerapiid=player1", 
                            "videoDiv", "480", "295", "9", null, null, params, atts);
         managePlayCss(0);
