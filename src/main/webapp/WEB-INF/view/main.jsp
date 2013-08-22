@@ -149,7 +149,7 @@
 									</div>
 								</div>
 								<div style="height: 10%; background: #ddd;">
-									<table style="float:left; height: 100%; width: 70px; color: #666; text-align: center;"><tr><td>파트너</td></tr></table>
+									<table style="float:left; height: 100%; width: 70px; color: #666; text-align: center;"><tr><td>스폰서</td></tr></table>
 									<div style="float:left; height: 100%;">
 										<a href="http://www.nipa.kr" target="_blank"><img src="${pageContext.request.contextPath}/img/nipa.png" style="height: 100%"></a>
 										<a href="http://swmaestro.kr" target="_blank"><img src="${pageContext.request.contextPath}/img/swmaestro.png" style="height: 100%"></a>
