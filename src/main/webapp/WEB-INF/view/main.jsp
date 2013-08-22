@@ -88,7 +88,7 @@
 								<h3><i class="icon-music"></i><span class="break"></span>뜨거운 열기를 느껴라!</h3>
 							</div>
 							<div class="box-content" style="padding: 0; height: 100%;">
-								<div style="height: 60%; position: relative;">
+								<div style="height: 55%; position: relative;">
 									<div style="width: 59%; height: 100%; float: left;">
 										<div style="padding: 0; height: 100%;">
 										<c:if test="${comingUpConcertList.size() == 0}">
@@ -129,7 +129,7 @@
 									</div>
 									<div style="clear:both;"></div>
 								</div>
-								<div style="border-top:1px solid #ddd; height: 40%;">
+								<div style="border-top:1px solid #ddd; height: 35%;">
 									<div style="padding: 0; height: 100%;">
 										
 										<c:forEach items="${previousConcertList}" var="concert">
@@ -147,6 +147,15 @@
 										
 										<div style="clear:both;"></div>
 									</div>
+								</div>
+								<div style="height: 10%; background: #ddd;">
+									<table style="float:left; height: 100%; width: 70px; color: #666; text-align: center;"><tr><td>파트너</td></tr></table>
+									<div style="float:left; height: 100%;">
+										<a href="http://www.nipa.kr" target="_blank"><img src="${pageContext.request.contextPath}/img/nipa.png" style="height: 100%"></a>
+										<a href="http://swmaestro.kr" target="_blank"><img src="${pageContext.request.contextPath}/img/swmaestro.png" style="height: 100%"></a>
+										<a href="https://ucloudbiz.olleh.com" target="_blank"><img src="${pageContext.request.contextPath}/img/ucloud.png" style="height: 100%"></a>
+									</div>
+									<div style="clear:both;"></div>
 								</div>
 							</div>
 						</div>
