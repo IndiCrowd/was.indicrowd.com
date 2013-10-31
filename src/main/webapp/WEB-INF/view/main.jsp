@@ -92,7 +92,7 @@
 									<div style="width: 59%; height: 100%; float: left;">
 										<div style="padding: 0; height: 100%;">
 										<c:if test="${comingUpConcertList.size() == 0}">
-											<iframe width="100%" height="100%" src="http://www.youtube.com/embed/AYb_snZkjYE" frameborder="0" allowfullscreen></iframe>
+											<iframe width="100%" height="100%" src="https://www.youtube.com/embed/AYb_snZkjYE" frameborder="0" allowfullscreen></iframe>
 										</c:if>
 										<c:forEach items="${comingUpConcertList}" var="concert" end="0">
 											<div onclick="popup('<c:url value="/concert/${concert.id}" />', 'Concert', 1000, 700);" style="width:59%; background-image: url(<spring:eval expression="@userfileConfig.baseUrl" />/concertthumb/${concert.id})" class="concert-content">
